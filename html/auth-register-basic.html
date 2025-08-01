@@ -1,0 +1,186 @@
+<!doctype html>
+
+<html lang="ar" dir="rtl" class="layout-wide customizer-hide" data-assets-path="../assets/" data-template="vertical-menu-template-free">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>تسجيل مستخدم جديد - نظام نفقات المطلقات</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/vendor/fonts/iconify-icons.css" />
+
+    <!-- Core CSS -->
+    <!-- build:css assets/vendor/css/theme.css  -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <!-- endbuild -->
+
+    <!-- Page CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/pages/page-auth.css" />
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+
+    <!-- Template JS -->
+    <script src="../assets/js/config.js"></script>
+  </head>
+
+  <body>
+    <!-- Content -->
+
+    <div class="container-xxl">
+      <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner w-100" style="max-width: 1100px; margin: auto;">
+          <!-- Register Card -->
+          <div class="card w-100 px-sm-6 px-3">
+            <div class="card-body">
+              <!-- Logo -->
+              <div class="app-brand justify-content-center mb-3">
+                <a href="#" class="app-brand-link gap-2 d-flex flex-column align-items-center">
+                  <img src="../assets/img/favicon/logo.png" alt="شعار عِوض" width="200">
+                  <!-- <span style="color: #40583F; font-size: 1.5rem; font-weight: bold;">عِـــــــوض</span> -->
+                </a>
+              </div>
+              <!-- /Logo -->
+              <h4 class="mb-1">أنشئ حسابك الآن </h4>
+              <p class="mb-6">أهلاً بك في نظام تتبع نفقات المطلقات</p>
+
+              <form id="formRegister" class="mb-6" action="index.html">
+                <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+                
+                <div class="row">
+                  <div class="mb-4 col-md-6">
+                    <label for="firstName" class="form-label">الاسم الأول</label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="أدخل الاسم الأول">
+                  </div>
+                  <div class="mb-4 col-md-6">
+                    <label for="fatherName" class="form-label">اسم الأب</label>
+                    <input type="text" class="form-control" id="fatherName" name="fatherName" placeholder="أدخل اسم الأب">
+                  </div>
+
+                  <div class="mb-4 col-md-6">
+                    <label for="lastName" class="form-label">اللقب</label>
+                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="أدخل اللقب">
+                  </div>
+                  <div class="mb-4 col-md-6">
+                    <label for="phone" class="form-label">رقم الهاتف</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="أدخل رقم الهاتف">
+                  </div>
+
+                  <div class="mb-4 col-md-6">
+                    <label for="email" class="form-label">البريد الإلكتروني</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="example@email.com">
+                  </div>
+
+
+                  <div class="mb-4 col-md-6">
+                    <label for="passport" class="form-label">رقم الجواز</label>
+                    <input type="text" class="form-control" id="passport" name="passport" placeholder="أدخل رقم الجواز">
+                  </div>
+
+                  <div class="mb-4 col-md-6">
+                    <label for="address" class="form-label">العنوان</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="أدخل العنوان">
+                  </div>
+
+                  <div class="mb-4 col-6">
+                    <label for="NID" class="form-label"> الرقم الوطني</label>
+                    <input type="text" class="form-control" id="NID" name="NID">
+                  </div>
+
+                  <div class="mb-4 col-12">
+                    <label for="birthdate" class="form-label">تاريخ الميلاد</label>
+                    <input type="date" class="form-control" id="birthdate" name="birthdate">
+                  </div>
+
+                  <div class="mb-4 col-md-6">
+                    <div class="border rounded p-3 h-100">
+                      <label class="form-label d-block mb-2">الجنس</label>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="ذكر">
+                        <label class="form-check-label" for="male">ذكر</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="أنثى">
+                        <label class="form-check-label" for="female">أنثى</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="mb-4 col-md-6">
+                    <div class="border rounded p-3 h-100">
+                      <label class="form-label d-block mb-2">الجنسية</label>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="nationality" id="libyan" value="ليبي">
+                        <label class="form-check-label" for="libyan">ليبي</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="nationality" id="foreigner" value="أجنبي">
+                        <label class="form-check-label" for="foreigner">أجنبي</label>
+                      </div>
+                    </div>
+
+                  
+                </div>
+
+
+
+                <div class="my-7">
+                  <div class="form-check mb-0">
+                    <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
+                    <label class="form-check-label" for="terms-conditions">
+                      أوافق على
+                      <a href="javascript:void(0);">سياسة الخصوصية والشروط</a>
+                    </label>
+                  </div>
+                </div>
+                <button class="btn btn-primary d-grid w-100 mb-2">تسجيل</button>
+              </form>
+
+              <p class="text-center">
+                <span>لديك حساب بالفعل؟</span>
+                <a href="auth-login-basic.html">
+                  <span>تسجيل الدخول</span>
+                </a>
+              </p>
+            </div>
+          </div>
+          <!-- Register Card -->
+        </div>
+      </div>
+    </div>
+
+    <!-- / Content -->
+
+    <!-- Core JS -->
+
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../assets/vendor/js/menu.js"></script>
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="../assets/js/register.js"></script>
+
+  </body>
+</html>
