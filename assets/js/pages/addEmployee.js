@@ -4,6 +4,8 @@ import { showError, hideError } from "../utils/helpers.js";
 console.log("addEmployee.js loaded");
 document.getElementById("addEmployeeForm").addEventListener("submit", async function (e) {
   e.preventDefault();
+  const selectedPermissions = Array.from(document.querySelectorAll('#permissionsList input[type="checkbox"]:checked'))
+  .map(cb => parseInt(cb.value));
 
   const data = {
     FirstName: document.getElementById("firstName").value.trim(),
@@ -21,6 +23,7 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
     Username: document.getElementById("username").value.trim(),
     Password: document.getElementById("password").value.trim(),
     WorkDepartment: document.getElementById("workDepartment").value.trim(),
+   Permissions: selectedPermissions
   };
 
   hideError();
@@ -32,7 +35,7 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
   }
 
   try {
-    const response = await fetch('https://localhost:44377/api/Person/add-employee', {
+    const response = await fetch('https://localhost:7169/api/Person/add-employee', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -52,61 +55,63 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
 });
 
 
+async function loadPermissions() {
+  try {
+    const response = await fetch('https://localhost:7169/api/UserPermissions/all-permissions');
+    const data = await response.json();
 
-//  document.getElementById('formRegister').addEventListener('submit', async function (e) {
-//         e.preventDefault();
+    // ✅ استخراج القائمة من داخل "results"
+    const permissions = data.results;
 
-//         const errorBox = document.getElementById('error-message');
+    const permissionsContainer = document.getElementById("permissionsList");
+    permissionsContainer.innerHTML = '';
 
-//         function showError(message) {
-//           errorBox.textContent = message;
-//           errorBox.classList.remove("d-none");
-//         }
+    permissions.forEach(permission => {
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.className = "form-check-input me-2";
+      checkbox.value = permission.permissionId;
+      checkbox.id = `perm_${permission.permissionId}`;
 
-//         function hideError() {
-//           errorBox.classList.add("d-none");
-//           errorBox.textContent = "";
-//         }
+      const label = document.createElement("label");
+      label.className = "list-group-item";
+      label.appendChild(checkbox);
+      label.append(permission.permissionName);
 
-//         const data = {
-//           FirstName: document.getElementById("firstName").value.trim(),
-//           MiddleName: document.getElementById("middleName").value.trim(),
-//           LastName: document.getElementById("lastName").value.trim(),
-//           PhoneNumber: document.getElementById("phone").value.trim(),
-//           Email: document.getElementById("email").value.trim(),
-//           PassportNumber: document.getElementById("passport").value.trim(),
-//           Address: document.getElementById("address").value.trim(),
-//           NID: document.getElementById("NID").value.trim(),
-//           DateOfBirth: document.getElementById("birthdate").value,
-//           Gender: document.querySelector("input[name='gender']:checked")?.value,
-//           Nationality: document.querySelector("input[name='nationality']:checked")?.value,
-//           Role: document.querySelector("input[name='role_type']:checked")?.value,
-//           Username: document.getElementById("username").value.trim(),
-//           Password: document.getElementById("password").value.trim(),
-//         };
+      permissionsContainer.appendChild(label);
+    });
 
-//         hideError();
-//         try {
-//           const response = await fetch('https://localhost:44377/api/Person/Registration', {
-//             method: 'POST',
-//             headers: {
-//               'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(data)
-//           });
+  } catch (error) {
+    console.error("خطأ في تحميل الصلاحيات:", error);
+  }
+}
+// document.addEventListener("DOMContentLoaded", loadPermissions);
 
-//           if (response.ok) {
-//             if(data.Role==='5')
-//               window.location.href = '../../html/divorced-woman/index.html';
-//             else if(data.Role==='2')
-//               window.location.href = '../../html/divorced-woman/index.html';
-//             else if(data.Role==='3')
-//               window.location.href = '../../html/divorced-man/index.html';
-//           } else {
-//             const result = await response.json();
-//             showError(result.message || 'حدث خطأ أثناء التسجيل.');
-//           }
-//         } catch (error) {
-//           showError('خطأ في الاتصال بالخادم');
-//         }
-//       });
+function togglePermissionsVisibility() {
+  const selectedRole = document.querySelector("input[name='role_type']:checked")?.value;
+  const permissionsCard = document.getElementById("permissionsCard");
+
+  if (selectedRole === "1") {
+      loadPermissions()
+    // نعرض الصلاحيات
+    permissionsCard.style.display = "block"; 
+   } 
+    else {  
+        // إذا كان محضر (FollowUpAgent)، نخفي الصلاحيات
+
+       permissionsCard.style.display = "none";
+
+  }
+}
+
+// ✅ شغّلها عند تحميل الصفحة
+document.addEventListener("DOMContentLoaded", () => {
+  togglePermissionsVisibility();
+
+  // ✅ شغّلها عند تغيير اختيار الصفة
+  document.querySelectorAll("input[name='role_type']").forEach(input => {
+    input.addEventListener("change", togglePermissionsVisibility);
+  });
+});
+
+
