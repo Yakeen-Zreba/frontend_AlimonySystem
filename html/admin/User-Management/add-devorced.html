@@ -105,7 +105,7 @@
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row g-6">
-                <form id="addEmployeeForm" action="#">
+                <form id="addDivorcedRepresentationForm" action="#">
                   <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
                   <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="row g-6">
@@ -185,8 +185,8 @@
                                   <label class="form-check-label" for="agent">وكيل المطلقة</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="role_type" id="ex_husband" value="3">
-                                  <label class="form-check-label" for="ex_husband"> الزوج السابق</label>
+                                  <input class="form-check-input" type="radio" name="role_type" id="exhusband" value="3">
+                                  <label class="form-check-label" for="exhusband"> الزوج السابق</label>
                                 </div>
                               </div>
 
@@ -300,31 +300,35 @@
     <script src="../../../assets/js/main.js"></script>
 
     <!-- Page JS -->
-   <script type="module" src="../../../assets/js/pages/addEmployee.js"></script>
+   <script type="module" src="../../../assets/js/pages/add-divorced-representation.js"></script>
 
     <script>
-      const libyanRadio = document.getElementById("libyan");
-      const foreignRadio = document.getElementById("foreign");
-      const nidFieldWrapper = document.getElementById("nidField");
-      const nidInput = document.getElementById("NID");
+    document.addEventListener("DOMContentLoaded", function () {
+    const libyanRadio = document.getElementById("libyan");
+    const foreignRadio = document.getElementById("foreign");
+    const nidFieldWrapper = document.getElementById("nidField");
+    const nidInput = document.getElementById("NID");
 
-      function toggleNIDField() {
-        if (foreignRadio.checked) {
-          nidFieldWrapper.style.display = "none";
-          nidInput.disabled = true;
-          nidInput.tabIndex = -1; 
-        } else {
-          nidFieldWrapper.style.display = "block";
-          nidInput.disabled = false;
-          nidInput.tabIndex = 0;
-        }
+    function toggleNIDField() {
+      if (libyanRadio.checked) {
+        nidFieldWrapper.style.display = "block";
+        nidInput.disabled = false;
+        nidInput.tabIndex = 0;
+      } else {
+        nidFieldWrapper.style.display = "none";
+        nidInput.disabled = true;
+        nidInput.tabIndex = -1;
       }
+    }
 
-      libyanRadio.addEventListener("change", toggleNIDField);
-      foreignRadio.addEventListener("change", toggleNIDField);
+    // ربط الحدث بالراديو
+    libyanRadio.addEventListener("change", toggleNIDField);
+    foreignRadio.addEventListener("change", toggleNIDField);
 
-      // تنفيذ مبدئي عند تحميل الصفحة
-      window.addEventListener("DOMContentLoaded", toggleNIDField);
+    // تشغيل الوظيفة عند تحميل الصفحة
+    toggleNIDField(); // سواء تم تحديد خيار مسبقاً أو لا
+    });
+
     </script>
 
 

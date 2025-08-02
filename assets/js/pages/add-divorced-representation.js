@@ -2,7 +2,7 @@ import { postData } from "../api/httpClient.js";
 import { validateRegisterData } from "../utils/validation.js";
 import { showError, hideError } from "../utils/helpers.js";
 
-document.getElementById("formRegister").addEventListener("submit", async function (e) {
+document.getElementById("addDivorcedRepresentationForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const data = {
@@ -38,21 +38,22 @@ document.getElementById("formRegister").addEventListener("submit", async functio
       },
       body: JSON.stringify(data)
     });
-  const result = await response.json();
 
+  const result = await response.json();
     if (response.ok && result.isSuccess) {
-      if(data.Role==='5')
-        window.location.href = '../../html/divorced-woman/index.html';
+      localStorage.setItem("successMessage", result.message || "تمت العملية بنجاح");
+        if(data.Role==='5')
+        window.location.href = 'divorced-woman/view.html';
       else if(data.Role==='4')
-        window.location.href = '../../html/divorced-woman/index.html';
+        window.location.href = 'divorced-woman/view.html';
       else if(data.Role==='3')
-        window.location.href = '../../divorced-man/index.html';
-    } if(!result.isSuccess){
+        window.location.href = 'divorced-man/view.html';
+    }if(!result.isSuccess){
         showError(result.message );
     }
   } catch (error) {
     showError('خطأ في الاتصال بالخادم');
   }
-});
 
+});
 

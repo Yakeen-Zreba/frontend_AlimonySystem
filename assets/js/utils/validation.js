@@ -1,32 +1,42 @@
 export function validateRegisterData(data) {
-  if (!data.FirstName || !data.MiddleName || !data.LastName || !data.PhoneNumber || !data.Email ||
-      !data.PassportNumber || !data.Address || !data.NID || !data.DateOfBirth ||
-      !data.Gender || !data.Nationality || !data.Role || !data.Username || !data.Password) {
+  if (!data.FirstName || !data.MiddleName || !data.LastName || !data.PhoneNumber || 
+      !data.Gender || !data.Nationality || !data.Role || 
+      !data.Username || !data.Password) {
     return "يرجى تعبئة جميع الحقول المطلوبة.";
   }
+
+
+  if (data.Nationality === '0' && (!data.NID || data.NID.trim() === '')) {
+    return "الرقم الوطني مطلوب للمواطنين الليبيين.";
+  }
+
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(data.Email)) {
     return "يرجى إدخال بريد إلكتروني صالح.";
   }
 
+
   if (data.Password.length < 8) {
     return "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل.";
   }
 
-    if (data.PhoneNumber.length < 10 || data.PhoneNumber.length > 12) {
-    return "يجب أن يحتوي رقم الهاتف  على 10 أرقام على الأقل.";
+
+  if (data.PhoneNumber.length < 10 || data.PhoneNumber.length > 12) {
+    return "يجب أن يحتوي رقم الهاتف على 10 أرقام على الأقل.";
   }
 
-  if (data.PassportNumber.length != 8) {
-    return "يجب أن يحتوي رقم جواز السفر  على 8 أرقام .";
+
+  if (data.PassportNumber.length !== 8) {
+    return "يجب أن يحتوي رقم جواز السفر على 8 أرقام.";
   }
 
-    if (data.NID.length != 12) {
-    return "يجب أن يحتوي الرقم الوطني  على 12 رقم .";
+
+  if (data.Nationality === '0' && data.NID.length !== 12) {
+    return "يجب أن يحتوي الرقم الوطني على 12 رقمًا.";
   }
 
-  return null;
+  return null; 
 }
 
 export function validateLoginData(data) {

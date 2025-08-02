@@ -119,7 +119,10 @@
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <div class="card-body">
-                      <a href="../add-devorced.html" class="btn btn-outline-secondary">إضافة الزوج السابق  </a>
+                      <a href="../divorced-woman/view.html" class="btn btn-outline-secondary">المطلقة / وكيل المطلقة</a>
+                      <a href="#" class="btn btn-secondary">الزوج السابق</a>
+                      <a href="../government/view.html" class="btn btn-outline-secondary">موظف حكومي / محضر</a>
+                      <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
                   </div>
                 </div>
@@ -128,8 +131,10 @@
               
               <!-- Hoverable Table rows -->
               <div class="card">
-                <h5 class="card-header"> الازواج </h5>
-                <div class="table-responsive text-nowrap">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">الأزواج</h5>
+                  <a href="../add-devorced.html" class="btn btn-primary">إضافة الزوج السابق</a>
+                </div>
                   <table class="table table-hover">
                     <thead>
                       <tr>
@@ -140,34 +145,8 @@
                         <th>النشاط</th>
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0">
-                      <tr>
-                        <td>
-                          <span>userName1</span>
-                        </td>
-                        <td> 
-                            <span class="badge bg-label-primary me-1">userName@gmail.com</span>
-                        </td>
-                        <td>
-                          <span class="badge bg-label-secondary me-1">+123456789</span>
-                        </td>
-                        <td><span class="badge bg-label-primary me-1">Active</span></td>
-                        <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="icon-base bx bx-edit-alt me-1"></i> Edit</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="icon-base bx bx-trash me-1"></i> Delete</a
-                              >
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
+                    <tbody class="table-border-bottom-0" id="divorcedManTableBody">
+                    
                     </tbody>
                   </table>
                 </div>
@@ -205,6 +184,7 @@
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>
+      
     </div>
     <!-- / Layout wrapper -->
 
@@ -228,8 +208,7 @@
     <script src="../../../../assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script type="module" src="../../../../../assets/js/pages/divorced-man-list.js"></script>
 
-    <!-- Place this tag before closing body tag for github widget button. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
   </body>
 </html>
