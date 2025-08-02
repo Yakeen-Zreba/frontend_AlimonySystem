@@ -41,12 +41,14 @@ document.getElementById("formRegister").addEventListener("submit", async functio
   const result = await response.json();
 
     if (response.ok && result.isSuccess) {
+      const username = document.getElementById("username").value.trim();
+      localStorage.setItem("username", username);
       if(data.Role==='5')
         window.location.href = '../../html/divorced-woman/index.html';
       else if(data.Role==='4')
         window.location.href = '../../html/divorced-woman/index.html';
       else if(data.Role==='3')
-        window.location.href = '../../divorced-man/index.html';
+        window.location.href = '../../html/divorced-man/index.html';
     } if(!result.isSuccess){
         showError(result.message );
     }
