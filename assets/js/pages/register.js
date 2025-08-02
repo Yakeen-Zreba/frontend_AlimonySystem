@@ -42,7 +42,7 @@ document.getElementById("formRegister").addEventListener("submit", async functio
     if (response.ok) {
       if(data.Role==='5')
         window.location.href = '../../html/divorced-woman/index.html';
-      else if(data.Role==='2')
+      else if(data.Role==='4')
         window.location.href = '../../html/divorced-woman/index.html';
       else if(data.Role==='3')
         window.location.href = '../../html/divorced-man/index.html';

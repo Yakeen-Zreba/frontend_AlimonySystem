@@ -8,7 +8,7 @@
    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام تتبع نفقات المطلقات</title>
+    <title>نظام إدارة النفقة</title>
     <meta name="description" content="لوحة معلومات لنظام النفقات" />
 
     <link rel="icon" type="image/x-icon" href="../../../../assets/img/favicon/favicon.ico" />
@@ -103,137 +103,128 @@
 
         <div class="content-wrapper">
             <!-- Content -->
-            
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row g-6">
-                <!--Personal data-->
-                <div class="col-md-12">
-                <div class="card">
-                    <h5 class="card-header">البيانات الشخصية</h5>
-                    <div class="card-body">
-                    <div class="row g-3">
+                <form id="addEmployeeForm">
+                  <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+                  <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="row g-6">
+                      <!--Personal data-->
+                      <div class="col-md-12">
+                        <div class="card">
+                          <h5 class="card-header">البيانات الشخصية</h5>
+                          <div class="card-body">
+                            <div class="row g-3">
+                              <!-- الاسم الأول واسم الأب -->
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="الاسم الأول">
+                              </div>
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="اسم الأب">
+                              </div>
+                              <!-- اللقب والهاتف -->
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="اللقب">
+                              </div>
+                              <div class="col-md-6">
+                                <input type="number" class="form-control" id="phone" name="phone" placeholder="الهاتف">
+                              </div>
+                              <!-- البريد الإلكتروني -->
+                              <div class="col-md-6">
+                                <div class="input-group">
+                                  <input type="email" class="form-control" id="email" name="email" placeholder="البريد الإلكتروني" aria-label="email">
+                                  <span class="input-group-text">@example.com</span>
+                                </div>
+                              </div>
+                              <!-- رقم الجواز والرقم الوطني -->
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="passport" name="passport" placeholder="رقم الجواز">
+                              </div>
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="NID" name="NID" placeholder="الرقم الوطني">
+                              </div>
+                              <!-- العنوان وتاريخ الميلاد -->
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="address" name="address" placeholder="العنوان">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="birthdate" class="form-label">تاريخ الميلاد</label>
+                                <input type="date" class="form-control" id="birthdate" name="birthdate">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="workDepartment" class="form-label">جهة العمل</label>
+                                <input type="text" class="form-control" id="workDepartment" name="workDepartment" placeholder="جهة العمل" aria-describedby="workDepartment" />
+                              </div>
+                              <!-- الجنس -->
+                              <div class="col-4">
+                                <small class="fw-medium d-block mb-2">الجنس</small>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="gender" id="male" value="0">
+                                  <label class="form-check-label" for="male">ذكر</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="gender" id="female" value="1">
+                                  <label class="form-check-label" for="female">أنثى</label>
+                                </div>
+                              </div>
+                              <!-- الجنسية-->
+                              <div class="col-md-4">
+                                <small class="fw-medium d-block mb-2">الجنسية</small>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="nationality" id="libyan" value="0">
+                                  <label class="form-check-label" for="libyan">ليبي</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="nationality" id="foreign" value="1">
+                                  <label class="form-check-label" for="foreign">أجنبي</label>
+                                </div>
+                              </div>
 
-                        <!-- الاسم الأول واسم الأب -->
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="firstName" placeholder="الاسم الأول">
-                        </div>
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="middleName" placeholder="اسم الأب">
-                        </div>
+                              <!-- الصفه-->
+                              <div class="col-md-4">
+                                <small class="fw-medium d-block mb-2">الصفة</small>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role" id="employee" value="1">
+                                  <label class="form-check-label" for="employee">موظف حكومي</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role" id="followUpAgent" value="2">
+                                  <label class="form-check-label" for="followUpAgent">محضر</label>
+                                </div>
+                              </div>
 
-                        <!-- اللقب والهاتف -->
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="lastName" placeholder="اللقب">
-                        </div>
-                        <div class="col-md-6">
-                        <input type="number" class="form-control" id="Phone" placeholder="الهاتف">
-                        </div>
-
-                        <!-- البريد الإلكتروني -->
-                        <div class="col-md-6">
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="البريد الإلكتروني" aria-label="email">
-                            <span class="input-group-text">@example.com</span>
-                        </div>
-                        </div>
-
-                        <!-- رقم الجواز والرقم الوطني -->
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="passportNumber" placeholder="رقم الجواز">
-                        </div>
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="NID" placeholder="الرقم الوطني">
-                        </div>
-
-                        <!-- العنوان وتاريخ الميلاد -->
-                        <div class="col-md-6">
-                        <input type="text" class="form-control" id="address" placeholder="العنوان">
-                        </div>
-
-                        <div class="col-md-12">
-                        <label for="birthdate" class="form-label">تاريخ الميلاد</label>
-                        <input type="date" class="form-control" id="birthdate" name="birthdate">
-                        </div>
-
-                        <!-- الجنس -->
-                        <div class="col-6">
-                        <small class="fw-medium d-block mb-2">الجنس</small>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="male" value="ذكر">
-                            <label class="form-check-label" for="male">ذكر</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender" id="female" value="أنثى">
-                            <label class="form-check-label" for="female">أنثى</label>
-                        </div>
-                        </div>
-
-                        <!-- الجنسية (راديو) -->
-                        <div class="col-md-6">
-                        <small class="fw-medium d-block mb-2">الجنسية</small>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="nationality" id="libyan" value="ليبي">
-                            <label class="form-check-label" for="libyan">ليبي</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="nationality" id="foreign" value="أجنبي">
-                            <label class="form-check-label" for="foreign">أجنبي</label>
-                        </div>
-                        </div>
-
-                    </div>
-                    </div>
-                </div>
-                </div>
-                <!--/Personal data-->
-
-
-                <!-- Account Data -->
-                <div class="col-md-6">
-                  <div class="card">
-                    <h5 class="card-header">بيانات الحساب</h5>
-                    <div class="card-body">
-                      
-                        <div class="form-group  mb-5">
-                            <input
-                            type="text"
-                            class="form-control"
-                            id="userName"
-                            placeholder="اسم المستخدم"
-                            aria-describedby="userName" />
-                        </div>
-
-                        <div class="form-password-toggle  mb-5">
-                            <label class="form-label" for="basic-default-password32">كلمة المرور</label>
-                            <div class="input-group input-group-merge">
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="basic-default-password32"
-                                placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                                aria-describedby="basic-default-password" />
-                            <span class="input-group-text cursor-pointer" id="basic-default-password"
-                                ><i class="icon-base bx bx-hide"></i
-                            ></span>
                             </div>
+                          </div>
                         </div>
-                        
-                      <div class="form-group  mb-6">
-                        <input
-                        type="text"
-                        class="form-control"
-                        id="workDepartment"
-                        placeholder="جهة العمل"
-                        aria-describedby="workDepartment" />
                       </div>
-
+                      <!--/Personal data-->
+                      <!-- Account Data -->
+                      <div class="col-md-6">
+                        <div class="card">
+                          <h5 class="card-header">بيانات الحساب</h5>
+                          <div class="card-body">
+                            <div class="form-group  mb-5">
+                              <input type="text" class="form-control" id="userName" placeholder="اسم المستخدم" aria-describedby="userName" />
+                            </div>
+                            <div class="form-password-toggle  mb-5">
+                              <label class="form-label" for="basic-default-password32">كلمة المرور</label>
+                              <div class="input-group input-group-merge">
+                                <input type="password" class="form-control" id="basic-default-password32" placeholder="••••••••••" aria-describedby="basic-default-password" />
+                                <span class="input-group-text cursor-pointer" id="basic-default-password">
+                                  <i class="icon-base bx bx-hide"></i>
+                                </span>
+                              </div>
+                            </div>
+                            <div class="mt-4">
+                              <button class="btn btn-primary d-grid w-100 mb-2">حفظ</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--\Account data-->
                     </div>
                   </div>
-                </div>
-                <!--\Account data-->
-
-
-
+                </form>  
               </div>
             </div>
             <!-- / Content -->
@@ -272,14 +263,14 @@
 
     <!-- Core JS -->
 
-    <script src="../../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../../../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../../../assets/vendor/js/menu.js"></script>
+    <script src="../../../../../assets/vendor/js/menu.js"></script>
 
     <!-- endbuild -->
 
@@ -290,20 +281,11 @@
 
     
     <!-- Main JS -->
-    <script src="../../../../assets/js/main.js"></script>
+    <script src="../../../../../assets/js/main.js"></script>
 
     <!-- Page JS -->
+    <script type="module" src="../../../../../assets/js/pages/addEmployee.js"></script>
 
-    <!-- Place this tag before closing body tag for github widget button. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <script>
-        // flatpickr("#birthdate", {
-        //     dateFormat: "Y-m-d",
-        //     maxDate: "today", // لمنع اختيار تاريخ في المستقبل
-        //     locale: "ar" // لجعل التقويم بالعربية إذا أردت
-        // });
-    </script>
 
   </body>
 </html>
