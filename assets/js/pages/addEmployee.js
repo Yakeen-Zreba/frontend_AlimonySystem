@@ -35,7 +35,7 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
   }
 
   try {
-    const response = await fetch('https://localhost:7169/api/Person/add-employee', {
+    const response = await fetch('https://localhost:44377/api/Person/add-employee', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
     });
 
     if (response.ok) {
-        window.location.href = '../../html/admin/User-Management/government/view.html';
+        // window.location.href = '#';
     } else {
       const result = await response.json();
       showError(result.message || 'حدث خطأ أثناء الحفظ.');
@@ -57,10 +57,10 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
 
 async function loadPermissions() {
   try {
-    const response = await fetch('https://localhost:7169/api/UserPermissions/all-permissions');
+    const response = await fetch('https://localhost:44377/api/UserPermissions/all-permissions');
     const data = await response.json();
 
-    // ✅ استخراج القائمة من داخل "results"
+    //  استخراج القائمة من داخل "results"
     const permissions = data.results;
 
     const permissionsContainer = document.getElementById("permissionsList");
@@ -104,11 +104,11 @@ function togglePermissionsVisibility() {
   }
 }
 
-// ✅ شغّلها عند تحميل الصفحة
+//  شغّلها عند تحميل الصفحة
 document.addEventListener("DOMContentLoaded", () => {
   togglePermissionsVisibility();
 
-  // ✅ شغّلها عند تغيير اختيار الصفة
+  //  شغّلها عند تغيير اختيار الصفة
   document.querySelectorAll("input[name='role_type']").forEach(input => {
     input.addEventListener("change", togglePermissionsVisibility);
   });

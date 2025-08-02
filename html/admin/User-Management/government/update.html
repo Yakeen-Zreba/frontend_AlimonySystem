@@ -1,0 +1,311 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class="layout-menu-fixed layout-compact"
+  data-assets-path="../../../../../assets/"
+  data-template="vertical-menu-template-free">
+   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>نظام إدارة النفقة</title>
+    <meta name="description" content="لوحة معلومات لنظام النفقات" />
+
+    <link rel="icon" type="image/x-icon" href="../../../../assets/img/favicon/favicon.ico" />
+
+    <!-- الخط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="../../../../assets/vendor/fonts/iconify-icons.css" />
+
+    <!-- CSS الأساسي -->
+    <link rel="stylesheet" href="../../../../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../../../../assets/css/demo.css" />
+    <link rel="stylesheet" href="../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../../../assets/vendor/libs/apex-charts/apex-charts.css" />
+
+    <!-- Flatpickr CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
+    <!-- أدوات المساعدة -->
+    <script src="../../../../assets/vendor/js/helpers.js"></script>
+    <script src="../../../../assets/js/config.js"></script>
+
+    <style>
+      body { font-family: 'Cairo', sans-serif; text-align: right; }
+    </style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="#" class="app-brand-link">
+              <span class="app-brand-logo demo "><img src="../../../../assets/img/favicon/short_logo.png" width="50"></span>
+              <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
+            </a>
+          </div>
+          <ul class="menu-inner py-3">
+            <li class="menu-item"><a href="../../dashboard.html" class="menu-link">الرئيسية</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">الملف الشخصي</a></li>
+            <li class="menu-item active"><a href="../general.html" class="menu-link"> إدارة المستخدمين</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
+            <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
+
+          </ul>
+        </aside>
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+          <nav
+            class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme"
+            id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="icon-base bx bx-menu icon-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
+                <h4 class="mb-0 me-4 fw-bold">تعديل موظف حكومي </h4>
+              <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+
+                <!-- رسالة الترحيب -->
+                <li class="nav-item lh-1 me-4">
+                    <p class="mb-0 text-muted">مرحباً، John Doe</p>
+                </li>
+
+
+                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
+                    <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                        <img src="../../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                    </a>
+                </li>
+                </ul>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+
+        <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row g-6">
+                <form id="addEmployeeForm" action="#">
+                  <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+                  <div class="container-xxl flex-grow-1 container-p-y">
+                    <div class="row g-6">
+                      <!--Personal data-->
+                      <div class="col-md-12">
+                        <div class="card">
+                          <h5 class="card-header">البيانات الشخصية</h5>
+                          <div class="card-body">
+                            <div class="row g-3">
+                              <!-- الاسم الأول واسم الأب -->
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="الاسم الأول">
+                              </div>
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="middleName" name="middleName" placeholder="اسم الأب">
+                              </div>
+                              <!-- اللقب والهاتف -->
+                              <div class="col-md-6">
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="اللقب">
+                              </div>
+                              <div class="col-md-6">
+                                <input type="number" class="form-control" id="phone" name="phone" placeholder="الهاتف">
+                              </div>
+                              <!-- البريد الإلكتروني -->
+                              <div class="col-md-6">
+                                <div class="input-group">
+                                  <input type="email" class="form-control" id="email" name="email" placeholder="البريد الإلكتروني" aria-label="email">
+                                  <span class="input-group-text">@example.com</span>
+                                </div>
+                              </div>
+                              <!-- رقم الجواز والرقم الوطني -->
+                              <div class="col-md-6">
+                                <label for="passport" class="form-label"> رقم الجواز </label>
+                                <input type="text" class="form-control" id="passport" name="passport" placeholder="رقم الجواز">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="NID" class="form-label">الرقم الوطني </label>
+                                <input type="text" class="form-control" id="NID" name="NID" placeholder="الرقم الوطني">
+                              </div>
+                              <!-- العنوان وتاريخ الميلاد -->
+                              <div class="col-md-6">
+                                <label for="address" class="form-label">العنوان </label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="العنوان">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="birthdate" class="form-label">تاريخ الميلاد</label>
+                                <input type="date" class="form-control" id="birthdate" name="birthdate">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="workDepartment" class="form-label">جهة العمل</label>
+                                <input type="text" class="form-control" id="workDepartment" name="workDepartment" placeholder="جهة العمل" aria-describedby="workDepartment" />
+                              </div>
+                              <!-- الجنس -->
+                              <div class="col-4">
+                                <small class="fw-medium d-block mb-2">الجنس</small>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="gender" id="male" value="0">
+                                  <label class="form-check-label" for="male">ذكر</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="gender" id="female" value="1">
+                                  <label class="form-check-label" for="female">أنثى</label>
+                                </div>
+                              </div>
+                              <!-- الجنسية-->
+                              <div class="col-md-4">
+                                <small class="fw-medium d-block mb-2">الجنسية</small>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="nationality" id="libyan" value="0">
+                                  <label class="form-check-label" for="libyan">ليبي</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="nationality" id="foreign" value="1">
+                                  <label class="form-check-label" for="foreign">أجنبي</label>
+                                </div>
+                              </div>
+
+                              <!-- الصفه-->
+                              <div class="col-md-4">
+                                <small class="fw-medium d-block mb-2">الصفة</small>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role_type" id="employee" value="1">
+                                  <label class="form-check-label" for="employee">موظف حكومي</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role_type" id="followUpAgent" value="2">
+                                  <label class="form-check-label" for="followUpAgent">محضر</label>
+                                </div>
+                              </div>
+<!-- الصلاحيات-->
+<div class="col-md-6" id="permissionsCard">
+  <div class="card">
+    <h5 class="card-header">الصلاحيات</h5>
+    <div class="card-body">
+      <small class="fw-medium d-block mb-2 text-muted">اختر الصلاحيات الممنوحة لهذا الموظف</small>
+      <div id="permissionsList" class="list-group">
+        <!-- سيتم تعبئتها ديناميكيًا بواسطة JavaScript -->
+        <!-- مثال:
+        <label class="list-group-item">
+          <input class="form-check-input me-2" type="checkbox" value="1" />
+          عرض الطلبات
+        </label>
+        -->
+      </div>
+    </div>
+  </div>
+</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--/Personal data-->
+                      <!-- Account Data -->
+                      <div class="col-md-6">
+                        <div class="card">
+                          <h5 class="card-header">بيانات الحساب</h5>
+                          <div class="card-body">
+                            <div class="form-group  mb-5">
+                              <input type="text" class="form-control" id="username" placeholder="اسم المستخدم" aria-describedby="username" />
+                            </div>
+                            <div class="form-password-toggle  mb-5">
+                              <label class="form-label" for="password">كلمة المرور</label>
+                              <div class="input-group input-group-merge">
+                                <input type="password" class="form-control" id="password" placeholder="••••••••••" aria-describedby="password" />
+                                <span class="input-group-text cursor-pointer" id="password">
+                                  <i class="icon-base bx bx-hide"></i>
+                                </span>
+                              </div>
+                            </div>
+                            <div class="mt-4">
+                              <button class="btn btn-primary d-grid w-100 mb-2" type="submit">حفظ</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!--\Account data-->
+                    </div>
+                  </div>
+                </form>  
+              </div>
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl">
+                <div
+                  class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                  <div class="mb-2 mb-md-0">
+                    &#169;
+                    <script>
+                      document.write(new Date().getFullYear());
+                    </script>
+                     جميع الحقوق محفوظة - نظام النفقات
+                  </div>
+                  <div class="d-none d-lg-inline-block">
+                    <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
+                    <a href="#" target="_blank" class="footer-link">Support</a>
+                  </div>
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+    </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+
+    <script src="../../../../../assets/vendor/libs/jquery/jquery.js"></script>
+
+    <script src="../../../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../../../assets/vendor/js/bootstrap.js"></script>
+
+    <script src="../../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../../../../../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    
+    <!-- Main JS -->
+    <script src="../../../../../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+   <script type="module" src="../../../../../assets/js/pages/update-employee.js"></script>
+
+
+  </body>
+</html>
