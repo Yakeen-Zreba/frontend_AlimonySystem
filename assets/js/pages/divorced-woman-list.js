@@ -21,25 +21,31 @@ document.addEventListener("DOMContentLoaded", function () {
       if (data.isSuccess && Array.isArray(data.results)) {
         const tableBody = document.getElementById("divorcedWomanTableBody");
 
-        data.results.forEach(emp => {
+        data.results.forEach(divo => {
           const tr = document.createElement("tr");
+          console.log("المستخدم:", divo);
 
           tr.innerHTML = `
-            <td>${emp.firstName || ''} ${emp.middleName || ''} ${emp.lastName || ''}</td>
-            <td><span class="badge bg-label-primary me-1">${emp.email || ''}</span></td>
-            <td><span class="badge bg-label-secondary me-1">${emp.phoneNumber || ''}</span></td>
-            <td><span class="badge bg-label-secondary me-1">${getRoleName(emp.role)}</span></td>
-            <td><span class="badge ${emp.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1">${emp.isActive ? 'نشط' : 'غير نشط'}</span></td>
+            <td>${divo.firstName || ''} ${divo.middleName || ''} ${divo.lastName || ''}</td>
+            <td><span class="badge bg-label-primary me-1">${divo.email || ''}</span></td>
+            <td><span class="badge bg-label-secondary me-1">${divo.phoneNumber || ''}</span></td>
+            <td><span class="badge bg-label-secondary me-1">${getRoleName(divo.role)}</span></td>
+            <td><span class="badge ${divo.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1 status-text">${divo.isActive ? 'نشط' : 'غير نشط'}</span></td>
             <td>
-              <div class="dropdown">
-                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                  <i class="icon-base bx bx-dots-vertical-rounded"></i>
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#"><i class="icon-base bx bx-edit-alt me-1"></i> تعديل</a>
-                  <a class="dropdown-item" href="#"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
-                </div>
+            <div class="dropdown">
+              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                <i class="icon-base bx bx-dots-vertical-rounded"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><i class="icon-base bx bx-edit-alt me-1"></i> تعديل</a>
+                <a class="dropdown-item text-danger" href="#"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
+                <a class="dropdown-item toggle-status-btn" href="#" 
+                  data-id="${divo.personId }" 
+                  data-status="${divo.isActive}">
+                  <i class="icon-base bx bx-refresh me-1"></i> ${divo.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
+                </a>
               </div>
+            </div
             </td>
           `;
 
@@ -61,4 +67,58 @@ function getRoleName(role) {
     case 5: return "وكيل المطلقة";
     default: return "غير معروف";
   }
+}
+
+/*تفعل والغاء التفعيل */
+document.getElementById("divorcedWomanTableBody").addEventListener("click", function (e) {
+  if (e.target.closest(".toggle-status-btn")) {
+    e.preventDefault();
+
+    const btn = e.target.closest(".toggle-status-btn");
+    const personId = btn.dataset.id;
+    const currentStatus = btn.dataset.status === "true";
+    const modifiedBy = "8FD8EBF5-4D67-455B-81AF-8E07628AEC1C"; // <-- يستبدل بالمعرّف الحقيقي للمستخدم المعدل
+
+    const confirmMsg = currentStatus
+      ? "هل أنت متأكد من إلغاء تفعيل هذا المستخدم؟"
+      : "هل أنت متأكد من تفعيل هذا المستخدم؟";
+
+    if (confirm(confirmMsg)) {
+      fetch(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}&modifiedBy=${modifiedBy}`, {
+        method: 'GET',
+        headers: { 'Accept': '*/*' }
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.isSuccess) {
+            // تحديث النص والستايل في الخلية
+            const statusCell = btn.closest("tr").querySelector(".status-text");
+            statusCell.textContent = !currentStatus ? "نشط" : "غير نشط";
+            statusCell.classList.toggle("bg-label-success", !currentStatus);
+            statusCell.classList.toggle("bg-label-danger", currentStatus);
+
+            // تحديث الزر
+            btn.dataset.status = (!currentStatus).toString();
+            btn.innerHTML = `<i class="icon-base bx bx-refresh me-1"></i> ${!currentStatus ? 'إلغاء تنشيط' : 'تنشيط'}`;
+
+            showSuccessMessage("تم تحديث حالة المستخدم بنجاح.");
+          } else {
+            alert("فشل تغيير الحالة: " + data.message);
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alert("حدث خطأ أثناء محاولة تغيير الحالة.");
+        });
+    }
+  }
+});
+
+function showSuccessMessage(msg) {
+  const box = document.getElementById("successMessageBox");
+  box.textContent = msg;
+  box.classList.remove("d-none");
+  setTimeout(() => {
+    box.classList.add("d-none");
+  }, 3000);
 }
