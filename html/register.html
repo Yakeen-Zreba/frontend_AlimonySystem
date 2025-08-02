@@ -8,7 +8,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>تسجيل مستخدم جديد - نظام نفقات المطلقات</title>
+    <title>إنشاء مستخدم جديد - نظام إدارة النفقة</title>
 
     <meta name="description" content="" />
 
@@ -70,8 +70,8 @@
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="أدخل الاسم الأول">
                   </div>
                   <div class="mb-4 col-md-6">
-                    <label for="fatherName" class="form-label">اسم الأب</label>
-                    <input type="text" class="form-control" id="fatherName" name="fatherName" placeholder="أدخل اسم الأب">
+                    <label for="middleName" class="form-label">اسم الأب</label>
+                    <input type="text" class="form-control" id="middleName" name="middleName" placeholder="أدخل اسم الأب">
                   </div>
 
                   <div class="mb-4 col-md-6">
@@ -113,11 +113,11 @@
                     <div class="border rounded p-3 h-100">
                       <label class="form-label d-block mb-2">الجنس</label>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="male" value="ذكر">
+                        <input class="form-check-input" type="radio" name="gender" id="male" value="0">
                         <label class="form-check-label" for="male">ذكر</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="gender" id="female" value="أنثى">
+                        <input class="form-check-input" type="radio" name="gender" id="female" value="1">
                         <label class="form-check-label" for="female">أنثى</label>
                       </div>
                     </div>
@@ -127,11 +127,11 @@
                     <div class="border rounded p-3 h-100">
                       <label class="form-label d-block mb-2">الجنسية</label>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="nationality" id="libyan" value="ليبي">
+                        <input class="form-check-input" type="radio" name="nationality" id="libyan" value="0">
                         <label class="form-check-label" for="libyan">ليبي</label>
                       </div>
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="nationality" id="foreigner" value="أجنبي">
+                        <input class="form-check-input" type="radio" name="nationality" id="foreigner" value="1">
                         <label class="form-check-label" for="foreigner">أجنبي</label>
                       </div>
                     </div>
@@ -141,15 +141,15 @@
                   <div class="border rounded p-3 h-100">
                     <label class="form-label d-block mb-2">الصفة</label>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="role_type" id="divorced" value="مطلقة">
+                      <input class="form-check-input" type="radio" name="role_type" id="divorced" value="5">
                       <label class="form-check-label" for="divorced">مطلقة</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="role_type" id="agent" value="وكيل المطلقة">
+                      <input class="form-check-input" type="radio" name="role_type" id="agent" value="2">
                       <label class="form-check-label" for="agent">وكيل المطلقة</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="role_type" id="ex_husband" value="الزوج السابق">
+                      <input class="form-check-input" type="radio" name="role_type" id="ex_husband" value="3">
                       <label class="form-check-label" for="ex_husband">الزوج السابق</label>
                     </div>
                   </div>
@@ -173,9 +173,6 @@
                 </div>
 
                 
-
-
-
                 <div class="my-7">
                   <div class="form-check mb-0">
                     <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
@@ -190,7 +187,7 @@
 
               <p class="text-center">
                 <span>لديك حساب بالفعل؟</span>
-                <a href="auth-login-basic.html">
+                <a href="login.html">
                   <span>تسجيل الدخول</span>
                 </a>
               </p>
@@ -215,7 +212,7 @@
     <script src="../assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="../assets/js/register.js"></script>
+    <script type="module" src="../assets/js/pages/register.js"></script>
 
   </body>
 </html>
