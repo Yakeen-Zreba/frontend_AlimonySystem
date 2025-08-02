@@ -117,7 +117,7 @@ function showSuccessMessage(msg) {
 
 document.getElementById("searchInput").addEventListener("input", function () {
   const query = this.value.toLowerCase().trim();
-  const rows = document.querySelectorAll("#divorcedWomanTableBody tr");
+  const rows = document.querySelectorAll("#divorcedManTableBody tr");
 
   rows.forEach(row => {
     const text = row.textContent.toLowerCase();
