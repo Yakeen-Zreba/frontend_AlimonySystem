@@ -111,3 +111,16 @@ function showSuccessMessage(msg) {
     box.classList.add("d-none");
   }, 3000);
 }
+
+
+/*البحث */
+
+document.getElementById("searchInput").addEventListener("input", function () {
+  const query = this.value.toLowerCase().trim();
+  const rows = document.querySelectorAll("#divorcedWomanTableBody tr");
+
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(query) ? "" : "none";
+  });
+});
