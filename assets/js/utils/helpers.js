@@ -13,3 +13,22 @@ export function hideError() {
   box.textContent = "";
   box.classList.add("d-none");
 }
+console.log('***')
+export function showSpinner() {
+
+  console.log('showSpinner')
+  document.getElementById("loadingSpinner").classList.remove("d-none");
+}
+
+export function hideSpinner() {
+  document.getElementById("loadingSpinner").classList.add("d-none");
+}
+
+export function showSpinnerformLoading() {
+  console.log('formLoading')
+  document.getElementById("formLoading").classList.remove("d-none");
+}
+
+export function hideSpinnerformLoading() {
+  document.getElementById("formLoading").classList.add("d-none");
+}

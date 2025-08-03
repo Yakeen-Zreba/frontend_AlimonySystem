@@ -1,4 +1,4 @@
-import { showError, hideError, showErrorDialog } from "../utils/helpers.js";
+import { showError, hideError, showErrorDialog,showSpinner,hideSpinner, hideSpinnerformLoading, showSpinnerformLoading } from "../utils/helpers.js";
 
 document.addEventListener("DOMContentLoaded",async function () {
   await loadEmployees();
@@ -97,6 +97,8 @@ document.querySelectorAll("input[name='role_type']").forEach(radio => {
   };
 
     try {
+            showSpinnerformLoading()
+
       const response = await fetch('https://localhost:44377/api/Person/Update-employee?UserId=60A2D0D6-A02A-4F54-9FCC-3D3B9A66F48B', {
         method: 'POST',
         headers: {
@@ -108,6 +110,7 @@ document.querySelectorAll("input[name='role_type']").forEach(radio => {
       if (response.ok && result.isSuccess ) {
         let offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('editEmployeeCanvas'));
           offcanvas.hide();
+            hideSpinnerformLoading()
             await loadEmployees();
       } else {
         showErrorDialog(result.message || 'حدث خطأ أثناء الحفظ.');
@@ -116,11 +119,16 @@ document.querySelectorAll("input[name='role_type']").forEach(radio => {
       }
     } catch (error) {
       showErrorDialog('خطأ في الاتصال بالخادم');
-    }
+    } finally {
+    hideSpinnerformLoading(); // 👈 بعد الانتهاء
+  }
+    
 });
 
 async function loadEmployees() {
     try{
+      showSpinner()
+      console.log('call show')
     const response = await fetch("https://localhost:44377/api/Person/GetAllemployee");
     const data = await response.json();
     if (data.isSuccess && Array.isArray(data.results)) {
@@ -218,6 +226,9 @@ tableBody.appendChild(tr);
       showError("فشل في جلب البيانات");
     }
   } catch (error) {
-    showError("حدث خطأ في الاتصال بالـ API:", error);
+    showError("حدث خطأ في الاتصال بالـ API", error);
+  } 
+  finally {
+    hideSpinner(); // 👈 بعد الانتهاء
   }
 }
