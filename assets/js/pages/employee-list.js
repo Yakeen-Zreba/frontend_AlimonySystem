@@ -31,7 +31,6 @@ function getPermissionList() {
   ];
 }
 function SetPermission(emp){
-  console.log(emp);
 
   
     // الصلاحيات - إزالة القديمة
@@ -39,7 +38,6 @@ function SetPermission(emp){
     container.innerHTML = "";
   
     const permData = getPermissionList();
-    console.log(permData);
           permData.forEach(p => {
             const label = document.createElement("label");
             label.className = "list-group-item";
@@ -79,7 +77,6 @@ document.querySelectorAll("input[name='role_type']").forEach(radio => {
 });
 
  document.getElementById("saveEditButton").addEventListener("click",  async function (e) {
-console.log('*******')
   const data = {
     personId: document.getElementById("editPersonId").value,
     userId: document.getElementById("editUserId").value,
@@ -99,7 +96,6 @@ console.log('*******')
     permissions:document.querySelector("input[name='role_type']:checked")?.value == 1? Array.from(document.querySelectorAll("#editPermissionsList input[type='checkbox']:checked")).map(cb => parseInt(cb.value)):[]
   };
 
-  console.log("📦 البيانات المجمعة:", data);
     try {
       const response = await fetch('https://localhost:44377/api/Person/Update-employee?UserId=60A2D0D6-A02A-4F54-9FCC-3D3B9A66F48B', {
         method: 'POST',
@@ -171,9 +167,6 @@ editButton.className = "dropdown-item";
 editButton.setAttribute("data-bs-toggle", "offcanvas");
 editButton.setAttribute("data-bs-target", "#editEmployeeCanvas");
 editButton.innerHTML = `<i class="icon-base bx bx-edit-alt me-1"></i>`;
-console.log(emp)
-console.log(emp.passportNumber)
-console.log( document.getElementById("editPassportNumber"))
 // ✅ تعبئة البيانات عند النقر
 editButton.addEventListener("click", () => {
   document.getElementById("editPersonId").value = emp.personId || '';
@@ -188,14 +181,12 @@ editButton.addEventListener("click", () => {
   document.getElementById("editAddress").value = emp.address || '';
   document.getElementById("editEmail").value = emp.email || '';
   document.getElementById("editWorkDepartment").value = emp.workDepartment || '';
-  console.log("gender value is:", emp.gender);
 
   if (emp.gender !== null && emp.gender !== undefined) {
 
     document.querySelector(`input[name='editGender'][value='${emp.gender}']`).checked = true;
   }
   if (emp.nationality === 0) {
-    console.log(emp.nationality )
 
     document.getElementById("editLibyan").checked = true;
   } else if (emp.nationality === 1) {

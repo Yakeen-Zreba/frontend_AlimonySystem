@@ -1,7 +1,6 @@
 import { postData } from "../api/httpClient.js";
 import { validateRegisterData } from "../utils/validation.js";
 import { showError, hideError } from "../utils/helpers.js";
-console.log("addEmployee.js loaded");
 document.getElementById("addEmployeeForm").addEventListener("submit", async function (e) {
   e.preventDefault();
   const selectedPermissions = Array.from(document.querySelectorAll('#permissionsList input[type="checkbox"]:checked'))
