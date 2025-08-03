@@ -113,6 +113,7 @@
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
+    <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
 
               <!--top card -->  
               <div class="row">
@@ -140,7 +141,7 @@
                         <th>الصفة</th>
                         <th>الصلاحيات</th>
                         <th>الحالة</th>
-                        <th>النشاط</th>
+                        <th>تعديل</th> 
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0" id="employeeTableBody">
@@ -208,5 +209,146 @@
 
     <!-- Place this tag before closing body tag for github widget button. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <!-- 🧾 Offcanvas لتعديل بيانات الموظف -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="editEmployeeCanvas" aria-labelledby="editEmployeeCanvasLabel" style="width: 50%;">
+  <div class="offcanvas-header">
+    <h5 id="editEmployeeCanvasLabel" class="offcanvas-title">تعديل بيانات الموظف</h5>
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button> -->
+  </div>
+    <div id="error-messageDialog" class="alert alert-danger d-none" role="alert"></div>
+  <div class="offcanvas-body">
+    <form id="editEmployeeForm">
+      <input type="hidden" id="editPersonId" />
+      
+      <input type="hidden" id="editUserId" />
+      <div class="row g-3">
+        <!-- الاسم الأول واسم الأب -->
+        <div class="col-md-6">
+        <label for="editFirstName" class="form-label">الاسم الأول</label>
+        <input type="text" class="form-control" id="editFirstName" />
+      </div>
+      <div class="col-md-6">
+        <label for="editMiddleName" class="form-label">اسم الأب</label>
+        <input type="text" class="form-control" id="editMiddleName" />
+      </div>
+      <div class="col-md-6">
+        <label for="editLastName" class="form-label">اللقب</label>
+        <input type="text" class="form-control" id="editLastName" />
+      </div>
+      <div class="col-md-6">
+        <label for="editPhoneNumber" class="form-label">الهاتف</label>
+        <input type="text" class="form-control" id="editPhoneNumber" />
+      </div>
+
+
+      <div class="col-md-6">      
+          <label for="editEmail" class="form-label">البريد الإلكتروني</label>
+        <input type="email" class="form-control" id="editEmail" />
+      </div>
+
+      <div class="col-md-6">   
+        <label for="editWorkDepartment" class="form-label">جهة العمل</label>
+   <input type="text" class="form-control" id="editWorkDepartment" />
+ </div>
+
+
+
+
+
+      
+      <div class="col-md-6">
+        <label for="editPassportNumber" class="form-label">رقم جواز السفر</label>
+        <input type="text" class="form-control" id="editPassportNumber" />
+      </div>
+      <div class="col-md-6">
+        <label for="editNID" class="form-label">الرقم الوطني</label>
+        <input type="text" class="form-control" id="editNID" />
+      </div>
+
+ <!-- العنوان وتاريخ الميلاد -->
+
+    
+ <div class="col-md-6">
+  <label for="editAddress" class="form-label">العنوان  </label>
+  <input type="text" class="form-control" id="editAddress" />
+</div>
+<div class="col-md-6">
+  <label for="editBirthdate" class="form-label">تاريخ الميلاد</label>
+  <input type="date" class="form-control" id="editBirthdate" >
+</div>
+<div class="col-6">
+
+  <small class="fw-medium d-block mb-2">الجنس</small>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="editGender" id="editMale" value="0">
+    <label class="form-check-label" for="editMale">ذكر</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="editGender" id="editFemale" value="1">
+    <label class="form-check-label" for="editFemale">أنثى</label>
+  </div>
+</div>
+    <!-- الجنسية-->
+    <div class="col-md-6">
+      <small class="fw-medium d-block mb-2">الجنسية</small>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="nationality" id="editLibyan" value="0">
+        <label class="form-check-label" for="editLibyan">ليبي</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="nationality" id="editForeign" value="1">
+        <label class="form-check-label" for="editForeign">أجنبي</label>
+      </div>
+    </div>
+           <!-- الصفه-->
+    <div class="col-md-6">
+      <small class="fw-medium d-block mb-2">الصفة</small>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role_type" id="editEmployee" value="1">
+        <label class="form-check-label" for="editEmployee">موظف حكومي</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role_type" id="editFollowUpAgent" value="2">
+        <label class="form-check-label" for="editFollowUpAgent">محضر</label>
+      </div>
+    </div>
+   
+    <div class="col-md-6" style="
+    ALIGN-SELF: FLEX-END;
+">
+      <button type="button" class="btn btn-primary" id="saveEditButton">حفظ التعديلات</button>
+
+    </div>
+<!-- الصلاحيات-->
+<div class="col-md-6" id="permissionsCard">
+  <div class="card">
+    <h5 class="card-header">الصلاحيات</h5>
+    <div class="card-body">
+      <small class="fw-medium d-block mb-2 text-muted">اختر الصلاحيات الممنوحة لهذا الموظف</small>
+      <div id="editPermissionsList" class="list-group">
+        <!-- سيتم تعبئتها ديناميكيًا بواسطة JavaScript -->
+        <!-- مثال:
+        <label class="list-group-item">
+          <input class="form-check-input me-2" type="checkbox" value="1" />
+          عرض الطلبات
+        </label>
+        -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-6">
+  </div>
+
+   
+</div>
+
+      <!-- <button type="submit" class="btn btn-primary">حفظ التعديلات</button> -->
+    </form>
+  </div>
+</div>
+
   </body>
 </html>
