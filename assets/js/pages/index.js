@@ -3,5 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (username) {
     document.getElementById("welcome-user").textContent = `مرحبًا، ${username}`;
+    
   }
 });
