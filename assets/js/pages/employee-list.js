@@ -1,4 +1,7 @@
-import { showError, hideError, showErrorDialog,showSpinner,hideSpinner, hideSpinnerformLoading, showSpinnerformLoading } from "../utils/helpers.js";
+import { showError,  showErrorDialog,showSpinner,hideSpinner, hideSpinnerformLoading, showSpinnerformLoading, hideErrorDialog } from "../utils/helpers.js";
+import {  validationUpdateEmployee } from "../utils/validationUpdateEmployee.js";
+import { postAPI, GetAPI } from "../api/httpClient.js";
+
 
 document.addEventListener("DOMContentLoaded",async function () {
   await loadEmployees();
@@ -95,21 +98,29 @@ document.querySelectorAll("input[name='role_type']").forEach(radio => {
     role: document.querySelector("input[name='role_type']:checked")?.value,
     permissions:document.querySelector("input[name='role_type']:checked")?.value == 1? Array.from(document.querySelectorAll("#editPermissionsList input[type='checkbox']:checked")).map(cb => parseInt(cb.value)):[]
   };
+hideErrorDialog();
 
+  const error = validationUpdateEmployee(data);
+  if (error) {
+    showErrorDialog(error);
+    return;
+  }
     try {
             showSpinnerformLoading()
-
-      const response = await fetch('https://localhost:44377/api/Person/Update-employee?UserId=60A2D0D6-A02A-4F54-9FCC-3D3B9A66F48B', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      });
-      const result = await response.json();
-      if (response.ok && result.isSuccess ) {
+       const response =   await postAPI("https://localhost:44377/api/Person/Update-employee", data);
+      if (response.isSuccess ) {
         let offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('editEmployeeCanvas'));
           offcanvas.hide();
+          const alertContainer = document.getElementById("alertContainer");
+alertContainer.innerHTML = `
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: black">
+    تم حفظ التعديلات بنجاح!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+`;
+setTimeout(() => {
+  alertContainer.innerHTML = '';
+}, 4000);
             hideSpinnerformLoading()
             await loadEmployees();
       } else {
@@ -128,14 +139,14 @@ document.querySelectorAll("input[name='role_type']").forEach(radio => {
 async function loadEmployees() {
     try{
       showSpinner()
-      console.log('call show')
-    const response = await fetch("https://localhost:44377/api/Person/GetAllemployee");
-    const data = await response.json();
-    if (data.isSuccess && Array.isArray(data.results)) {
+   
+    const response = await GetAPI("https://localhost:44377/api/Person/GetAllemployee");
+  
+    if (response.isSuccess && Array.isArray(response.results)) {
   const tableBody = document.getElementById("employeeTableBody");
       tableBody.innerHTML = ""; // تنظيف الجدول قبل إعادة تعبئته
 
-        data.results.forEach(emp => {
+        response.results.forEach(emp => {
           const tr = document.createElement("tr");
 
           // تجهيز الصلاحيات
@@ -202,7 +213,9 @@ editButton.addEventListener("click", () => {
   }
 
   // الصفة
-  if (emp.role === 1) {
+  console.log('emp.role')
+  console.log(emp.role)
+  if (emp.role === 1 ) {
     document.getElementById("editEmployee").checked = true;
     document.getElementById("permissionsCard").style.display = "block";
     SetPermission(emp)
@@ -226,9 +239,28 @@ tableBody.appendChild(tr);
       showError("فشل في جلب البيانات");
     }
   } catch (error) {
-    showError("حدث خطأ في الاتصال بالـ API", error);
+    showError("تعذر الاتصال بالخادم", error);
   } 
   finally {
     hideSpinner(); // 👈 بعد الانتهاء
   }
 }
+
+document.querySelectorAll("input[name='role_type']").forEach(radio => {
+  radio.addEventListener("change", function () {
+    console.log('*******')
+    const roleValue = this.value;
+    const permissionCard = document.getElementById("permissionsCard");
+
+    if (roleValue === "1") {
+      // ✅ إذا تم اختيار موظف حكومي، أظهر الصلاحيات وقم بإعادة تحميلها بدون الاعتماد على بيانات الموظف السابقة
+      permissionCard.style.display = "block";
+      SetPermission({ permissions: [] }); // تمرير كائن فارغ ليتم تحميل كل الصلاحيات بدون تحديد أي منها
+    } else {
+      // أي صفة أخرى → أخفِ الصلاحيات
+      permissionCard.style.display = "none";
+      // اختيار كل checkboxes كـ غير محددة
+      document.getElementById("editPermissionsList").innerHTML = "";
+    }
+  });
+});

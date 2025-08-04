@@ -18,12 +18,35 @@ document.getElementById("formLogin").addEventListener("submit", async function (
     return;
   }
 
-  try {
-    await postData("https://localhost:44377/api/User/login", data);
-      const username = document.getElementById("username").value.trim();
-      localStorage.setItem("username", username);
-      window.location.href = "../../html/divorced-man/index.html";
-  } catch (err) {
-    showError(err.message || "فشل تسجيل الدخول.");
+ try {
+    localStorage.removeItem("jwtToken");
+  const response = await postData("https://localhost:44377/api/User/login", data);
+
+  // تأكد من نجاح العملية
+
+      if ( response.isSuccess ) {
+    // خزن التوكن في localStorage
+
+ 
+    localStorage.setItem("jwtToken", response.results.token);
+    // خزن اسم المستخدم
+    const username = document.getElementById("username").value.trim();
+    localStorage.setItem("username", username);
+
+    // انتقل للصفحة التالية
+     if(response.results.Role==='5')
+        window.location.href = 'divorced-woman/view.html';
+      else if(response.results.Role==='4')
+        window.location.href = 'divorced-woman/view.html';
+      else if(response.results.Role==='3')
+        window.location.href = 'divorced-man/view.html';
+      else{
+            window.location.href = "admin/dashboard.html";
+      }
+  } else {
+    showError(response.message);
   }
+} catch (err) {
+  showError(err.message || "فشل تسجيل الدخول.");
+}
 });
