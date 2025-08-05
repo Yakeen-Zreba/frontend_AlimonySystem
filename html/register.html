@@ -39,6 +39,25 @@
 
     <!-- Template JS -->
     <script src="../assets/js/config.js"></script>
+    <style>
+  .form-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 1100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-position-relative {
+    position: relative;
+  }
+    </style>
+    </style>
   </head>
 
   <body>
@@ -54,13 +73,19 @@
               <div class="app-brand justify-content-center mb-3">
                 <a href="#" class="app-brand-link gap-2 d-flex flex-column align-items-center">
                   <img src="../assets/img/favicon/logo.png" alt="شعار عِوض" width="200">
-                  <!-- <span style="color: #40583F; font-size: 1.5rem; font-weight: bold;">عِـــــــوض</span> -->
                 </a>
               </div>
               <!-- /Logo -->
               <h4 class="mb-1">أنشئ حسابك الآن </h4>
               <p class="mb-6">أهلاً بك في نظام تتبع نفقات المطلقات</p>
-
+              <div class="offcanvas-body form-position-relative"></div>
+              <!-- Spinner-->
+              <div id="formLoading" class="form-loading-overlay d-none">
+                <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
+                  <span class="visually-hidden">جاري التحميل...</span>
+                </div>
+              </div>
+              
               <form id="formRegister" class="mb-6" action="index.html">
                 <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
                 
@@ -80,7 +105,7 @@
                   </div>
                   <div class="mb-4 col-md-6">
                     <label for="phone" class="form-label">رقم الهاتف</label>
-                    <input type="text" class="form-control" id="phone" name="phone" placeholder="أدخل رقم الهاتف">
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="أدخل رقم الهاتف" maxlength="12" >
                   </div>
 
                   <div class="mb-4 col-md-6">
@@ -91,7 +116,7 @@
 
                   <div class="mb-4 col-md-6">
                     <label for="passport" class="form-label">رقم الجواز</label>
-                    <input type="text" class="form-control" id="passport" name="passport" placeholder="أدخل رقم الجواز">
+                    <input type="text" class="form-control" id="passport" name="passport" placeholder="أدخل رقم الجواز" maxlength="8">
                   </div>
 
                   <div class="mb-4 col-md-6">
@@ -101,7 +126,7 @@
 
                   <div class="mb-4 col-6">
                     <label for="NID" class="form-label"> الرقم الوطني</label>
-                    <input type="text" class="form-control" id="NID" name="NID">
+                    <input type="text" class="form-control" id="NID" name="NID" maxlength="12">
                   </div>
 
                   <div class="mb-4 col-12">
@@ -166,7 +191,7 @@
                       </div>
                       <div class="mb-3 col-md-6">
                         <label for="password" class="form-label">كلمة المرور</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="********">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="********" minlength="8">
                       </div>
                     </div>
                   </div>
@@ -181,7 +206,7 @@
                     </label>
                   </div>
                 </div>
-                <button class="btn btn-primary d-grid w-100 mb-2">تسجيل</button>
+                <button class="btn btn-primary d-grid w-100 mb-2" type="submit">تسجيل</button>
               </form>
 
               <p class="text-center">
@@ -193,6 +218,7 @@
             </div>
           </div>
           <!-- Register Card -->
+        </div>
         </div>
       </div>
     </div>
