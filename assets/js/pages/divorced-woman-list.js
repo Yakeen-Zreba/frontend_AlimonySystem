@@ -22,7 +22,7 @@ async function loadEmployees() {
             <td><span class="badge bg-label-secondary me-1">${divo.workDepartment || 'غير محدد'}</span></td>
             <td><span class="badge bg-label-secondary me-1">${getRoleName(divo.role)}</span></td>
         
-            <td><span class="badge ${divo.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1">${divo.isActive ? 'نشط' : 'غير نشط'}</span></td>
+            <td><span class="badge ${divo.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1 status-text">${divo.isActive ? 'نشط' : 'غير نشط'}</span></td>
            <td>
     <div class="dropdown">
       <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
