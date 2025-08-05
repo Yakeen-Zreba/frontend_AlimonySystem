@@ -1,6 +1,6 @@
 import { postData } from "../api/httpClient.js";
 import { validateLoginData } from "../utils/validation.js";
-import { showError, hideError } from "../utils/helpers.js";
+import { showError, hideError, hideSpinnerformLoading, showSpinnerformLoading } from "../utils/helpers.js";
 
 document.getElementById("formLogin").addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -20,6 +20,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
 
  try {
     localStorage.removeItem("jwtToken");
+    showSpinnerformLoading()
   const response = await postData("https://localhost:44377/api/User/login", data);
 
   // تأكد من نجاح العملية
@@ -32,7 +33,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
     // خزن اسم المستخدم
     const username = document.getElementById("username").value.trim();
     localStorage.setItem("username", username);
-
+    hideSpinnerformLoading()
     // انتقل للصفحة التالية
      if(response.results.Role==='5')
         window.location.href = 'divorced-woman/view.html';
@@ -48,5 +49,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
   }
 } catch (err) {
   showError(err.message || "فشل تسجيل الدخول.");
-}
+}finally {
+    hideSpinnerformLoading();
+  }
 });

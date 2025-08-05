@@ -40,6 +40,24 @@
     <!-- Helpers -->
     <script src="../assets/vendor/js/helpers.js"></script>
     <script src="../assets/js/config.js"></script>
+        <style>
+    .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-position-relative {
+      position: relative;
+    }
+    </style>
   </head>
 
   <body>
@@ -60,7 +78,13 @@
               <!-- /Logo -->
               <h4 class="mb-1">مرحباً بك </h4>
               <p class="mb-6">سجّل دخولك إلى نظام تتبع النفقات</p>
-
+              <div class="offcanvas-body form-position-relative"></div>
+              <!-- Spinner-->
+              <div id="formLoading" class="form-loading-overlay d-none">
+                <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
+                  <span class="visually-hidden">جاري التحميل...</span>
+                </div>
+              </div>
               <form id="formLogin" class="mb-6" action="index.html">
                 <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
 
@@ -102,12 +126,10 @@
                   <button class="btn btn-primary d-grid w-100" type="submit">تسجيل الدخول</button>
                 </div>
               </form>
-
               <p class="text-center">
                 <span>ليس لديك حساب؟</span>
                 <a href="register.html">
                   <span>إنشاء حساب جديد</span>
-                  
                 </a>
               </p>
             </div>

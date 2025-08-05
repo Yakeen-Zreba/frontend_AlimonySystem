@@ -40,23 +40,22 @@
     <!-- Template JS -->
     <script src="../assets/js/config.js"></script>
     <style>
-  .form-loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(255,255,255,0.6);
-    width: 100%;
-    height: 100%;
-    z-index: 1100;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .form-position-relative {
-    position: relative;
-  }
-    </style>
+    .form-position-relative {
+      position: relative;
+    }
     </style>
   </head>
 
@@ -125,13 +124,26 @@
                   </div>
 
                   <div class="mb-4 col-6">
-                    <label for="NID" class="form-label"> الرقم الوطني</label>
-                    <input type="text" class="form-control" id="NID" name="NID" maxlength="12">
-                  </div>
-
-                  <div class="mb-4 col-12">
                     <label for="birthdate" class="form-label">تاريخ الميلاد</label>
                     <input type="date" class="form-control" id="birthdate" name="birthdate">
+                  </div>
+
+                  <div class="mb-4 col-md-6">
+                    <div class="border rounded p-3 h-100">
+                      <label class="form-label d-block mb-2">الصفة</label>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role_type" id="divorced" value="4">
+                        <label class="form-check-label" for="divorced">مطلقة</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role_type" id="agent" value="5">
+                        <label class="form-check-label" for="agent">وكيل المطلقة</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role_type" id="ex_husband" value="3">
+                        <label class="form-check-label" for="ex_husband">الزوج السابق</label>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="mb-4 col-md-6">
@@ -148,6 +160,7 @@
                     </div>
                   </div>
 
+
                   <div class="mb-4 col-md-6">
                     <div class="border rounded p-3 h-100">
                       <label class="form-label d-block mb-2">الجنسية</label>
@@ -162,22 +175,9 @@
                     </div>
                 </div>
 
-                <div class="mb-4 col-md-12">
-                  <div class="border rounded p-3 h-100">
-                    <label class="form-label d-block mb-2">الصفة</label>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="role_type" id="divorced" value="4">
-                      <label class="form-check-label" for="divorced">مطلقة</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="role_type" id="agent" value="5">
-                      <label class="form-check-label" for="agent">وكيل المطلقة</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="role_type" id="ex_husband" value="3">
-                      <label class="form-check-label" for="ex_husband">الزوج السابق</label>
-                    </div>
-                  </div>
+                <div class="mb-4 col-6" id="nidField">
+                  <label for="NID" class="form-label"> الرقم الوطني</label>
+                  <input type="text" class="form-control" id="NID" name="NID" maxlength="12">
                 </div>
 
                 <!--Account data-->
@@ -238,6 +238,69 @@
 
     <!-- Page JS -->
     <script type="module" src="../assets/js/pages/register.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const libyanRadio = document.getElementById("libyan");
+    const foreignRadio = document.getElementById("foreigner");
+    const nidFieldWrapper = document.getElementById("nidField");
+    const nidInput = document.getElementById("NID");
+
+    function toggleNIDField() {
+      if (libyanRadio.checked) {
+        nidFieldWrapper.style.display = "block";
+        nidInput.disabled = false;
+      } else {
+        nidFieldWrapper.style.display = "none";
+        nidInput.disabled = true;
+        nidInput.value = ""; // مسح الحقل إذا كان أجنبي
+      }
+    }
+
+    libyanRadio.addEventListener("change", toggleNIDField);
+    foreignRadio.addEventListener("change", toggleNIDField);
+
+    // تشغيل الوظيفة مبدئياً
+    toggleNIDField();
+
+
+    // إضافة حدث عند تغيير نوع الدور
+ const divorcedRadio = document.getElementById("divorced");
+  const agentRadio = document.getElementById("agent");
+  const exHusbandRadio = document.getElementById("ex_husband");
+
+  const maleRadio = document.getElementById("male");
+  const femaleRadio = document.getElementById("female");
+
+  const genderRadios = document.getElementsByName("gender");
+
+  function updateGenderBasedOnRole() {
+    if (divorcedRadio.checked) {
+      femaleRadio.checked = true;
+      femaleRadio.disabled = false;
+      maleRadio.checked = false;
+      maleRadio.disabled = true;
+    } else if (exHusbandRadio.checked) {
+      maleRadio.checked = true;
+      maleRadio.disabled = false;
+      femaleRadio.checked = false;
+      femaleRadio.disabled = true;
+    } else {
+      // وكيل المطلقة أو لا شيء محدد
+      maleRadio.disabled = false;
+      femaleRadio.disabled = false;
+    }
+  }
+
+  // إضافة أحداث عند تغيير الصفة
+  divorcedRadio.addEventListener("change", updateGenderBasedOnRole);
+  agentRadio.addEventListener("change", updateGenderBasedOnRole);
+  exHusbandRadio.addEventListener("change", updateGenderBasedOnRole);
+
+  // تشغيل الوظيفة عند تحميل الصفحة
+  updateGenderBasedOnRole();
+    });
+    </script>
 
   </body>
 </html>
