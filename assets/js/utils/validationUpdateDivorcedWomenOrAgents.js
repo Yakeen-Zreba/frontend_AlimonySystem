@@ -1,6 +1,6 @@
 
 
-export function validationUpdateEmployee(data) {
+export function validationUpdateDivorcedWomenOrAgents(data) {
   if (!data.firstName || !data.middleName || !data.lastName || !data.phoneNumber || 
       !data.gender || !data.nationality || !data.role || !data.dateOfBirth) {
     return "يرجى تعبئة جميع الحقول المطلوبة.";
@@ -44,9 +44,14 @@ export function validationUpdateEmployee(data) {
     return "صيغة الرقم الوطني غير صحيحه ********119 او 219 او 120   او 220";
   }
   }
-  if(data.role == 1 && data.permissions.length ==0){
-      return "يجب اختيار الصلاحيات الموظف الحكومي.";
+  if(data.role == 4 && data.gender ==0){
+      return "الصفة الحالية مطلقة لا يمكن ان يكون الجنس ذكر";
   }
-
+  if( data.gender !=0 && data.gender !=1){
+      return "يجب اختيار الجنس";
+  }
+   if( data.role !=4 && data.role !=5){
+      return "يجب اختيار الصفة";
+  }
   return null; 
 }

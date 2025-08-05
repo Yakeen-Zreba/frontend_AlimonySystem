@@ -1,62 +1,161 @@
-document.addEventListener("DOMContentLoaded", function () {
+import { showError,  showErrorDialog,showSpinner,hideSpinner, hideSpinnerformLoading, showSpinnerformLoading, hideErrorDialog } from "../utils/helpers.js";
+import { putAPI, GetAPI } from "../api/httpClient.js";
+import {  validationUpdateDivorcedWomenOrAgents } from "../utils/validationUpdateDivorcedWomenOrAgents.js";
+async function loadEmployees() {
+    try{
+      showSpinner()
+   
+    const response = await GetAPI("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives");
+  
+    if (response.isSuccess && Array.isArray(response.results)) {
+  const tableBody = document.getElementById("divorcedWomanTableBody");
+      tableBody.innerHTML = ""; // تنظيف الجدول قبل إعادة تعبئته
 
-  const msg = localStorage.getItem("successMessage");
-  if (msg) {
-    const box = document.getElementById("successMessageBox");
-    if (box) {
-      box.textContent = msg;
-      box.classList.remove("d-none");
-
-      // إخفاء الرسالة بعد 5 ثواني 
-      setTimeout(() => {
-        box.classList.add("d-none");
-        localStorage.removeItem("successMessage");
-      }, 5000);
-    }
-  }
-
-  fetch("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives")
-    .then(response => response.json())
-    .then(data => {
-      if (data.isSuccess && Array.isArray(data.results)) {
-        const tableBody = document.getElementById("divorcedWomanTableBody");
-
-        data.results.forEach(divo => {
+        response.results.forEach(divo => {
           const tr = document.createElement("tr");
-          console.log("المستخدم:", divo);
+
 
           tr.innerHTML = `
             <td>${divo.firstName || ''} ${divo.middleName || ''} ${divo.lastName || ''}</td>
             <td><span class="badge bg-label-primary me-1">${divo.email || ''}</span></td>
             <td><span class="badge bg-label-secondary me-1">${divo.phoneNumber || ''}</span></td>
+            <td><span class="badge bg-label-secondary me-1">${divo.workDepartment || 'غير محدد'}</span></td>
             <td><span class="badge bg-label-secondary me-1">${getRoleName(divo.role)}</span></td>
-            <td><span class="badge ${divo.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1 status-text">${divo.isActive ? 'نشط' : 'غير نشط'}</span></td>
-            <td>
-            <div class="dropdown">
-              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                <i class="icon-base bx bx-dots-vertical-rounded"></i>
-              </button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"><i class="icon-base bx bx-edit-alt me-1"></i> تعديل</a>
-                <a class="dropdown-item text-danger" href="#"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
-                <a class="dropdown-item toggle-status-btn" href="#" 
-                  data-id="${divo.personId }" 
-                  data-status="${divo.isActive}">
-                  <i class="icon-base bx bx-refresh me-1"></i> ${divo.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
-                </a>
-              </div>
-            </div
-            </td>
+        
+            <td><span class="badge ${divo.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1">${divo.isActive ? 'نشط' : 'غير نشط'}</span></td>
+           <td>
+    <div class="dropdown">
+      <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+        <i class="icon-base bx bx-dots-vertical-rounded"></i>
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item btn-edit" href="#" data-id="${divo.personId}">
+          <i class="icon-base bx bx-edit-alt me-1"></i> تعديل
+        </a>
+        <a class="dropdown-item text-danger btn-delete" href="#" data-id="${divo.personId}">
+          <i class="icon-base bx bx-trash me-1"></i> حذف
+        </a>
+        <a class="dropdown-item toggle-status-btn" href="#"
+          data-id="${divo.personId}"
+          data-status="${divo.isActive}">
+          <i class="icon-base bx bx-refresh me-1"></i>
+          ${divo.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
+        </a>
+      </div>
+    </div>
+  </td>
           `;
+       tableBody.appendChild(tr);
+// زر تعديل (يفتح offcanvas ويملأ البيانات)
+tr.querySelector(".btn-edit").addEventListener("click", () => {
+  document.getElementById("editPersonId").value = divo.personId || '';
+  document.getElementById("editUserId").value = divo.userId || '';
+  document.getElementById("editFirstName").value = divo.firstName || '';
+  document.getElementById("editMiddleName").value = divo.middleName || '';
+  document.getElementById("editLastName").value = divo.lastName || '';
+  document.getElementById("editPhoneNumber").value = divo.phoneNumber || '';
+  document.getElementById("editPassportNumber").value = divo.passportNumber || '';
+  document.getElementById("editNID").value = divo.nid || '';
+  document.getElementById("editBirthdate").value = divo.dateOfBirth ? divo.dateOfBirth.split('T')[0] : '';
+  document.getElementById("editAddress").value = divo.address || '';
+  document.getElementById("editEmail").value = divo.email || '';
+  document.getElementById("editWorkDepartment").value = divo.workDepartment || '';
 
-          tableBody.appendChild(tr);
-        });
-      } else {
-        console.error("فشل في جلب البيانات");
-      }
-    })
-    .catch(error => console.error("حدث خطأ في الاتصال بالـ API:", error));
+  if (divo.gender !== null && divo.gender !== undefined) {
+    if(divo.gender == 0 || divo.gender == 1){
+    document.querySelector(`input[name='editGender'][value='${divo.gender}']`).checked = true;
+
+    }
+  }
+
+  if (divo.nationality === 0) {
+    document.getElementById("editLibyan").checked = true;
+  } else if (divo.nationality === 1) {
+    document.getElementById("editForeign").checked = true;
+  }
+
+    if (divo.role === 4  || divo.role === 5 ) {
+        document.querySelector(`input[name='role_type'][value='${divo.role}']`).checked = true;
+
+  }
+  // فتح الـ offcanvas يدويًا
+  const canvas = new bootstrap.Offcanvas('#editDivorcedCanvas');
+  canvas.show();
 });
+
+     });
+    } else {
+      showError("فشل في جلب البيانات");
+    }
+  } catch (error) {
+    showError("تعذر الاتصال بالخادم", error);
+  } 
+  finally {
+    hideSpinner(); // 👈 بعد الانتهاء
+  }
+}
+
+document.addEventListener("DOMContentLoaded",async function () {
+  await loadEmployees();
+});
+
+  // const msg = localStorage.getItem("successMessage");
+  // if (msg) {
+  //   const box = document.getElementById("successMessageBox");
+  //   if (box) {
+  //     box.textContent = msg;
+  //     box.classList.remove("d-none");
+
+  //     // إخفاء الرسالة بعد 5 ثواني 
+  //     setTimeout(() => {
+  //       box.classList.add("d-none");
+  //       localStorage.removeItem("successMessage");
+  //     }, 5000);
+  //   }
+  //}
+
+//   fetch("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives")
+//     .then(response => response.json())
+//     .then(data => {
+//       if (data.isSuccess && Array.isArray(data.results)) {
+//         const tableBody = document.getElementById("divorcedWomanTableBody");
+
+//         data.results.forEach(divo => {
+//           const tr = document.createElement("tr");
+      
+
+//           tr.innerHTML = `
+//             <td>${divo.firstName || ''} ${divo.middleName || ''} ${divo.lastName || ''}</td>
+//             <td><span class="badge bg-label-primary me-1">${divo.email || ''}</span></td>
+//             <td><span class="badge bg-label-secondary me-1">${divo.phoneNumber || ''}</span></td>
+//             <td><span class="badge bg-label-secondary me-1">${getRoleName(divo.role)}</span></td>
+//             <td><span class="badge ${divo.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1 status-text">${divo.isActive ? 'نشط' : 'غير نشط'}</span></td>
+//             <td>
+//             <div class="dropdown">
+//               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+//                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
+//               </button>
+//               <div class="dropdown-menu">
+//                 <a class="dropdown-item" href="#"><i class="icon-base bx bx-edit-alt me-1"></i> تعديل</a>
+//                 <a class="dropdown-item text-danger" href="#"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
+//                 <a class="dropdown-item toggle-status-btn" href="#" 
+//                   data-id="${divo.personId }" 
+//                   data-status="${divo.isActive}">
+//                   <i class="icon-base bx bx-refresh me-1"></i> ${divo.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
+//                 </a>
+//               </div>
+//             </div
+//             </td>
+//           `;
+
+//           tableBody.appendChild(tr);
+//         });
+//       } else {
+//         console.error("فشل في جلب البيانات");
+//       }
+//     })
+//     .catch(error => console.error("حدث خطأ في الاتصال بالـ API:", error));
+// });
 
 function getRoleName(role) {
   switch (role) {
@@ -134,4 +233,63 @@ document.getElementById("searchInput").addEventListener("input", function () {
     const text = row.textContent.toLowerCase();
     row.style.display = text.includes(query) ? "" : "none";
   });
+});
+
+ document.getElementById("saveEditButton").addEventListener("click",  async function (e) {
+  const data = {
+
+    
+    personId: document.getElementById("editPersonId").value,
+    userId: document.getElementById("editUserId").value,
+    firstName: document.getElementById("editFirstName").value,
+    middleName: document.getElementById("editMiddleName").value,
+    lastName: document.getElementById("editLastName").value,
+    phoneNumber: document.getElementById("editPhoneNumber").value,
+    email: document.getElementById("editEmail").value,
+    passportNumber: document.getElementById("editPassportNumber").value,
+    nid: document.getElementById("editNID").value,
+    address: document.getElementById("editAddress").value,
+    dateOfBirth: document.getElementById("editBirthdate").value,
+    workDepartment: document.getElementById("editWorkDepartment").value,
+    gender: document.querySelector("input[name='editGender']:checked")?.value,
+    nationality: document.querySelector("input[name='nationality']:checked")?.value,
+    role: document.querySelector("input[name='role_type']:checked")?.value,
+  };
+hideErrorDialog();
+
+  const error = validationUpdateDivorcedWomenOrAgents(data);
+  if (error) {
+    showErrorDialog(error);
+    return;
+  }
+    try {
+            showSpinnerformLoading()
+       const response =   await putAPI("https://localhost:44377/api/Person/update", data);
+      if (response.isSuccess ) {
+        let offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('editDivorcedCanvas'));
+          offcanvas.hide();
+          const alertContainer = document.getElementById("alertContainer");
+alertContainer.innerHTML = `
+  <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: black">
+    تم حفظ التعديلات بنجاح!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+`;
+setTimeout(() => {
+  alertContainer.innerHTML = '';
+}, 4000);
+            hideSpinnerformLoading()
+            await loadEmployees();
+      } else {
+        console.log(response.message)
+        showErrorDialog(response.message || 'حدث خطأ أثناء الحفظ.');
+
+
+      }
+    } catch (error) {
+      showErrorDialog('خطأ في الاتصال بالخادم');
+    } finally {
+    hideSpinnerformLoading(); // 👈 بعد الانتهاء
+  }
+    
 });
