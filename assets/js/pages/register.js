@@ -1,6 +1,6 @@
 import { postData } from "../api/httpClient.js";
 import { validateRegisterData } from "../utils/validation.js";
-import { showError, hideError } from "../utils/helpers.js";
+import { showError,hideError, hideSpinnerformLoading, showSpinnerformLoading } from "../utils/helpers.js";
 
 document.getElementById("formRegister").addEventListener("submit", async function (e) {
   e.preventDefault();
@@ -31,29 +31,27 @@ document.getElementById("formRegister").addEventListener("submit", async functio
   }
 
   try {
-    const response = await fetch('https://localhost:44377/api/Person/Registration', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
-  const result = await response.json();
+    showSpinnerformLoading()
+    const response = await postData('https://localhost:44377/api/Person/Registration', data);
+    // const result = await response.json();
 
-    if (response.ok && result.isSuccess) {
+    if (response.isSuccess) {
       const username = document.getElementById("username").value.trim();
       localStorage.setItem("username", username);
+      hideSpinnerformLoading()
       if(data.Role==='5')
         window.location.href = '../../html/divorced-woman/index.html';
       else if(data.Role==='4')
         window.location.href = '../../html/divorced-woman/index.html';
       else if(data.Role==='3')
         window.location.href = '../../html/divorced-man/index.html';
-    } if(!result.isSuccess){
-        showError(result.message );
+    } if(!response.isSuccess){
+        showError(response.message );
     }
   } catch (error) {
     showError('خطأ في الاتصال بالخادم');
+  }finally {
+    hideSpinnerformLoading();
   }
 });
 
