@@ -31,7 +31,7 @@ if (!PhoneNumberRegex.test(phone)) {
 }
 
 
-if ((data.PassportNumber != null || data.PassportNumber !== '' ) && data.PassportNumber.length !== 8) {
+if ((data.PassportNumber != null && data.PassportNumber !== '' ) && data.PassportNumber.length !== 8) {
   return "يجب أن يحتوي رقم جواز السفر على 8 حروف ارقام.";
 }
 
