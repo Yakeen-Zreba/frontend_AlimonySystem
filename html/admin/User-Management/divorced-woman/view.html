@@ -33,6 +33,38 @@
 
     <style>
       body { font-family: 'Cairo', sans-serif; text-align: right; }
+           .table-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .position-relative-wrapper {
+    position: relative;
+  }
+  .form-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(255,255,255,0.6);
+    width: 100%;
+    height: 100%;
+    z-index: 1100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-position-relative {
+    position: relative;
+  }
     </style>
   </head>
 
@@ -129,13 +161,21 @@
                 </div>
               </div>
               <!--/top card -->
-              
+                                              <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+
               <!-- Hoverable Table rows -->
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                   <h5 class="mb-0">المطلقات/الوكلاء</h5>
                   <a href="../add-devorced.html" class="btn btn-primary">إضافة مطلقة / وكيل مطلقة</a>
                 </div>
+                            <div id="alertContainer" class="mt-3"></div>
+  <!-- Spinner overlay -->
+  <div id="loadingSpinner" class="table-loading-overlay d-none">
+    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+      <span class="visually-hidden">جاري التحميل...</span>
+    </div>
+  </div>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-hover">
                     <thead>
@@ -143,8 +183,8 @@
                         <th>الاسم كامل</th>
                         <th>البريد الالكتروني</th>
                         <th>الهاتف</th>
+                        <th>جهة العمل</th>
                         <th>الصفة</th>
-                        <th>الحالة</th>
                         <th>النشاط</th>
                       </tr>
                     </thead>
@@ -210,7 +250,130 @@
     <script src="../../../../assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script type="module" src="../../../../../assets/js/pages/divorced-woman-list.js"></script>
+    <script type="module" src="./../../../../assets/js/pages/divorced-woman-list.js"></script>
+    <!-- 🧾 Offcanvas لتعديل بيانات الموظف -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="editDivorcedCanvas" aria-labelledby="editEmployeeCanvasLabel" style="width: 50%;">
+  <div class="offcanvas-header">
+    <h5 id="editEmployeeCanvasLabel" class="offcanvas-title">تعديل بيانات المطلقة / وكيل المطلقة</h5>
+    <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button> -->
+  </div>
+    <div id="error-messageDialog" class="alert alert-danger d-none" role="alert"></div>
+ <div class="offcanvas-body form-position-relative">
+  <!-- Spinner Overlay -->
+  <div id="formLoading" class="form-loading-overlay d-none">
+    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
+      <span class="visually-hidden">جاري التحميل...</span>
+    </div>
+
+  </div>
+    <form id="editDivorcedCanvasForm">
+      <input type="hidden" id="editPersonId" />
+
+      <input type="hidden" id="editUserId" />
+      <div class="row g-3">
+        <!-- الاسم الأول واسم الأب -->
+        <div class="col-md-6">
+        <label for="editFirstName" class="form-label">الاسم الأول</label>
+        <input type="text" class="form-control" id="editFirstName" />
+      </div>
+      <div class="col-md-6">
+        <label for="editMiddleName" class="form-label">اسم الأب</label>
+        <input type="text" class="form-control" id="editMiddleName" />
+      </div>
+      <div class="col-md-6">
+        <label for="editLastName" class="form-label">اللقب</label>
+        <input type="text" class="form-control" id="editLastName" />
+      </div>
+      <div class="col-md-6">
+        <label for="editPhoneNumber" class="form-label">الهاتف</label>
+        <input type="text" class="form-control" id="editPhoneNumber" />
+      </div>
+
+
+      <div class="col-md-6">      
+          <label for="editEmail" class="form-label">البريد الإلكتروني</label>
+        <input type="email" class="form-control" id="editEmail" />
+      </div>
+
+      <div class="col-md-6">   
+        <label for="editWorkDepartment" class="form-label">جهة العمل</label>
+   <input type="text" class="form-control" id="editWorkDepartment" />
+ </div>
+
+
+
+
+
+      
+      <div class="col-md-6">
+        <label for="editPassportNumber" class="form-label">رقم جواز السفر</label>
+        <input type="text" class="form-control" id="editPassportNumber" />
+      </div>
+      <div class="col-md-6">
+        <label for="editNID" class="form-label">الرقم الوطني</label>
+        <input type="text" class="form-control" id="editNID" />
+      </div>
+
+ <!-- العنوان وتاريخ الميلاد -->
+
+    
+ <div class="col-md-6">
+  <label for="editAddress" class="form-label">العنوان  </label>
+  <input type="text" class="form-control" id="editAddress" />
+</div>
+<div class="col-md-6">
+  <label for="editBirthdate" class="form-label">تاريخ الميلاد</label>
+  <input type="date" class="form-control" id="editBirthdate" >
+</div>
+<div class="col-6">
+  <small class="fw-medium d-block mb-2">الجنس</small>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="editGender" id="editMale" value="0">
+    <label class="form-check-label" for="editMale">ذكر</label>
+  </div>
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="radio" name="editGender" id="editFemale" value="1">
+    <label class="form-check-label" for="editFemale">أنثى</label>
+  </div>
+</div>
+           <!-- الصفه-->
+    <div class="col-md-6">
+      <small class="fw-medium d-block mb-2">الصفة</small>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role_type" id="editDivorced" value="4">
+        <label class="form-check-label" for="editDivorced">مطلقة</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role_type" id="editAgent" value="5">
+        <label class="form-check-label" for="editAgent">وكيل المطلقة</label>
+      </div>
+    </div>
+    <!-- الجنسية-->
+    <div class="col-md-6">
+      <small class="fw-medium d-block mb-2">الجنسية</small>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="nationality" id="editLibyan" value="0">
+        <label class="form-check-label" for="editLibyan">ليبي</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="nationality" id="editForeign" value="1">
+        <label class="form-check-label" for="editForeign">أجنبي</label>
+      </div>
+    </div>
+    <div class="col-md-6" style="
+    ALIGN-SELF: FLEX-END;
+">
+      <button type="button" class="btn btn-primary" id="saveEditButton">حفظ التعديلات</button>
+
+    </div>
+
+
+   
+</div>
+
+    </form>
+  </div>
+</div>
 
   </body>
 </html>

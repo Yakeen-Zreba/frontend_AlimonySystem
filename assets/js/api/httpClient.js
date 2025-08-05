@@ -1,3 +1,14 @@
+
+function isTokenExpired(token) {
+  if (!token) return true;
+
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const now = Math.floor(Date.now() / 1000); // الوقت الحالي بالثواني
+  return payload.exp < now;
+}
+
+
+
 export async function postData(url, data) {
   const response = await fetch(url, {
     method: "POST",
@@ -13,9 +24,13 @@ export async function postData(url, data) {
   return response.json();
 }
 export async function postAPI(url, data) {
-  const token = localStorage.getItem('jwtToken')
-  console.log('token');
-  console.log(token);
+  const token = localStorage.getItem("jwtToken");
+
+if (isTokenExpired(token)) {
+  alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
+  localStorage.removeItem("jwtToken");
+window.location.href = "../../../login.html";
+}
   const response = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" ,
@@ -26,6 +41,39 @@ export async function postAPI(url, data) {
   });
 
   if (!response.ok) {
+     if (response.status === 401) {
+      throw new Error("ليس لديك صلاحية للوصول إلى API");
+    }
+
+    const result = await response.json();
+    throw new Error(result.message || "فشل الإرسال");
+  }
+
+  return response.json();
+}
+export async function putAPI(url, data) {
+  const token = localStorage.getItem('jwtToken')
+
+if (isTokenExpired(token)) {
+  alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
+  localStorage.removeItem("jwtToken");
+window.location.href = "../../../login.html";
+
+}
+  const response = await fetch(url, {
+    method: "Put",
+    headers: { "Content-Type": "application/json" ,
+
+ "Authorization": `Bearer ${token}`
+    },
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+     if (response.status == 401) {
+      throw new Error("ليس لديك صلاحية للوصول إلى API");
+    }
+
     const result = await response.json();
     throw new Error(result.message || "فشل الإرسال");
   }
@@ -34,11 +82,14 @@ export async function postAPI(url, data) {
 }
  
 export async function GetAPI(url) {
-  console.log('**122**');
-    console.log('token');
-   
-  const token = localStorage.getItem('jwtToken');
-   console.log(token);
+ const token = localStorage.getItem("jwtToken");
+
+if (isTokenExpired(token)) {
+  alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
+  localStorage.removeItem("jwtToken");
+window.location.href = "../../../login.html";
+
+}
   const response = await fetch(url, {
     headers: { "Content-Type": "application/json" ,
 
@@ -47,6 +98,10 @@ export async function GetAPI(url) {
   });
 
   if (!response.ok) {
+     if (response.status === 401) {
+      throw new Error("ليس لديك صلاحية للوصول إلى API");
+    }
+
     const result = await response.json();
     throw new Error(result.message || "فشل الاتصال ب API");
   }

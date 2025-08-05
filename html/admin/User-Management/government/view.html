@@ -152,7 +152,10 @@
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <div class="card-body">
-                      <a href="add.html" class="btn btn-outline-secondary">إضافة موظف حكومي/المحضر</a>
+                        <a href="../divorced-woman/view.html" class="btn btn-outline-secondary">المطلقة / وكيل المطلقة</a>
+                      <a href="../divorced-man/view.html" class="btn btn-outline-secondary">الزوج السابق</a>
+                      <a href="../government/view.html" class="btn btn-secondary">موظف حكومي / محضر</a>
+                      <!-- <a href="add.html" class="btn btn-outline-secondary">إضافة موظف حكومي/المحضر</a> -->
                     </div>
                   </div>
             <div id="alertContainer" class="mt-3"></div>
@@ -169,7 +172,12 @@
 
               <!-- Hoverable Table rows -->
               <div class="card">
-                <h5 class="card-header">الموظفين الحكوميين</h5>
+                     <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">الموظفين الحكوميين</h5>
+                  <a href="add.html" class="btn btn-primary">إضافة موظف حكومي/المحضر</a>
+                </div>
+
+                <!-- <h5 class="card-header">الموظفين الحكوميين</h5> -->
                 <div class="position-relative-wrapper">
   <!-- Spinner overlay -->
   <div id="loadingSpinner" class="table-loading-overlay d-none">
@@ -382,14 +390,7 @@
     <div class="card-body">
       <small class="fw-medium d-block mb-2 text-muted">اختر الصلاحيات الممنوحة لهذا الموظف</small>
       <div id="editPermissionsList" class="list-group">
-        <!-- سيتم تعبئتها ديناميكيًا بواسطة JavaScript -->
-        <!-- مثال:
-        <label class="list-group-item">
-          <input class="form-check-input me-2" type="checkbox" value="1" />
-          عرض الطلبات
-        </label>
-        -->
-
+      
       </div>
     </div>
   </div>
@@ -400,7 +401,6 @@
    
 </div>
 
-      <!-- <button type="submit" class="btn btn-primary">حفظ التعديلات</button> -->
     </form>
   </div>
 </div>
