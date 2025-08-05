@@ -99,64 +99,6 @@ document.addEventListener("DOMContentLoaded",async function () {
   await loadEmployees();
 });
 
-  // const msg = localStorage.getItem("successMessage");
-  // if (msg) {
-  //   const box = document.getElementById("successMessageBox");
-  //   if (box) {
-  //     box.textContent = msg;
-  //     box.classList.remove("d-none");
-
-  //     // إخفاء الرسالة بعد 5 ثواني 
-  //     setTimeout(() => {
-  //       box.classList.add("d-none");
-  //       localStorage.removeItem("successMessage");
-  //     }, 5000);
-  //   }
-  //}
-
-//   fetch("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives")
-//     .then(response => response.json())
-//     .then(data => {
-//       if (data.isSuccess && Array.isArray(data.results)) {
-//         const tableBody = document.getElementById("divorcedWomanTableBody");
-
-//         data.results.forEach(divo => {
-//           const tr = document.createElement("tr");
-      
-
-//           tr.innerHTML = `
-//             <td>${divo.firstName || ''} ${divo.middleName || ''} ${divo.lastName || ''}</td>
-//             <td><span class="badge bg-label-primary me-1">${divo.email || ''}</span></td>
-//             <td><span class="badge bg-label-secondary me-1">${divo.phoneNumber || ''}</span></td>
-//             <td><span class="badge bg-label-secondary me-1">${getRoleName(divo.role)}</span></td>
-//             <td><span class="badge ${divo.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1 status-text">${divo.isActive ? 'نشط' : 'غير نشط'}</span></td>
-//             <td>
-//             <div class="dropdown">
-//               <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-//                 <i class="icon-base bx bx-dots-vertical-rounded"></i>
-//               </button>
-//               <div class="dropdown-menu">
-//                 <a class="dropdown-item" href="#"><i class="icon-base bx bx-edit-alt me-1"></i> تعديل</a>
-//                 <a class="dropdown-item text-danger" href="#"><i class="icon-base bx bx-trash me-1"></i> حذف</a>
-//                 <a class="dropdown-item toggle-status-btn" href="#" 
-//                   data-id="${divo.personId }" 
-//                   data-status="${divo.isActive}">
-//                   <i class="icon-base bx bx-refresh me-1"></i> ${divo.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
-//                 </a>
-//               </div>
-//             </div
-//             </td>
-//           `;
-
-//           tableBody.appendChild(tr);
-//         });
-//       } else {
-//         console.error("فشل في جلب البيانات");
-//       }
-//     })
-//     .catch(error => console.error("حدث خطأ في الاتصال بالـ API:", error));
-// });
-
 function getRoleName(role) {
   switch (role) {
     case 1: return "موظف حكومي";
@@ -169,7 +111,7 @@ function getRoleName(role) {
 }
 
 /*تفعل والغاء التفعيل */
-document.getElementById("divorcedWomanTableBody").addEventListener("click", function (e) {
+document.getElementById("divorcedWomanTableBody").addEventListener("click", async function (e) {
   if (e.target.closest(".toggle-status-btn")) {
     e.preventDefault();
 
@@ -183,14 +125,10 @@ document.getElementById("divorcedWomanTableBody").addEventListener("click", func
       : "هل أنت متأكد من تفعيل هذا المستخدم؟";
 
     if (confirm(confirmMsg)) {
-      fetch(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}&modifiedBy=${modifiedBy}`, {
-        method: 'GET',
-        headers: { 'Accept': '*/*' }
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.isSuccess) {
-            // تحديث النص والستايل في الخلية
+          try {  
+      const response =   await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
+     
+         if (response.isSuccess ) {
             const statusCell = btn.closest("tr").querySelector(".status-text");
             statusCell.textContent = !currentStatus ? "نشط" : "غير نشط";
             statusCell.classList.toggle("bg-label-success", !currentStatus);
@@ -201,14 +139,15 @@ document.getElementById("divorcedWomanTableBody").addEventListener("click", func
             btn.innerHTML = `<i class="icon-base bx bx-refresh me-1"></i> ${!currentStatus ? 'إلغاء تنشيط' : 'تنشيط'}`;
 
             showSuccessMessage("تم تحديث حالة المستخدم بنجاح.");
-          } else {
-            alert("فشل تغيير الحالة: " + data.message);
+      }
+      else{
+           showError("فشل تغيير الحالة: " + response.message);
+      }
+     
           }
-        })
-        .catch(err => {
-          console.error(err);
-          alert("حدث خطأ أثناء محاولة تغيير الحالة.");
-        });
+       catch (error) {
+      showError("حدث خطأ أثناء محاولة تغيير الحالة.");
+    } 
     }
   }
 });
