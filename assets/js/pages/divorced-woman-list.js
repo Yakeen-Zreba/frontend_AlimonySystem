@@ -228,7 +228,7 @@ setTimeout(() => {
     } catch (error) {
       showErrorDialog('خطأ في الاتصال بالخادم');
     } finally {
-    hideSpinnerformLoading(); // 👈 بعد الانتهاء
+    hideSpinnerformLoading(); 
   }
     
 });

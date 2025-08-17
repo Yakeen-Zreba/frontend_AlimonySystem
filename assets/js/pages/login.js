@@ -24,23 +24,22 @@ document.getElementById("formLogin").addEventListener("submit", async function (
   const response = await postData("https://localhost:44377/api/User/login", data);
 
   // تأكد من نجاح العملية
-
       if ( response.isSuccess ) {
     // خزن التوكن في localStorage
-
- 
+    
     localStorage.setItem("jwtToken", response.results.token);
     // خزن اسم المستخدم
     const username = document.getElementById("username").value.trim();
+    console.log(response.results.Role);
     localStorage.setItem("username", username);
     hideSpinnerformLoading()
     // انتقل للصفحة التالية
      if(response.results.Role==='5')
-        window.location.href = 'divorced-woman/view.html';
+        window.location.href = 'divorced-woman/index.html';
       else if(response.results.Role==='4')
-        window.location.href = 'divorced-woman/view.html';
+        window.location.href = 'divorced-woman/index.html';
       else if(response.results.Role==='3')
-        window.location.href = 'divorced-man/view.html';
+        window.location.href = 'divorced-man/index.html';
       else{
             window.location.href = "admin/dashboard.html";
       }

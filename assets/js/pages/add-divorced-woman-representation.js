@@ -1,8 +1,9 @@
 import { postData } from "../api/httpClient.js";
-import { validateRegisterData } from "../utils/validation.js";
-import { showError, hideError } from "../utils/helpers.js";
+import { validateWomanRepresentationData } from "../utils/validation.js";
+import { showError,hideError, hideSpinnerformLoading, showSpinnerformLoading } from "../utils/helpers.js";
 
-document.getElementById("addDivorcedRepresentationForm").addEventListener("submit", async function (e) {
+
+document.getElementById("addDivorcedWomanRepresentationForm").addEventListener("submit", async function (e) {
   e.preventDefault();
 
   const data = {
@@ -15,7 +16,7 @@ document.getElementById("addDivorcedRepresentationForm").addEventListener("submi
     Address: document.getElementById("address").value.trim(),
     NID: document.getElementById("NID").value.trim(),
     DateOfBirth: document.getElementById("birthdate").value,
-    Gender: document.querySelector("input[name='gender']:checked")?.value,
+    Gender: '1',
     Nationality: document.querySelector("input[name='nationality']:checked")?.value,
     Role: document.querySelector("input[name='role_type']:checked")?.value,
     Username: document.getElementById("username").value.trim(),
@@ -24,35 +25,28 @@ document.getElementById("addDivorcedRepresentationForm").addEventListener("submi
 
   hideError();
 
-  const error = validateRegisterData(data);
+  const error = validateWomanRepresentationData(data);
   if (error) {
     showError(error);
     return;
   }
 
   try {
-    const response = await fetch('https://localhost:44377/api/Person/Registration', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
+    showSpinnerformLoading()
+    const response = await postData('https://localhost:44377/api/Person/Registration', data);
 
-  const result = await response.json();
-    if (response.ok && result.isSuccess) {
-      localStorage.setItem("successMessage", result.message || "تمت العملية بنجاح");
-        if(data.Role==='5')
-        window.location.href = 'divorced-woman/view.html';
-      else if(data.Role==='4')
-        window.location.href = 'divorced-woman/view.html';
-      else if(data.Role==='3')
-        window.location.href = 'divorced-man/view.html';
-    }if(!result.isSuccess){
-        showError(result.message );
+    //const result = await response.json();
+    if (response.isSuccess) {
+        localStorage.setItem("successMessage", response.message || "تمت العملية بنجاح");
+        hideSpinnerformLoading();
+        window.location.href = 'view.html';
+    }if(!response.isSuccess){
+        showError(response.message );
     }
   } catch (error) {
     showError('خطأ في الاتصال بالخادم');
+  }finally {
+    hideSpinnerformLoading();
   }
 
 });
