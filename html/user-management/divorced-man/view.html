@@ -102,7 +102,7 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="../government/view.html" class="menu-link">
+                  <a href="../employee/view.html" class="menu-link">
                     <div>الموظف الحكومي</div>
                   </a>
                 </li>
@@ -203,7 +203,7 @@
                     <div class="card-body">
                       <a href="../divorced-woman/view.html" class="btn btn-outline-secondary">المطلقة / وكيل المطلقة</a>
                       <a href="#" class="btn btn-secondary">الزوج السابق</a>
-                      <a href="../government/view.html" class="btn btn-outline-secondary">موظف حكومي / محضر</a>
+                      <a href="../employee/view.html" class="btn btn-outline-secondary">موظف حكومي / محضر</a>
                       <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
                   </div>
@@ -237,7 +237,6 @@
                         <th>البريد الالكتروني</th>
                         <th>الهاتف</th>
                         <th>الحالة</th>
-                        <th>النشاط</th>
                         <th>الحدث</th>
                       </tr>
                     </thead>
@@ -324,7 +323,7 @@
 
     <div class="col-md-6">
       <label for="editPhoneNumber" class="form-label">الهاتف</label>
-      <input type="text" class="form-control" id="editPhoneNumber" />
+      <input type="text" class="form-control" id="editPhoneNumber" maxlength="10"/>
     </div>
 
     <div class="col-md-6">      
@@ -339,12 +338,7 @@
 
     <div class="col-md-6">
       <label for="editPassportNumber" class="form-label">رقم جواز السفر</label>
-      <input type="text" class="form-control" id="editPassportNumber" />
-    </div>
-
-    <div class="col-md-6">
-      <label for="editNID" class="form-label">الرقم الوطني</label>
-      <input type="text" class="form-control" id="editNID" />
+      <input type="text" class="form-control" id="editPassportNumber" maxlength="8"/>
     </div>
 
     <!-- العنوان وتاريخ الميلاد -->
@@ -353,7 +347,7 @@
       <input type="text" class="form-control" id="editAddress" />
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-12">
       <label for="editBirthdate" class="form-label">تاريخ الميلاد</label>
       <input type="date" class="form-control" id="editBirthdate" >
     </div>          
@@ -369,7 +363,12 @@
       <input class="form-check-input" type="radio" name="nationality" id="editForeign" value="1">
       <label class="form-check-label" for="editForeign">أجنبي</label>
     </div>
-  </div>
+
+    </div>
+      <div class="col-md-6" id="nidField">
+      <label for="editNID" class="form-label">الرقم الوطني</label>
+      <input type="text" class="form-control" id="editNID" maxlength="12"/>
+    </div>
 
   <div class="col-md-6" style="ALIGN-SELF: FLEX-END; ">
     <button type="button" class="btn btn-primary" id="saveEditButton">حفظ التعديلات</button>

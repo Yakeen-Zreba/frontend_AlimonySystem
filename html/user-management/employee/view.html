@@ -204,7 +204,7 @@
                     <div class="card-body">
                         <a href="../divorced-woman/view.html" class="btn btn-outline-secondary">المطلقة / وكيل المطلقة</a>
                       <a href="../divorced-man/view.html" class="btn btn-outline-secondary">الزوج السابق</a>
-                      <a href="../government/view.html" class="btn btn-secondary">موظف حكومي / محضر</a>
+                      <a href="../employee/view.html" class="btn btn-secondary">موظف حكومي / محضر</a>
                       <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
                   </div>
@@ -336,47 +336,45 @@
 
       <input type="hidden" id="editUserId" />
       <div class="row g-3">
-        <!-- الاسم الأول واسم الأب -->
+        <!-- الاسم الأول -->
         <div class="col-md-6">
         <label for="editFirstName" class="form-label">الاسم الأول</label>
         <input type="text" class="form-control" id="editFirstName" />
       </div>
+      <!-- اسم الأب -->
       <div class="col-md-6">
         <label for="editMiddleName" class="form-label">اسم الأب</label>
         <input type="text" class="form-control" id="editMiddleName" />
       </div>
+      <!--  اللقب -->
       <div class="col-md-6">
         <label for="editLastName" class="form-label">اللقب</label>
         <input type="text" class="form-control" id="editLastName" />
       </div>
+      <!-- الهاتف  -->
       <div class="col-md-6">
         <label for="editPhoneNumber" class="form-label">الهاتف</label>
-        <input type="text" class="form-control" id="editPhoneNumber" />
+        <input type="text" class="form-control" id="editPhoneNumber" maxlength="10"/>
       </div>
-
-
+      <!-- البريد الإلكتروني -->
       <div class="col-md-6">      
           <label for="editEmail" class="form-label">البريد الإلكتروني</label>
         <input type="email" class="form-control" id="editEmail" />
       </div>
-
+      <!-- جهة العمل -->
       <div class="col-md-6">   
         <label for="editWorkDepartment" class="form-label">جهة العمل</label>
-   <input type="text" class="form-control" id="editWorkDepartment" />
- </div>
-
-
-
-
-
-      
+        <input type="text" class="form-control" id="editWorkDepartment" />
+       </div>
+      <!-- قم الجواز-->
       <div class="col-md-6">
         <label for="editPassportNumber" class="form-label">رقم جواز السفر</label>
-        <input type="text" class="form-control" id="editPassportNumber" />
+        <input type="text" class="form-control" id="editPassportNumber" maxlength="8"/>
       </div>
+      <!-- الرقم الوطني -->
       <div class="col-md-6">
         <label for="editNID" class="form-label">الرقم الوطني</label>
-        <input type="text" class="form-control" id="editNID" />
+        <input type="text" class="form-control" id="editNID" maxlength="12" />
       </div>
 
  <!-- العنوان وتاريخ الميلاد -->

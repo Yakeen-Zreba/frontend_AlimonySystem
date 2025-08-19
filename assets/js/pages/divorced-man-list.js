@@ -62,6 +62,7 @@ async function loadEmployees() {
             } else if (divo.nationality === 1) {
               document.getElementById("editForeign").checked = true;
             }
+            
             // فتح الـ offcanvas يدويًا
             const canvas = new bootstrap.Offcanvas('#editDivorcedCanvas');
             canvas.show();

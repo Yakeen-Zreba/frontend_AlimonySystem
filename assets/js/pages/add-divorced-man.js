@@ -24,7 +24,7 @@ document.getElementById("addDivorcedManForm").addEventListener("submit", async f
   };
 
   hideError();
-console.log(data);
+
   const error = validateAddDivorcedManData(data);
   if (error) {
     showError(error);

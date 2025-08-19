@@ -94,6 +94,26 @@ html[dir="rtl"] #layout-menu {
 
 
 /* ---------------------------------------------------
+   تنسيقات  القائمة المنسدلة
+--------------------------------------------------- */
+/* إصلاح تموضع السهم لعناصر select في اتجاه RTL */
+/* تنسيق select بحيث النص يمين والسهم يسار */
+select.form-select {
+  direction: rtl;                  
+  text-align: right;             
+  padding-left: 2rem;              
+  background-position: left 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 16px 12px;      
+}
+
+select.form-select:focus {
+  background-position: left 0.75rem center !important;
+}
+
+
+
+/* ---------------------------------------------------
    تنسيقات صفحة Welcome
 --------------------------------------------------- */
 

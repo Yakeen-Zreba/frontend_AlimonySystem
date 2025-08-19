@@ -82,17 +82,17 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item">
-                  <a href="../../user-management/divorced-man/view.html" class="menu-link">
+                  <a href="../user-management/divorced-man/view.html" class="menu-link">
                     <div>الزوج السابق</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="../../user-management/divorced-woman/view.html" class="menu-link">
+                  <a href="../user-management/divorced-woman/view.html" class="menu-link">
                     <div>المطلقة/وكيل المطلقة</div>
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a href="../../user-management/government/view.html" class="menu-link">
+                  <a href="../user-management/employee/view.html" class="menu-link">
                     <div>الموظف الحكومي</div>
                   </a>
                 </li>
@@ -186,7 +186,7 @@
                     <div class="row g-6">
                       <!--divorce data-->
                       <div class="col-md-12 mb-5">
-                        <div class="card">
+                        <div class="card pb-10">
                           <h5 class="card-header">بيانات عقد الزواج</h5>
                           <div class="card-body">
                             <div class="row g-3">
@@ -212,7 +212,7 @@
                                     <option value="3">محمود يوسف - 987654321</option>
                                   </select>
                                   <!-- الزر -->
-                                  <a href="../user-management/divorced-man/add.html" class="btn btn-outline-primary">
+                                  <a href="../user-management/divorced-man/add.html" class="btn btn-outline-primary pt-0 pb-0">
                                     +
                                   </a>
                                 </div>
@@ -229,7 +229,7 @@
                                     <option value="3">كريمة يوسف - 987654321</option>
                                   </select>
                                   <!-- الزر -->
-                                  <a href="../user-management/divorced-woman/add.html" class="btn btn-outline-primary">
+                                  <a href="../user-management/divorced-woman/add.html" class="btn btn-outline-primary pt-0 pb-0">
                                     +
                                   </a>
                                 </div>
@@ -276,11 +276,11 @@
                    
                       <!--control data-->
                       <div class="col-md-12">
-                        <div class="card">
+                        <div class="card pb-10">
                           <h5 class="card-header">بيانات واقعة الطلاق </h5>
                           <div class="card-body">
                             <div class="row g-3">
-                              <!-- رقم العقد ورقم القضية  -->
+                              <!-- رقم القضية  -->
                               <div class="col-md-6">
                                 <label for="divorceId" class="form-label"> رقم القضية</label>
                                 <input type="text" class="form-control" id="divorceId" name="divorceId" placeholder="رقم القضية">
@@ -303,8 +303,7 @@
                                   </a>
                                 </div>
                               </div> -->
-
-                              <!--  الزوج و الزوجة -->
+                               <!-- الزوج و الزوجة
                               <div class="col-md-6">
                                 <label for="divorcedMan" class="form-label"> اسم الزوج </label>
                                 <input type="text" class="form-control" id="divorcedMan" name="divorcedMan" placeholder=" اسم الزوج" >
@@ -312,13 +311,23 @@
                               <div class="col-md-6">
                                 <label for="divorcedWoman" class="form-label"> اسم الزوجة</label>
                                 <input type="text" class="form-control" id="divorcedWoman" name="divorcedWoman" placeholder="اسم الزوجة" >
+                              </div> -->
+
+                              <div class="col-md-6">
+                                <label for="courtName" class="form-label">المحكمة</label>
+                                <input type="text" class="form-control" id="courtName" name="courtName" placeholder="  المحكمة" >
                               </div>
+                              <div class="col-md-6">
+                                <label for="divorcedWoman" class="form-label"> اسم الزوجة</label>
+                                <input type="text" class="form-control" id="divorcedWoman" name="divorcedWoman" placeholder="اسم الزوجة" >
+                              </div>
+
                               <!--قرار المحكمة و تاريخ الطلاق -->
                               <div class="col-md-6">
                                 <label for="courtDecision" class="form-label">قرار المحكمة</label>
                                 <input type="text" class="form-control" id="courtDecision" name="courtDecision" placeholder="قرار المحكمة" >
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-md-12">
                                 <label for="mahr" class="form-label"> تاريخ الطلاق</label>
                                 <input type="date" class="form-control" id="mahr" name="mahr" placeholder="تاريخ الطلاق">
                               </div>

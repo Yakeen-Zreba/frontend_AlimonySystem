@@ -1,6 +1,6 @@
 export function validateRegisterData(data) {
-  if (!data.FirstName || !data.MiddleName || !data.LastName || !data.PhoneNumber || 
-      !data.Gender || !data.Nationality || !data.Role || 
+  if (!data.FirstName || !data.MiddleName || !data.LastName || !data.PhoneNumber || !data.DateOfBirth|| 
+      !data.Nationality || !data.Role || 
       !data.Username || !data.Password) {
     return "يرجى تعبئة جميع الحقول المطلوبة.";
   }
@@ -62,7 +62,7 @@ export function validateLoginData(data) {
 }
 
 export function validateAddDivorcedManData(data) {
-  if (!data.FirstName || !data.MiddleName || !data.LastName || !data.PhoneNumber || 
+  if (!data.FirstName || !data.MiddleName || !data.LastName || !data.PhoneNumber || !data.DateOfBirth||
       !data.Nationality ||
       !data.Username || !data.Password) {
     return "يرجى تعبئة جميع الحقول المطلوبة.";
@@ -114,7 +114,7 @@ return null;
 
 
 export function validateWomanRepresentationData(data) {
-  if (!data.FirstName || !data.MiddleName || !data.LastName || !data.PhoneNumber || 
+  if (!data.FirstName || !data.MiddleName || !data.LastName || !data.PhoneNumber || !data.DateOfBirth|| 
       !data.Nationality || !data.Role || 
       !data.Username || !data.Password) {
     return "يرجى تعبئة جميع الحقول المطلوبة.";
