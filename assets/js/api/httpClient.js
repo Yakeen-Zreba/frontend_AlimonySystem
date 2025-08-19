@@ -23,6 +23,9 @@ export async function postData(url, data) {
 
   return response.json();
 }
+
+
+
 export async function postAPI(url, data) {
   const token = localStorage.getItem("jwtToken");
 
@@ -51,6 +54,8 @@ window.location.href = "../../../login.html";
 
   return response.json();
 }
+
+
 export async function putAPI(url, data) {
   const token = localStorage.getItem('jwtToken')
 
@@ -58,7 +63,6 @@ if (isTokenExpired(token)) {
   alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
   localStorage.removeItem("jwtToken");
 window.location.href = "../../../login.html";
-
 }
   const response = await fetch(url, {
     method: "Put",

@@ -24,17 +24,17 @@ document.getElementById("formLogin").addEventListener("submit", async function (
   const response = await postData("https://localhost:44377/api/User/login", data);
 
   // تأكد من نجاح العملية
-
       if ( response.isSuccess ) {
     // خزن التوكن في localStorage
-
- 
+    
     localStorage.setItem("jwtToken", response.results.token);
     // خزن اسم المستخدم
     const username = document.getElementById("username").value.trim();
+    console.log(response.results.Role);
     localStorage.setItem("username", username);
     hideSpinnerformLoading()
     // انتقل للصفحة التالية
+
     console.log(response)
     console.log(response.results.role)
     console.log(response.results.role)
@@ -55,10 +55,8 @@ document.getElementById("formLogin").addEventListener("submit", async function (
          localStorage.setItem('userRole', 'gov'); // أو 'user'
             window.location.href = "admin/dashboard.html";
       }
-      else{
-           localStorage.setItem('userRole', 'admin'); // أو 'user'
-            window.location.href = "admin/dashboard.html";
-      }
+
+  
   } else {
     showError(response.message);
   }

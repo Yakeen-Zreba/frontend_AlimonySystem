@@ -3,7 +3,7 @@
 <html
   lang="en"
   class="layout-menu-fixed layout-compact"
-  data-assets-path="../../../assets/"
+  data-assets-path="../../../../assets/"
   data-template="vertical-menu-template-free">
    <head>
     <meta charset="utf-8" />
@@ -11,7 +11,7 @@
     <title>نظام إدارة النفقة</title>
     <meta name="description" content="لوحة معلومات لنظام النفقات" />
 
-    <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../../../assets/img/favicon/favicon.ico" />
 
     <!-- الخط -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,23 +19,40 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- الأيقونات -->
-    <link rel="stylesheet" href="../../../assets/vendor/fonts/iconify-icons.css" />
+    <link rel="stylesheet" href="../../../../assets/vendor/fonts/iconify-icons.css" />
 
     <!-- CSS الأساسي -->
-    <link rel="stylesheet" href="../../../assets/vendor/css/core.css" />
-    <link rel="stylesheet" href="../../../assets/css/demo.css" />
-    <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../../../../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../../../../assets/css/demo.css" />
+    <link rel="stylesheet" href="../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../../../assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Flatpickr CSS -->
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
     <!-- أدوات المساعدة -->
-    <script src="../../../assets/vendor/js/helpers.js"></script>
-    <script src="../../../assets/js/config.js"></script>
+    <script src="../../../../assets/vendor/js/helpers.js"></script>
+    <script src="../../../../assets/js/config.js"></script>
 
     <style>
       body { font-family: 'Cairo', sans-serif; text-align: right; }
+    .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-position-relative {
+      position: relative;
+    }
+    
     </style>
   </head>
 
@@ -47,7 +64,7 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="#" class="app-brand-link">
-              <span class="app-brand-logo demo "><img src="../../../../assets/img/favicon/short_logo.png" width="50"></span>
+              <span class="app-brand-logo demo "><img src="../../../../../assets/img/favicon/short_logo.png" width="50"></span>
               <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
             </a>
           </div>
@@ -76,12 +93,12 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4 fw-bold">إضافة مطلقة/وكيلها/الزوج السابق </h4>
+                <h4 class="mb-0 me-4 fw-bold">إضافة مطلقة / وكيل مطلقة</h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
-                <li class="nav-item lh-1 me-4">
-                    <p class="mb-0 text-muted">مرحباً، John Doe</p>
+                <li class="nav-item lh-1 me-4"> 
+                  <p class="mb-0 text-muted" id="usernameDisplay"></p>
                 </li>
 
 
@@ -91,7 +108,7 @@
                     href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="../../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="../../../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                     </a>
                 </li>
@@ -105,7 +122,14 @@
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row g-6">
-                <form id="addDivorcedRepresentationForm" action="#">
+                <!-- Spinner-->
+              <div id="formLoading" class="form-loading-overlay d-none">
+                <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
+                  <span class="visually-hidden">جاري التحميل...</span>
+                </div>
+              </div>
+              
+                <form id="addDivorcedWomanRepresentationForm" action="#">
                   <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
                   <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="row g-6">
@@ -113,6 +137,7 @@
                       <div class="col-md-12">
                         <div class="card">
                           <h5 class="card-header">البيانات الشخصية</h5>
+                          <small class="text-start ps-5">*البيانات الشخصية خاصة بالمطلقة</small>
                           <div class="card-body">
                             <div class="row g-3">
                               <!-- الاسم الأول واسم الأب -->
@@ -131,7 +156,7 @@
                               </div>
                               <div class="col-md-6">
                                 <label for="phone" class="form-label"> الهاتف</label>
-                                <input type="number" class="form-control" id="phone" name="phone" placeholder="الهاتف" maxlength="12">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="الهاتف" maxlength="12">
                               </div>
                               <!-- البريد الإلكتروني -->
                               <div class="col-md-6">
@@ -160,19 +185,6 @@
                                 <input type="date" class="form-control" id="birthdate" name="birthdate">
                               </div>
                               
-                              <!-- الجنس -->
-                              <div class="col-6">
-                                <small class="fw-medium d-block mb-2">الجنس</small>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="gender" id="male" value="0">
-                                  <label class="form-check-label" for="male">ذكر</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="gender" id="female" value="1">
-                                  <label class="form-check-label" for="female">أنثى</label>
-                                </div>
-                              </div>
-                              
                               <!-- الصفه-->
                               <div class="col-md-6">
                                 <small class="fw-medium d-block mb-2">الصفة</small>
@@ -183,10 +195,6 @@
                                 <div class="form-check form-check-inline">
                                   <input class="form-check-input" type="radio" name="role_type" id="agent" value="5">
                                   <label class="form-check-label" for="agent">وكيل المطلقة</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="radio" name="role_type" id="exhusband" value="3">
-                                  <label class="form-check-label" for="exhusband"> الزوج السابق</label>
                                 </div>
                               </div>
 
@@ -279,14 +287,14 @@
 
     <!-- Core JS -->
 
-    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../../assets/vendor/js/menu.js"></script>
+    <script src="../../../../assets/vendor/js/menu.js"></script>
 
     <!-- endbuild -->
 
@@ -297,10 +305,11 @@
 
     
     <!-- Main JS -->
-    <script src="../../../assets/js/main.js"></script>
+    <script src="../../../../assets/js/main.js"></script>
+    <script type="module" src="../../../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
-   <script type="module" src="../../../assets/js/pages/add-divorced-representation.js"></script>
+   <script type="module" src="../../../../assets/js/pages/add-divorced-woman-representation.js"></script>
 
     <script>
     document.addEventListener("DOMContentLoaded", function () {
