@@ -1,17 +1,17 @@
 <!doctype html>
 
 <html
-  lang="en"
+  lang="ar" dir="rtl"
   class="layout-menu-fixed layout-compact"
-  data-assets-path="../../../../../assets/"
+  data-assets-path="../../../assets/"
   data-template="vertical-menu-template-free">
    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام تتبع نفقات المطلقات</title>
+    <title>نظام إدارة النفقة</title>
     <meta name="description" content="لوحة معلومات لنظام النفقات" />
 
-    <link rel="icon" type="image/x-icon" href="../../../../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
 
     <!-- الخط -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,21 +19,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- الأيقونات -->
-    <link rel="stylesheet" href="../../../../../assets/vendor/fonts/iconify-icons.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/fonts/iconify-icons.css" />
 
     <!-- CSS الأساسي -->
-    <link rel="stylesheet" href="../../../../../assets/vendor/css/core.css" />
-    <link rel="stylesheet" href="../../../../../assets/css/demo.css" />
-    <link rel="stylesheet" href="../../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../../../../../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../../../assets/css/demo.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- أدوات المساعدة -->
-    <script src="../../../../../assets/vendor/js/helpers.js"></script>
-    <script src="../../../../../assets/js/config.js"></script>
+    <script src="../../../assets/vendor/js/helpers.js"></script>
+    <script src="../../../assets/js/config.js"></script>
 
     <style>
       body { font-family: 'Cairo', sans-serif; text-align: right; }
-        .table-loading-overlay {
+           .table-loading-overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -76,18 +76,67 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="#" class="app-brand-link">
-              <span class="app-brand-logo demo "><img src="../../../../../assets/img/favicon/short_logo.png" width="50"></span>
+              <span class="app-brand-logo demo "><img src="../../../assets/img/favicon/short_logo.png" width="50"></span>
               <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
             </a>
           </div>
           <ul class="menu-inner py-3">
-            <li class="menu-item"><a href="../../dashboard.html" class="menu-link">الرئيسية</a></li>
+            <li class="menu-item"><a href="../../admin/dashboard.html" class="menu-link">الرئيسية</a></li>
             <li class="menu-item"><a href="#" class="menu-link">الملف الشخصي</a></li>
-            <li class="menu-item active"><a href="../general.html" class="menu-link"> إدارة المستخدمين</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
+            <!-- <li class="menu-item active"><a href="../general.html" class="menu-link"> إدارة المستخدمين</a></li> -->
+            <!-- إدارة المستخدمين --> 
+            <li class="menu-item open"> 
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon bx bx-user"></i>
+                <div>إدارة المستخدمين</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item">
+                  <a href="../divorced-man/view.html" class="menu-link">
+                    <div>الزوج السابق</div>
+                  </a>
+                </li>
+                <li class="menu-item active">
+                  <a href="#" class="menu-link">
+                    <div>المطلقة/وكيل المطلقة</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../government/view.html" class="menu-link">
+                    <div>الموظف الحكومي</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!-- إدارة العقود والوقائع -->
+            <!-- <li class="menu-item"> 
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class="menu-icon bx bx-file"></i>
+              <div>إدارة العقود والوقائع</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="../../management-contracts-divorce/marriage-contract/view.html" class="menu-link">
+                  <div>عقود الزواج</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../management-contracts-divorce/divorce/view.html" class="menu-link">
+                  <div>وقائع الطلاق</div>
+                </a>
+              </li>
+            </ul>
+          </li>               -->
+          <li class="menu-item ">
+                <a href="../../management-divorce/view.html" class="menu-link">
+                  <i class="menu-icon bx bx-file"></i>
+                  <div>وقائع الطلاق</div>
+                </a>
+          </li>
+          <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
+          <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
+          <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
+          <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
 
           </ul>
         </aside>
@@ -111,6 +160,7 @@
                   <span class="w-px-22 h-px-22"><i class="icon-base bx bx-search icon-md"></i></span>
                   <input
                     type="text"
+                    id="searchInput"
                     class="form-control border-0 shadow-none ps-1 ps-sm-2 d-md-block d-none"
                     placeholder="Search..."
                     aria-label="Search..." />
@@ -119,8 +169,8 @@
               <!-- /Search -->
 
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
-                <li class="nav-item lh-1 me-4">
-                  <p class="mb-0 text-muted">Welcome, John Doe</p>
+                <li class="nav-item lh-1 me-4"> 
+                  <p class="mb-0 text-muted" id="usernameDisplay"></p>
                 </li>
 
                 <!-- User -->
@@ -130,7 +180,7 @@
                     href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../../../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                 </li>
@@ -145,46 +195,36 @@
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-    <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
 
               <!--top card -->  
               <div class="row">
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <div class="card-body">
-                        <a href="../divorced-woman/view.html" class="btn btn-outline-secondary">المطلقة / وكيل المطلقة</a>
+                      <a href="#" class="btn btn-secondary">المطلقة / وكيل المطلقة</a>
                       <a href="../divorced-man/view.html" class="btn btn-outline-secondary">الزوج السابق</a>
-                      <a href="../government/view.html" class="btn btn-secondary">موظف حكومي / محضر</a>
-                      <!-- <a href="add.html" class="btn btn-outline-secondary">إضافة موظف حكومي/المحضر</a> -->
+                      <a href="../government/view.html" class="btn btn-outline-secondary">موظف حكومي / محضر</a>
+                      <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
                   </div>
-            <div id="alertContainer" class="mt-3"></div>
-            
-            <!-- <div class="alert alert-success alert-dismissible" role="alert" >
-                        This is a success dismissible alert — check it out!
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                      </div> -->
                 </div>
               </div>
-              <!--/top card --> 
-              <!-- Loading -->
-
+              <!--/top card -->
+              <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
 
               <!-- Hoverable Table rows -->
               <div class="card">
-                     <div class="card-header d-flex justify-content-between align-items-center">
-                  <h5 class="mb-0">الموظفين الحكوميين</h5>
-                  <a href="add.html" class="btn btn-primary">إضافة موظف حكومي/المحضر</a>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0">المطلقات/الوكلاء</h5>
+                  <a href="add.html" class="btn btn-primary">إضافة مطلقة / وكيل مطلقة</a>
                 </div>
-
-                <!-- <h5 class="card-header">الموظفين الحكوميين</h5> -->
-                <div class="position-relative-wrapper">
-  <!-- Spinner overlay -->
-  <div id="loadingSpinner" class="table-loading-overlay d-none">
-    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
-      <span class="visually-hidden">جاري التحميل...</span>
-    </div>
-  </div>
+                <div id="alertContainer" class="mt-3"></div>
+                <!-- Spinner overlay -->
+                <div id="loadingSpinner" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">جاري التحميل...</span>
+                  </div>
+                </div>
                 <div class="table-responsive text-nowrap">
                   <table class="table table-hover">
                     <thead>
@@ -194,16 +234,14 @@
                         <th>الهاتف</th>
                         <th>جهة العمل</th>
                         <th>الصفة</th>
-                        <th>الصلاحيات</th>
-                        <th>الحالة</th>
-                        <th>تعديل</th> 
+                        <th>النشاط</th>
+                        <th>الحدث</th>
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0" id="employeeTableBody">
-                     
+                    <tbody class="table-border-bottom-0" id="divorcedWomanTableBody">
+                      
                     </tbody>
                   </table>
-                </div>
                 </div>
               </div>
               <!--/ Hoverable Table rows -->
@@ -244,14 +282,14 @@
 
     <!-- Core JS -->
 
-    <script src="../../../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../../../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../../../../assets/vendor/js/menu.js"></script>
+    <script src="../../../assets/vendor/js/menu.js"></script>
 
     <!-- endbuild -->
 
@@ -259,17 +297,16 @@
 
     <!-- Main JS -->
 
-    <script type="module" src="../../../../../assets/js/pages/employee-list.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+    <script type="module" src="../../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
+    <script type="module" src="../../../assets/js/pages/divorced-woman-list.js"></script>
 
-    <!-- Place this tag before closing body tag for github widget button. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-
-    <!-- 🧾 Offcanvas لتعديل بيانات الموظف -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="editEmployeeCanvas" aria-labelledby="editEmployeeCanvasLabel" style="width: 50%;">
+    <!--  Offcanvas لتعديل بيانات الموظف -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="editDivorcedCanvas" aria-labelledby="editEmployeeCanvasLabel" style="width: 50%;">
   <div class="offcanvas-header">
-    <h5 id="editEmployeeCanvasLabel" class="offcanvas-title">تعديل بيانات الموظف</h5>
+    <h5 id="editEmployeeCanvasLabel" class="offcanvas-title">تعديل بيانات المطلقة / وكيل المطلقة</h5>
     <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="إغلاق"></button> -->
   </div>
     <div id="error-messageDialog" class="alert alert-danger d-none" role="alert"></div>
@@ -281,7 +318,7 @@
     </div>
 
   </div>
-    <form id="editEmployeeForm">
+    <form id="editDivorcedCanvasForm">
       <input type="hidden" id="editPersonId" />
 
       <input type="hidden" id="editUserId" />
@@ -315,11 +352,6 @@
    <input type="text" class="form-control" id="editWorkDepartment" />
  </div>
 
-
-
-
-
-      
       <div class="col-md-6">
         <label for="editPassportNumber" class="form-label">رقم جواز السفر</label>
         <input type="text" class="form-control" id="editPassportNumber" />
@@ -341,7 +373,6 @@
   <input type="date" class="form-control" id="editBirthdate" >
 </div>
 <div class="col-6">
-
   <small class="fw-medium d-block mb-2">الجنس</small>
   <div class="form-check form-check-inline">
     <input class="form-check-input" type="radio" name="editGender" id="editMale" value="0">
@@ -352,6 +383,18 @@
     <label class="form-check-label" for="editFemale">أنثى</label>
   </div>
 </div>
+           <!-- الصفه-->
+    <div class="col-md-6">
+      <small class="fw-medium d-block mb-2">الصفة</small>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role_type" id="editDivorced" value="4">
+        <label class="form-check-label" for="editDivorced">مطلقة</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="role_type" id="editAgent" value="5">
+        <label class="form-check-label" for="editAgent">وكيل المطلقة</label>
+      </div>
+    </div>
     <!-- الجنسية-->
     <div class="col-md-6">
       <small class="fw-medium d-block mb-2">الجنسية</small>
@@ -364,39 +407,12 @@
         <label class="form-check-label" for="editForeign">أجنبي</label>
       </div>
     </div>
-           <!-- الصفه-->
-    <div class="col-md-6">
-      <small class="fw-medium d-block mb-2">الصفة</small>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="role_type" id="editEmployee" value="1">
-        <label class="form-check-label" for="editEmployee">موظف حكومي</label>
-      </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="role_type" id="editFollowUpAgent" value="2">
-        <label class="form-check-label" for="editFollowUpAgent">محضر</label>
-      </div>
-    </div>
-   
     <div class="col-md-6" style="
-    ALIGN-SELF: FLEX-END;
-">
+    ALIGN-SELF: FLEX-END;">
       <button type="button" class="btn btn-primary" id="saveEditButton">حفظ التعديلات</button>
 
     </div>
-<!-- الصلاحيات-->
-<div class="col-md-6" id="permissionsCard">
-  <div class="card">
-    <h5 class="card-header">الصلاحيات</h5>
-    <div class="card-body">
-      <small class="fw-medium d-block mb-2 text-muted">اختر الصلاحيات الممنوحة لهذا الموظف</small>
-      <div id="editPermissionsList" class="list-group">
-      
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-md-6">
-  </div>
+
 
    
 </div>

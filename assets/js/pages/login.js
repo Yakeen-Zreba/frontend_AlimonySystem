@@ -30,15 +30,17 @@ document.getElementById("formLogin").addEventListener("submit", async function (
     localStorage.setItem("jwtToken", response.results.token);
     // خزن اسم المستخدم
     const username = document.getElementById("username").value.trim();
-    console.log(response.results.Role);
+    console.log(response.results.role);
+        console.log(response.results);
+
     localStorage.setItem("username", username);
     hideSpinnerformLoading()
     // انتقل للصفحة التالية
-     if(response.results.Role==='5')
+     if(response.results.role=='5')
         window.location.href = 'divorced-woman/index.html';
-      else if(response.results.Role==='4')
+      else if(response.results.role=='4')
         window.location.href = 'divorced-woman/index.html';
-      else if(response.results.Role==='3')
+      else if(response.results.role=='3')
         window.location.href = 'divorced-man/index.html';
       else{
             window.location.href = "admin/dashboard.html";

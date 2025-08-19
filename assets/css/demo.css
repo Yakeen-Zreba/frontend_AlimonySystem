@@ -23,6 +23,77 @@ body {
 }
 
 /* ---------------------------------------------------
+   تنسيقات  navbar
+--------------------------------------------------- */
+
+
+ /* اللون يظهر فقط على العنصر النشط نفسه */
+#layout-menu .menu-inner > .menu-item.active > .menu-link,
+#layout-menu .menu-sub   > .menu-item.active > .menu-link,
+#layout-menu .menu-inner > .menu-item > .menu-link.active,
+#layout-menu .menu-sub   > .menu-item > .menu-link.active {
+  background-color: #b0cfb0 !important;
+  color: #40583F !important;
+  font-weight: 600;
+  
+}
+
+/* لا تلوّن الأب لمجرد أنه مفتوح */
+#layout-menu .menu-item.open > .menu-link.menu-toggle {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+/* ===== Fix sidebar off-canvas in RTL on small screens ===== */
+html[dir="rtl"] #layout-menu {
+  right: 0;
+  left: auto;
+}
+
+
+ .select2-container { flex: 1 1 auto; width: 1% !important; min-width: 0; }
+
+@media (max-width: 1199.98px) {
+  /* ضع السايدبار خارج الشاشة من اليمين */
+  html[dir="rtl"] #layout-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 260px;             /* عدّلها حسب تصميمك */
+    right: 0;
+    left: auto;
+    transform: translateX(100%); /* مخفية خارج الشاشة */
+    transition: transform .25s ease;
+    z-index: 1100;              /* فوق المحتوى */
+  }
+
+  /* عند فتح القائمة: القالب يضيف هذا الكلاس على <body> */
+  .layout-menu-expanded #layout-menu {
+    transform: translateX(0);
+  }
+
+  /* ألغِ أي مساحات جانبية في وضع الموبايل */
+  .layout-page {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* غطاء التعتيم (اختياري لتحسين التجربة) */
+  .layout-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(67, 89, 113, 0.6);
+    z-index: 1099;
+    display: none;
+  }
+  .layout-menu-expanded .layout-overlay {
+    display: block;
+  }
+}
+
+
+/* ---------------------------------------------------
    تنسيقات صفحة Welcome
 --------------------------------------------------- */
 

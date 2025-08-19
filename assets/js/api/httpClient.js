@@ -113,3 +113,33 @@ window.location.href = "../../../login.html";
   return response.json();
 }
  
+
+export async function deleteAPI(url) {
+  const token = localStorage.getItem("jwtToken");
+
+  if (isTokenExpired(token)) {
+    alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
+    localStorage.removeItem("jwtToken");
+    window.location.href = "../../../login.html";
+  }
+
+  const response = await fetch(url, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    }
+  });
+
+  if (!response.ok) {
+    if (response.status === 401) {
+      throw new Error("ليس لديك صلاحية.");
+    }
+
+    const result = await response.json();
+    throw new Error(result.message || "فشل الحذف");
+  }
+
+  return response.json();
+}
+
