@@ -46,12 +46,27 @@
             </a>
           </div>
           <ul class="menu-inner py-3">
-            <li class="menu-item active"><a href="#" class="menu-link">الرئيسية</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الملف الشخصي</a></li>
+            
+            <!-- الرئيسية-->
+            <li class="menu-item active">
+              <a href="#" class="menu-link active">
+                  <i class="menu-icon bx  bx-home"></i>
+                  <div>الرئيسية</div>
+              </a>
+            </li>
+
+            <!-- الملف الشخصي -->
+            <li class="menu-item">
+              <a href="#" class="menu-link active">
+                  <i class="menu-icon bx bx-user"></i>
+                  <div>الملف الشخصي</div>
+              </a>
+            </li>
+
             <!-- إدارة المستخدمين --> 
             <li class="menu-item"> 
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon bx bx-user"></i>
+                <i class="menu-icon bx bx-group"></i>
                 <div>إدارة المستخدمين</div>
               </a>
               <ul class="menu-sub">
@@ -72,37 +87,58 @@
                 </li>
               </ul>
             </li>
-            <!-- إدارة العقود والوقائع -->
-            <!-- <li class="menu-item"> 
+
+            
+          <!--وقائع الطلاق-->
+          <li class="menu-item ">
+              <a href="../management-divorce/view.html" class="menu-link">
+                <i class="menu-icon bx bx-file"></i>
+                <div>وقائع الطلاق</div>
+              </a>
+          </li> 
+
+          <!-- إدارة النفقات -->
+            <li class="menu-item open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon bx bx-file"></i>
-              <div>إدارة العقود والوقائع</div>
+              <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
+              <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="../management-contracts-divorce/marriage-contract/view.html" class="menu-link">
-                  <div>عقود الزواج</div>
+                <a href="../alimony/almony-request.html" class="menu-link">
+                  <div>طلب نفقة</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a href="../management-contracts-divorce/divorce/view.html" class="menu-link">
-                  <div>وقائع الطلاق</div>
+                <a href="../alimony/alimony-payment-list.html" class="menu-link">
+                  <div>سجل النفقات المدفوعة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../alimony/alimony-request-list.html" class="menu-link">
+                  <div>سجل طلبات النفقات </div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../alimony-payment.html" class="menu-link">
+                  <div>دفع نفقة</div>
                 </a>
               </li>
             </ul>
-          </li>             -->
-         <li class="menu-item ">
-                <a href="../management-divorce/view.html" class="menu-link">
-                  <i class="menu-icon bx bx-file"></i>
-                  <div>وقائع الطلاق</div>
-                </a>
-          </li> 
-          <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
+          </li>
+
           <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
-          </ul>
-        </aside>
+          
+          <!-- تسجيل الخروج -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-log-out" id="logout-btn"></i>
+                  <div>تسجيل الخروج</div>
+              </a>
+            </li>
+
+        </ul>
+      </aside>
 
         <!-- محتوى الصفحة -->
         <div class="layout-page">
@@ -117,7 +153,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4  fw-bold">نظام إدارة النفقة</h4>
+                <h4 class="mb-0 me-4  fw-bold">نظام إدارة النفقات </h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
@@ -192,5 +228,11 @@
     <script src="../../assets/js/main.js"></script>
     <script src="../../assets/js/dashboards-analytics.js"></script>
     <script type="module" src="../../assets/js/pages/index.js"></script>
+    <script>
+      const LOGIN_PAGE = "../login.html"; 
+    </script>
+    <script type="module" src="../../assets/js/pages/logout.js"></script>
+
+
   </body>
 </html>

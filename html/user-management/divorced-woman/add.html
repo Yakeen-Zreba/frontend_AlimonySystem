@@ -8,7 +8,7 @@
    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام إدارة النفقة</title>
+    <title>نظام إدارة النفقات </title>
     <meta name="description" content="لوحة معلومات لنظام النفقات" />
 
     <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
@@ -69,9 +69,23 @@
             </a>
           </div>
           <ul class="menu-inner py-3">
-            <li class="menu-item"><a href="../../admin/dashboard.html" class="menu-link">الرئيسية</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الملف الشخصي</a></li>
-            <!-- <li class="menu-item active"><a href="../general.html" class="menu-link"> إدارة المستخدمين</a></li> -->
+           <!-- الرئيسية-->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx  bx-home"></i>
+                  <div>الرئيسية</div>
+              </a>
+            </li>
+
+            <!-- الملف الشخصي -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-user"></i>
+                  <div>الملف الشخصي</div>
+              </a>
+            </li>
+
+
             <!-- إدارة المستخدمين --> 
             <li class="menu-item open"> 
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -80,7 +94,7 @@
               </a>
               <ul class="menu-sub">
                 <li class="menu-item ">
-                  <a href="../divorced-man/view.html" class="menu-link">
+                  <a href="../divorced-man/" class="menu-link">
                     <div>الزوج السابق</div>
                   </a>
                 </li>
@@ -96,35 +110,62 @@
                 </li>
               </ul>
             </li>
-            <!-- إدارة العقود والوقائع -->
-            <!-- <li class="menu-item"> 
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon bx bx-file"></i>
-              <div>إدارة العقود والوقائع</div>
-            </a>
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="../../management-contracts-divorce/marriage-contract/view.html" class="menu-link">
-                  <div>عقود الزواج</div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="../../management-contracts-divorce/divorce/view.html" class="menu-link">
-                  <div>وقائع الطلاق</div>
-                </a>
-              </li>
-            </ul>
-          </li>              -->
+
+            <!--وقائع الطلاق-->
+          <li class="menu-item ">
+              <a href="../../management-divorce/view.html" class="menu-link">
+                <i class="menu-icon bx bx-file"></i>
+                <div>وقائع الطلاق</div>
+              </a>
+          </li> 
+
+
           <li class="menu-item ">
                 <a href="../../management-divorce/view.html" class="menu-link">
                   <i class="menu-icon bx bx-file"></i>
                   <div>وقائع الطلاق</div>
                 </a>
           </li>
-          <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
-          <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
+
+          <!-- إدارة النفقات -->
+            <li class="menu-item open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
+              <div>إدارة النفقات</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="../../alimony/almony-request.html" class="menu-link">
+                  <div>طلب نفقة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony/alimony-payment-list.html" class="menu-link">
+                  <div>سجل النفقات المدفوعة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony/alimony-request-list.html" class="menu-link">
+                  <div>سجل طلبات النفقات </div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony-payment.html" class="menu-link">
+                  <div>دفع نفقة</div>
+                </a>
+              </li>
+            </ul>
+          </li>   
+
+            <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
+            
+            <!-- تسجيل الخروج -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-log-out" id="logout-btn"></i>
+                  <div>تسجيل الخروج</div>
+              </a>
+            </li>
 
           </ul>
         </aside>
@@ -374,6 +415,7 @@
    <script type="module" src="../../../assets/js/pages/add-divorced-woman-representation.js"></script>
 
     <script>
+    const LOGIN_PAGE = "../login.html";
     document.addEventListener("DOMContentLoaded", function () {
     const libyanRadio = document.getElementById("libyan");
     const foreignRadio = document.getElementById("foreign");
@@ -399,9 +441,10 @@
     // تشغيل الوظيفة عند تحميل الصفحة
     toggleNIDField(); // سواء تم تحديد خيار مسبقاً أو لا
     });
-
+ 
     </script>
 
+    <script type="module" src="../../assets/js/pages/logout.js"></script>
 
 
   </body>

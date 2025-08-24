@@ -8,8 +8,8 @@
    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام إدارة النفقة</title>
-    <meta name="description" content="نظام إدارة النفقة" />
+    <title>نظام إدارة النفقات </title>
+    <meta name="description" content="نظام إدارة النفقات " />
 
     <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
 
@@ -72,12 +72,26 @@
             </a>
           </div>
           <ul class="menu-inner py-3">
-            <li class="menu-item"><a href="index.html" class="menu-link">الرئيسية</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الملف الشخصي</a></li>
+            <!-- الرئيسية-->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx  bx-home"></i>
+                  <div>الرئيسية</div>
+              </a>
+            </li>
+
+            <!-- الملف الشخصي -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-user"></i>
+                  <div>الملف الشخصي</div>
+              </a>
+            </li>
+
             <!-- إدارة المستخدمين --> 
             <li class="menu-item"> 
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon bx bx-user"></i>
+                <i class="menu-icon bx bx-group"></i>
                 <div>إدارة المستخدمين</div>
               </a>
               <ul class="menu-sub">
@@ -98,34 +112,54 @@
                 </li>
               </ul>
             </li>
-            <!-- إدارة العقود والوقائع -->
-            <!-- <li class="menu-item open"> 
+            
+          <!--وقائع الطلاق-->
+          <li class="menu-item active">
+              <a href="../management-divorce/view.html" class="menu-link">
+                <i class="menu-icon bx bx-file"></i>
+                <div>وقائع الطلاق</div>
+              </a>
+          </li> 
+
+            <!-- إدارة النفقات -->
+            <li class="menu-item open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
-              <i class="menu-icon bx bx-file"></i>
-              <div>إدارة العقود والوقائع</div>
+              <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
+              <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item active">
-                <a href="view.html" class="menu-link">
-                  <div>عقود الزواج</div>
+              <li class="menu-item">
+                <a href="../alimony/almony-request.html" class="menu-link">
+                  <div>طلب نفقة</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a href="../divorce/view.html" class="menu-link">
-                  <div>وقائع الطلاق</div>
+                <a href="../alimony/alimony-payment-list.html" class="menu-link">
+                  <div>سجل النفقات المدفوعة</div>
                 </a>
               </li>
-            </ul></li>    -->
-            <li class="menu-item active">
-                <a href="view.html" class="menu-link">
-                  <i class="menu-icon bx bx-file"></i>
-                  <div>وقائع الطلاق</div>
+              <li class="menu-item">
+                <a href="../alimony/alimony-request-list.html" class="menu-link">
+                  <div>سجل طلبات النفقات </div>
                 </a>
-            </li>         
-            <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
+              </li>
+              <li class="menu-item">
+                <a href="../alimony-payment.html" class="menu-link">
+                  <div>دفع نفقة</div>
+                </a>
+              </li>
+            </ul>
+          </li>   
+
             <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
+            
+            <!-- تسجيل الخروج -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-log-out" id="logout-btn"></i>
+                  <div>تسجيل الخروج</div>
+              </a>
+            </li>
 
           </ul>
         </aside>
@@ -217,7 +251,7 @@
                                   </a>
                                 </div>
                               </div>
-                              <!-- حقل اسم الزوج + زر زوج جديد -->
+                              <!-- حقل اسم الزوجة + زر زوج جديد -->
                               <div class="col-md-6">
                                 <label for="divorcedWoman" class="form-label">اسم الزوجة</label>
                                 <div class="d-flex flex-nowrap gap-2">
@@ -286,50 +320,25 @@
                                 <input type="text" class="form-control" id="divorceId" name="divorceId" placeholder="رقم القضية">
                               </div>
 
-                              <!-- <div class="col-md-6">
-                                <label for="contractId" class="form-label"> رقم عقد الزواج </label>
-                                <div class="input-group">
-                                  القائمة المنسدلة 
-                                  <select class="form-select" id="contractId" name="contractId">
-                                    <option selected disabled></option>
-                                    <option value="1">عقد 1234 - طرابلس</option>
-                                    <option value="2">عقد 5678 - بنغازي</option>
-                                    <option value="3">عقد 9101 - مصراتة</option>
-                                  </select>
-
-                                  الزر ينقلك الى صفحة جديدة 
-                                  <a href="../marriage-contract/create.html" class="btn btn-outline-primary">
-                                    <i class="bx bx-plus"></i> عقد جديد
-                                  </a>
-                                </div>
-                              </div> -->
-                               <!-- الزوج و الزوجة
-                              <div class="col-md-6">
-                                <label for="divorcedMan" class="form-label"> اسم الزوج </label>
-                                <input type="text" class="form-control" id="divorcedMan" name="divorcedMan" placeholder=" اسم الزوج" >
-                              </div>
-                              <div class="col-md-6">
-                                <label for="divorcedWoman" class="form-label"> اسم الزوجة</label>
-                                <input type="text" class="form-control" id="divorcedWoman" name="divorcedWoman" placeholder="اسم الزوجة" >
-                              </div> -->
-
                               <div class="col-md-6">
                                 <label for="courtName" class="form-label">المحكمة</label>
                                 <input type="text" class="form-control" id="courtName" name="courtName" placeholder="  المحكمة" >
                               </div>
-                              <div class="col-md-6">
-                                <label for="divorcedWoman" class="form-label"> اسم الزوجة</label>
-                                <input type="text" class="form-control" id="divorcedWoman" name="divorcedWoman" placeholder="اسم الزوجة" >
-                              </div>
-
+                            
                               <!--قرار المحكمة و تاريخ الطلاق -->
                               <div class="col-md-6">
                                 <label for="courtDecision" class="form-label">قرار المحكمة</label>
                                 <input type="text" class="form-control" id="courtDecision" name="courtDecision" placeholder="قرار المحكمة" >
                               </div>
-                              <div class="col-md-12">
+                              <div class="col-md-6">
                                 <label for="mahr" class="form-label"> تاريخ الطلاق</label>
                                 <input type="date" class="form-control" id="mahr" name="mahr" placeholder="تاريخ الطلاق">
+                              </div>
+
+                               <!-- قرار الطلاق-->
+                              <div class="col-md-12 mb-4">
+                                <label class="form-label" for="divorceDecree">مستند قرار الطلاق</label>
+                                <input type="file" id="divorceDecree" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                               </div>
 
                               <div class="col-md-2">
@@ -415,6 +424,7 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
   <script>
+    const LOGIN_PAGE = "../login.html";
     $(document).ready(function() {
       // تفعيل البحث في القائمة
       $('#husband').select2({
@@ -429,5 +439,6 @@
       });
     });
   </script>    
+  <script type="module" src="../../assets/js/pages/logout.js"></script>
  </body>
 </html>

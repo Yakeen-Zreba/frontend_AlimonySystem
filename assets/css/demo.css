@@ -116,15 +116,30 @@ select.form-select:focus {
 /* ---------------------------------------------------
    تنسيقات صفحة Welcome
 --------------------------------------------------- */
-
 .welcome-container {
+  background: url("../assets/img/backgrounds/background.PNG") no-repeat center center;
+  background-size: cover;
+  min-height: 100vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-box {
+  background: rgba(255, 255, 255, 0.9); /* أبيض شفاف */
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 40px 20px rgba(0,0,0,0.1);
+}
+
+/* .welcome-container {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #f1f3f4, #e3eaf2);
   padding: 40px 20px;
-}
+} */
 
 .welcome-box {
   background-color: white;

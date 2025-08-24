@@ -46,13 +46,63 @@
             </a>
           </div>
           <ul class="menu-inner py-3">
-            <li class="menu-item"><a href="index.html" class="menu-link">الرئيسية</a></li>
-            <li class="menu-item active"><a href="almony-request.html" class="menu-link">طلب نفقة</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الملف الشخصي</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
+            
+            <!-- الرئيسية-->
+            <li class="menu-item active">
+              <a href="#" class="menu-link active">
+                  <i class="menu-icon bx  bx-home"></i>
+                  <div>الرئيسية</div>
+              </a>
+            </li>
+            
+            <!-- الملف الشخصي -->
+            <li class="menu-item">
+              <a href="#" class="menu-link active">
+                  <i class="menu-icon bx bx-user"></i>
+                  <div>الملف الشخصي</div>
+              </a>
+            </li>
+            
+            <!-- إدارة النفقات -->
+            <li class="menu-item open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
+              <div>إدارة النفقات</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="../alimony/almony-request.html" class="menu-link">
+                  <div>طلب نفقة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../alimony/alimony-payment-list.html" class="menu-link">
+                  <div>سجل النفقات المدفوعة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../alimony/alimony-request-list.html" class="menu-link">
+                  <div>سجل طلبات النفقات </div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../alimony-payment.html" class="menu-link">
+                  <div>دفع نفقة</div>
+                </a>
+              </li>
+            </ul>
+          </li>       
+            
             <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
+
+            <!-- تسجيل الخروج -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-log-out" id="logout-btn"></i>
+                  <div>تسجيل الخروج</div>
+              </a>
+            </li>
+            
           </ul>
         </aside>
 
@@ -69,7 +119,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4  fw-bold">نظام إدارة النفقة</h4>
+                <h4 class="mb-0 me-4  fw-bold">نظام إدارة النفقات </h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
@@ -99,9 +149,9 @@
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <div class="card-body">
-                      <h5 class="card-title">مرحبًا بك في نظام إدارة النفقة</h5>
+                      <h5 class="card-title">مرحبًا بك في نظام إدارة النفقات </h5>
                       <p class="card-text">يساعدك هذا النظام على تسجيل، متابعة، وتحليل نفقات المطلقات وفقًا للقوانين الليبية.</p>
-                      <a href="almony-request.html" class="btn btn-primary">طلب نفقة</a>
+                      <a href="../alimony/almony-request.html" class="btn btn-primary">طلب نفقة</a>
                       <a href="#" class="btn btn-outline-secondary">عرض النفقات</a>
                       <a href="#" class="btn btn-outline-secondary">تصدير تقرير</a>
                     </div>
@@ -143,5 +193,9 @@
     <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
     <script src="../../assets/js/main.js"></script>
     <script type="module" src="../../assets/js/pages/index.js"></script>
+    <script>
+      const LOGIN_PAGE = "../login.html"; 
+    </script>
+    <script type="module" src="../../assets/js/pages/logout.js"></script>
   </body>
 </html>
