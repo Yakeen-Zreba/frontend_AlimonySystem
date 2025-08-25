@@ -36,15 +36,30 @@ document.getElementById("formLogin").addEventListener("submit", async function (
 
     hideSpinnerformLoading()
     // انتقل للصفحة التالية
-     if(response.results.role=='5')
+
+
+    console.log(response)
+    console.log(response.results.role)
+    console.log(response.results.role)
+     if(response.results.role=='5' || response.results.role=='4' ){
+      localStorage.setItem('userRole', 'woman'); // أو 'user'
+
         window.location.href = 'divorced-woman/index.html';
-      else if(response.results.role=='4')
-        window.location.href = 'divorced-woman/index.html';
-      else if(response.results.role=='3')
-        window.location.href = 'divorced-man/index.html';
-      else{
+     }
+      else if(response.results.role=='3'){
+              localStorage.setItem('userRole', 'man'); // أو 'user'
+                window.location.href = 'divorced-man/view.html';
+      }
+       else if(response.results.role=='2'){
+              localStorage.setItem('userRole', 'mohder'); // أو 'محضر'
+                window.location.href = 'divorced-man/view.html';
+      }
+       else if  (response.results.role=='1'){
+         localStorage.setItem('userRole', 'gov'); // أو 'user'
             window.location.href = "admin/dashboard.html";
       }
+
+  
   } else {
     showError(response.message);
   }
