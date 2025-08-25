@@ -85,14 +85,15 @@ window.location.href = "../../../login.html";
   return response.json();
 }
  
-export async function GetAPI(url) {
+export async function GetAPI(url,login='../../../login.html') {
  const token = localStorage.getItem("jwtToken");
 
 if (isTokenExpired(token)) {
   alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
   localStorage.removeItem("jwtToken");
-window.location.href = "../../../login.html";
-
+  console.log(login)
+window.location.href = login;
+return;
 }
   const response = await fetch(url, {
     headers: { "Content-Type": "application/json" ,
