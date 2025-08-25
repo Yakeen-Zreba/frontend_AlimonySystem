@@ -1,6 +1,6 @@
 import { showError,  showErrorDialog,showSpinner,hideSpinner, hideSpinnerformLoading, showSpinnerformLoading, hideErrorDialog } from "../utils/helpers.js";
 import {  validationUpdateEmployee } from "../utils/validationUpdateEmployee.js";
-import { postAPI, GetAPI } from "../api/httpClient.js";
+import { postAPI, GetAPI,deleteAPI } from "../api/httpClient.js";
 
 
 document.addEventListener("DOMContentLoaded",async function () {
@@ -112,29 +112,36 @@ hideErrorDialog();
         let offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('editEmployeeCanvas'));
           offcanvas.hide();
           const alertContainer = document.getElementById("alertContainer");
-alertContainer.innerHTML = `
-  <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: black">
-    تم حفظ التعديلات بنجاح!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-`;
-setTimeout(() => {
-  alertContainer.innerHTML = '';
-}, 4000);
+          alertContainer.innerHTML = `
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: black">
+              تم حفظ التعديلات بنجاح!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          `;
+          setTimeout(() => {
+            alertContainer.innerHTML = '';
+          }, 4000);
             hideSpinnerformLoading()
             await loadEmployees();
       } else {
-        showErrorDialog(result.message || 'حدث خطأ أثناء الحفظ.');
-
-
+        showErrorDialog(response.message || 'حدث خطأ أثناء الحفظ.');
       }
     } catch (error) {
       showErrorDialog('خطأ في الاتصال بالخادم');
     } finally {
-    hideSpinnerformLoading(); // 👈 بعد الانتهاء
+    hideSpinnerformLoading(); //  بعد الانتهاء
   }
     
 });
+
+function showSuccessMessage(msg) {
+  const box = document.getElementById("successMessageBox");
+  box.textContent = msg;
+  box.classList.remove("d-none");
+  setTimeout(() => {
+    box.classList.add("d-none");
+  }, 3000);
+}
 
 async function loadEmployees() {
     try{
@@ -178,16 +185,33 @@ async function loadEmployees() {
            
           `;
 
-// ✅ إنشاء زر "تعديل"
-const tdEdit = document.createElement("td");
-const editButton = document.createElement("a");
-editButton.href = "#";
-editButton.className = "dropdown-item";
-editButton.setAttribute("data-bs-toggle", "offcanvas");
-editButton.setAttribute("data-bs-target", "#editEmployeeCanvas");
-editButton.innerHTML = `<i class="icon-base bx bx-edit-alt me-1"></i>`;
-// ✅ تعبئة البيانات عند النقر
-editButton.addEventListener("click", () => {
+        // إنشاء عمود الإجراءات (قائمة منسدلة مثل الصورة)
+        const tdActions = document.createElement("td");
+        tdActions.innerHTML = `
+          <div class="dropdown">
+            <button class="btn p-0 dropdown-toggle hide-arrow" type="button" data-bs-toggle="dropdown">
+              <i class="bx bx-dots-vertical-rounded"></i>
+            </button>
+            <div class="dropdown-menu text-end">
+              <a class="dropdown-item edit-action" href="#"><i class="bx bx-edit-alt me-1"></i> تعديل</a>
+              <a class="dropdown-item text-danger btn-delete" href="#" data-id="${emp.personId}">
+                  <i class="icon-base bx bx-trash me-1"></i> حذف
+              </a>
+              <a class="dropdown-item toggle-status-btn" href="#"
+                data-id="${emp.personId}"
+                data-status="${emp.isActive}">
+                <i class="icon-base bx bx-refresh me-1"></i>
+                ${emp.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
+              </a>
+            </div>
+          </div>`;
+
+//  عند الضغط على "تعديل"
+tdActions.querySelector(".edit-action").addEventListener("click", () => {
+  const offcanvasElement = document.getElementById("editEmployeeCanvas");
+  const offcanvasInstance = new bootstrap.Offcanvas(offcanvasElement);
+  offcanvasInstance.show();
+
   document.getElementById("editPersonId").value = emp.personId || '';
   document.getElementById("editUserId").value = emp.userId || '';
   document.getElementById("editFirstName").value = emp.firstName || '';
@@ -196,42 +220,32 @@ editButton.addEventListener("click", () => {
   document.getElementById("editPhoneNumber").value = emp.phoneNumber || '';
   document.getElementById("editPassportNumber").value = emp.passportNumber || '';
   document.getElementById("editNID").value = emp.nid || '';
-  document.getElementById("editBirthdate").value =  emp.dateOfBirth ? emp.dateOfBirth.split('T')[0] : '';
+  document.getElementById("editBirthdate").value = emp.dateOfBirth ? emp.dateOfBirth.split('T')[0] : '';
   document.getElementById("editAddress").value = emp.address || '';
   document.getElementById("editEmail").value = emp.email || '';
   document.getElementById("editWorkDepartment").value = emp.workDepartment || '';
 
-  if (emp.gender !== null && emp.gender !== undefined) {
-
+  if (emp.gender !== null && emp.gender !== undefined)
     document.querySelector(`input[name='editGender'][value='${emp.gender}']`).checked = true;
-  }
-  if (emp.nationality === 0) {
 
+  if (emp.nationality === 0)
     document.getElementById("editLibyan").checked = true;
-  } else if (emp.nationality === 1) {
+  else if (emp.nationality === 1)
     document.getElementById("editForeign").checked = true;
-  }
 
-  // الصفة
-  console.log('emp.role')
-  console.log(emp.role)
-  if (emp.role === 1 ) {
+  if (emp.role === 1) {
     document.getElementById("editEmployee").checked = true;
     document.getElementById("permissionsCard").style.display = "block";
-    SetPermission(emp)
-
-  } else if (emp.role === 2) {
-    document.getElementById("editFollowUpAgent").checked = true;
+    SetPermission(emp);
+  } else {
     document.getElementById("permissionsCard").style.display = "none";
   }
-
 });
 
-// ✅ إضافة زر التعديل للصف
-tdEdit.appendChild(editButton);
-tr.appendChild(tdEdit);
+// (يمكنك لاحقًا ربط delete-action و toggle-action بنفس الطريقة)
+tr.appendChild(tdActions);
 
-// ✅ أخيرًا: أضف الصف للجدول
+//  أخيرًا: أضف الصف للجدول
 tableBody.appendChild(tr);
           tableBody.appendChild(tr);
      });
@@ -242,7 +256,7 @@ tableBody.appendChild(tr);
     showError("تعذر الاتصال بالخادم", error);
   } 
   finally {
-    hideSpinner(); // 👈 بعد الانتهاء
+    hideSpinner(); //  بعد الانتهاء
   }
 }
 
@@ -253,7 +267,7 @@ document.querySelectorAll("input[name='role_type']").forEach(radio => {
     const permissionCard = document.getElementById("permissionsCard");
 
     if (roleValue === "1") {
-      // ✅ إذا تم اختيار موظف حكومي، أظهر الصلاحيات وقم بإعادة تحميلها بدون الاعتماد على بيانات الموظف السابقة
+      //  إذا تم اختيار موظف حكومي، أظهر الصلاحيات وقم بإعادة تحميلها بدون الاعتماد على بيانات الموظف السابقة
       permissionCard.style.display = "block";
       SetPermission({ permissions: [] }); // تمرير كائن فارغ ليتم تحميل كل الصلاحيات بدون تحديد أي منها
     } else {
@@ -263,4 +277,66 @@ document.querySelectorAll("input[name='role_type']").forEach(radio => {
       document.getElementById("editPermissionsList").innerHTML = "";
     }
   });
+});
+
+
+/*تفعل والغاء التفعيل */
+document.getElementById("employeeTableBody").addEventListener("click", async function (e) {
+  if (e.target.closest(".toggle-status-btn")) {
+    e.preventDefault();
+
+    const btn = e.target.closest(".toggle-status-btn");
+    const personId = btn.dataset.id;
+    const currentStatus = btn.dataset.status === "true";
+    // const modifiedBy = "8FD8EBF5-4D67-455B-81AF-8E07628AEC1C"; // <-- يستبدل بالمعرّف الحقيقي للمستخدم المعدل
+
+    const confirmMsg = currentStatus
+      ? "هل أنت متأكد من إلغاء تفعيل هذا المستخدم؟"
+      : "هل أنت متأكد من تفعيل هذا المستخدم؟";
+
+    if (confirm(confirmMsg)) {
+      try {
+        const response = await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
+         if (response.isSuccess ) {
+            await loadEmployees(); 
+            showSuccessMessage("تم تحديث حالة المستخدم بنجاح.");
+      }
+      else{
+           showError("فشل تغيير الحالة: " + response.message);
+      }
+    }
+    catch (error) {
+      showError("حدث خطأ أثناء محاولة تغيير الحالة.");
+    } 
+    }
+  }
+});
+
+/*الحذف*/
+document.getElementById("employeeTableBody").addEventListener("click", async function (e) {
+  const deleteBtn = e.target.closest(".btn-delete");
+  if (deleteBtn) {
+    e.preventDefault();
+    const personId = deleteBtn.dataset.id;
+    const modifiedBy = localStorage.getItem("userId") || "00000000-0000-0000-0000-000000000000";
+
+    if (confirm(" هل أنت متأكد أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذه العملية.")) {
+      try {
+        showSpinner();
+        const url = `https://localhost:44377/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
+        const response = await deleteAPI(url);
+
+        if (response.isSuccess) {
+          deleteBtn.closest("tr").remove();
+          showSuccessMessage(" تم حذف المستخدم بنجاح.");
+        } else {
+          showError(" فشل الحذف: " + response.message);
+        }
+      } catch (error) {
+        showError(" حدث خطأ أثناء محاولة الحذف.");
+      } finally {
+        hideSpinner();
+      }
+    }
+  }
 });

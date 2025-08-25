@@ -28,12 +28,15 @@ document.getElementById("formLogin").addEventListener("submit", async function (
     // خزن التوكن في localStorage
     
     localStorage.setItem("jwtToken", response.results.token);
-    // خزن اسم المستخدم
+    // خزن اسم المستخدم/الدور  
     const username = document.getElementById("username").value.trim();
-    console.log(response.results.Role);
+    const role = response.results.role;
     localStorage.setItem("username", username);
+    localStorage.setItem("role", role);
+
     hideSpinnerformLoading()
     // انتقل للصفحة التالية
+
 
     console.log(response)
     console.log(response.results.role)

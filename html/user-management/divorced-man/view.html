@@ -1,17 +1,17 @@
 <!doctype html>
 
 <html
-  lang="en"
+  lang="ar" dir="rtl"
   class="layout-menu-fixed layout-compact"
-  data-assets-path="../../../../../assets/"
+  data-assets-path="../../../assets/"
   data-template="vertical-menu-template-free">
    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام إدارة النفقة</title>
+    <title>نظام إدارة النفقات </title>
     <meta name="description" content="لوحة معلومات لنظام النفقات" />
 
-    <link rel="icon" type="image/x-icon" href="../../../../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
 
     <!-- الخط -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,17 +19,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- الأيقونات -->
-    <link rel="stylesheet" href="../../../../assets/vendor/fonts/iconify-icons.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/fonts/iconify-icons.css" />
 
     <!-- CSS الأساسي -->
-    <link rel="stylesheet" href="../../../../assets/vendor/css/core.css" />
-    <link rel="stylesheet" href="../../../../assets/css/demo.css" />
-    <link rel="stylesheet" href="../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../../../../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../../../assets/css/demo.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- أدوات المساعدة -->
-    <script src="../../../../assets/vendor/js/helpers.js"></script>
-    <script src="../../../../assets/js/config.js"></script>
+    <script src="../../../assets/vendor/js/helpers.js"></script>
+    <script src="../../../assets/js/config.js"></script>
 
     <style>
       body { font-family: 'Cairo', sans-serif; text-align: right; }
@@ -76,18 +76,108 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="#" class="app-brand-link">
-              <span class="app-brand-logo demo "><img src="../../../../assets/img/favicon/short_logo.png" width="50"></span>
+              <span class="app-brand-logo demo "><img src="../../../assets/img/favicon/short_logo.png" width="50"></span>
               <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
             </a>
           </div>
           <ul class="menu-inner py-3">
-            <li class="menu-item"><a href="../../dashboard.html" class="menu-link">الرئيسية</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الملف الشخصي</a></li>
-            <li class="menu-item active"><a href="../general.html" class="menu-link"> إدارة المستخدمين</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
+            <!-- الرئيسية-->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx  bx-home"></i>
+                  <div>الرئيسية</div>
+              </a>
+            </li>
+
+            <!-- الملف الشخصي -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-user"></i>
+                  <div>الملف الشخصي</div>
+              </a>
+            </li>
+
+
+            <!-- إدارة المستخدمين --> 
+            <li class="menu-item open"> 
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon bx bx-user"></i>
+                <div>إدارة المستخدمين</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item active">
+                  <a href="view.html" class="menu-link">
+                    <div>الزوج السابق</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../divorced-woman/view.html" class="menu-link">
+                    <div>المطلقة/وكيل المطلقة</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../employee/view.html" class="menu-link">
+                    <div>الموظف الحكومي</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!--وقائع الطلاق-->
+          <li class="menu-item ">
+              <a href="../../management-divorce/view.html" class="menu-link">
+                <i class="menu-icon bx bx-file"></i>
+                <div>وقائع الطلاق</div>
+              </a>
+          </li> 
+
+
+          <li class="menu-item ">
+                <a href="../../management-divorce/view.html" class="menu-link">
+                  <i class="menu-icon bx bx-file"></i>
+                  <div>وقائع الطلاق</div>
+                </a>
+          </li>
+
+          <!-- إدارة النفقات -->
+            <li class="menu-item open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
+              <div>إدارة النفقات</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="../../alimony/almony-request.html" class="menu-link">
+                  <div>طلب نفقة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony/alimony-payment-list.html" class="menu-link">
+                  <div>سجل النفقات المدفوعة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony/alimony-request-list.html" class="menu-link">
+                  <div>سجل طلبات النفقات </div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony-payment.html" class="menu-link">
+                  <div>دفع نفقة</div>
+                </a>
+              </li>
+            </ul>
+          </li>   
+
             <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
+            
+            <!-- تسجيل الخروج -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-log-out" id="logout-btn"></i>
+                  <div>تسجيل الخروج</div>
+              </a>
+            </li>
 
           </ul>
         </aside>
@@ -131,7 +221,7 @@
                     href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                 </li>
@@ -154,7 +244,7 @@
                     <div class="card-body">
                       <a href="../divorced-woman/view.html" class="btn btn-outline-secondary">المطلقة / وكيل المطلقة</a>
                       <a href="#" class="btn btn-secondary">الزوج السابق</a>
-                      <a href="../government/view.html" class="btn btn-outline-secondary">موظف حكومي / محضر</a>
+                      <a href="../employee/view.html" class="btn btn-outline-secondary">موظف حكومي / محضر</a>
                       <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
                   </div>
@@ -188,7 +278,7 @@
                         <th>البريد الالكتروني</th>
                         <th>الهاتف</th>
                         <th>الحالة</th>
-                        <th>النشاط</th>
+                        <th>الحدث</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0" id="divorcedManTableBody">
@@ -239,7 +329,7 @@
 <!--  Offcanvas لتعديل بيانات الموظف -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="editDivorcedCanvas" aria-labelledby="editEmployeeCanvasLabel" style="width: 50%;">
   <div class="offcanvas-header">
-    <h5 id="editEmployeeCanvasLabel" class="offcanvas-title">تعديل بيانات المطلقة / وكيل المطلقة</h5>
+    <h5 id="editEmployeeCanvasLabel" class="offcanvas-title">تعديل بيانات الزوج السابق</h5>
   </div>
     <div id="error-messageDialog" class="alert alert-danger d-none" role="alert"></div>
  <div class="offcanvas-body form-position-relative">
@@ -274,7 +364,7 @@
 
     <div class="col-md-6">
       <label for="editPhoneNumber" class="form-label">الهاتف</label>
-      <input type="text" class="form-control" id="editPhoneNumber" />
+      <input type="text" class="form-control" id="editPhoneNumber" maxlength="10"/>
     </div>
 
     <div class="col-md-6">      
@@ -289,12 +379,7 @@
 
     <div class="col-md-6">
       <label for="editPassportNumber" class="form-label">رقم جواز السفر</label>
-      <input type="text" class="form-control" id="editPassportNumber" />
-    </div>
-
-    <div class="col-md-6">
-      <label for="editNID" class="form-label">الرقم الوطني</label>
-      <input type="text" class="form-control" id="editNID" />
+      <input type="text" class="form-control" id="editPassportNumber" maxlength="8"/>
     </div>
 
     <!-- العنوان وتاريخ الميلاد -->
@@ -303,7 +388,7 @@
       <input type="text" class="form-control" id="editAddress" />
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-12">
       <label for="editBirthdate" class="form-label">تاريخ الميلاد</label>
       <input type="date" class="form-control" id="editBirthdate" >
     </div>          
@@ -319,7 +404,12 @@
       <input class="form-check-input" type="radio" name="nationality" id="editForeign" value="1">
       <label class="form-check-label" for="editForeign">أجنبي</label>
     </div>
-  </div>
+
+    </div>
+      <div class="col-md-6" id="nidField">
+      <label for="editNID" class="form-label">الرقم الوطني</label>
+      <input type="text" class="form-control" id="editNID" maxlength="12"/>
+    </div>
 
   <div class="col-md-6" style="ALIGN-SELF: FLEX-END; ">
     <button type="button" class="btn btn-primary" id="saveEditButton">حفظ التعديلات</button>
@@ -332,14 +422,14 @@
 
     <!-- Core JS -->
 
-    <script src="../../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../../../assets/vendor/js/menu.js"></script>
+    <script src="../../../assets/vendor/js/menu.js"></script>
 
     <!-- endbuild -->
 
@@ -347,11 +437,14 @@
 
     <!-- Main JS -->
 
-    <script src="../../../../assets/js/main.js"></script>
-    <script type="module" src="../../../../assets/js/pages/index.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+    <script type="module" src="../../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
-    <script type="module" src="../../../../../assets/js/pages/divorced-man-list.js"></script>
-
+    <script type="module" src="../../../../assets/js/pages/divorced-man-list.js"></script>
+    <script>
+      const LOGIN_PAGE = "../login.html"; 
+    </script>
+    <script type="module" src="../../assets/js/pages/logout.js"></script>
   </body>
 </html>

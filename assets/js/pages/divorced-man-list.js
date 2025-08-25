@@ -1,6 +1,6 @@
 import { showError,  showErrorDialog,showSpinner,hideSpinner, hideSpinnerformLoading, showSpinnerformLoading, hideErrorDialog } from "../utils/helpers.js";
-import { putAPI, GetAPI } from "../api/httpClient.js";
-import {  validationUpdateDivorcedManOrAgents } from "../utils/validationUpdateDivorcedMan.js";
+import { putAPI, GetAPI, deleteAPI } from "../api/httpClient.js";
+import {  validationUpdateDivorcedMan } from "../utils/validationUpdateDivorcedMan.js";
 
 async function loadEmployees() {
   try {
@@ -62,6 +62,7 @@ async function loadEmployees() {
             } else if (divo.nationality === 1) {
               document.getElementById("editForeign").checked = true;
             }
+            
             // فتح الـ offcanvas يدويًا
             const canvas = new bootstrap.Offcanvas('#editDivorcedCanvas');
             canvas.show();
@@ -143,6 +144,38 @@ function showSuccessMessage(msg) {
   }, 3000);
 }
 
+/*الحذف */
+
+/*الحذف*/
+document.getElementById("divorcedManTableBody").addEventListener("click", async function (e) {
+  const deleteBtn = e.target.closest(".btn-delete");
+  if (deleteBtn) {
+    e.preventDefault();
+    const personId = deleteBtn.dataset.id;
+    const modifiedBy = localStorage.getItem("userId") || "00000000-0000-0000-0000-000000000000";
+
+    if (confirm(" هل أنت متأكد أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذه العملية.")) {
+      try {
+        showSpinner();
+        const url = `https://localhost:44377/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
+        const response = await deleteAPI(url);
+
+        if (response.isSuccess) {
+          deleteBtn.closest("tr").remove();
+          showSuccessMessage(" تم حذف المستخدم بنجاح.");
+        } else {
+          showError(" فشل الحذف: " + response.message);
+        }
+      } catch (error) {
+        showError(" حدث خطأ أثناء محاولة الحذف.");
+      } finally {
+        hideSpinner();
+      }
+    }
+  }
+});
+
+
 
 /*البحث */
 
@@ -179,7 +212,7 @@ document.getElementById("searchInput").addEventListener("input", function () {
   };
 hideErrorDialog();
 
-  const error = validationUpdateDivorcedManOrAgents(data);
+  const error = validationUpdateDivorcedMan(data);
   if (error) {
     showErrorDialog(error);
     return;

@@ -7,9 +7,6 @@ export function validationUpdateDivorcedWomenOrAgents(data) {
   }
 
 
-  if (data.nationality === '0' && (!data.nid || data.nid.trim() === '')) {
-    return "الرقم الوطني مطلوب للمواطنين الليبيين.";
-  }
  if (data.dateOfBirth == '') {
     return "يجب ادخال تاريخ الميلاد";
   }
@@ -34,16 +31,22 @@ export function validationUpdateDivorcedWomenOrAgents(data) {
   }
 
 
-  if (data.nationality === '0' && data.nid.length !== 12) {
-    return "يجب أن يحتوي الرقم الوطني على 12 رقمًا.";
-  }else{
- 
-      const nidRegex = /[1]{1}[1]{1}[9]{1}[0-9]{9}|[2]{1}[1]{1}[9]{1}[0-9]{9}|[1]{1}[2]{1}[0]{1}[0-9]{9}|[2]{1}[2]{1}[0]{1}[0-9]{9}/;
+if (data.Nationality === '0') {
+  if (!data.NID || data.NID.trim() === '') {
+    return "الرقم الوطني مطلوب للمواطنين الليبيين.";
+  }
 
-       if (!nidRegex.test(   data.nid)) {
-    return "صيغة الرقم الوطني غير صحيحه ********119 او 219 او 120   او 220";
+  if (data.NID.length !== 12) {
+    return "يجب أن يحتوي الرقم الوطني على 12 رقمًا.";
   }
+
+  const nidRegex = /^(119|219|120|220)[0-9]{9}$/;
+
+  if (!nidRegex.test(data.NID)) {
+    return "صيغة الرقم الوطني غير صحيحه. يجب أن يبدأ بـ 119 أو 219 أو 120 أو 220.";
   }
+}
+
   if(data.role == 4 && data.gender ==0){
       return "الصفة الحالية مطلقة لا يمكن ان يكون الجنس ذكر";
   }

@@ -1,8 +1,9 @@
 import { postData } from "../api/httpClient.js";
 import { validateRegisterData } from "../utils/validation.js";
-import { showError, hideError } from "../utils/helpers.js";
-console.log("updateEmployee.js loaded");
-document.getElementById("updateEmployeeForm").addEventListener("submit", async function (e) {
+import { showError,hideError, hideSpinnerformLoading, showSpinnerformLoading } from "../utils/helpers.js";
+
+
+document.getElementById("addEmployeeForm").addEventListener("submit", async function (e) {
   e.preventDefault();
   const selectedPermissions = Array.from(document.querySelectorAll('#permissionsList input[type="checkbox"]:checked'))
   .map(cb => parseInt(cb.value));
@@ -35,22 +36,20 @@ document.getElementById("updateEmployeeForm").addEventListener("submit", async f
   }
 
   try {
-    const response = await fetch('https://localhost:44377/api/Person/update-employee', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
+    showSpinnerformLoading()
+    const response = await postData('https://localhost:44377/api/Person/Registration', data);
 
-    if (response.ok) {
-        // window.location.href = '#';
-    } else {
-      const result = await response.json();
-      showError(result.message || 'حدث خطأ أثناء الحفظ.');
+    if (response.isSuccess) {
+        localStorage.setItem("successMessage", response.message || "تمت العملية بنجاح");
+        hideSpinnerformLoading();
+        window.location.href = 'view.html';
+    } if(!response.isSuccess){
+        showError(response.message );
     }
   } catch (error) {
     showError('خطأ في الاتصال بالخادم');
+  }finally {
+    hideSpinnerformLoading();
   }
 });
 

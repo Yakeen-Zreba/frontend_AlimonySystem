@@ -1,17 +1,17 @@
 <!doctype html>
 
 <html
-  lang="en"
+  lang="ar" dir="rtl"
   class="layout-menu-fixed layout-compact"
-  data-assets-path="../../../../assets/"
+  data-assets-path="../../../assets/"
   data-template="vertical-menu-template-free">
    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام إدارة النفقة</title>
+    <title>نظام إدارة النفقات </title>
     <meta name="description" content="لوحة معلومات لنظام النفقات" />
 
-    <link rel="icon" type="image/x-icon" href="../../../../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
 
     <!-- الخط -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,20 +19,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
 
     <!-- الأيقونات -->
-    <link rel="stylesheet" href="../../../../assets/vendor/fonts/iconify-icons.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/fonts/iconify-icons.css" />
 
     <!-- CSS الأساسي -->
-    <link rel="stylesheet" href="../../../../assets/vendor/css/core.css" />
-    <link rel="stylesheet" href="../../../../assets/css/demo.css" />
-    <link rel="stylesheet" href="../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../../../../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../../../assets/css/demo.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
 
     <!-- Flatpickr CSS -->
     <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
     <!-- أدوات المساعدة -->
-    <script src="../../../../assets/vendor/js/helpers.js"></script>
-    <script src="../../../../assets/js/config.js"></script>
+    <script src="../../../assets/vendor/js/helpers.js"></script>
+    <script src="../../../assets/js/config.js"></script>
 
     <style>
       body { font-family: 'Cairo', sans-serif; text-align: right; }
@@ -64,18 +64,108 @@
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
             <a href="#" class="app-brand-link">
-              <span class="app-brand-logo demo "><img src="../../../../../assets/img/favicon/short_logo.png" width="50"></span>
+              <span class="app-brand-logo demo "><img src="../../../../assets/img/favicon/short_logo.png" width="50"></span>
               <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
             </a>
           </div>
           <ul class="menu-inner py-3">
-            <li class="menu-item"><a href="../dashboard.html" class="menu-link">الرئيسية</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الملف الشخصي</a></li>
-            <li class="menu-item active"><a href="general.html" class="menu-link"> إدارة المستخدمين</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">سجل النفقات</a></li>
+           <!-- الرئيسية-->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx  bx-home"></i>
+                  <div>الرئيسية</div>
+              </a>
+            </li>
+
+            <!-- الملف الشخصي -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-user"></i>
+                  <div>الملف الشخصي</div>
+              </a>
+            </li>
+
+
+            <!-- إدارة المستخدمين --> 
+            <li class="menu-item open"> 
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon bx bx-user"></i>
+                <div>إدارة المستخدمين</div>
+              </a>
+              <ul class="menu-sub">
+                <li class="menu-item ">
+                  <a href="../divorced-man/" class="menu-link">
+                    <div>الزوج السابق</div>
+                  </a>
+                </li>
+                <li class="menu-item active">
+                  <a href="view.html" class="menu-link">
+                    <div>المطلقة/وكيل المطلقة</div>
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a href="../employee/view.html" class="menu-link">
+                    <div>الموظف الحكومي</div>
+                  </a>
+                </li>
+              </ul>
+            </li>
+
+            <!--وقائع الطلاق-->
+          <li class="menu-item ">
+              <a href="../../management-divorce/view.html" class="menu-link">
+                <i class="menu-icon bx bx-file"></i>
+                <div>وقائع الطلاق</div>
+              </a>
+          </li> 
+
+
+          <li class="menu-item ">
+                <a href="../../management-divorce/view.html" class="menu-link">
+                  <i class="menu-icon bx bx-file"></i>
+                  <div>وقائع الطلاق</div>
+                </a>
+          </li>
+
+          <!-- إدارة النفقات -->
+            <li class="menu-item open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
+              <div>إدارة النفقات</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item">
+                <a href="../../alimony/almony-request.html" class="menu-link">
+                  <div>طلب نفقة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony/alimony-payment-list.html" class="menu-link">
+                  <div>سجل النفقات المدفوعة</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony/alimony-request-list.html" class="menu-link">
+                  <div>سجل طلبات النفقات </div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="../../alimony-payment.html" class="menu-link">
+                  <div>دفع نفقة</div>
+                </a>
+              </li>
+            </ul>
+          </li>   
+
             <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">الإعدادات</a></li>
-            <li class="menu-item"><a href="#" class="menu-link">تسجيل الخروج</a></li>
+            
+            <!-- تسجيل الخروج -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-log-out" id="logout-btn"></i>
+                  <div>تسجيل الخروج</div>
+              </a>
+            </li>
 
           </ul>
         </aside>
@@ -93,7 +183,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4 fw-bold">إضافةالزوج السابق </h4>
+                <h4 class="mb-0 me-4 fw-bold">إضافة مطلقة / وكيل مطلقة</h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
@@ -108,7 +198,7 @@
                     href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="../../../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                        <img src="../../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                     </a>
                 </li>
@@ -128,8 +218,8 @@
                   <span class="visually-hidden">جاري التحميل...</span>
                 </div>
               </div>
-
-                <form id="addDivorcedManForm" action="#">
+              
+                <form id="addDivorcedWomanRepresentationForm" action="#">
                   <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
                   <div class="container-xxl flex-grow-1 container-p-y">
                     <div class="row g-6">
@@ -137,6 +227,7 @@
                       <div class="col-md-12">
                         <div class="card">
                           <h5 class="card-header">البيانات الشخصية</h5>
+                          <small class="text-start ps-5">*البيانات الشخصية خاصة بالمطلقة</small>
                           <div class="card-body">
                             <div class="row g-3">
                               <!-- الاسم الأول واسم الأب -->
@@ -155,7 +246,7 @@
                               </div>
                               <div class="col-md-6">
                                 <label for="phone" class="form-label"> الهاتف</label>
-                                <input type="text" class="form-control" id="phone" name="phone" placeholder="الهاتف" maxlength="12">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="الهاتف" maxlength="10">
                               </div>
                               <!-- البريد الإلكتروني -->
                               <div class="col-md-6">
@@ -184,6 +275,32 @@
                                 <input type="date" class="form-control" id="birthdate" name="birthdate">
                               </div>
                               
+                              <!-- الصفه-->
+                              <div class="col-md-6">
+                                <small class="fw-medium d-block mb-2">الصفة</small>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role_type" id="divorced" value="4">
+                                  <label class="form-check-label" for="divorced">مطلقة </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="role_type" id="agent" value="5">
+                                  <label class="form-check-label" for="agent">وكيل المطلقة</label>
+                                </div>
+                              </div>
+                              
+                              <!-- الجنس -->
+                              <div class="col-3">
+                                <small class="fw-medium d-block mb-2">الجنس</small>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="gender" id="male" value="0">
+                                  <label class="form-check-label" for="male">ذكر</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="gender" id="female" value="1">
+                                  <label class="form-check-label" for="female">أنثى</label>
+                                </div>
+                              </div>
+
                               <!-- الجنسية-->
                               <div class="col-md-6">
                                 <small class="fw-medium d-block mb-2">الجنسية</small>
@@ -273,14 +390,14 @@
 
     <!-- Core JS -->
 
-    <script src="../../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../../../assets/vendor/js/menu.js"></script>
+    <script src="../../../assets/vendor/js/menu.js"></script>
 
     <!-- endbuild -->
 
@@ -291,13 +408,14 @@
 
     
     <!-- Main JS -->
-    <script src="../../../../assets/js/main.js"></script>
-    <script type="module" src="../../../../assets/js/pages/index.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+    <script type="module" src="../../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
-   <script type="module" src="../../../../assets/js/pages/add-divorced-man.js"></script>
+   <script type="module" src="../../../assets/js/pages/add-divorced-woman-representation.js"></script>
 
     <script>
+    const LOGIN_PAGE = "../login.html";
     document.addEventListener("DOMContentLoaded", function () {
     const libyanRadio = document.getElementById("libyan");
     const foreignRadio = document.getElementById("foreign");
@@ -323,9 +441,10 @@
     // تشغيل الوظيفة عند تحميل الصفحة
     toggleNIDField(); // سواء تم تحديد خيار مسبقاً أو لا
     });
-
+ 
     </script>
 
+    <script type="module" src="../../assets/js/pages/logout.js"></script>
 
 
   </body>

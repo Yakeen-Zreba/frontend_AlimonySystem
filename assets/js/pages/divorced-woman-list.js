@@ -1,51 +1,46 @@
 import { showError,  showErrorDialog,showSpinner,hideSpinner, hideSpinnerformLoading, showSpinnerformLoading, hideErrorDialog } from "../utils/helpers.js";
-import { putAPI, GetAPI } from "../api/httpClient.js";
+import { putAPI, GetAPI, deleteAPI } from "../api/httpClient.js";
 import {  validationUpdateDivorcedWomenOrAgents } from "../utils/validationUpdateDivorcedWomenOrAgents.js";
 async function loadEmployees() {
     try{
       showSpinner()
-   
-    const response = await GetAPI("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives");
+      const response = await GetAPI("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives");
   
-    if (response.isSuccess && Array.isArray(response.results)) {
-  const tableBody = document.getElementById("divorcedWomanTableBody");
-      tableBody.innerHTML = ""; // تنظيف الجدول قبل إعادة تعبئته
-
+      if (response.isSuccess && Array.isArray(response.results)) {
+        const tableBody = document.getElementById("divorcedWomanTableBody");
+        tableBody.innerHTML = ""; // تنظيف الجدول قبل إعادة تعبئته
         response.results.forEach(divo => {
           const tr = document.createElement("tr");
-
-
           tr.innerHTML = `
             <td>${divo.firstName || ''} ${divo.middleName || ''} ${divo.lastName || ''}</td>
             <td><span class="badge bg-label-primary me-1">${divo.email || ''}</span></td>
             <td><span class="badge bg-label-secondary me-1">${divo.phoneNumber || ''}</span></td>
             <td><span class="badge bg-label-secondary me-1">${divo.workDepartment || 'غير محدد'}</span></td>
             <td><span class="badge bg-label-secondary me-1">${getRoleName(divo.role)}</span></td>
-        
             <td><span class="badge ${divo.isActive ? 'bg-label-success' : 'bg-label-danger'} me-1 status-text">${divo.isActive ? 'نشط' : 'غير نشط'}</span></td>
            <td>
-    <div class="dropdown">
-      <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-        <i class="icon-base bx bx-dots-vertical-rounded"></i>
-      </button>
-      <div class="dropdown-menu">
-        <a class="dropdown-item btn-edit" href="#" data-id="${divo.personId}">
-          <i class="icon-base bx bx-edit-alt me-1"></i> تعديل
-        </a>
-        <a class="dropdown-item text-danger btn-delete" href="#" data-id="${divo.personId}">
-          <i class="icon-base bx bx-trash me-1"></i> حذف
-        </a>
-        <a class="dropdown-item toggle-status-btn" href="#"
-          data-id="${divo.personId}"
-          data-status="${divo.isActive}">
-          <i class="icon-base bx bx-refresh me-1"></i>
-          ${divo.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
-        </a>
-      </div>
-    </div>
-  </td>
-          `;
-       tableBody.appendChild(tr);
+            <div class="dropdown">
+              <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                <i class="icon-base bx bx-dots-vertical-rounded"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item btn-edit" href="#" data-id="${divo.personId}">
+                  <i class="icon-base bx bx-edit-alt me-1"></i> تعديل
+                </a>
+                <a class="dropdown-item text-danger btn-delete" href="#" data-id="${divo.personId}">
+                  <i class="icon-base bx bx-trash me-1"></i> حذف
+                </a>
+                <a class="dropdown-item toggle-status-btn" href="#"
+                  data-id="${divo.personId}"
+                  data-status="${divo.isActive}">
+                  <i class="icon-base bx bx-refresh me-1"></i>
+                  ${divo.isActive ? 'إلغاء التفعيل' : 'تفعيل'}
+                </a>
+              </div>
+            </div>
+          </td>`;
+        tableBody.appendChild(tr);
+
 // زر تعديل (يفتح offcanvas ويملأ البيانات)
 tr.querySelector(".btn-edit").addEventListener("click", () => {
   document.getElementById("editPersonId").value = divo.personId || '';
@@ -91,7 +86,7 @@ tr.querySelector(".btn-edit").addEventListener("click", () => {
     showError("تعذر الاتصال بالخادم", error);
   } 
   finally {
-    hideSpinner(); // 👈 بعد الانتهاء
+    hideSpinner(); 
   }
 }
 
@@ -110,6 +105,37 @@ function getRoleName(role) {
   }
 }
 
+
+/*الحذف*/
+document.getElementById("divorcedWomanTableBody").addEventListener("click", async function (e) {
+  const deleteBtn = e.target.closest(".btn-delete");
+  if (deleteBtn) {
+    e.preventDefault();
+    const personId = deleteBtn.dataset.id;
+    const modifiedBy = localStorage.getItem("userId") || "00000000-0000-0000-0000-000000000000";
+
+    if (confirm(" هل أنت متأكد أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذه العملية.")) {
+      try {
+        showSpinner();
+        const url = `https://localhost:44377/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
+        const response = await deleteAPI(url);
+
+        if (response.isSuccess) {
+          deleteBtn.closest("tr").remove();
+          showSuccessMessage(" تم حذف المستخدم بنجاح.");
+        } else {
+          showError(" فشل الحذف: " + response.message);
+        }
+      } catch (error) {
+        showError(" حدث خطأ أثناء محاولة الحذف.");
+      } finally {
+        hideSpinner();
+      }
+    }
+  }
+});
+
+
 /*تفعل والغاء التفعيل */
 document.getElementById("divorcedWomanTableBody").addEventListener("click", async function (e) {
   if (e.target.closest(".toggle-status-btn")) {
@@ -118,7 +144,7 @@ document.getElementById("divorcedWomanTableBody").addEventListener("click", asyn
     const btn = e.target.closest(".toggle-status-btn");
     const personId = btn.dataset.id;
     const currentStatus = btn.dataset.status === "true";
-    const modifiedBy = "8FD8EBF5-4D67-455B-81AF-8E07628AEC1C"; // <-- يستبدل بالمعرّف الحقيقي للمستخدم المعدل
+    // const modifiedBy = "8FD8EBF5-4D67-455B-81AF-8E07628AEC1C"; // <-- يستبدل بالمعرّف الحقيقي للمستخدم المعدل
 
     const confirmMsg = currentStatus
       ? "هل أنت متأكد من إلغاء تفعيل هذا المستخدم؟"
@@ -174,10 +200,9 @@ document.getElementById("searchInput").addEventListener("input", function () {
   });
 });
 
+/* التعديل */
  document.getElementById("saveEditButton").addEventListener("click",  async function (e) {
   const data = {
-
-    
     personId: document.getElementById("editPersonId").value,
     userId: document.getElementById("editUserId").value,
     firstName: document.getElementById("editFirstName").value,
@@ -205,25 +230,23 @@ hideErrorDialog();
             showSpinnerformLoading()
        const response =   await putAPI("https://localhost:44377/api/Person/update", data);
       if (response.isSuccess ) {
-        let offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('editDivorcedCanvas'));
+          let offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('editDivorcedCanvas'));
           offcanvas.hide();
           const alertContainer = document.getElementById("alertContainer");
-alertContainer.innerHTML = `
-  <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: black">
-    تم حفظ التعديلات بنجاح!
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-`;
-setTimeout(() => {
-  alertContainer.innerHTML = '';
-}, 4000);
+          alertContainer.innerHTML = `
+            <div class="alert alert-success alert-dismissible fade show" role="alert" style="color: black">
+              تم حفظ التعديلات بنجاح!
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          `;
+            setTimeout(() => {
+              alertContainer.innerHTML = '';
+            }, 4000);
             hideSpinnerformLoading()
             await loadEmployees();
       } else {
         console.log(response.message)
         showErrorDialog(response.message || 'حدث خطأ أثناء الحفظ.');
-
-
       }
     } catch (error) {
       showErrorDialog('خطأ في الاتصال بالخادم');
