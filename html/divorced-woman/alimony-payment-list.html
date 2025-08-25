@@ -243,19 +243,16 @@
                                       <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
                                       <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
                                       <a href="javascript:void(0)" >عرض الإيصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
+                                      
                                       <div class="row">
-                                          <!--للزوجة-->
-                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم  الإستلام</button>
+                                        <!--للزوجة-->
+                                        <button class="btn btn-outline-primary mb-4 mt-4"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#modalReceipt"                                          >
+                                          تم  الإستلام
+                                        </button>
                                       </div>
+                                      
                                   </div>
                               <div class="card-footer text-body-secondary text-center">2 days ago</div>
                           </div>
@@ -278,27 +275,13 @@
                                       <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
                                       <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
                                       <a href="javascript:void(0)" >عرض الإصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
                                       <div class="row">
-                                          <!--للمحضر-->
-                                          <!-- <button class="btn btn-outline-primary mb-4 mt-4"> تم التسليم للزوجة</button> -->
                                           <!--للزوجة-->
-                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم  الإستلام</button>
-                                          <!--زر الرفض-->
-                                          <!-- <button class="btn btn-outline-danger"
-                                              data-bs-toggle="modal"
-                                              data-bs-target="#modalReject">
-                                              رفض
-                                          </button> -->
-                                          <!--/زر الرفض-->
+                                          <button class="btn btn-outline-primary mb-4 mt-4"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#modalReceipt"                                          >
+                                          تم  الإستلام
+                                          </button>
                                       </div>
                                   </div>
                               <div class="card-footer text-body-secondary text-center">2 days ago</div>
@@ -321,26 +304,14 @@
                                       <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
                                       <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
                                       <a href="javascript:void(0)" >عرض الإيصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
+                                      
                                       <div class="row">
-                                          <!--للمحضر-->
-                                          <!-- <button class="btn btn-outline-primary mb-4 mt-4"> تم التسليم للزوجة</button> -->
-                                          <!--للزوجة-->
-                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم  الإستلام</button>
-                                          <!--زر الرفض-->
-                                          <!-- <button class="btn btn-outline-danger"
-                                              data-bs-toggle="modal"
-                                              data-bs-target="#modalReject">
-                                              رفض
-                                          </button> -->
-                                          <!--/زر الرفض-->
+                                        <!--للزوجة-->
+                                        <button class="btn btn-outline-primary mb-4 mt-4"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#modalReceipt"                                          >
+                                          تم  الإستلام
+                                        </button>
                                       </div>
                                   </div>
                               <div class="card-footer text-body-secondary text-center">2 days ago</div>
@@ -355,100 +326,13 @@
         </div>    
     <!-- / Content -->
 
-    <!-- Modal التعديل-->
-    <div class="modal modal-top fade" id="modalEdit" tabindex="-1">
-      <div class="modal-dialog">
-        <form class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalTopTitle">تعديل دفع نفقة</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"></button>
-          </div>
-
-          <div class="modal-body">
-            
-            <!-- القرار المرتبط -->
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <label class="form-label" for="decision">قرار النفقة </label>
-                  <select id="decision" class="form-select" required>
-                      <option value="" selected disabled>اختر قرار النفقة</option>
-                      <option value="D-2024-001">قرار رقم D-2024-001 — شهري 500 د.ل</option>
-                      <option value="D-2024-045">قرار رقم D-2024-045 — شهري 650 د.ل</option>
-                  </select>
-                </div>
-              <!-- تاريخ الدفع -->
-                <div class="col-md-6 mb-4">
-                  <label class="form-label" for="payDate">تاريخ الدفع</label>
-                  <input type="date" id="payDate" class="form-control" required>
-                </div>
-              </div>
-
-            <div class="row">
-                <!-- تاريخ الدفع -->
-                <div class="col-md-6 mb-4">
-                  <label class="form-label" for="payDate">تاريخ الدفع</label>
-                  <input type="date" id="payDate" class="form-control" required>
-                </div>
-                <!-- المبلغ -->
-                <div class="col-md-6 mb-4">
-                  <label class="form-label" for="payAmount">المبلغ</label>
-                  <div class="input-group">
-                      <input type="number" min="0" step="0.01" id="payAmount" class="form-control" placeholder="0.00" required>
-                      <span class="input-group-text">د.ل</span>
-                  </div>
-                </div>
-            </div>
-
-            <div class="row">
-              <!-- طريقة الدفع -->
-              <div class="col-md-6 mb-4">
-                <label class="form-label" for="payMethod">طريقة الدفع</label>
-                <select id="payMethod" class="form-select" required>
-                    <option value="" selected disabled>اختر طريقة الدفع</option>
-                    <option value="cash">نقدًا</option>
-                    <option value="transfer">حوالة مصرفية</option>
-                    <option value="cheque">شيك</option>
-                    <option value="other">أخرى</option>
-                </select>
-              </div>
-
-              <!-- ملاحظات -->
-              <div class="col-md-6 mb-4">
-                <label class="form-label" for="notes">ملاحظات</label>
-                <input type="text" id="notes" class="form-control" placeholder="معلومة إضافية (اختياري)">
-              </div>
-
-            </div>
-          <!-- إيصال الدفع -->
-          <div class="col-md-12 mb-4">
-            <label class="form-label" for="receipt">إيصال الدفع (PDF/JPG/PNG)</label>
-            <input type="file" id="receipt" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-          </div>
-
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">حفظ</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <!--/model-->
-
-    <!-- نافذة سبب الرفض -->
+    <!-- نافذة الاستلام  -->
     <!-- Modal -->
-    <div class="modal fade" id="modalReject" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalReceipt" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="modalScrollableTitle">ما هو سبب الرفض</h5>
+            <h5 class="modal-title" id="modalScrollableTitle">ادخل إيصال الإستلام</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -457,8 +341,11 @@
             </div>
             <div class="modal-body">
                 
-                <label class="form-label" for="notes">سبب الرفض</label>
-                <input type="text" id="notes" class="form-control">
+                <!-- إيصال الإستلام -->
+                  <div class="col-md-6 mb-4">
+                    <label class="form-label" for="receipt">إيصال الإستلام </label>
+                    <input type="file" id="receipt" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                  </div>
 
             </div>
             <div class="modal-footer">
