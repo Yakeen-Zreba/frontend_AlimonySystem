@@ -32,7 +32,7 @@ export async function postAPI(url, data) {
 if (isTokenExpired(token)) {
   alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
   localStorage.removeItem("jwtToken");
-window.location.href = "../../../login.html";
+window.location.href = LOGIN_PAGE;
 }
   const response = await fetch(url, {
     method: "POST",
@@ -62,7 +62,7 @@ export async function putAPI(url, data) {
 if (isTokenExpired(token)) {
   alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
   localStorage.removeItem("jwtToken");
-window.location.href = "../../../login.html";
+window.location.href = LOGIN_PAGE;
 }
   const response = await fetch(url, {
     method: "Put",
@@ -94,6 +94,8 @@ if (isTokenExpired(token)) {
   console.log(login)
 window.location.href = login;
 return;
+window.location.href = LOGIN_PAGE;
+
 }
   const response = await fetch(url, {
     headers: { "Content-Type": "application/json" ,
@@ -121,7 +123,7 @@ export async function deleteAPI(url) {
   if (isTokenExpired(token)) {
     alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
     localStorage.removeItem("jwtToken");
-    window.location.href = "../../../login.html";
+    window.location.href = LOGIN_PAGE;
   }
 
   const response = await fetch(url, {

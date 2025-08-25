@@ -81,8 +81,11 @@
             </li>
 
             <!-- الملف الشخصي -->
-            <li class="menu-item ">
-              <a href="#" class="menu-link ">
+            <li class="menu-item">
+              <a href="#" 
+                  class="menu-link"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalAccount">
                   <i class="menu-icon bx bx-user"></i>
                   <div>الملف الشخصي</div>
               </a>
@@ -327,6 +330,46 @@
         </div>
     </div>
     <!-- / Content -->
+
+    <!-- Modal الملف الشخصي-->
+            <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
+              <div class="modal-dialog">
+                <form class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalTopTitle">  بيانات الحساب</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    
+                  <div class="mb-3 col-md-12">
+                    <label for="username" class="form-label">اسم المستخدم</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="أدخل اسم المستخدم">
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="password" class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="********" minlength="8">
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="confPassword" class="form-label">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-control" id="confPassword" name="confPassword" placeholder="********" minlength="8">
+                  </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+                    <button type="button" class="btn btn-primary">حفظ</button>
+                  </div>
+                </form>
+              </div>
+            </div></div>
+            <!--/model-->
+
 
     <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
