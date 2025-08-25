@@ -74,7 +74,7 @@
           <ul class="menu-inner py-3">
             <!-- الرئيسية-->
             <li class="menu-item">
-              <a href="#" class="menu-link ">
+              <a href="index.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -89,7 +89,7 @@
             </li>
 
             <!-- إدارة المستخدمين --> 
-            <li class="menu-item"> 
+            <!-- <li class="menu-item"> 
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon bx bx-group"></i>
                 <div>إدارة المستخدمين</div>
@@ -111,15 +111,15 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> -->
             
           <!--وقائع الطلاق-->
-          <li class="menu-item ">
+          <!-- <li class="menu-item ">
               <a href="../management-divorce/view.html" class="menu-link">
                 <i class="menu-icon bx bx-file"></i>
                 <div>وقائع الطلاق</div>
               </a>
-          </li> 
+          </li>  -->
 
             <!-- إدارة النفقات -->
             <li class="menu-item open">
@@ -129,29 +129,42 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item active">
-                <a href="almony-request.html" class="menu-link">
+                <a href="#" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
               </li>
               <li class="menu-item ">
                 <a href="alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات المدفوعة</div>
+                  <div>سجل النفقات </div>
                 </a>
               </li>
               <li class="menu-item">
-                <a href="alimony-request-list.html" class="menu-link">
+                <a href="alimony-payment-list.html" class="menu-link">
                   <div>سجل طلبات النفقات </div>
                 </a>
               </li>
-              <li class="menu-item">
+              <!-- <li class="menu-item">
                 <a href="alimony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>   
 
-            <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
+            <!--التقارير-->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-bar-chart'  ></i> 
+              <div> التقارير</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item ">
+                <a href="alimony-payment-report.html" class="menu-link">
+                  <div>تقرير بحالة النفقات </div>
+                </a>
+              </li>
+            </ul>
+            </li>
             
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
@@ -292,7 +305,7 @@
                                                     <input type="text" class="form-control" id="divorceId" name="divorceId" placeholder="رقم قضية الطلاق">
                                                 </div>
 
-                                                <!-- قرار الطلاق-->
+                                                <!-- مستند قرار الطلاق-->
                                                 <div class="col-md-6 mb-4">
                                                   <label class="form-label" for="divorceDecree">مستند قرار الطلاق</label>
                                                   <input type="file" id="divorceDecree" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
@@ -301,6 +314,7 @@
                                                 <div class="col-md-2 mb-4">
                                                     <button class="btn btn-primary d-grid w-100 mb-2 mt-4" type="submit">حفظ </button>
                                                 </div>
+                                                
                                             </div>
 
                                     </div>

@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html
-  lang="en"
+  lang="ar" dir="rtl"
   class="layout-menu-fixed layout-compact"
   data-assets-path="../../../assets/"
   data-template="vertical-menu-template-free">
@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>نظام إدارة النفقات </title>
-    <meta name="description" content="نظام إدارة النفقات " />
+    <meta name="description" content="لوحة معلومات لنظام النفقات" />
 
     <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
 
@@ -26,11 +26,6 @@
     <link rel="stylesheet" href="../../../assets/css/demo.css" />
     <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
-    <!-- Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
-    <!-- Flatpickr CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
     <!-- أدوات المساعدة -->
     <script src="../../../assets/vendor/js/helpers.js"></script>
@@ -38,6 +33,22 @@
 
     <style>
       body { font-family: 'Cairo', sans-serif; text-align: right; }
+      .table-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .position-relative-wrapper {
+      position: relative;
+    }
     .form-loading-overlay {
       position: absolute;
       top: 0;
@@ -55,8 +66,7 @@
       position: relative;
     }
     
-    
-    </style>
+  </style>
   </head>
 
   <body>
@@ -72,9 +82,9 @@
             </a>
           </div>
           <ul class="menu-inner py-3">
-            <!-- الرئيسية-->
-            <li class="menu-item">
-              <a href="#" class="menu-link ">
+             <!-- الرئيسية-->
+            <li class="menu-item ">
+              <a href="index.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -89,7 +99,7 @@
             </li>
 
             <!-- إدارة المستخدمين --> 
-            <li class="menu-item"> 
+            <!-- <li class="menu-item"> 
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon bx bx-group"></i>
                 <div>إدارة المستخدمين</div>
@@ -111,39 +121,39 @@
                   </a>
                 </li>
               </ul>
-            </li>
+            </li> -->
             
           <!--وقائع الطلاق-->
-          <li class="menu-item ">
+          <!-- <li class="menu-item ">
               <a href="../management-divorce/view.html" class="menu-link">
                 <i class="menu-icon bx bx-file"></i>
                 <div>وقائع الطلاق</div>
               </a>
-          </li> 
+          </li>  -->
 
             <!-- إدارة النفقات -->
-            <li class="menu-item open">
+            <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
               <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item">
+              <!-- <li class="menu-item">
                 <a href="almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
-              </li>
-              <li class="menu-item ">
+              </li> -->
+              <li class="menu-item">
                 <a href="alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات المدفوعة</div>
+                  <div>سجل النفقات </div>
                 </a>
               </li>
-              <li class="menu-item">
+              <!-- <li class="menu-item ">
                 <a href="alimony-request-list.html" class="menu-link">
                   <div>سجل طلبات النفقات </div>
                 </a>
-              </li>
-              <li class="menu-item active">
+              </li> -->
+              <li class="menu-item">
                 <a href="alimony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
@@ -151,8 +161,22 @@
             </ul>
           </li>   
 
-            <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
-            
+
+            <!--التقارير-->
+            <li class="menu-item open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-bar-chart'  ></i> 
+              <div> التقارير</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item active">
+                <a href="#" class="menu-link">
+                  <div>تقرير بحالة النفقات </div>
+                </a>
+              </li>
+            </ul>
+          </li> 
+
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
               <a href="#" class="menu-link ">
@@ -160,6 +184,7 @@
                   <div>تسجيل الخروج</div>
               </a>
             </li>
+
 
           </ul>
         </aside>
@@ -177,146 +202,136 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4 fw-bold"> دفع نفقة </h4>
-              <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+              <!-- Search -->
+              <div class="navbar-nav align-items-center me-auto">
+                <div class="nav-item d-flex align-items-center">
+                  <span class="w-px-22 h-px-22"><i class="icon-base bx bx-search icon-md"></i></span>
+                  <input
+                    type="text"
+                    id="searchInput"
+                    class="form-control border-0 shadow-none ps-1 ps-sm-2 d-md-block d-none"
+                    placeholder="Search..."
+                    aria-label="Search..." />
+                </div>
+              </div>
+              <!-- /Search -->
 
-                <!-- رسالة الترحيب -->
+              <ul class="navbar-nav flex-row align-items-center ms-md-auto">
                 <li class="nav-item lh-1 me-4"> 
                   <p class="mb-0 text-muted" id="usernameDisplay"></p>
                 </li>
 
-
-                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
-                    <a
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
                     data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
-                    </a>
+                  </a>
                 </li>
-                </ul>
+                <!--/ User -->
+              </ul>
             </div>
           </nav>
 
           <!-- / Navbar -->
 
-        <div class="content-wrapper">
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-                <div class="row g-6">
-                    <!-- Spinner-->
-                    <!-- <div id="formLoading" class="form-loading-overlay d-none">
-                    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
-                    <span class="visually-hidden">جاري التحميل...</span>
+      
+              <!--top card -->  
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                     <h4>تقرير بحالة النفقة </h4>
+                      <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
-                    </div> -->
-                
-                    <form id="alimonyPaymentForm"action="#" >
-
-                    <div class="card mb-4">
-                        <h5 class="card-header"> دفعة نفقة</h5>
-
-                        <div class="card-body">
-                        <!-- مدخلات الدفعة الواحدة -->
-                        <div class="row g-3 align-items-end" id="paymentInputs">
-                          <!-- القرار المرتبط -->
-                            <div class="col-md-6 mb-4">
-                              <label class="form-label" for="decision">قرار النفقة </label>
-                              <select id="decision" class="form-select" required>
-                                  <option value="" selected disabled>اختر قرار النفقة</option>
-                                  <option value="D-2024-001">قرار رقم D-2024-001 — شهري 500 د.ل</option>
-                                  <option value="D-2024-045">قرار رقم D-2024-045 — شهري 650 د.ل</option>
-                              </select>
-                            </div>
-
-                            <!-- تاريخ الدفع -->
-                            <div class="col-md-6 mb-4">
-                              <label class="form-label" for="payDate">تاريخ الدفع</label>
-                              <input type="date" id="payDate" class="form-control" required>
-                            </div>
-
-                            <!-- المبلغ -->
-                            <div class="col-md-6 mb-4">
-                              <label class="form-label" for="payAmount">المبلغ</label>
-                              <div class="input-group">
-                                  <input type="number" min="0" step="0.01" id="payAmount" class="form-control" placeholder="0.00" required>
-                                  <span class="input-group-text">د.ل</span>
-                              </div>
-                            </div>
-
-                            <!-- طريقة الدفع -->
-                            <div class="col-md-6 mb-4">
-                              <label class="form-label" for="payMethod">طريقة الدفع</label>
-                              <select id="payMethod" class="form-select" required>
-                                  <option value="" selected disabled>اختر طريقة الدفع</option>
-                                  <option value="cash">نقدًا</option>
-                                  <option value="transfer">حوالة مصرفية</option>
-                                  <option value="cheque">شيك</option>
-                                  <option value="other">أخرى</option>
-                              </select>
-                            </div>
-
-                            <!-- ملاحظات -->
-                            <div class="col-md-6 mb-4">
-                              <label class="form-label" for="notes">ملاحظات</label>
-                              <input type="text" id="notes" class="form-control" placeholder="معلومة إضافية (اختياري)">
-                            </div>
-
-                            <!-- إيصال الدفع -->
-                            <div class="col-md-6 mb-4">
-                              <label class="form-label" for="receipt">إيصال الدفع (PDF/JPG/PNG)</label>
-                              <input type="file" id="receipt" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-                            </div>
-
-                        </div>
-
-                        <!-- أزرار الحفظ -->
-                        <div class="mt-4 d-flex gap-2">
-                            <button type="submit" class="btn btn-primary">تسجيل </button>
-                        </div>
-
-                        </div>
-                    </div>
-                    </form>
-                 
+                  </div>
                 </div>
-            </div>
-        </div>    
-    <!-- / Content -->
+              </div>
+              <!--/top card --> 
 
-    <!-- Footer -->
-    <footer class="content-footer footer bg-footer-theme">
-        <div class="container-xxl">
-        <div
-            class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-            <div class="mb-2 mb-md-0">
-            &#169;
-            <script>
-                document.write(new Date().getFullYear());
-            </script>
-                جميع الحقوق محفوظة - نظام النفقات
-            </div>
-            <div class="d-none d-lg-inline-block">
-            <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
-            <a href="#" target="_blank" class="footer-link">Support</a>
-            </div>
-        </div>
-        </div>
-    </footer>
-    <!-- / Footer -->
-    <div class="content-backdrop fade"></div>
-    </div>
-    <!-- Content wrapper -->
-    </div>
-    <!-- / Layout page -->
-</div>
+              <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
 
-      <!-- Overlay -->
-<div class="layout-overlay layout-menu-toggle"></div>
-</div>
+              <!-- Hoverable Table rows -->
+              <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0"></h5>
+                </div>
+                <div id="alertContainer" class="mt-3"></div>
+                
+                <!-- Spinner overlay -->
+                <!-- <div id="loadingSpinner" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">جاري التحميل...</span>
+                  </div>
+                </div> -->
+
+
+                <div class="table-responsive text-nowrap">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th> رقم قرار النفقة</th>
+                        <th> تاريخ الدفع</th>
+                        <th>اسم الزوجة</th>
+                        <th>اسم الزوج</th>
+                        <th>المبلغ المتفق عليه</th>
+                        <th>المبلغ المدفوع</th>
+                        <th> طريقة الدفع</th>
+                        <th>ملاحظات</th>
+                        <th>إيصال الدفع</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0" id="almonyPaymentReprtTableBody">
+                    
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!--/ Hoverable Table rows -->
+            </div>
+            <!-- / Content -->
+
+            <!-- Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="container-xxl">
+                <div
+                  class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                  <div class="mb-2 mb-md-0">
+                    &#169;
+                    <script>
+                      document.write(new Date().getFullYear());
+                    </script>
+                     جميع الحقوق محفوظة - نظام النفقات
+                  </div>
+                  <div class="d-none d-lg-inline-block">
+                    <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
+                    <a href="#" target="_blank" class="footer-link">Support</a>
+                  </div>
+                </div>
+              </div>
+            </footer>
+            <!-- / Footer -->
+            <div class="content-backdrop fade"></div>
+          </div>
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      
+    </div>
     <!-- / Layout wrapper -->
+
+
 
     <!-- Core JS -->
 
@@ -333,27 +348,16 @@
 
     <!-- Vendors JS -->
 
-    <!-- Flatpickr JS -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-
-    
     <!-- Main JS -->
+
     <script src="../../../assets/js/main.js"></script>
     <script type="module" src="../../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
-   <script type="module" src="../../../assets/js/pages/alimony-request.js"></script>
-
-   <!-- Select2 JS -->
-  <!-- تحميل مكتبة jQuery + Select2 -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-  <script>
+    <script type="module" src="../../../../assets/js/pages/marriage-contract-list.js"></script>
+    <script>
       const LOGIN_PAGE = "../login.html"; 
-  </script>
-  <script type="module" src="../../assets/js/pages/logout.js"></script>
-
-
- </body>
+    </script>
+    <script type="module" src="../../assets/js/pages/logout.js"></script>
+  </body>
 </html>

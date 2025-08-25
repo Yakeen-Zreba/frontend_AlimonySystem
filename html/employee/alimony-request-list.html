@@ -74,7 +74,7 @@
           <ul class="menu-inner py-3">
             <!-- الرئيسية-->
             <li class="menu-item">
-              <a href="#" class="menu-link ">
+              <a href="index.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -128,14 +128,14 @@
               <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item">
+              <!-- <li class="menu-item">
                 <a href="almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
-              </li>
+              </li> -->
               <li class="menu-item ">
                 <a href="alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات المدفوعة</div>
+                  <div>سجل النفقات </div>
                 </a>
               </li>
               <li class="menu-item active">
@@ -143,15 +143,28 @@
                   <div>سجل طلبات النفقات </div>
                 </a>
               </li>
-              <li class="menu-item">
+              <!-- <li class="menu-item">
                 <a href="almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>   
 
-            <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
+            <!--التقارير-->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-bar-chart'  ></i> 
+              <div> التقارير</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item ">
+                <a href="alimony-payment-report.html" class="menu-link">
+                  <div>تقرير بحالة النفقات </div>
+                </a>
+              </li>
+            </ul>
+            </li>
             
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
@@ -231,7 +244,12 @@
                                         </button>
                                         <a href="#" >عرض مستند قرار الطلاق</a>
                                         <div class="row">
-                                            <button class="btn btn-outline-primary mb-4 mt-4">قبول </button>
+                                            <button 
+                                                class="btn btn-outline-primary mb-4 mt-4"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirm">
+                                                قبول 
+                                            </button>
                                             <button 
                                                 class="btn btn-outline-danger"
                                                 data-bs-toggle="modal"
@@ -262,7 +280,12 @@
                                         </button>
                                         <a href="#" >عرض مستند قرار الطلاق</a>
                                         <div class="row">
-                                            <button class="btn btn-outline-primary mb-4 mt-4">قبول </button>
+                                            <button 
+                                                class="btn btn-outline-primary mb-4 mt-4"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirm">
+                                                قبول 
+                                            </button>
                                             <button 
                                                 class="btn btn-outline-danger"
                                                 data-bs-toggle="modal"
@@ -293,7 +316,12 @@
                                         </button>
                                         <a href="#" >عرض مستند قرار الطلاق</a>
                                         <div class="row">
-                                            <button class="btn btn-outline-primary mb-4 mt-4">قبول </button>
+                                            <button 
+                                                class="btn btn-outline-primary mb-4 mt-4"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#">
+                                                قبول 
+                                            </button>
                                             <button 
                                                 class="btn btn-outline-danger"
                                                 data-bs-toggle="modal"
@@ -303,13 +331,13 @@
                                         </div>
                                         
                                     </div>
-                                <div class="card-footer text-body-secondary text-center">2 days ago</div>
+                                <div class="card-footer text-body-secomodalConfirmndary text-center">2 days ago</div>
                             </div>
                         </div>
                         <!--/Card-->
 
                         
-                        
+                       
                     </div>
                  
                 </div>
@@ -412,6 +440,135 @@
             </div>
         </div>
         </div>
+    </div>
+    <!--/model-->
+
+
+
+    <!-- Modal التأكيد-->
+    <div class="modal modal-top fade" id="modalConfirm" tabindex="-1">
+      <div class="modal-dialog">
+        <form class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTopTitle">تأكيد قرار نفقة</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            
+            <div class="row">
+              <div class="col-md-6">
+                <label for="divorceId" class="form-label"> رقم قضية الطلاق</label>
+                <div class="d-flex flex-nowrap gap-2">
+                  <!-- القائمة المنسدلة -->
+                  <select id="divorceId" name="divorceId" class="form-select flex-grow-1">
+                    <option selected disabled>اختر رقم القضية</option>
+                    <option value="1">D-2025-001</option>
+                    <option value="2">D-2025-002</option>
+                    <option value="3">D-2025-003</option>
+                  </select>
+                  <!-- الزر -->
+                  <a href="../management-divorce/create.html" class="btn btn-outline-primary pt-0 pb-0">
+                    +
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            <div class="row ">
+              <!--  اسم الزوج  -->
+              <div class="col-md-6 mb-4">
+                  <label for="divorcedMan" class="form-label">اسم الزوج  </label>
+                  <input type="text" class="form-control" id="divorcedMan" name="divorcedMan" readonly>
+              </div>
+
+              <!--  اسم الزوجة  -->
+              <div class="col-md-6 mb-4">
+                  <label for="divorcedWoman" class="form-label">اسم الزوجة </label>
+                  <input type="text" class="form-control" id="divorcedWoman" name="divorcedWoman" readonly>
+              </div>
+
+
+            </div>
+
+            <div class="row">
+              <!-- رقم قضية النفقة -->
+              <div class="col-md-6 mb-4">
+                  <label for="alimonyId" class="form-label"> رقم قضية النفقة</label>
+                  <input type="text" class="form-control" id="alimonyId" name="alimonyId" placeholder="رقم قضية النفقة">
+              </div>
+
+              <!-- مستند قرار النفقة-->
+              <div class="col-md-6 mb-4">
+                <label class="form-label" for="alimonyDecree">مستند قرار النفقة</label>
+                <input type="file" id="alimonyDecree" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+              </div>
+            </div>
+
+            
+
+            <div class="row">
+              <!-- تاريخ السريان -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label" for="startDate">تاريخ السريان</label>
+                <input type="date" id="startDate" class="form-control" required>
+              </div>
+      
+              <!-- مبلغ النفقة الشهري -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label" for="payAmount">مبلغ النفقة الشهري</label>
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" id="payAmount" class="form-control" placeholder="0.00" required>
+                    <span class="input-group-text">د.ل</span>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <!-- تاريخ الايقاف -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label" for="stopDate">تاريخ الإيقاف</label>
+                <input type="date" id="stopDate" class="form-control" required>
+              </div>
+      
+              <!-- سبب الايقاف  -->
+              <div class="col-md-6 mb-4">
+                  <label for="stopReason" class="form-label">سبب لاإيقاف</label>
+                  <input type="text" class="form-control" id="stopReason" name="stopReason" placeholder="سبب لاإيقاف">
+              </div>
+
+            </div>
+
+            <div class="col-md-6">
+              <label for="personName" class="form-label">اسم المحضر</label>
+              <div class="d-flex flex-nowrap gap-2">
+                <!-- القائمة المنسدلة -->
+                <select id="personName" name="personName" class="form-select flex-grow-1">
+                  <option selected disabled>اختر المحضر المكلف</option>
+                  <option value="1">أحمد محمد - 123456789</option>
+                  <option value="2">سالم علي - A1234567</option>
+                  <option value="3">محمود يوسف - 987654321</option>
+                </select>
+                <!-- الزر -->
+                <a href="../user-management/employee/add.html" class="btn btn-outline-primary pt-0 pb-0">
+                  +
+                </a>
+              </div>
+            </div>
+
+         <div class="modal-footer">
+            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">حفظ</button>
+          </div>
+        </form>
+      </div>
     </div>
     <!--/model-->
 
