@@ -5,7 +5,7 @@ import {  validationUpdateDivorcedMan } from "../utils/validationUpdateDivorcedM
 async function loadEmployees() {
   try {
     showSpinner();
-    const response = await GetAPI("https://localhost:44377/api/Person/GetHusbands");
+    const response = await GetAPI("https://localhost:44377/api/Person/GetHusbands",'../../login.html');
     if (response.isSuccess && Array.isArray(response.results)) {
       const tableBody = document.getElementById("divorcedManTableBody");
           tableBody.innerHTML = ""; // تنظيف الجدول قبل إعادة تعبئته
@@ -110,7 +110,7 @@ document.getElementById("divorcedManTableBody").addEventListener("click", async 
 
     if (confirm(confirmMsg)) {
       try {
-        const response = await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
+        const response = await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`,'../../login.html');
          if (response.isSuccess ) {
             const statusCell = btn.closest("tr").querySelector(".status-text");
             statusCell.textContent = !currentStatus ? "نشط" : "غير نشط";
@@ -158,7 +158,7 @@ document.getElementById("divorcedManTableBody").addEventListener("click", async 
       try {
         showSpinner();
         const url = `https://localhost:44377/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
-        const response = await deleteAPI(url);
+        const response = await deleteAPI(url,'../../login.html');
 
         if (response.isSuccess) {
           deleteBtn.closest("tr").remove();
