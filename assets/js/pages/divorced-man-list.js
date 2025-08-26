@@ -5,7 +5,7 @@ import {  validationUpdateDivorcedMan } from "../utils/validationUpdateDivorcedM
 async function loadEmployees() {
   try {
     showSpinner();
-    const response = await GetAPI("https://localhost:44377/api/Person/GetHusbands");
+    const response = await GetAPI("http://localhost:5016/api/Person/GetHusbands");
     if (response.isSuccess && Array.isArray(response.results)) {
       const tableBody = document.getElementById("divorcedManTableBody");
           tableBody.innerHTML = ""; // تنظيف الجدول قبل إعادة تعبئته
@@ -110,7 +110,7 @@ document.getElementById("divorcedManTableBody").addEventListener("click", async 
 
     if (confirm(confirmMsg)) {
       try {
-        const response = await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
+        const response = await GetAPI(`http://localhost:5016/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
          if (response.isSuccess ) {
             const statusCell = btn.closest("tr").querySelector(".status-text");
             statusCell.textContent = !currentStatus ? "نشط" : "غير نشط";
@@ -157,7 +157,7 @@ document.getElementById("divorcedManTableBody").addEventListener("click", async 
     if (confirm(" هل أنت متأكد أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذه العملية.")) {
       try {
         showSpinner();
-        const url = `https://localhost:44377/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
+        const url = `http://localhost:5016/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
         const response = await deleteAPI(url);
 
         if (response.isSuccess) {
@@ -219,7 +219,7 @@ hideErrorDialog();
   }
     try {
       showSpinnerformLoading()
-      const response =   await putAPI("https://localhost:44377/api/Person/update", data);
+      const response =   await putAPI("http://localhost:5016/api/Person/update", data);
       if (response.isSuccess ) {
         let offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('editDivorcedCanvas'));
           offcanvas.hide();

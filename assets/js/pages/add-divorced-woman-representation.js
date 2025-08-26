@@ -33,7 +33,7 @@ document.getElementById("addDivorcedWomanRepresentationForm").addEventListener("
 
   try {
     showSpinnerformLoading()
-    const response = await postData('https://localhost:44377/api/Person/Registration', data);
+    const response = await postData('http://localhost:5016/api/Person/Registration', data);
 
     //const result = await response.json();
     if (response.isSuccess) {

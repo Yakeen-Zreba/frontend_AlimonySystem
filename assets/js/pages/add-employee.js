@@ -37,7 +37,7 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
 
   try {
     showSpinnerformLoading()
-    const response = await postData('https://localhost:44377/api/Person/Registration', data);
+    const response = await postData('http://localhost:5016/api/Person/Registration', data);
 
     if (response.isSuccess) {
         localStorage.setItem("successMessage", response.message || "تمت العملية بنجاح");
@@ -56,7 +56,7 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
 
 async function loadPermissions() {
   try {
-    const response = await fetch('https://localhost:44377/api/UserPermissions/all-permissions');
+    const response = await fetch('http://localhost:5016/api/UserPermissions/all-permissions');
     const data = await response.json();
 
     //  استخراج القائمة من داخل "results"

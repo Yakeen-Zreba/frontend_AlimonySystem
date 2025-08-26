@@ -12,7 +12,7 @@ async function loadMarriageContract() {
     try{
       showSpinner()
    
-    const response = await GetAPI("https://localhost:44377/api/MarriageDivorce/GetDivorce-Cases");
+    const response = await GetAPI("http://localhost:5016/api/MarriageDivorce/GetDivorce-Cases");
   
     if (response.isSuccess && Array.isArray(response.results)) {
   const tableBody = document.getElementById("DivorceCasesTableBody");

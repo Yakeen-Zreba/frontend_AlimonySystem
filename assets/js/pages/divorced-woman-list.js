@@ -4,7 +4,7 @@ import {  validationUpdateDivorcedWomenOrAgents } from "../utils/validationUpdat
 async function loadEmployees() {
     try{
       showSpinner()
-      const response = await GetAPI("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives");
+      const response = await GetAPI("http://localhost:5016/api/Person/GetDivorcedWomenAndRepresentatives");
   
       if (response.isSuccess && Array.isArray(response.results)) {
         const tableBody = document.getElementById("divorcedWomanTableBody");
@@ -117,7 +117,7 @@ document.getElementById("divorcedWomanTableBody").addEventListener("click", asyn
     if (confirm(" هل أنت متأكد أنك تريد حذف هذا المستخدم؟ لا يمكن التراجع عن هذه العملية.")) {
       try {
         showSpinner();
-        const url = `https://localhost:44377/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
+        const url = `http://localhost:5016/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
         const response = await deleteAPI(url);
 
         if (response.isSuccess) {
@@ -152,7 +152,7 @@ document.getElementById("divorcedWomanTableBody").addEventListener("click", asyn
 
     if (confirm(confirmMsg)) {
           try {  
-      const response =   await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
+      const response =   await GetAPI(`http://localhost:5016/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
      
          if (response.isSuccess ) {
             const statusCell = btn.closest("tr").querySelector(".status-text");
@@ -228,7 +228,7 @@ hideErrorDialog();
   }
     try {
             showSpinnerformLoading()
-       const response =   await putAPI("https://localhost:44377/api/Person/update", data);
+       const response =   await putAPI("http://localhost:5016/api/Person/update", data);
       if (response.isSuccess ) {
           let offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('editDivorcedCanvas'));
           offcanvas.hide();

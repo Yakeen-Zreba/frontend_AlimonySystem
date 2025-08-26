@@ -21,7 +21,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
  try {
     localStorage.removeItem("jwtToken");
     showSpinnerformLoading()
-  const response = await postData("https://localhost:44377/api/User/login", data);
+  const response = await postData("http://localhost:5016/api/User/login", data);
 
   // تأكد من نجاح العملية
       if ( response.isSuccess ) {

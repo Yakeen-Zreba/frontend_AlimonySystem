@@ -3,7 +3,7 @@ import { showError, hideError, hideSpinnerformLoading, showSpinnerformLoading } 
 import {  GetAPI } from "../api/httpClient.js";
 
 // === الإعدادات العامة ===
-const API_BASE = "https://localhost:44377";
+const API_BASE = "http://localhost:5016";
 const FORM_ID = "AddDivorceCases";
 const HUSBAND_SELECT_ID = "divorcedMan";
 const WIFE_SELECT_ID = "divorcedWoman";
@@ -60,10 +60,8 @@ function clearFormFields() {
 
   form.reset();
 
-  const selH = document.getElementById(HUSBAND_SELECT_ID);
-  const selW = document.getElementById(WIFE_SELECT_ID);
-  if (selH) selH.selectedIndex = 0;
-  if (selW) selW.selectedIndex = 0;
+  resetSelect(document.getElementById(HUSBAND_SELECT_ID));
+  resetSelect(document.getElementById(WIFE_SELECT_ID));
 
   // 3) تصفير ملفات الرفع (بعض المتصفحات تحتاج هذا صراحة)
   const filesIds = ["marriageFile", "divorceDecreeFile"];
@@ -71,6 +69,27 @@ function clearFormFields() {
     const f = document.getElementById(id);
     if (f) f.value = "";
   });
+}
+
+function resetSelect(selectEl) {
+  if (!selectEl) return;
+
+  // أزل حالة الخطأ إن وُجدت
+  selectEl.classList.remove("is-invalid");
+  selectEl.setAttribute("aria-invalid", "false");
+
+  // نبحث عن خيار placeholder بقيمة فارغة
+  const placeholder = selectEl.querySelector('option[value=""]');
+  if (placeholder) {
+    placeholder.selected = true;                  // اجعل placeholder هو المختار
+    selectEl.value = "";                          // يضمن التعيين
+  } else {
+    // fallback: أول عنصر
+    selectEl.selectedIndex = 0;
+  }
+
+  // لو في أي listeners يعتمدون على change
+  selectEl.dispatchEvent(new Event("change"));
 }
 function getVal(id) {
   const el = document.getElementById(id);
@@ -167,7 +186,11 @@ async function onSubmit(e) {
       headers: token ? { Authorization: `Bearer ${token}` } : undefined,
       body: fd 
     });
-
+if (res.status === 413) {
+  showError("حجم الملف/الطلب أكبر من الحد المسموح به على الخادم. تم رفع الحدود، أعد المحاولة.");
+  hideSpinnerformLoading();
+  return;
+}
     const json = await res.json();
     if (json?.isSuccess) {
         clearFormFields();
