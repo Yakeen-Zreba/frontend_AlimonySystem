@@ -37,6 +37,8 @@
     <script src="../../../assets/js/config.js"></script>
 
     <style>
+      /* .direction-rtl { direction: rtl; text-align: right; } */
+
       body { font-family: 'Cairo', sans-serif; text-align: right; }
     .form-loading-overlay {
       position: absolute;
@@ -137,7 +139,7 @@
                 </a>
               </li> -->
               <li class="menu-item">
-                <a href="../employee/" class="menu-link">
+                <a href="../employee/alimony-payment-list.html" class="menu-link">
                   <div>سجل النفقات </div>
                 </a>
               </li>
@@ -210,14 +212,15 @@
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row g-6">
                 <!-- Spinner-->
-              <!-- <div id="formLoading" class="form-loading-overlay d-none">
+              <div id="formLoading" class="form-loading-overlay d-none">
                 <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
                   <span class="visually-hidden">جاري التحميل...</span>
                 </div>
-              </div> -->
+              </div>
               
-                <form id="addDivorcedWomanRepresentationForm" action="#">
-                  <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+                <form id="AddDivorceCases" action="#">
+
+
                   <div class="container-xxl flex-grow-1 container-p-y">
 
                     <div class="row g-6">
@@ -234,43 +237,35 @@
                               </div>
                               <div class="col-md-6">
                                 <label for="contractDate" class="form-label"> تاريخ عقد الزواج </label>
-                                <input type="date" class="form-control" id="contractDate" name="contractDate" placeholder=" تاريخ العقد">
+                                <input type="date" class="form-control" id="contractDate"    name="contractDate" placeholder=" تاريخ العقد">
                               </div>
+<!-- اسم الزوج -->
+<div class="col-md-6">
+  <label for="divorcedMan" class="form-label">اسم الزوج</label>
+  <div class="d-flex flex-nowrap gap-2">
+    <select id="divorcedMan" name="divorcedMan" class="form-select flex-grow-1" data-role="1">
+      <option selected disabled>جاري التحميل...</option>
+    </select>
+    <a href="../user-management/divorced-man/add.html" class="btn btn-outline-primary pt-0 pb-0" title="إضافة زوج جديد">
+      +
+    </a>
 
-                               <!-- حقل اسم الزوج + زر زوج جديد -->
-                              <div class="col-md-6">
-                                <label for="divorcedMan" class="form-label">اسم الزوج</label>
-                                <div class="d-flex flex-nowrap gap-2">
-                                  <!-- القائمة المنسدلة -->
-                                  <select id="divorcedMan" name="divorcedMan" class="form-select flex-grow-1">
-                                    <option selected disabled>اختر الزوج</option>
-                                    <option value="1">أحمد محمد - 123456789</option>
-                                    <option value="2">سالم علي - A1234567</option>
-                                    <option value="3">محمود يوسف - 987654321</option>
-                                  </select>
-                                  <!-- الزر -->
-                                  <a href="../user-management/divorced-man/add.html" class="btn btn-outline-primary pt-0 pb-0">
-                                    +
-                                  </a>
-                                </div>
-                              </div>
-                              <!-- حقل اسم الزوجة + زر زوج جديد -->
-                              <div class="col-md-6">
-                                <label for="divorcedWoman" class="form-label">اسم الزوجة</label>
-                                <div class="d-flex flex-nowrap gap-2">
-                                  <!-- القائمة المنسدلة -->
-                                  <select id="divorcedWoman" name="divorcedWoman" class="form-select flex-grow-1">
-                                    <option selected disabled>اختر الزوجة</option>
-                                    <option value="1">نورية محمد - 123456789</option>
-                                    <option value="2">عزيزة علي - A1234567</option>
-                                    <option value="3">كريمة يوسف - 987654321</option>
-                                  </select>
-                                  <!-- الزر -->
-                                  <a href="../user-management/divorced-woman/add.html" class="btn btn-outline-primary pt-0 pb-0">
-                                    +
-                                  </a>
-                                </div>
-                              </div>
+  </div>
+</div>
+
+<!-- اسم الزوجة -->
+<div class="col-md-6">
+  <label for="divorcedWoman" class="form-label">اسم الزوجة</label>
+  <div class="d-flex flex-nowrap gap-2">
+    <select id="divorcedWoman" name="divorcedWoman" class="form-select flex-grow-1" data-role="2">
+      <option selected disabled>جاري التحميل...</option>
+    </select>
+    <a href="../user-management/divorced-woman/add.html" class="btn btn-outline-primary pt-0 pb-0" title="إضافة زوجة جديدة">
+      +
+    </a>
+   
+  </div>
+</div>
 
                               <!-- حقل السجل المدني -->
                               <div class="col-md-6">
@@ -302,6 +297,18 @@
                                 </div>
                               </div>
 
+
+                              <div class="col-md-6">
+                                <label for="PaidDeferred" class="form-label"> المؤجل المدفوع </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="PaidDeferred" name="PaidDeferred" placeholder="المؤجل المدفوع">
+                                    <span class="input-group-text">د.ل</span>
+                                </div>
+                              </div><div class="col-md-6">
+  <label class="form-label" for="marriageFile">مستند عقد الزواج</label>
+       <div class="input-group">
+  <input type="file" id="marriageFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png"></div>
+</div>
                             </div>
 
                             </div>
@@ -334,19 +341,22 @@
                                 <input type="text" class="form-control" id="courtDecision" name="courtDecision" placeholder="قرار المحكمة" >
                               </div>
                               <div class="col-md-6">
-                                <label for="mahr" class="form-label"> تاريخ الطلاق</label>
-                                <input type="date" class="form-control" id="mahr" name="mahr" placeholder="تاريخ الطلاق">
+                                <label for="divorceDate" class="form-label"> تاريخ الطلاق</label>
+                                <input type="date" class="form-control" id="divorceDate" name="divorceDate" placeholder="تاريخ الطلاق">
                               </div>
 
                                <!-- قرار الطلاق-->
                               <div class="col-md-12 mb-4">
-                                <label class="form-label" for="divorceDecree">مستند قرار الطلاق</label>
-                                <input type="file" id="divorceDecree" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                                <label class="form-label" for="divorceDecreeFile">مستند قرار الطلاق</label>
+                                <input type="file" id="divorceDecreeFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                               </div>
 
                               <div class="col-md-2">
                                 <button class="btn btn-primary d-grid w-100 mb-2 mt-4" type="submit">حفظ </button>
                               </div>
+                                                <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+
+                                        <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
 
                             </div>
 
@@ -465,7 +475,7 @@
     const LOGIN_PAGE = "../login.html";
     $(document).ready(function() {
       // تفعيل البحث في القائمة
-      $('#husband').select2({
+      $('#divorcedMan').select2({
         dir: "rtl", // دعم اللغة العربية
         width: '100%',
         placeholder: "اختر الزوج"
@@ -482,8 +492,53 @@
     <script type="module" src="../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
-   <script type="module" src="../../assets/js/pages/alimony-request.js"></script>
+   <script type="module" src="../../assets/js/pages/add-divorce-cases.js"></script>
   <script type="module" src="../../assets/js/pages/logout.js"></script>
-  
+  <script type="module">
+  // يرجّع اليوم بصيغة yyyy-MM-dd حسب التوقيت المحلي
+  function todayLocalISO() {
+    const d = new Date();
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().split("T")[0];
+  }
+
+  // يضبط max ويقصّ أي قيمة مستقبلية + يحمي عند التغيير والإرسال
+  function lockMaxToday(inputId, formId) {
+    const apply = () => {
+      const el = document.getElementById(inputId);
+      if (!el) return;
+
+      const today = todayLocalISO();
+      el.max = today;                              // 👈 أهم سطر
+      if (el.value && el.value > today) el.value = today; // قصّ فوري لو فيه قيمة مستقبلية
+
+      const clamp = () => { if (el.value && el.value > today) el.value = today; };
+      el.addEventListener("input", clamp);
+      el.addEventListener("change", clamp);
+
+      // حماية إضافية وقت الإرسال
+      if (formId) {
+        const form = document.getElementById(formId);
+        form?.addEventListener("submit", (e) => {
+          if (el.value && el.value > today) {
+            el.value = today;
+          }
+        });
+      }
+    };
+
+    // يشتغل سواء DOM جاهز أو لا
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", apply, { once: true });
+    } else {
+      apply();
+    }
+  }
+
+  // استدعاء الدالة لحقلك
+  lockMaxToday("contractDate", "AddDivorceCases");
+    lockMaxToday("divorceDate", "AddDivorceCases");
+</script>
+
  </body>
 </html>
