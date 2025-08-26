@@ -4,7 +4,7 @@ import {  validationUpdateDivorcedWomenOrAgents } from "../utils/validationUpdat
 async function loadEmployees() {
     try{
       showSpinner()
-      const response = await GetAPI("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives",'../../login.html');
+      const response = await GetAPI("https://localhost:44377/api/Person/GetDivorcedWomenAndRepresentatives");
   
       if (response.isSuccess && Array.isArray(response.results)) {
         const tableBody = document.getElementById("divorcedWomanTableBody");
@@ -118,7 +118,7 @@ document.getElementById("divorcedWomanTableBody").addEventListener("click", asyn
       try {
         showSpinner();
         const url = `https://localhost:44377/api/Person/DeleteUser?personId=${personId}&modifiedBy=${modifiedBy}`;
-        const response = await deleteAPI(url,'../../login.html');
+        const response = await deleteAPI(url);
 
         if (response.isSuccess) {
           deleteBtn.closest("tr").remove();
@@ -152,7 +152,7 @@ document.getElementById("divorcedWomanTableBody").addEventListener("click", asyn
 
     if (confirm(confirmMsg)) {
           try {  
-      const response =   await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`,'../../login.html');
+      const response =   await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
      
          if (response.isSuccess ) {
             const statusCell = btn.closest("tr").querySelector(".status-text");

@@ -147,7 +147,7 @@ async function loadEmployees() {
     try{
       showSpinner()
    
-    const response = await GetAPI("https://localhost:44377/api/Person/GetAllemployee",'../../login.html');
+    const response = await GetAPI("https://localhost:44377/api/Person/GetAllemployee");
   
     if (response.isSuccess && Array.isArray(response.results)) {
   const tableBody = document.getElementById("employeeTableBody");
@@ -296,7 +296,7 @@ document.getElementById("employeeTableBody").addEventListener("click", async fun
 
     if (confirm(confirmMsg)) {
       try {
-        const response = await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`,'../../login.html');
+        const response = await GetAPI(`https://localhost:44377/api/Person/Active_Deactive_User?personId=${personId}&activate=${!currentStatus}`);
          if (response.isSuccess ) {
             await loadEmployees(); 
             showSuccessMessage("تم تحديث حالة المستخدم بنجاح.");
