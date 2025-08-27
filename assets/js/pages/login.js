@@ -54,8 +54,12 @@ document.getElementById("formLogin").addEventListener("submit", async function (
               localStorage.setItem('userRole', 'mohder'); // أو 'محضر'
                 window.location.href = 'divorced-man/view.html';
       }
-       else if  (response.results.role=='1' || response.results.role=='0'){
+       else if  (response.results.role=='1'){
          localStorage.setItem('userRole', 'gov'); // أو 'user'
+            window.location.href = "admin/dashboard.html";
+      }
+      else if  (response.results.role=='0'){
+         localStorage.setItem('userRole', 'admin'); // أو 'user'
             window.location.href = "admin/dashboard.html";
       }
 
