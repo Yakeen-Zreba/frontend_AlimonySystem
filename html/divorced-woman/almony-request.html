@@ -240,14 +240,16 @@
             <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row g-6">
                 <!-- Spinner-->
-              <!-- <div id="formLoading" class="form-loading-overlay d-none">
+              <div id="formLoading" class="form-loading-overlay d-none">
                 <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
                   <span class="visually-hidden">جاري التحميل...</span>
                 </div>
-              </div> -->
+              </div>
               
                 <form id="addDivorcedWomanRepresentationForm" action="#">
                   <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+                     <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
+
                     <div class="container-xxl flex-grow-1 container-p-y">
 
                         <!-- ====== قسم الأطفال (داخل نموذج طلب النفقة) ====== -->
@@ -328,11 +330,13 @@
                                                 <!-- مستند قرار الطلاق-->
                                                 <div class="col-md-6 mb-4">
                                                   <label class="form-label" for="divorceDecree">مستند قرار الطلاق</label>
-                                                  <input type="file" id="divorceDecree" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+                                                    <input type="file" id="divorceDecree" name="DivorceFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
                                                 </div>
+<input type="hidden" name="childrenJson" id="childrenJson">
+
 
                                                 <div class="col-md-2 mb-4">
-                                                    <button class="btn btn-primary d-grid w-100 mb-2 mt-4" type="submit">حفظ </button>
+                                                    <button class="btn btn-primary d-grid w-100 mb-2 mt-4" type="click" id="saveBtn">حفظ </button>
                                                 </div>
                                                 
                                             </div>
@@ -386,7 +390,6 @@
               </div>
             </div></div>
             <!--/model-->
-
 
     <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
@@ -442,110 +445,23 @@
   <!-- تحميل مكتبة jQuery + Select2 -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-<script>
-const LOGIN_PAGE = "../login.html"; 
-
-// مصفوفة لحفظ الأطفال مؤقتًا قبل الإرسال
-const children = [];
-
-// عناصر DOM
-const addBtn = document.getElementById('addChildBtn');
-const nameInput = document.getElementById('childFullName');
-const birthInput = document.getElementById('childBirthDate');
-const tableBody = document.getElementById('childrenTableBody');
-const errorBox = document.getElementById('childError');
-const childrenJson = document.getElementById('childrenJson');
-
-// مساعد: قراءة الجنس المختار من الراديو
-function getSelectedGender() {
-  const checked = document.querySelector('input[name="childGender"]:checked');
-  return checked ? checked.value : '';
-}
-
-// تنسيق بسيط للتاريخ (YYYY-MM-DD -> DD/MM/YYYY)
-function formatDate(iso) {
-  if (!iso) return '';
-  const [y, m, d] = iso.split('-');
-  return `${d}/${m}/${y}`;
-}
-
-// ترجمة الجنس للعرض (القيم 0/1 حسب الـ radio)
-function genderLabel(v) {
-  return v === '0' ? 'ذكر' : v === '1' ? 'أنثى' : '';
-}
-
-// إعادة رسم جدول الأطفال
-function renderChildren() {
-  tableBody.innerHTML = '';
-  children.forEach((c, idx) => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td>${c.fullName ? c.fullName : '<span class="text-muted">—</span>'}</td>
-      <td>${formatDate(c.birthDate)}</td>
-      <td>${genderLabel(c.gender)}</td>
-      <td class="text-end">
-        <button type="button" class="btn btn-sm btn-outline-danger" data-index="${idx}">
-          حذف
-        </button>
-      </td>
-    `;
-    tableBody.appendChild(tr);
-  });
-
-  // حدّث الحقل المخفي لإرساله مع النموذج
-  childrenJson.value = JSON.stringify(children);
-}
-
-// معالجة الضغط على زر الإضافة
-addBtn.addEventListener('click', () => {
-  // اخفاء أي خطأ سابق
-  errorBox.classList.add('d-none');
-  errorBox.textContent = '';
-
-  const fullName = (nameInput.value || '').trim();
-  const birthDate = birthInput.value;
-  const gender = getSelectedGender();
-
-  if (!birthDate || !gender) {
-    errorBox.textContent = 'من فضلك أدخل تاريخ الميلاد واختر الجنس.';
-    errorBox.classList.remove('d-none');
-    return;
-  }
-
-  // أضف للّستة
-  children.push({ fullName, birthDate, gender });
-
-  // نظّف المدخلات
-  nameInput.value = '';
-  birthInput.value = '';
-  // فك اختيار الراديو
-  document.querySelectorAll('input[name="childGender"]').forEach(r => r.checked = false);
-
-  // أعد رسم الجدول
-  renderChildren();
-});
-
-// حذف صف من الجدول
-tableBody.addEventListener('click', (e) => {
-  const btn = e.target.closest('button[data-index]');
-  if (!btn) return;
-  const idx = parseInt(btn.getAttribute('data-index'), 10);
-  if (idx >= 0) {
-    children.splice(idx, 1);
-    renderChildren();
-  }
-});
-
-//تفريغ الجدول
-document.getElementById('resetFormBtn').addEventListener('click', () => {
-    children.splice(0, children.length);
-    renderChildren();
-  });
+   <script type="module" src="../../assets/js/pages/almony-request-womn.js"></script>
 
 
-// تحديدي العناصر الظاهرة حسب ال role
-document.addEventListener("DOMContentLoaded", () => {
+
+<!-- Main JS -->
+<script src="../../assets/js/main.js"></script>
+<script type="module" src="../../assets/js/pages/index.js"></script>
+
+<!-- Page JS -->
+<script type="module" src="../../assets/js/pages/alimony-request.js"></script>
+<script type="module" src="../../assets/js/pages/logout.js"></script>
+  <script>
+    const LOGIN_PAGE = "../login.html";
+
+
+          // تحديدي العناصر الظاهرة حسب ال role
+    document.addEventListener("DOMContentLoaded", () => {
     const userRole = localStorage.getItem("userRole");
 
     if (!userRole) return; // إذا ما في تسجيل دخول
@@ -554,6 +470,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userRole === "admin" || userRole === "gov") {
         document.getElementById("adminGovUserManagement").style.display = "block";
         document.getElementById("adminGovDivorceManagement").style.display = "block";
+        document.getElementById("adminGovAlmonyPaymentList").style.display = "block";
+        document.getElementById("adminGovAlmonyRequestlist").style.display = "block";
+        document.getElementById("adminGovHome").style.display = "block";
     }
 
     if (userRole === "admin" || userRole === "woman" ) {
@@ -563,17 +482,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userRole === "admin" || userRole === "man" ) {
         document.getElementById("adminManAlmonyPayment").style.display = "block";
     }
-
-});  
+    if (userRole === "woman") {
+        document.getElementById("womanAlmonyPaymentList").style.display = "block";
+        document.getElementById("womanHome").style.display = "block";
+        document.getElementById("womanAlmonyRequestlist").style.display = "block";
+    }
+    });  
 </script>
-
-<!-- Main JS -->
-<script src="../../assets/js/main.js"></script>
-<script type="module" src="../../assets/js/pages/index.js"></script>
-
-<!-- Page JS -->
-<script type="module" src="../../assets/js/pages/alimony-request.js"></script>
-<script type="module" src="../../assets/js/pages/logout.js"></script>
-
  </body>
 </html>

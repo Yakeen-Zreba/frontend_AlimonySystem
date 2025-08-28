@@ -24,6 +24,35 @@ export async function postData(url, data) {
   return response.json();
 }
 
+export async function postDataWithFile(url, data) {
+  const token = localStorage.getItem("jwtToken");
+
+if (isTokenExpired(token)) {
+  alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
+  localStorage.removeItem("jwtToken");
+window.location.href = LOGIN_PAGE;
+}
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+
+ "Authorization": `Bearer ${token}`
+    },
+    body: data,
+  });
+
+  if (!response.ok) {
+     if (response.status == 413) {
+
+      response.message = "حجم الملف/الطلب أكبر من الحد المسموح به على الخادم. تم رفع الحدود، أعد المحاولة. "
+      return   response.json();
+    }
+    const result = await response.json();
+    throw new Error(result.message || "فشل الإرسال");
+  }
+
+  return response.json();
+}
 
 
 export async function postAPI(url, data) {

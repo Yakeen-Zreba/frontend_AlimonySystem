@@ -25,8 +25,10 @@ document.getElementById("formLogin").addEventListener("submit", async function (
 
   // تأكد من نجاح العملية
       if ( response.isSuccess ) {
+        console.log(response.results)
+        console.log(response.results.personId)
     // خزن التوكن في localStorage
-    
+    localStorage.setItem('PersonId',response.results.personId) ;
     localStorage.setItem("jwtToken", response.results.token);
     // خزن اسم المستخدم/الدور  
     const username = document.getElementById("username").value.trim();
