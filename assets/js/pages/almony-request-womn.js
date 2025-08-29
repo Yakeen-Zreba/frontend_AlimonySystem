@@ -110,7 +110,7 @@ async function onSaveClick(e) {
     // اسم الحقل لازم يطابق الDTO لديك:
     // لو DTO عندك [FromForm(Name="Children")] string Children → استخدم 'Children'
     // لو غيرتيه إلى childrenJson → استخدمي نفس الاسم.
-    fd.append('Children', childrenJson.value);
+    fd.append('childrenJson', childrenJson.value);
 
     const response = await postDataWithFile('http://localhost:5016/api/Nafaqa/AddAlimony', fd);
 

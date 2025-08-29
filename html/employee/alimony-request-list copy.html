@@ -37,23 +37,7 @@
     <script src="../../../assets/js/config.js"></script>
 
     <style>
-   body { font-family: 'Cairo', sans-serif; text-align: right; }
-      .table-loading-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.7);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .position-relative-wrapper {
-      position: relative;
-    }
+      body { font-family: 'Cairo', sans-serif; text-align: right; }
     .form-loading-overlay {
       position: absolute;
       top: 0;
@@ -70,43 +54,8 @@
     .form-position-relative {
       position: relative;
     }
-    /* سويتش iOS-style */
-.toggle-switch {
-  --h: 26px;
-  --w: 48px;
-  --pad: 3px;
-
-  position: relative;
-  width: var(--w);
-  height: var(--h);
-  border: 0;
-  outline: 0;
-  padding: 0;
-  border-radius: 9999px;
-  background: #e5e7eb;            /* رمادي */
-  cursor: pointer;
-}
-.toggle-switch::before {
-  content: "";
-  position: absolute;
-  top: var(--pad);
-  left: var(--pad);
-  width: calc(var(--h) - var(--pad) * 2);
-  height: calc(var(--h) - var(--pad) * 2);
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0,0,0,.15);
-  transition: transform .18s ease;
-}
-.toggle-switch.on {
-  background: #10b981;            /* أخضر */
-}
-.toggle-switch.on::before {
-  transform: translateX(calc(var(--w) - var(--h)));
-}
-
-/* للحجم الصغير داخل القوائم لو احتجت */
-.toggle-switch.sm { --h: 22px; --w: 40px; --pad: 2px; }
+    
+    
     </style>
   </head>
 
@@ -194,7 +143,7 @@
               </li>
               <li class="menu-item active">
                 <a href="alimony-request-list.html" class="menu-link">
-                  <div>طلبات نفقة قيد المراجعة </div>
+                  <div>سجل طلبات النفقات </div>
                 </a>
               </li>
               <!-- <li class="menu-item">
@@ -269,118 +218,139 @@
 
           <!-- / Navbar -->
 
-<!-- مكان حقن الكروت -->
-
-     <!-- Spinner overlay -->
-                
-  <div class="content-wrapper">
-     
-                       <div class="container-xxl flex-grow-1 container-p-y"> 
-                          <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
-
-                <div id="loadingSpinner" class="table-loading-overlay d-none">
-                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+        <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+                <div class="row g-6">
+                    <!-- Spinner-->
+                    <!-- <div id="formLoading" class="form-loading-overlay d-none">
+                    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
                     <span class="visually-hidden">جاري التحميل...</span>
-                  </div>
+                    </div>
+                    </div> -->
+
+                    <div class="row mb-12 g-6">
+
+                        <!--Card-->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 id="DivorceId">رقم قضية الطلاق  : FF-2025-012</h5>
+                                </div>
+                                    <div class="card-body">
+                                        <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
+                                        <button
+                                            class="btn btn-link ps-0"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalShowChildren">
+                                            عرض الاطفال
+                                        </button>
+                                        <a href="#" >عرض مستند قرار الطلاق</a>
+                                        <div class="row">
+                                            <button 
+                                                class="btn btn-outline-primary mb-4 mt-4"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirm">
+                                                قبول 
+                                            </button>
+                                            <button 
+                                                class="btn btn-outline-danger"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalReject">
+                                                رفض
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                <div class="card-footer text-body-secondary text-center">2 days ago</div>
+                            </div>
+                        </div>
+                        <!--/Card-->
+
+                        <!--Card-->
+                    <div class="col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 id="DivorceId">رقم قضية الطلاق  : FF-2025-012</h5>
+                                </div>
+                                    <div class="card-body">
+                                        <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
+                                        <button
+                                            class="btn btn-link ps-0"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalShowChildren">
+                                            عرض الاطفال
+                                        </button>
+                                        <a href="#" >عرض مستند قرار الطلاق</a>
+                                        <div class="row">
+                                            <button 
+                                                class="btn btn-outline-primary mb-4 mt-4"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalConfirm">
+                                                قبول 
+                                            </button>
+                                            <button 
+                                                class="btn btn-outline-danger"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalReject">
+                                                رفض
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                <div class="card-footer text-body-secondary text-center">2 days ago</div>
+                            </div>
+                        </div>
+                        <!--/Card-->
+
+                        <!--Card-->
+                    <div class="col-md-6 col-lg-4">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 id="DivorceId">رقم قضية الطلاق  : FF-2025-012</h5>
+                                </div>
+                                    <div class="card-body">
+                                        <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
+                                        <button
+                                            class="btn btn-link ps-0"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalShowChildren">
+                                            عرض الاطفال
+                                        </button>
+                                        <a href="#" >عرض مستند قرار الطلاق</a>
+                                        <div class="row">
+                                            <button 
+                                                class="btn btn-outline-primary mb-4 mt-4"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#">
+                                                قبول 
+                                            </button>
+                                            <button 
+                                                class="btn btn-outline-danger"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modalReject">
+                                                رفض
+                                            </button>
+                                        </div>
+                                        
+                                    </div>
+                                <div class="card-footer text-body-secomodalConfirmndary text-center">2 days ago</div>
+                            </div>
+                        </div>
+                        <!--/Card-->
+
+                        
+                       
+                    </div>
+                 
                 </div>
-    <div class="row g-6" id="requestsGrid"></div>
-<!-- قالب الكرت (لا يُعرض؛ يُستنسخ بالـJS) -->
-<template id="requestCardTpl">
-  <div class="col-md-6 col-lg-4">
-    <div class="card h-100">
-      <div class="card-header">
-        <h5 class="mb-0">رقم قضية الطلاق : <span data-field="caseNumber"></span></h5>
-      </div>
+            </div>
+        </div>    
+    <!-- / Content -->
 
-      <div class="card-header py-2">
-        <label data-field="notFoundBadge" class="invisible" style="color: var(--bs-danger); text-align:center;">
-          رقم قضية غير مسجلة في النظام
-        </label>
-      </div>
-<div class="card-body">
-  <!-- اسم المطلّقة -->
-  <p class="card-text mb-1">
-    اسم المطلّقة : <span data-field="wifeName">—</span>
-  </p>
-
-  <!-- من قدّم الطلب (زوجة / موظف حكومي) -->
-  <p class="card-text mb-1">
-    تم ادخال الطلب من قبل : <span data-field="requesterLabel">—</span>
-  </p>
-
-  <!-- اسم مقدّم الطلب -->
-  <p class="card-text mb-3">
-    اسم مقدّم الطلب : <span data-field="submittedByName">—</span>
-  </p>
-
-  <button class="btn btn-link ps-0" type="button" data-action="showChildren">
-    عرض الأطفال (<span data-field="childrenCount">0</span>)
-  </button>
-  <div class="d-block mb-3">
-
-  <button class="btn btn-link ps-0" type="button" data-action="ShowCourtDoc">
-    عرض قرار المحكمة 
-  </button>
-  </div>
-  <div class="d-block mb-3">
-    <a href="#" target="_blank" rel="noopener" data-field="docLink">عرض مستند قرار الطلاق</a>
-  </div>
-
-  <div class="row g-2">
-    <div class="col-6">
-      <button class="btn btn-outline-primary w-100" type="button" data-action="accept">قبول</button>
-    </div>
-    <div class="col-6">
-      <button class="btn btn-outline-danger w-100" type="button" data-action="rejectSave">رفض</button>
-    </div>
-  </div>
-</div>
-
-
-      <div class="card-footer text-body-secondary text-center">
-        <span data-field="createdAgo">—</span>
-      </div>
-    </div>
-  </div>
-</template>
-</div>
-</div>
-
-<!-- <div class="modal fade" id="modalCourtDoc" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">قرار المحكمة — <span id="courtWifeName">—</span></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body p-0" style="height:75vh;">
-        <iframe id="courtDocFrame" src="" style="width:100%;height:100%;border:0;"></iframe>
-      </div>
-    </div>
-  </div>
-</div> -->
-<div class="modal fade" id="modalCourtDoc" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl" style="width: 50%;">
-
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h5 class="modal-title" id="modalLongTitle" >نص قرار المحكمة</h5>
-                                </div>
-                                <div class="modal-body">
-                                  <p>
-                                  <span name ="CourtDecision" id="CourtDecision"></span>
-                                  </p>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                                    Close
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                            </div>
-<!-- مودال عرض الأطفال -->
- <div class="modal fade" id="modalShowChildren" tabindex="-1" aria-hidden="true">
+    <!-- نافذة عرض الاطفال -->
+    <!-- Modal -->
+    <div class="modal fade" id="modalShowChildren" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -426,21 +396,9 @@
                         </a>
                     </td>
                     <td>
-                        <!-- <a class="dropdown-item btn-delete" href="#">
+                        <a class="dropdown-item btn-delete" href="#">
                             <i class="icon-base bx bx-trash me-1"></i>
-                        </a> -->
-
-                        <button
-  class="toggle-switch sm"
-  type="button"
-  role="switch"
-  aria-checked="true"
-  data-id="{{personId}}"
-  data-active="true">
-</button>
-
-<!-- (اختياري) شارة الحالة في نفس الصف لتتحدّث تلقائيًا -->
-<span class="badge status-badge bg-label-success">نشط</span>
+                        </a>
                     </td>
 
                 </tbody>
@@ -456,42 +414,35 @@
         </div>
         </div>
     </div>
-
-
-    <!-- نافذة سبب الرفض -->
-    <!-- Modal -->
-    <div class="modal fade" id="modalReject" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="modalScrollableTitle">ما هو سبب الرفض</h5>
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                
-                <label class="form-label" for="notes">سبب الرفض</label>
-                <input type="text" id="notes" class="form-control">
-
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                Close
-            </button>
-            <button type="button" class="btn btn-primary" id ="rejectSaveBtn">حفظ</button>
-            </div>
-        </div>
-        </div>
-    </div>
     <!--/model-->
 
+    <!-- نافذة سبب الرفض -->
+  <!-- Modal -->
+<div class="modal fade" id="modalReject" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalScrollableTitle">ما هو سبب الرفض</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <label class="form-label" for="notes">سبب الرفض</label>
+        <input type="text" id="notes" class="form-control">
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="rejectSaveBtn">حفظ</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--/model-->
 
 
-    <!-- Modal التأكيد-->
- 
+
+
     <!-- Modal التأكيد-->
     <div class="modal modal-top fade" id="modalConfirm" tabindex="-1">
       <div class="modal-dialog">
@@ -683,14 +634,14 @@
 
     <!-- Core JS -->
 
-    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../assets/vendor/js/menu.js"></script>
+    <script src="../../../assets/vendor/js/menu.js"></script>
 
     <!-- endbuild -->
 
@@ -704,7 +655,6 @@
   <!-- تحميل مكتبة jQuery + Select2 -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script type="module" src="../../assets/js/pages/employee-alimony-request-list.js"></script>
 
 <script>
   const LOGIN_PAGE = "../login.html"; 
@@ -713,7 +663,7 @@
   const payments = [];
 
   // عناصر
-  // const addPaymentBtn = document.getElementById('addPaymentBtn');
+  const addPaymentBtn = document.getElementById('addPaymentBtn');
   const payDate   = document.getElementById('payDate');
   const payAmount = document.getElementById('payAmount');
   const payMethod = document.getElementById('payMethod');
@@ -769,106 +719,106 @@
     );
   }
 
-  // // إضافة دفعة للجدول
-  // addPaymentBtn.addEventListener('click', () => {
-  //   errorBox.classList.add('d-none'); errorBox.textContent = '';
+  // إضافة دفعة للجدول
+  addPaymentBtn.addEventListener('click', () => {
+    errorBox.classList.add('d-none'); errorBox.textContent = '';
 
-  //   const dateVal = payDate.value;
-  //   const amountVal = payAmount.value;
-  //   const methodVal = payMethod.value;
-  //   const payerVal = payer.value;
-  //   const payerText = payer.options[payer.selectedIndex]?.text || '';
-  //   const decisionVal = decision.value;
-  //   const decisionText = decision.options[decision.selectedIndex]?.text || '';
-  //   const receiptFile = receipt.files?.[0] || null;
-  //   const notesVal = (notes.value || '').trim();
+    const dateVal = payDate.value;
+    const amountVal = payAmount.value;
+    const methodVal = payMethod.value;
+    const payerVal = payer.value;
+    const payerText = payer.options[payer.selectedIndex]?.text || '';
+    const decisionVal = decision.value;
+    const decisionText = decision.options[decision.selectedIndex]?.text || '';
+    const receiptFile = receipt.files?.[0] || null;
+    const notesVal = (notes.value || '').trim();
 
-  //   if(!dateVal || !amountVal || !methodVal || !payerVal || !decisionVal){
-  //     errorBox.textContent = 'من فضلك أكمل الحقول الإلزامية: التاريخ، المبلغ، الطريقة، الدافع، القرار.';
-  //     errorBox.classList.remove('d-none');
-  //     return;
-  //   }
+    if(!dateVal || !amountVal || !methodVal || !payerVal || !decisionVal){
+      errorBox.textContent = 'من فضلك أكمل الحقول الإلزامية: التاريخ، المبلغ، الطريقة، الدافع، القرار.';
+      errorBox.classList.remove('d-none');
+      return;
+    }
 
-  //   // اسم الحقل الذي سنستخدمه في FormData
-  //   const receiptField = receiptFile ? `receipt_${payments.length}` : null;
+    // اسم الحقل الذي سنستخدمه في FormData
+    const receiptField = receiptFile ? `receipt_${payments.length}` : null;
 
-  //   payments.push({
-  //     date: dateVal,
-  //     amount: amountVal,
-  //     method: methodVal,
-  //     payerId: payerVal,
-  //     payerText,
-  //     decisionId: decisionVal,
-  //     decisionText,
-  //     receiptFile,
-  //     receiptField, // نحتفظ باسم الحقل لربطه بالسجل
-  //     notes: notesVal
-  //   });
+    payments.push({
+      date: dateVal,
+      amount: amountVal,
+      method: methodVal,
+      payerId: payerVal,
+      payerText,
+      decisionId: decisionVal,
+      decisionText,
+      receiptFile,
+      receiptField, // نحتفظ باسم الحقل لربطه بالسجل
+      notes: notesVal
+    });
 
-  //   // تنظيف الحقول
-  //   payDate.value = '';
-  //   payAmount.value = '';
-  //   payMethod.value = '';
-  //   payer.value = '';
-  //   decision.value = '';
-  //   receipt.value = '';
-  //   notes.value = '';
+    // تنظيف الحقول
+    payDate.value = '';
+    payAmount.value = '';
+    payMethod.value = '';
+    payer.value = '';
+    decision.value = '';
+    receipt.value = '';
+    notes.value = '';
 
-  //   renderPayments();
-  // });
+    renderPayments();
+  });
 
-  // // حذف صف
-  // paymentsTableBody.addEventListener('click', (e) => {
-  //   const btn = e.target.closest('button[data-index]');
-  //   if(!btn) return;
-  //   const idx = parseInt(btn.getAttribute('data-index'), 10);
-  //   if(idx >= 0){
-  //     payments.splice(idx, 1);
-  //     renderPayments();
-  //   }
-  // });
+  // حذف صف
+  paymentsTableBody.addEventListener('click', (e) => {
+    const btn = e.target.closest('button[data-index]');
+    if(!btn) return;
+    const idx = parseInt(btn.getAttribute('data-index'), 10);
+    if(idx >= 0){
+      payments.splice(idx, 1);
+      renderPayments();
+    }
+  });
 
-  // // إرسال النموذج
-  // form.addEventListener('submit', async (e) => {
-  //   // اتركها افتراضيًا إن كان عندك submit كلاسيكي؛
-  //   // هنا مثال باستخدام fetch
-  //   e.preventDefault();
+  // إرسال النموذج
+  form.addEventListener('submit', async (e) => {
+    // اتركها افتراضيًا إن كان عندك submit كلاسيكي؛
+    // هنا مثال باستخدام fetch
+    e.preventDefault();
 
-  //   if(payments.length === 0){
-  //     errorBox.textContent = 'أضف دفعة واحدة على الأقل قبل الحفظ.';
-  //     errorBox.classList.remove('d-none');
-  //     return;
-  //   }
+    if(payments.length === 0){
+      errorBox.textContent = 'أضف دفعة واحدة على الأقل قبل الحفظ.';
+      errorBox.classList.remove('d-none');
+      return;
+    }
 
-  //   const fd = new FormData(form);
-  //   // أضف الملفات الفعلية
-  //   payments.forEach((p, i) => {
-  //     if(p.receiptFile && p.receiptField){
-  //       fd.append(p.receiptField, p.receiptFile, p.receiptFile.name);
-  //     }
-  //   });
+    const fd = new FormData(form);
+    // أضف الملفات الفعلية
+    payments.forEach((p, i) => {
+      if(p.receiptFile && p.receiptField){
+        fd.append(p.receiptField, p.receiptFile, p.receiptFile.name);
+      }
+    });
 
-  //   try {
-  //     // مثال إرسال
-  //     const res = await fetch(form.action, { method: 'POST', body: fd });
-  //     if(!res.ok) throw new Error('فشل الحفظ');
-  //     // نجاح
-  //     alert('تم حفظ الدفعات بنجاح');
-  //     // إعادة الضبط
-  //     payments.splice(0, payments.length);
-  //     renderPayments();
-  //     form.reset();
-  //   } catch(err){
-  //     errorBox.textContent = err.message || 'حدث خطأ أثناء الحفظ';
-  //     errorBox.classList.remove('d-none');
-  //   }
-  // });
+    try {
+      // مثال إرسال
+      const res = await fetch(form.action, { method: 'POST', body: fd });
+      if(!res.ok) throw new Error('فشل الحفظ');
+      // نجاح
+      alert('تم حفظ الدفعات بنجاح');
+      // إعادة الضبط
+      payments.splice(0, payments.length);
+      renderPayments();
+      form.reset();
+    } catch(err){
+      errorBox.textContent = err.message || 'حدث خطأ أثناء الحفظ';
+      errorBox.classList.remove('d-none');
+    }
+  });
 
-  // // تفريغ النموذج بالكامل
-  // document.getElementById('resetFormBtn').addEventListener('click', () => {
-  //   payments.splice(0, payments.length);
-  //   renderPayments();
-  // });
+  // تفريغ النموذج بالكامل
+  document.getElementById('resetFormBtn').addEventListener('click', () => {
+    payments.splice(0, payments.length);
+    renderPayments();
+  });
 </script>
 
 <!-- Main JS -->
