@@ -38,6 +38,18 @@
 
     <style>
    body { font-family: 'Cairo', sans-serif; text-align: right; }
+       .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
       .table-loading-overlay {
       position: absolute;
       top: 0;
@@ -107,6 +119,36 @@
 
 /* للحجم الصغير داخل القوائم لو احتجت */
 .toggle-switch.sm { --h: 22px; --w: 40px; --pad: 2px; }
+
+/* يخلي جسم المودال يسكّر Scroll لو المحتوى طويل */
+#modalConfirm .modal-dialog.modal-dialog-scrollable .modal-body {
+  max-height: 65vh; /* ضمن ارتفاع النافذة */
+  overflow-y: auto;
+}
+.agent-scroll{
+  max-height: 40vh;   /* ما يتجاوز ارتفاع المودال */
+  overflow-y: auto;
+  min-height: 160px;
+}
+
+
+/* شكل العنصر المختار */
+.agent-item.active,
+.agent-item:hover{
+  background-color: var(--bs-primary-bg-subtle);
+}
+/* صندوق الـselect يظهر بارتفاع ثابت ويتمرجل */
+.listbox-fixed {
+  max-height: 40vh;   /* لا تتجاوز المودال */
+  overflow-y: auto;
+}
+.agent-scroll{ max-height:240px; overflow-y:auto; }
+.direction-rtl{ direction:rtl; text-align:right; }
+/* لو ودك الكارد/المودال نفسه يكون Scroll */
+/* #modalConfirm .modal-dialog {
+  max-width: 720px; /* اختياري 
+}
+ */
     </style>
   </head>
 
@@ -277,6 +319,7 @@
      
                        <div class="container-xxl flex-grow-1 container-p-y"> 
                           <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+   <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
 
                 <div id="loadingSpinner" class="table-loading-overlay d-none">
                   <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
@@ -345,20 +388,25 @@
 </template>
 </div>
 </div>
+<div class="modal fade" id="modalAlertMessage" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="width: 50%;">
 
-<!-- <div class="modal fade" id="modalCourtDoc" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">قرار المحكمة — <span id="courtWifeName">—</span></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body p-0" style="height:75vh;">
-        <iframe id="courtDocFrame" src="" style="width:100%;height:100%;border:0;"></iframe>
-      </div>
-    </div>
-  </div>
-</div> -->
+                              <div class="modal-content">
+                              
+                                <div class="modal-body" style="    text-align-last: center;">
+                                  <p>
+                                  <span name ="MessageSpan" id="MessageSpan"></span>
+                                  </p>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                  <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                                    Close
+                                  </button>
+                                </div> -->
+                              </div>
+                            </div>
+                            </div>
+    
 <div class="modal fade" id="modalCourtDoc" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl" style="width: 50%;">
 
@@ -463,6 +511,11 @@
     <div class="modal fade" id="modalReject" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
+             <div id="formLoading" class="form-loading-overlay d-none">
+                <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;   ">
+                  <span class="visually-hidden">جاري التحميل...</span>
+                </div>
+              </div>
             <div class="modal-header">
             <h5 class="modal-title" id="modalScrollableTitle">ما هو سبب الرفض</h5>
             <button
@@ -475,14 +528,20 @@
                 
                 <label class="form-label" for="notes">سبب الرفض</label>
                 <input type="text" id="notes" class="form-control">
+ <br>
+                <div id="error-messageDialog" class="alert alert-danger d-none" role="alert"></div>
 
+
+   
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                 Close
             </button>
             <button type="button" class="btn btn-primary" id ="rejectSaveBtn">حفظ</button>
-            </div>
+               </div>
+
+
         </div>
         </div>
     </div>
@@ -494,8 +553,13 @@
  
     <!-- Modal التأكيد-->
     <div class="modal modal-top fade" id="modalConfirm" tabindex="-1">
-      <div class="modal-dialog">
-        <form class="modal-content">
+<div class="modal-dialog modal-dialog-scrollable" role="document">
+          <form class="modal-content">
+               <div id="formLoading-accept" class="form-loading-overlay d-none">
+                <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    ">
+                  <span class="visually-hidden">جاري التحميل...</span>
+                </div>
+              </div>
           <div class="modal-header">
             <h5 class="modal-title" id="modalTopTitle">تأكيد قرار نفقة</h5>
             <button
@@ -581,29 +645,33 @@
 
             </div>
 
-            <div class="col-md-6">
-              <label for="personName" class="form-label">اسم المحضر</label>
-              <div class="d-flex flex-nowrap gap-2">
-                <!-- القائمة المنسدلة -->
-                <select id="personName" name="personName" class="form-select flex-grow-1">
-                  <option selected disabled>اختر المحضر المكلف</option>
-                  <option value="1">أحمد محمد - 123456789</option>
-                  <option value="2">سالم علي - A1234567</option>
-                  <option value="3">محمود يوسف - 987654321</option>
-                </select>
-                <!-- الزر -->
-                <a href="../user-management/employee/add.html" class="btn btn-outline-primary pt-0 pb-0">
-                  +
-                </a>
-              </div>
-            </div>
+<div class="dropdown w-100" id="agentDropdown">
+  <button
+    class="btn btn-outline-secondary w-100 d-flex justify-content-between align-items-center"
+    type="button"
+    data-bs-toggle="dropdown"
+    data-bs-display="static"        
+    data-bs-boundary="viewport"       
+    aria-expanded="false"
+    id="agentDropdownBtn">
+    <span id="agentDropdownLabel">اختر</span>
+    <i class="bx bx-chevron-down"></i>
+  </button>
+
+  <div class="dropdown-menu w-100 p-2" style="max-width:none;">
+    <input type="text" class="form-control mb-2" id="agentFilterInput" placeholder="ابحث بالاسم أو الرقم...">
+    <div id="agentList" class="list-group agent-scroll"></div>
+  </div>
+</div>  <br>
+                <div id="error-messageDialog-accept" class="alert alert-danger d-none" role="alert"></div>
 
          <div class="modal-footer">
             <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
               Close
             </button>
-            <button type="button" class="btn btn-primary">حفظ</button>
-          </div>
+            <button type="button" class="btn btn-primary" id="accept-Alimony">حفظ</button>
+          </div>     
+
         </form>
       </div>
     </div>
@@ -708,7 +776,15 @@
 
 <script>
   const LOGIN_PAGE = "../login.html"; 
-
+  //  $(document).ready(function() {
+  //     // تفعيل البحث في القائمة
+  //     $('#followUpAgent').select2({
+  //       dir: "rtl", // دعم اللغة العربية
+  //       width: '100%',
+  //       placeholder: "اختر الزوج"
+  //     });
+   
+  //   });
 // مصفوفة الدفعات قبل الإرسال
   const payments = [];
 

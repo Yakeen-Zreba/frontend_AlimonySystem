@@ -7,13 +7,13 @@ export function showError(msg) {
   box.textContent = "";
   box.classList.add("d-none");
 }
-export function hideErrorDialog() {
-  const box = document.getElementById("error-messageDialog");
+export function hideErrorDialog(name="error-messageDialog") {
+  const box = document.getElementById(name);
   box.textContent = "";
   box.classList.add("d-none");
 }
-export function showErrorDialog(msg) {
-  const box = document.getElementById("error-messageDialog");
+export function showErrorDialog(msg,name="error-messageDialog") {
+  const box = document.getElementById(name);
   box.textContent = msg;
   box.classList.remove("d-none");
 }
@@ -29,11 +29,25 @@ export function hideSpinner() {
   document.getElementById("loadingSpinner").classList.add("d-none");
 }
 
-export function showSpinnerformLoading() {
-  console.log('formLoading')
-  document.getElementById("formLoading").classList.remove("d-none");
+export function showSpinnerformLoading(nameForm="formLoading") {
+  document.getElementById(nameForm).classList.remove("d-none");
 }
 
-export function hideSpinnerformLoading() {
-  document.getElementById("formLoading").classList.add("d-none");
+export function hideSpinnerformLoading(nameForm="formLoading") {
+  console.log(nameForm)
+  document.getElementById(nameForm).classList.add("d-none");
+}
+
+export function showSuccessMessage(msg) {
+  const box = document.getElementById("successMessageBox");
+  box.textContent = msg;
+  box.classList.remove("d-none");
+  setTimeout(() => box.classList.add("d-none"), 3000);
+}
+
+export function showSuccessMessageDialog(msg) {
+  const box = document.getElementById("successMessageDialog");
+  box.textContent = msg;
+  box.classList.remove("d-none");
+  setTimeout(() => box.classList.add("d-none"), 3000);
 }
