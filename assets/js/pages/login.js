@@ -29,6 +29,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
         console.log(response.results.personId)
     // خزن التوكن في localStorage
     localStorage.setItem('PersonId',response.results.personId) ;
+    localStorage.setItem('userId',response.results.userId) ;
     localStorage.setItem("jwtToken", response.results.token);
     // خزن اسم المستخدم/الدور  
     const username = document.getElementById("username").value.trim();
@@ -50,7 +51,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
      }
       else if(response.results.role=='3'){
               localStorage.setItem('userRole', 'man'); // أو 'user'
-                window.location.href = 'divorced-man/view.html';
+                window.location.href = 'divorced-man/index.html';
       }
        else if(response.results.role=='2'){
               localStorage.setItem('userRole', 'mohder'); // أو 'محضر'

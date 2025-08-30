@@ -153,13 +153,13 @@
                   <div>سجل النفقات </div>
                 </a>
               </li>
-              <li class="menu-item" id="adminGovAlmonyRequesrlist" style="display:none;">
+              <li class="menu-item " id="adminGovAlmonyRequesrlist" style="display:none;">
                 <a href="../employee/alimony-request-list.html" class="menu-link">
                   <div>سجل طلبات النفقات </div>
                 </a>
               </li>
-              <li class="menu-item"id="adminManAlmonyPayment" style="display:none;">
-                <a href="almony-payment.html" class="menu-link">
+              <li class="menu-item active"id="adminManAlmonyPayment" style="display:none;">
+                <a href="almony-payment.html" class="menu-link active">
                   <div>دفع نفقة</div>
                 </a>
               </li>
@@ -235,36 +235,43 @@
             <div class="container-xxl flex-grow-1 container-p-y">
                 <div class="row g-6">
                     <!-- Spinner-->
-                    <!-- <div id="formLoading" class="form-loading-overlay d-none">
+                    <div id="formLoading" class="form-loading-overlay d-none">
                     <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
                     <span class="visually-hidden">جاري التحميل...</span>
                     </div>
-                    </div> -->
+                    </div>
                 
-                    <form id="alimonyPaymentForm"action="#" >
+                    <form id="alimonyPaymentForm"  >
+                                                <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+                      <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
 
                     <div class="card mb-4">
                         <h5 class="card-header"> دفعة نفقة</h5>
 
                         <div class="card-body">
                         <!-- مدخلات الدفعة الواحدة -->
-                        <div class="row g-3 align-items-end" id="paymentInputs">
+                        <div class="row g-4 align-items-end" id="paymentInputs">
                           <!-- القرار المرتبط -->
-                            <div class="col-md-6 mb-4">
-                              <label class="form-label" for="decision">رقم قرار النفقة </label>
-                              <select id="decision" class="form-select" required>
-                                  <option value="" selected disabled>اختر قرار النفقة</option>
-                                  <option value="D-2024-001">قرار رقم D-2024-001 — شهري 500 د.ل</option>
-                                  <option value="D-2024-045">قرار رقم D-2024-045 — شهري 650 د.ل</option>
-                              </select>
-                            </div>
+                 
+                     <div class="col-md-5 mb-3">
+  <label for="decision" class="form-label"> رقم قرار النفقة </label>
+  <div class="d-flex flex-nowrap gap-2">
+    <select id="decision" name="decision" class="form-select flex-grow-1" data-role="1">
+      <option selected disabled>جاري التحميل...</option>
+    </select>
 
+  </div>
+</div>
                             <!-- تاريخ الدفع -->
-                            <div class="col-md-6 mb-4">
-                              <label class="form-label" for="payDate">تاريخ الدفع</label>
-                              <input type="date" id="payDate" class="form-control" required>
+                            <div class="col-md-3 mb-3">
+                              <label class="form-label" for="payDateFrom">تاريخ الدفع من</label>
+                              <input type="month" id="payDateFrom" class="form-control" required>
                             </div>
-
+  <!-- تاريخ الدفع -->
+                            <div class="col-md-4 mb-3">
+                              <label class="form-label" for="payDateTo">تاريخ الدفع الى</label>
+                              <input type="month" id="payDateTo" class="form-control" required>
+                            </div>
                             <!-- المبلغ -->
                             <div class="col-md-6 mb-4">
                               <label class="form-label" for="payAmount">المبلغ</label>
@@ -279,10 +286,8 @@
                               <label class="form-label" for="payMethod">طريقة الدفع</label>
                               <select id="payMethod" class="form-select" required>
                                   <option value="" selected disabled>اختر طريقة الدفع</option>
-                                  <option value="cash">نقدًا</option>
-                                  <option value="transfer">حوالة مصرفية</option>
-                                  <option value="cheque">شيك</option>
-                                  <option value="other">أخرى</option>
+                                  <option value="1">نقدًا</option>
+                                  <option value="2">شيك</option>
                               </select>
                             </div>
 
@@ -388,14 +393,15 @@
 
     <!-- Core JS -->
 
-    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../../assets/vendor/js/menu.js"></script>
+    <script src="../../assets/vendor/js/menu.js"></script>
+<script type="module" src="../../assets/js/pages/almony-payment.js"></script>
 
     <!-- endbuild -->
 
@@ -414,7 +420,15 @@
 
   <script>
       const LOGIN_PAGE = "../login.html"; 
-
+    $(document).ready(function() {
+      // تفعيل البحث في القائمة
+      $('#divorcedMan').select2({
+        dir: "rtl", // دعم اللغة العربية
+        width: '100%',
+        placeholder: "اختر الزوج"
+      });
+    
+    });
        // تحديدي العناصر الظاهرة حسب ال role
     document.addEventListener("DOMContentLoaded", () => {
     const userRole = localStorage.getItem("userRole");
