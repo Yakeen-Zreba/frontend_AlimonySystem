@@ -37,7 +37,35 @@
     <script src="../../../assets/js/config.js"></script>
 
     <style>
-      body { font-family: 'Cairo', sans-serif; text-align: right; }
+     body { font-family: 'Cairo', sans-serif; text-align: right; }
+       .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+      .table-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .position-relative-wrapper {
+      position: relative;
+    }
     .form-loading-overlay {
       position: absolute;
       top: 0;
@@ -54,7 +82,68 @@
     .form-position-relative {
       position: relative;
     }
-    
+    /* سويتش iOS-style */
+.toggle-switch {
+  --h: 26px;
+  --w: 48px;
+  --pad: 3px;
+
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  border: 0;
+  outline: 0;
+  padding: 0;
+  border-radius: 9999px;
+  background: #e5e7eb;            /* رمادي */
+  cursor: pointer;
+}
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: var(--pad);
+  left: var(--pad);
+  width: calc(var(--h) - var(--pad) * 2);
+  height: calc(var(--h) - var(--pad) * 2);
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+  transition: transform .18s ease;
+}
+.toggle-switch.on {
+  background: #10b981;            /* أخضر */
+}
+.toggle-switch.on::before {
+  transform: translateX(calc(var(--w) - var(--h)));
+}
+
+/* للحجم الصغير داخل القوائم لو احتجت */
+.toggle-switch.sm { --h: 22px; --w: 40px; --pad: 2px; }
+
+/* يخلي جسم المودال يسكّر Scroll لو المحتوى طويل */
+#modalConfirm .modal-dialog.modal-dialog-scrollable .modal-body {
+  max-height: 65vh; /* ضمن ارتفاع النافذة */
+  overflow-y: auto;
+}
+.agent-scroll{
+  max-height: 40vh;   /* ما يتجاوز ارتفاع المودال */
+  overflow-y: auto;
+  min-height: 160px;
+}
+
+
+/* شكل العنصر المختار */
+.agent-item.active,
+.agent-item:hover{
+  background-color: var(--bs-primary-bg-subtle);
+}
+/* صندوق الـselect يظهر بارتفاع ثابت ويتمرجل */
+.listbox-fixed {
+  max-height: 40vh;   /* لا تتجاوز المودال */
+  overflow-y: auto;
+}
+.agent-scroll{ max-height:240px; overflow-y:auto; }
+.direction-rtl{ direction:rtl; text-align:right; }
     
     </style>
   </head>
@@ -230,236 +319,90 @@
           </nav>
 
           <!-- / Navbar -->
+                
+  <div class="content-wrapper">
+     
+                       <div class="container-xxl flex-grow-1 container-p-y"> 
+                          <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+   <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
 
-        <div class="content-wrapper">
-            <!-- Content -->
-            <div class="container-xxl flex-grow-1 container-p-y">
-                <div class="row g-6">
-                    <!-- Spinner-->
-                    <!-- <div id="formLoading" class="form-loading-overlay d-none">
-                    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
+                <div id="loadingSpinner" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
                     <span class="visually-hidden">جاري التحميل...</span>
-                    </div>
-                    </div> -->
-
-                    <div class="row mb-12 g-6">
-
-                      <!--Card-->
-                      <div class="col-md-6 col-lg-4">
-                          <div class="card">
-                              <div class="card-header">
-                                <h5>رقم قرار النفقة : D-2025-001</h5>
-                              </div>
-                                  <div class="card-body">
-                                      <p class="card-text" id="monthlyAmount">المبلغ المتفق عليه  :   500د.ل</p>
-                                      <p class="card-text" id="exHusbandName ">اسم الزوج : خالد ناصر على</p>
-                                      <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
-                                      <p class="card-text" id="payDate">تاريخ الدفع  :   17/05/2025</p>
-                                      <p class="card-text" id="amountPaid">المبلغ المدفوع  :   450د.ل</p>
-                                      <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
-                                      <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
-                                      <a href="javascript:void(0)" >عرض الإيصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
-                                      
-                                  </div>
-                              <div class="card-footer text-body-secondary text-center">2 days ago</div>
-                          </div>
-                      </div>
-                      <!--/Card-->
-
-
-                      <!--Card-->
-                      <div class="col-md-6 col-lg-4">
-                          <div class="card">
-                              <div class="card-header">
-                                <h5>رقم قرار النفقة : D-2025-001</h5>
-                              </div>
-                                  <div class="card-body">
-                                      <p class="card-text" id="monthlyAmount">المبلغ المتفق عليه  :   500د.ل</p>
-                                      <p class="card-text" id="exHusbandName ">اسم الزوج : خالد ناصر على</p>
-                                      <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
-                                      <p class="card-text" id="payDate">تاريخ الدفع  :   17/05/2025</p>
-                                      <p class="card-text" id="amountPaid">المبلغ المدفوع  :   450د.ل</p>
-                                      <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
-                                      <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
-                                      <a href="javascript:void(0)" >عرض الإصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
-                                      
-                                  </div>
-                              <div class="card-footer text-body-secondary text-center">2 days ago</div>
-                          </div>
-                      </div>
-                      <!--/Card-->
-
-                      <!--Card-->
-                      <div class="col-md-6 col-lg-4">
-                          <div class="card">
-                              <div class="card-header">
-                                <h5>رقم قرار النفقة : D-2025-001</h5>
-                              </div>
-                                  <div class="card-body">
-                                      <p class="card-text" id="monthlyAmount">المبلغ المتفق عليه  :   500د.ل</p>
-                                      <p class="card-text" id="exHusbandName ">اسم الزوج : خالد ناصر على</p>
-                                      <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
-                                      <p class="card-text" id="payDate">تاريخ الدفع  :   17/05/2025</p>
-                                      <p class="card-text" id="amountPaid">المبلغ المدفوع  :   450د.ل</p>
-                                      <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
-                                      <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
-                                      <a href="javascript:void(0)" >عرض الإيصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
-                                      
-                                  </div>
-                              <div class="card-footer text-body-secondary text-center">2 days ago</div>
-                          </div>
-                      </div>
-                      <!--/Card-->
-
-                    </div>
-                 
-                </div>
-            </div>
-        </div>    
-    <!-- / Content -->
-
-    <!-- Modal التعديل-->
-    <div class="modal modal-top fade" id="modalEdit" tabindex="-1">
-      <div class="modal-dialog">
-        <form class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalTopTitle">تعديل دفع نفقة</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"></button>
-          </div>
-
-          <div class="modal-body">
-            
-            <!-- القرار المرتبط -->
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <label class="form-label" for="decision">قرار النفقة </label>
-                  <select id="decision" class="form-select" required>
-                      <option value="" selected disabled>اختر قرار النفقة</option>
-                      <option value="D-2024-001">قرار رقم D-2024-001 — شهري 500 د.ل</option>
-                      <option value="D-2024-045">قرار رقم D-2024-045 — شهري 650 د.ل</option>
-                  </select>
-                </div>
-              <!-- تاريخ الدفع -->
-                <div class="col-md-6 mb-4">
-                  <label class="form-label" for="payDate">تاريخ الدفع</label>
-                  <input type="date" id="payDate" class="form-control" required>
-                </div>
-              </div>
-
-            <div class="row">
-                <!-- تاريخ الدفع -->
-                <div class="col-md-6 mb-4">
-                  <label class="form-label" for="payDate">تاريخ الدفع</label>
-                  <input type="date" id="payDate" class="form-control" required>
-                </div>
-                <!-- المبلغ -->
-                <div class="col-md-6 mb-4">
-                  <label class="form-label" for="payAmount">المبلغ</label>
-                  <div class="input-group">
-                      <input type="number" min="0" step="0.01" id="payAmount" class="form-control" placeholder="0.00" required>
-                      <span class="input-group-text">د.ل</span>
                   </div>
                 </div>
-            </div>
+    <div class="row g-6" id="requestsGrid"></div>
+<!-- قالب الكرت (لا يُعرض؛ يُستنسخ بالـJS) -->
+<template id="requestCardTpl">
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-header" style="    font-weight: bold;">
+        <h5 class="mb-0">رقم قرار النفقة : <span data-field="courtDecisionNo"></span></h5>
+      </div>
 
-            <div class="row">
-              <!-- طريقة الدفع -->
-              <div class="col-md-6 mb-4">
-                <label class="form-label" for="payMethod">طريقة الدفع</label>
-                <select id="payMethod" class="form-select" required>
-                    <option value="" selected disabled>اختر طريقة الدفع</option>
-                    <option value="cash">نقدًا</option>
-                    <option value="transfer">حوالة مصرفية</option>
-                    <option value="cheque">شيك</option>
-                    <option value="other">أخرى</option>
-                </select>
-              </div>
+      
+<div class="card-body">
+  <!-- اسم المطلّقة -->
+  <p class="card-text mb-3">
+   المبلغ المتفق عليه شهرياٌ: <span data-field="monthlyAmount"></span>
+  </p>
 
-              <!-- ملاحظات -->
-              <div class="col-md-6 mb-4">
-                <label class="form-label" for="notes">ملاحظات</label>
-                <input type="text" id="notes" class="form-control" placeholder="معلومة إضافية (اختياري)">
-              </div>
+  <!-- من قدّم الطلب (زوجة / موظف حكومي) -->
+  <p class="card-text mb-3">
+  اسم الزوج: <span data-field="husbandName"></span>
+  </p>
 
-            </div>
-          <!-- إيصال الدفع -->
-          <div class="col-md-12 mb-4">
-            <label class="form-label" for="receipt">إيصال الدفع (PDF/JPG/PNG)</label>
-            <input type="file" id="receipt" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-          </div>
+  <!-- اسم مقدّم الطلب -->
+  <p class="card-text mb-3">
+    اسم المطلقة : <span data-field="wifeName"></span>
+  </p>
+  <!-- اسم مقدّم الطلب -->
+  <p class="card-text mb-3">
+   تاريخ الدفع :<span data-field="payDate"></span>
+  </p>
+    <p class="card-text mb-3">
+    المبلغ المدفوع :<span data-field="amountPaid"></span>
+  </p>
+    <p class="card-text mb-3">
+    فترة الدفع عن شهر: &nbsp;&nbsp;<span data-field="periodFrom" style="color:#83B582;     font-weight: bold;"></span>
 
-          </div>
+       إلى شهر:&nbsp;&nbsp;<span data-field="periodTo" style="color:#83B582;     font-weight: bold;"></span>
+  </p>
+   
+   <p class="card-text mb-3">
+   طريقة الدفع :<span data-field="method"></span>
+  </p>
+ <p class="card-text mb-3">
+   حالة الدفع :<span data-field="state"></span>
+  </p>
 
-          <div class="modal-footer">
-            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">حفظ</button>
-          </div>
-        </form>
+
+ <div class="d-block mb-3">
+    <p class="card-text mb-3">
+   ملاحظات:<span data-field="notes"></span>
+  </p>
+  </div>
+  <div class="d-block mb-3" data-field="docLinks"></div>
+
+  <div class="d-block mb-3">
+     <!-- <button class="btn btn-link ps-0" type="button" data-action="showChildren">
+    عرض الايصال (<span data-field="childrenCount">0</span>)
+  </button> -->
+  </div>
+
+</div>
+
+
+      <div class="card-footer text-body-secondary text-center">
+        <span data-field="createdAgo">—</span>
       </div>
     </div>
-    <!--/model-->
+  </div>
+</template>
+</div>
+</div>
 
-    <!-- نافذة سبب الرفض -->
-    <!-- Modal -->
-    <div class="modal fade" id="modalReject" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="modalScrollableTitle">ما هو سبب الرفض</h5>
-            <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                
-                <label class="form-label" for="notes">سبب الرفض</label>
-                <input type="text" id="notes" class="form-control">
 
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                Close
-            </button>
-            <button type="button" class="btn btn-primary">حفظ</button>
-            </div>
-        </div>
-        </div>
-    </div>
-    <!--/model-->
 
     <!-- Modal الملف الشخصي-->
             <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
@@ -537,14 +480,16 @@
 
     <!-- Core JS -->
 
-    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../../assets/vendor/js/menu.js"></script>
+    <script src="../../assets/vendor/js/menu.js"></script>
+<script type="module" src="../../assets/js/pages/alimony-payment-list.js"></script>
+
 
     <!-- endbuild -->
 
