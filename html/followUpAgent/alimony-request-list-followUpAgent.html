@@ -1,0 +1,620 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class="layout-menu-fixed layout-compact"
+  data-assets-path="../../../assets/"
+  data-template="vertical-menu-template-free">
+   <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>نظام إدارة النفقات</title>
+    <meta name="description" content="نظام إدارة النفقات" />
+
+    <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
+
+    <!-- الخط -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- الأيقونات -->
+    <link rel="stylesheet" href="../../../assets/vendor/fonts/iconify-icons.css" />
+
+    <!-- CSS الأساسي -->
+    <link rel="stylesheet" href="../../../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../../../assets/css/demo.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Flatpickr CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
+
+    <!-- أدوات المساعدة -->
+    <script src="../../../assets/vendor/js/helpers.js"></script>
+    <script src="../../../assets/js/config.js"></script>
+
+    <style>
+body { font-family: 'Cairo', sans-serif; text-align: right; }
+       .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+      .table-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .position-relative-wrapper {
+      position: relative;
+    }
+    .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-position-relative {
+      position: relative;
+    }
+    /* سويتش iOS-style */
+.toggle-switch {
+  --h: 26px;
+  --w: 48px;
+  --pad: 3px;
+
+  position: relative;
+  width: var(--w);
+  height: var(--h);
+  border: 0;
+  outline: 0;
+  padding: 0;
+  border-radius: 9999px;
+  background: #e5e7eb;            /* رمادي */
+  cursor: pointer;
+}
+.toggle-switch::before {
+  content: "";
+  position: absolute;
+  top: var(--pad);
+  left: var(--pad);
+  width: calc(var(--h) - var(--pad) * 2);
+  height: calc(var(--h) - var(--pad) * 2);
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+  transition: transform .18s ease;
+}
+.toggle-switch.on {
+  background: #10b981;            /* أخضر */
+}
+.toggle-switch.on::before {
+  transform: translateX(calc(var(--w) - var(--h)));
+}
+
+/* للحجم الصغير داخل القوائم لو احتجت */
+.toggle-switch.sm { --h: 22px; --w: 40px; --pad: 2px; }
+
+/* يخلي جسم المودال يسكّر Scroll لو المحتوى طويل */
+#modalConfirm .modal-dialog.modal-dialog-scrollable .modal-body {
+  max-height: 65vh; /* ضمن ارتفاع النافذة */
+  overflow-y: auto;
+}
+.agent-scroll{
+  max-height: 40vh;   /* ما يتجاوز ارتفاع المودال */
+  overflow-y: auto;
+  min-height: 160px;
+}
+
+
+/* شكل العنصر المختار */
+.agent-item.active,
+.agent-item:hover{
+  background-color: var(--bs-primary-bg-subtle);
+}
+/* صندوق الـselect يظهر بارتفاع ثابت ويتمرجل */
+.listbox-fixed {
+  max-height: 40vh;   /* لا تتجاوز المودال */
+  overflow-y: auto;
+}
+.agent-scroll{ max-height:240px; overflow-y:auto; }
+.direction-rtl{ direction:rtl; text-align:right; }
+    
+    </style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="#" class="app-brand-link">
+              <span class="app-brand-logo demo "><img src="../../../assets/img/favicon/short_logo.png" width="50"></span>
+              <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
+            </a>
+          </div>
+            <ul class="menu-inner py-3">
+            
+            <!-- الرئيسية-->
+            <li class="menu-item ">
+              <a href="index.html" class="menu-link ">
+                  <i class="menu-icon bx  bx-home"></i>
+                  <div>الرئيسية</div>
+              </a>
+            </li>
+            
+            <!-- الملف الشخصي -->
+            <li class="menu-item">
+              <a href="#" 
+                  class="menu-link"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalAccount">
+                  <i class="menu-icon bx bx-user"></i>
+                  <div>الملف الشخصي</div>
+              </a>
+            </li>
+
+            <!-- إدارة النفقات -->
+            <li class="menu-item open">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
+              <div>إدارة النفقات</div>
+            </a>
+            <ul class="menu-sub ">
+              <li class="menu-item active" >
+                <a href="alimony-request-list-followUpAgent.html" class="menu-link">
+                  <div>طلبات النفقات</div>
+                </a>
+              </li>
+              <li class="menu-item">
+                <a href="alimony-payment-confirm-followUpAgent.html" class="menu-link">
+                  <div>تأكيد استلام النفقات </div>
+                </a>
+              </li>
+           
+            </ul>
+          </li>       
+            
+            <!--التقارير-->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-bar-chart'  ></i> 
+              <div> التقارير</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item ">
+                <a href="alimony-payment-report-followUpAgent.html" class="menu-link">
+                  <div>تقرير بالمدفوعات</div>
+                </a>
+              </li>
+            </ul>
+            </li>
+
+            <!-- تسجيل الخروج -->
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
+                  <i class="menu-icon bx bx-log-out" id="logout-btn"></i>
+                  <div>تسجيل الخروج</div>
+              </a>
+            </li>
+            
+          </ul>
+        </aside>
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+          <nav
+            class="layout-navbar container-xxl navbar-detached navbar navbar-expand-xl align-items-center bg-navbar-theme"
+            id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="icon-base bx bx-menu icon-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
+                <h4 class="mb-0 me-4 fw-bold">قائمة طلبات النفقات </h4>
+              <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+
+                <!-- رسالة الترحيب -->
+                <li class="nav-item lh-1 me-4"> 
+                  <p class="mb-0 text-muted" id="usernameDisplay"></p>
+                </li>
+
+
+                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
+                    <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                        <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                    </div>
+                    </a>
+                </li>
+                </ul>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+                
+  <div class="content-wrapper">
+     
+                       <div class="container-xxl flex-grow-1 container-p-y"> 
+                          <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+   <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
+
+                <div id="loadingSpinner" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">جاري التحميل...</span>
+                  </div>
+                </div>
+    <div class="row g-6" id="requestsGrid"></div>
+<!-- قالب الكرت (لا يُعرض؛ يُستنسخ بالـJS) -->
+<template id="requestCardTpl">
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-header">
+        <h5 class="mb-0">رقم قضية الطلاق : <span data-field="caseNumber"></span></h5>
+      </div>
+
+      <div class="card-header py-2" data-field="notFoundBadge" class="invisible">
+        <label  style="color: var(--bs-danger); text-align:center;">
+          رقم القضية غير مسجل في النظام
+        </label>
+      </div>
+<div class="card-body">
+  <!-- اسم المطلّقة -->
+  <p class="card-text mb-3">
+    اسم المطلّقة : <span data-field="wifeName">—</span>
+  </p>
+
+  <!-- من قدّم الطلب (زوجة / موظف حكومي) -->
+  <p class="card-text mb-3">
+    تم ادخال الطلب من قبل : <span data-field="requesterLabel">—</span>
+  </p>
+
+  <!-- اسم مقدّم الطلب -->
+  <p class="card-text mb-3">
+    اسم مقدّم الطلب : <span data-field="submittedByName">—</span>
+  </p>
+  <!-- اسم مقدّم الطلب -->
+  <p class="card-text mb-3">
+    حالة الطلب: <span data-field="State">—</span>
+  </p>
+    <label data-field="IsReject" class="invisible" >
+       سبب الرفض    : <span data-field="StopReason" class="card-text mb-3"></span>
+        </label>
+
+ 
+ 
+  <div class="d-block mb-3">
+     <button class="btn btn-link ps-0" type="button" data-action="showChildren">
+    عرض الأطفال (<span data-field="childrenCount">0</span>)
+  </button>
+    <a href="#" target="_blank" rel="noopener" data-field="docLink">عرض مستند قرار الطلاق</a>
+  </div>
+
+</div>
+
+
+      <div class="card-footer text-body-secondary text-center">
+        <span data-field="createdAgo">—</span>
+      </div>
+    </div>
+  </div>
+</template>
+</div>
+</div>
+<div class="modal fade" id="modalAlertMessage" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="width: 50%;">
+
+                              <div class="modal-content">
+                              
+                                <div class="modal-body" style="    text-align-last: center;">
+                                  <p>
+                                  <span name ="MessageSpan" id="MessageSpan"></span>
+                                  </p>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                  <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                                    Close
+                                  </button>
+                                </div> -->
+                              </div>
+                            </div>
+                            </div>
+    
+
+<!-- مودال عرض الأطفال -->
+ <div class="modal fade" id="modalShowChildren" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalScrollableTitle">الأطفـــال</h5>
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            <!-- <div id="alertContainer" class="mt-3"></div>
+            Spinner overlay
+            <div id="loadingSpinner" class="table-loading-overlay d-none">
+            <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">جاري التحميل...</span>
+            </div>
+            </div> -->
+            
+            <div class="table-responsive text-nowrap">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>الاسم كامل</th>
+                    <th>تاريخ الميلاد</th>
+                    <th>الجنس</th>
+                    <th>العمر </th>
+                    <th>الحالة</th>
+                    <th>تعديل</th>
+                    <th>حذف</th>
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" id="chiledTableBody">
+                    <td>خالد سليمان الهادي </td>
+                    <td>10/10/2021</td>
+                    <td>ذكر</td>
+                    <td>4 </td>
+                    <td>مفعل</td>
+                    <td>
+                        <a class="dropdown-item btn-edit" href="#">
+                            <i class="icon-base bx bx-edit-alt me-1"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <!-- <a class="dropdown-item btn-delete" href="#">
+                            <i class="icon-base bx bx-trash me-1"></i>
+                        </a> -->
+
+                        <button
+  class="toggle-switch sm"
+  type="button"
+  role="switch"
+  aria-checked="true"
+  data-id="{{personId}}"
+  data-active="true">
+</button>
+
+<!-- (اختياري) شارة الحالة في نفس الصف لتتحدّث تلقائيًا -->
+<span class="badge status-badge bg-label-success">نشط</span>
+                    </td>
+
+                </tbody>
+            </table>
+            </div>
+            
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                Close
+            </button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+<!-- Modal الملف الشخصي-->
+            <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
+              <div class="modal-dialog">
+                <form class="modal-content" id ="FormModalAccount"> 
+                     <div id="loadingFormAccountModel" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">جاري التحميل...</span>
+                  </div>
+                </div>
+              <div id="ErrorFormAccountModel" class="alert alert-danger d-none" role="alert"></div>
+                     <div id="SuccFormAccountModel" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
+
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalTopTitle">  بيانات الحساب</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    
+                  <div class="mb-3 col-md-12">
+                    <label for="usernameModalAccount" class="form-label">اسم المستخدم</label>
+                    <input type="text" class="form-control" id="usernameModalAccount" name="usernameModalAccount" readonly>
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="passwordChange" class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-control" id="passwordChange" name="passwordChange" placeholder="********" minlength="8">
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="confPasswordChange" class="form-label">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-control" id="confPasswordChange" name="confPasswordChange" placeholder="********" minlength="8">
+                  </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+<button type="button" class="btn btn-primary" id="accountSaveBtn">حفظ</button>
+                  </div>
+                </form>
+              </div>
+            </div></div>
+            <!--/model-->
+
+
+    <!-- Footer -->
+    <footer class="content-footer footer bg-footer-theme">
+        <div class="container-xxl">
+        <div
+            class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+            <div class="mb-2 mb-md-0">
+            &#169;
+            <script>
+                document.write(new Date().getFullYear());
+            </script>
+                جميع الحقوق محفوظة - نظام النفقات
+            </div>
+            <div class="d-none d-lg-inline-block">
+            <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
+            <a href="#" target="_blank" class="footer-link">Support</a>
+            </div>
+        </div>
+        </div>
+    </footer>
+    <!-- / Footer -->
+    <div class="content-backdrop fade"></div>
+    </div>
+    <!-- Content wrapper -->
+    </div>
+    <!-- / Layout page -->
+</div>
+
+      <!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+</div>
+    <!-- / Layout wrapper -->
+
+    <!-- Core JS -->
+
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
+
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
+
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="../../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS -->
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    
+    
+
+   <!-- Select2 JS -->
+  <!-- تحميل مكتبة jQuery + Select2 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script type="module" src="../../assets/js/pages/woman-alimony-request-list.js"></script>
+<script>
+  const LOGIN_PAGE = "../login.html"; 
+
+
+          // تحديدي العناصر الظاهرة حسب ال role
+    document.addEventListener("DOMContentLoaded", () => {
+    const userRole = localStorage.getItem("userRole");
+
+    if (!userRole) return; // إذا ما في تسجيل دخول
+
+    // إظهار/إخفاء العناصر حسب الدور
+    if (userRole === "admin" || userRole === "gov") {
+        document.getElementById("adminGovUserManagement").style.display = "block";
+        document.getElementById("adminGovDivorceManagement").style.display = "block";
+        document.getElementById("adminGovAlmonyPaymentList").style.display = "block";
+        document.getElementById("adminGovAlmonyRequestlist").style.display = "block";
+        document.getElementById("adminGovHome").style.display = "block";
+    }
+
+    if (userRole === "admin" || userRole === "woman" ) {
+        document.getElementById("adminWomanAlmonyRequesr").style.display = "block";
+    }
+
+    if (userRole === "admin" || userRole === "man" ) {
+        document.getElementById("adminManAlmonyPayment").style.display = "block";
+    }
+    if (userRole === "woman") {
+        document.getElementById("womanAlmonyPaymentList").style.display = "block";
+        document.getElementById("womanHome").style.display = "block";
+        document.getElementById("womanAlmonyRequestlist").style.display = "block";
+    }
+    });  
+
+
+// مصفوفة الدفعات قبل الإرسال
+  const payments = [];
+
+  // عناصر
+  const addPaymentBtn = document.getElementById('addPaymentBtn');
+  const payDate   = document.getElementById('payDate');
+  const payAmount = document.getElementById('payAmount');
+  const payMethod = document.getElementById('payMethod');
+  const payer     = document.getElementById('payer');
+  const decision  = document.getElementById('decision');
+  const receipt   = document.getElementById('receipt');
+  const notes     = document.getElementById('notes');
+
+  const paymentsTableBody = document.getElementById('paymentsTableBody');
+  const paymentsJson = document.getElementById('paymentsJson');
+  const errorBox = document.getElementById('paymentError');
+  const form = document.getElementById('alimonyPaymentForm');
+
+  // العرض
+  function formatDate(iso){
+    if(!iso) return '';
+    const [y,m,d] = iso.split('-');
+    return `${d}/${m}/${y}`;
+  }
+  function methodLabel(v){
+    return v==='cash'?'نقدًا':v==='transfer'?'حوالة':v==='cheque'?'شيك':v==='other'?'أخرى':'';
+  }
+
+  // إعادة رسم الجدول
+ 
+</script>
+
+<!-- Main JS -->
+    <script src="../../../assets/js/main.js"></script>
+    <script type="module" src="../../../assets/js/pages/index.js"></script>
+
+    <!-- Page JS -->
+   <script type="module" src="../../../assets/js/pages/alimony-request.js"></script>
+
+<script type="module" src="../../assets/js/pages/logout.js"></script>
+    <script type="module" src="../../assets/js/pages/change-password.js"></script>
+
+
+ </body>
+</html>

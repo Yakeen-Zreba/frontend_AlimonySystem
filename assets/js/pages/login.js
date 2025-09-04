@@ -40,10 +40,6 @@ document.getElementById("formLogin").addEventListener("submit", async function (
     hideSpinnerformLoading()
     // انتقل للصفحة التالية
 
-
-    console.log(response)
-    console.log(response.results.role)
-    console.log(response.results.role)
      if(response.results.role=='5' || response.results.role=='4' ){
       localStorage.setItem('userRole', 'woman'); // أو 'user'
 
@@ -55,7 +51,7 @@ document.getElementById("formLogin").addEventListener("submit", async function (
       }
        else if(response.results.role=='2'){
               localStorage.setItem('userRole', 'mohder'); // أو 'محضر'
-                window.location.href = 'divorced-man/view.html';
+                window.location.href = 'followUpAgent/index.html';
       }
        else if  (response.results.role=='1'){
          localStorage.setItem('userRole', 'gov'); // أو 'user'
