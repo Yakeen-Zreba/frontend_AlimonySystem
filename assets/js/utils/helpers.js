@@ -38,8 +38,8 @@ export function hideSpinnerformLoading(nameForm="formLoading") {
   document.getElementById(nameForm).classList.add("d-none");
 }
 
-export function showSuccessMessage(msg) {
-  const box = document.getElementById("successMessageBox");
+export function showSuccessMessage(msg,name='successMessageBox') {
+  const box = document.getElementById(name);
   box.textContent = msg;
   box.classList.remove("d-none");
   setTimeout(() => box.classList.add("d-none"), 3000);

@@ -65,6 +65,7 @@
     .form-position-relative {
       position: relative;
     }
+    
   </style>
   </head>
 
@@ -80,16 +81,16 @@
               <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
             </a>
           </div>
-          <ul class="menu-inner py-3">
-
+                    <ul class="menu-inner py-3">
+            
             <!-- الرئيسية-->
-            <li class="menu-item " id="adminGovHome" style="display:none;">
-              <a href="../../admin/dashboard.html" class="menu-link ">
+            <li class="menu-item ">
+              <a href="index.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
             </li>
-
+            
             <!-- الملف الشخصي -->
             <li class="menu-item">
               <a href="#" 
@@ -101,85 +102,42 @@
               </a>
             </li>
 
-
-            <!-- إدارة المستخدمين --> 
-            <li class="menu-item open"> 
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon bx bx-user"></i>
-                <div>إدارة المستخدمين</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item active">
-                  <a href="#" class="menu-link">
-                    <div>الزوج السابق</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="../divorced-woman/view.html" class="menu-link">
-                    <div>المطلقة/وكيل المطلقة</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="../employee/view.html" class="menu-link">
-                    <div>الموظف الحكومي</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            <!--وقائع الطلاق-->
-          <li class="menu-item ">
-              <a href="../../management-divorce/view.html" class="menu-link">
-                <i class="menu-icon bx bx-file"></i>
-                <div>وقائع الطلاق</div>
-              </a>
-          </li> 
-
-          <!-- إدارة النفقات -->
-            <li class="menu-item">
+            <!-- إدارة النفقات -->
+            <li class="menu-item ">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
               <div>إدارة النفقات</div>
             </a>
-            <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="../../divorced-woman/almony-request.html" class="menu-link">
-                  <div>طلب نفقة</div>
+            <ul class="menu-sub ">
+              <li class="menu-item " >
+                <a href="alimony-request-list-followUpAgent.html" class="menu-link">
+                  <div>طلبات النفقات</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a href="../../employee/alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
+                <a href="alimony-payment-confirm-followUpAgent.html" class="menu-link">
+                  <div>تأكيد استلام النفقات </div>
                 </a>
               </li>
-              <li class="menu-item">
-                <a href="../../employee/alimony-request-list.html" class="menu-link">
-                  <div>طلبات نفقة قيد المراجعة </div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="../../divorced-man/almony-payment.html" class="menu-link">
-                  <div>دفع نفقة</div>
-                </a>
-              </li>
+           
             </ul>
-          </li>
-
+          </li>       
+            
             <!--التقارير-->
-            <li class="menu-item">
+            <li class="menu-item open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-bar-chart'  ></i> 
               <div> التقارير</div>
             </a>
-            <ul class="menu-sub">
-              <li class="menu-item ">
-                <a href="../../employee/alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقات </div>
+            <ul class="menu-sub ">
+              <li class="menu-item active">
+                <a href="alimony-payment-report-followUpAgent.html" class="menu-link">
+                  <div>تقرير بالمدفوعات</div>
                 </a>
               </li>
             </ul>
             </li>
-            
+
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
               <a href="#" class="menu-link ">
@@ -187,7 +145,7 @@
                   <div>تسجيل الخروج</div>
               </a>
             </li>
-
+            
           </ul>
         </aside>
 
@@ -224,7 +182,7 @@
                 </li>
 
                 <!-- User -->
-                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
@@ -233,7 +191,7 @@
                       <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
-                </li> -->
+                </li>
                 <!--/ User -->
               </ul>
             </div>
@@ -245,52 +203,53 @@
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-
+      
               <!--top card -->  
               <div class="row">
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <div class="card-body">
-                      <a href="../divorced-woman/view.html" class="btn btn-outline-secondary">المطلقة / وكيل المطلقة</a>
-                      <a href="#" class="btn btn-secondary">الزوج السابق</a>
-                      <a href="../employee/view.html" class="btn btn-outline-secondary">موظف حكومي / محضر</a>
+                     <h4>تقرير بحالة النفقة </h4>
                       <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
                   </div>
                 </div>
               </div>
               <!--/top card --> 
-              
+
               <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
 
               <!-- Hoverable Table rows -->
               <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                  <h5 class="mb-0">الأزواج</h5>
-                  <a href="add.html" class="btn btn-primary">إضافة الزوج السابق</a>
+                  <h5 class="mb-0"></h5>
                 </div>
                 <div id="alertContainer" class="mt-3"></div>
                 
                 <!-- Spinner overlay -->
-                <div id="loadingSpinner" class="table-loading-overlay d-none">
+                <!-- <div id="loadingSpinner" class="table-loading-overlay d-none">
                   <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
                     <span class="visually-hidden">جاري التحميل...</span>
                   </div>
-                </div>
+                </div> -->
 
 
                 <div class="table-responsive text-nowrap">
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th>الاسم كامل</th>
-                        <th>البريد الالكتروني</th>
-                        <th>الهاتف</th>
-                        <th>الحالة</th>
-                        <th>الحدث</th>
+                        <th> رقم قرار النفقة</th>
+                        <th> تاريخ الدفع</th>
+                        <th>اسم الزوجة</th>
+                        <th>اسم الزوج</th>
+                        <th>المبلغ المتفق عليه</th>
+                        <th>المبلغ المدفوع</th>
+                        <th> طريقة الدفع</th>
+                        <th>ملاحظات</th>
+                        <th>إيصال الدفع</th>
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0" id="divorcedManTableBody">
+                    <tbody class="table-border-bottom-0" id="almonyPaymentReprtTableBody">
                     
                     </tbody>
                   </table>
@@ -301,8 +260,7 @@
             </div>
             <!-- / Content -->
 
-
-          <!-- Modal الملف الشخصي-->
+         <!-- Modal الملف الشخصي-->
             <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
               <div class="modal-dialog">
                 <form class="modal-content" id ="FormModalAccount"> 
@@ -376,109 +334,10 @@
         <!-- / Layout page -->
       </div>
 
-      <!-- Overlay -->
-      <div class="layout-overlay layout-menu-toggle"></div>
+
       
     </div>
     <!-- / Layout wrapper -->
-
-
-<!--  Offcanvas لتعديل بيانات الموظف -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="editDivorcedCanvas" aria-labelledby="editEmployeeCanvasLabel" style="width: 50%;">
-  <div class="offcanvas-header">
-    <h5 id="editEmployeeCanvasLabel" class="offcanvas-title">تعديل بيانات الزوج السابق</h5>
-  </div>
-    <div id="error-messageDialog" class="alert alert-danger d-none" role="alert"></div>
- <div class="offcanvas-body form-position-relative">
-  
-<!-- Spinner Overlay -->
-<div id="formLoading" class="form-loading-overlay d-none">
-  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
-    <span class="visually-hidden">جاري التحميل...</span>
-  </div>
-</div>
-
-<form id="editDivorcedCanvasForm">
-  <input type="hidden" id="editPersonId" />
-  <input type="hidden" id="editUserId" />
-  <div class="row g-3">
-
-    <!-- الاسم الأول واسم الأب -->
-    <div class="col-md-6">
-      <label for="editFirstName" class="form-label">الاسم الأول</label>
-      <input type="text" class="form-control" id="editFirstName" />
-    </div>
-
-    <div class="col-md-6">
-      <label for="editMiddleName" class="form-label">اسم الأب</label>
-      <input type="text" class="form-control" id="editMiddleName" />
-    </div>
-
-    <div class="col-md-6">
-      <label for="editLastName" class="form-label">اللقب</label>
-      <input type="text" class="form-control" id="editLastName" />
-    </div>
-
-    <div class="col-md-6">
-      <label for="editPhoneNumber" class="form-label">الهاتف</label>
-      <input type="text" class="form-control" id="editPhoneNumber" maxlength="10"/>
-    </div>
-
-    <div class="col-md-6">      
-      <label for="editEmail" class="form-label">البريد الإلكتروني</label>
-      <input type="email" class="form-control" id="editEmail" />
-    </div>
-
-    <div class="col-md-6">   
-      <label for="editWorkDepartment" class="form-label">جهة العمل</label>
-      <input type="text" class="form-control" id="editWorkDepartment" />
-    </div>
-
-    <div class="col-md-6">
-      <label for="editPassportNumber" class="form-label">رقم جواز السفر</label>
-      <input type="text" class="form-control" id="editPassportNumber" maxlength="8"/>
-    </div>
-
-    <!-- العنوان وتاريخ الميلاد -->
-    <div class="col-md-6">
-      <label for="editAddress" class="form-label">العنوان  </label>
-      <input type="text" class="form-control" id="editAddress" />
-    </div>
-
-    <div class="col-md-12">
-      <label for="editBirthdate" class="form-label">تاريخ الميلاد</label>
-      <input type="date" class="form-control" id="editBirthdate" >
-    </div>          
-
-  <!-- الجنسية-->
-  <div class="col-md-6">
-    <small class="fw-medium d-block mb-2">الجنسية</small>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="nationality" id="editLibyan" value="0">
-      <label class="form-check-label" for="editLibyan">ليبي</label>
-    </div>
-    <div class="form-check form-check-inline">
-      <input class="form-check-input" type="radio" name="nationality" id="editForeign" value="1">
-      <label class="form-check-label" for="editForeign">أجنبي</label>
-    </div>
-
-    </div>
-      <div class="col-md-6" id="nidField">
-      <label for="editNID" class="form-label">الرقم الوطني</label>
-      <input type="text" class="form-control" id="editNID" maxlength="12"/>
-    </div>
-
-  <div class="col-md-6" style="ALIGN-SELF: FLEX-END; ">
-    <button type="button" class="btn btn-primary" id="saveEditButton">حفظ التعديلات</button>
-  </div>
-  </div>
-  </form>
-  </div>
-  </div>
-
-
-
-
 
     <!-- Core JS -->
 
@@ -497,20 +356,7 @@
 
     
     <script>
-      const LOGIN_PAGE = "../../login.html"; 
-
-    // تحديدي العناصر الظاهرة حسب ال role
-    document.addEventListener("DOMContentLoaded", () => {
-    const userRole = localStorage.getItem("userRole");
-
-    if (!userRole) return; // إذا ما في تسجيل دخول
-
-    // إظهار/إخفاء العناصر حسب الدور
-    if (userRole === "admin" || userRole === "gov") {
-        document.getElementById("adminGovHome").style.display = "block";
-    }
-    });  
-
+      const LOGIN_PAGE = "../login.html"; 
     </script>
 
     <!-- Main JS -->
@@ -518,8 +364,9 @@
     <script type="module" src="../../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
-    <script type="module" src="../../../../assets/js/pages/divorced-man-list.js"></script>
-    <script type="module" src="../../../assets/js/pages/logout.js"></script>
-    <script type="module" src="../../../assets/js/pages/change-password.js"></script>
+    <script type="module" src="../../../../assets/js/pages/marriage-contract-list.js"></script>
+    <script type="module" src="../../assets/js/pages/logout.js"></script>
+    <script type="module" src="../../assets/js/pages/change-password.js"></script>
+    
   </body>
 </html>

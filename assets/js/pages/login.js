@@ -31,7 +31,6 @@ document.getElementById("formLogin").addEventListener("submit", async function (
     localStorage.setItem('PersonId',response.results.personId) ;
     localStorage.setItem('userId',response.results.userId) ;
     localStorage.setItem("jwtToken", response.results.token);
-    
     // خزن اسم المستخدم/الدور  
     const username = document.getElementById("username").value.trim();
     const role = response.results.role;
@@ -41,27 +40,22 @@ document.getElementById("formLogin").addEventListener("submit", async function (
     hideSpinnerformLoading()
     // انتقل للصفحة التالية
 
-
-    console.log(response)
-    console.log(response.results.role)
-    console.log(response.results.permissions)
      if(response.results.role=='5' || response.results.role=='4' ){
-        localStorage.setItem('userRole', 'woman'); // أو 'user'
+      localStorage.setItem('userRole', 'woman'); // أو 'user'
 
         window.location.href = 'divorced-woman/index.html';
      }
       else if(response.results.role=='3'){
-        localStorage.setItem('userRole', 'man'); // أو 'user'
-          // window.location.href = 'divorced-man/index.html';
+              localStorage.setItem('userRole', 'man'); // أو 'user'
+                window.location.href = 'divorced-man/index.html';
       }
        else if(response.results.role=='2'){
-          localStorage.setItem('userRole', 'mohder'); // أو 'محضر'
-          // window.location.href = 'divorced-man/view.html';
+              localStorage.setItem('userRole', 'mohder'); // أو 'محضر'
+                window.location.href = 'followUpAgent/index.html';
       }
        else if  (response.results.role=='1'){
-          localStorage.setItem('userRole', 'gov'); // أو 'user'
-          localStorage.setItem('userPerms', JSON.stringify(payload.user.permissions || [])); // [1,2,3,...]
-          // window.location.href = "admin/dashboard.html";
+         localStorage.setItem('userRole', 'gov'); // أو 'user'
+            window.location.href = "admin/dashboard.html";
       }
       else if  (response.results.role=='0'){
          localStorage.setItem('userRole', 'admin'); // أو 'user'

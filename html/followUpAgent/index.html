@@ -30,7 +30,8 @@
     <script src="../../assets/js/config.js"></script>
 
     <style>
-             .form-loading-overlay {
+      body { font-family: 'Cairo', sans-serif; text-align: right; }
+         .form-loading-overlay {
       position: absolute;
       top: 0;
       left: 0;
@@ -42,19 +43,10 @@
       justify-content: center;
       align-items: center;
     }
-      .table-loading-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 255, 255, 0.7);
-      z-index: 1000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+
+    .form-position-relative {
+      position: relative;
     }
-      body { font-family: 'Cairo', sans-serif; text-align: right; }
     </style>
   </head>
 
@@ -78,7 +70,7 @@
                   <div>الرئيسية</div>
               </a>
             </li>
-
+            
             <!-- الملف الشخصي -->
             <li class="menu-item">
               <a href="#" 
@@ -90,41 +82,7 @@
               </a>
             </li>
 
-            <!-- إدارة المستخدمين --> 
-            <li class="menu-item"> 
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon bx bx-group"></i>
-                <div>إدارة المستخدمين</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="../user-management/divorced-man/view.html" class="menu-link">
-                    <div>الزوج السابق</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="../user-management/divorced-woman/view.html" class="menu-link">
-                    <div>المطلقة/وكيل المطلقة</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="../user-management/employee/view.html" class="menu-link">
-                    <div>الموظف الحكومي</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-            
-          <!--وقائع الطلاق-->
-          <li class="menu-item ">
-              <a href="../management-divorce/view.html" class="menu-link">
-                <i class="menu-icon bx bx-file"></i>
-                <div>وقائع الطلاق</div>
-              </a>
-          </li> 
-
-          <!-- إدارة النفقات -->
+            <!-- إدارة النفقات -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
@@ -132,29 +90,20 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item">
-                <a href="../divorced-woman/almony-request.html" class="menu-link">
-                  <div>طلب نفقة</div>
+                <a href="alimony-request-list-followUpAgent.html" class="menu-link">
+                  <div>طلبات النفقات</div>
                 </a>
               </li>
               <li class="menu-item">
-                <a href="../employee/alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
+                <a href="alimony-payment-confirm-followUpAgent.html" class="menu-link">
+                  <div>تأكيد استلام النفقات </div>
                 </a>
               </li>
-              <li class="menu-item">
-                <a href="../employee/alimony-request-list.html" class="menu-link">
-                  <div>طلبات نفقة قيد المراجعة </div>
-                </a>
-              </li>
-              <li class="menu-item">
-                <a href="../divorced-man/almony-payment.html" class="menu-link">
-                  <div>دفع نفقة</div>
-                </a>
-              </li>
+           
             </ul>
-          </li>
-
-          <!--التقارير-->
+          </li>       
+            
+            <!--التقارير-->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-bar-chart'  ></i> 
@@ -162,23 +111,23 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item ">
-                <a href="../employee/alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقات </div>
+                <a href="alimony-payment-report-followUpAgent.html" class="menu-link">
+                  <div>تقرير بالمدفوعات</div>
                 </a>
               </li>
             </ul>
             </li>
-          
-          <!-- تسجيل الخروج -->
+
+            <!-- تسجيل الخروج -->
             <li class="menu-item ">
               <a href="#" class="menu-link ">
                   <i class="menu-icon bx bx-log-out" id="logout-btn"></i>
                   <div>تسجيل الخروج</div>
               </a>
             </li>
-
-        </ul>
-      </aside>
+            
+          </ul>
+        </aside>
 
         <!-- محتوى الصفحة -->
         <div class="layout-page">
@@ -197,12 +146,11 @@
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
-                <li class="nav-item lh-1 me-4"> 
-                  <p class="mb-0 text-muted" id="usernameDisplay"></p>
+                <li class="nav-item lh-1 me-4">
+                    <h5 id="usernameDisplay"></h5>
                 </li>
-
-
-                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
+              
+                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
                     <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
@@ -211,7 +159,7 @@
                         <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                     </a>
-                </li> -->
+                </li>
                 </ul>
             </div>
           </nav>
@@ -224,18 +172,19 @@
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <div class="card-body">
-                      <h5 class="card-title">مرحبًا بك في نظام تتبع النفقات</h5>
-                      <p class="card-text">يساعدك هذا النظام على تسجيل، متابعة، وتحليل نفقات المطلقات وفقًا للقوانين الليبية.</p>
-                      <a href="#" class="btn btn-primary">عرض المستفيدين</a>
-                      <a href="#" class="btn btn-outline-secondary">تصدير تقرير</a>
+                      <h5 class="card-title">مرحبًا بك في نظام تتبع النفقات </h5>
+                      <p class="card-text">يساعد هذا النظام على تأكيد ، متابعة، نفقات المطلقات وفقًا للقوانين الليبية.</p>
+                      <a href="alimony-request-list-followUpAgent.html" class="btn btn-primary">طلبات النفقات</a>
+                      <a href="alimony-payment-confirm-followUpAgent.html" class="btn btn-outline-secondary">تأكيد استلام النفقات </a>
+                      <a href="alimony-payment-report-followUpAgent.html" class="btn btn-outline-secondary"> تقرير بالمدفوعات</a>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-              
-<!-- Modal الملف الشخصي-->
+
+        <!-- Modal الملف الشخصي-->
             <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
               <div class="modal-dialog">
                 <form class="modal-content" id ="FormModalAccount"> 
@@ -282,6 +231,7 @@
             </div></div>
             <!--/model-->
 
+
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
               <div class="container-xxl">
@@ -314,18 +264,17 @@
     <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="../../assets/vendor/js/menu.js"></script>
     <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
-    <script src="../../assets/js/dashboards-analytics.js"></script>
     <script>
       const LOGIN_PAGE = "../login.html"; 
     </script>
 
-    <!-- Main JS -->
-    <script src="../../assets/js/main.js"></script>
-    <script type="module" src="../../assets/js/pages/index.js"></script>
+<!-- Main JS -->
+<script src="../../assets/js/main.js"></script>
+<script type="module" src="../../assets/js/pages/index.js"></script>
 
-    <!-- Page JS -->
-    <script type="module" src="../../assets/js/pages/logout.js"></script>
-    <script type="module" src="../../assets/js/pages/change-password.js"></script>
+<!-- Page JS -->
+<script type="module" src="../../assets/js/pages/logout.js"></script>
+      <script type="module" src="../../assets/js/pages/change-password.js"></script>
 
 
   </body>

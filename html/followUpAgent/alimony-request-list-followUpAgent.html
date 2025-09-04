@@ -37,7 +37,7 @@
     <script src="../../../assets/js/config.js"></script>
 
     <style>
-     body { font-family: 'Cairo', sans-serif; text-align: right; }
+body { font-family: 'Cairo', sans-serif; text-align: right; }
        .form-loading-overlay {
       position: absolute;
       top: 0;
@@ -160,22 +160,16 @@
               <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
             </a>
           </div>
-          <ul class="menu-inner py-3">
-             <!-- الرئيسية-->
-            <li class="menu-item " id="adminGovHome" style="display:none;">
-              <a href="../admin/dashboard.html" class="menu-link ">
-                  <i class="menu-icon bx  bx-home"></i>
-                  <div>الرئيسية</div>
-              </a>
-            </li>
-              <!-- الرئيسية-->
-            <li class="menu-item " id="manHome" style="display:none;">
+            <ul class="menu-inner py-3">
+            
+            <!-- الرئيسية-->
+            <li class="menu-item ">
               <a href="index.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
             </li>
-
+            
             <!-- الملف الشخصي -->
             <li class="menu-item">
               <a href="#" 
@@ -187,75 +181,27 @@
               </a>
             </li>
 
-            <!-- إدارة المستخدمين --> 
-
-            <li class="menu-item" id="adminGovUserManagement" style="display:none;"> 
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon bx bx-group"></i>
-                <div>إدارة المستخدمين</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="../user-management/divorced-man/view.html" class="menu-link">
-                    <div>الزوج السابق</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="../user-management/divorced-woman/view.html" class="menu-link">
-                    <div>المطلقة/وكيل المطلقة</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="../user-management/employee/view.html" class="menu-link">
-                    <div>الموظف الحكومي</div>
-                  </a>
-                </li>
-              </ul>
-            </li> 
-            
-          <!--وقائع الطلاق-->
-          <li class="menu-item " id="adminGovDivorceManagement" style="display:none;">
-              <a href="../management-divorce/view.html" class="menu-link">
-                <i class="menu-icon bx bx-file"></i>
-                <div>وقائع الطلاق</div>
-              </a>
-          </li> 
-
             <!-- إدارة النفقات -->
             <li class="menu-item open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
               <div>إدارة النفقات</div>
             </a>
-            <ul class="menu-sub">
-              <li class="menu-item"  id="adminWomanAlmonyRequesr" style="display:none;">
-                <a href="../divorced-woman/almony-request.html" class="menu-link">
-                  <div>طلب نفقة</div>
+            <ul class="menu-sub ">
+              <li class="menu-item active" >
+                <a href="alimony-request-list-followUpAgent.html" class="menu-link">
+                  <div>طلبات النفقات</div>
                 </a>
               </li>
-              <li class="menu-item active" id="adminGovAlmonyPaymentList" style="display:none;">
-                <a href="../employee/alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
+              <li class="menu-item">
+                <a href="alimony-payment-confirm-followUpAgent.html" class="menu-link">
+                  <div>تأكيد استلام النفقات </div>
                 </a>
               </li>
-              <li class="menu-item active" id="manAlmonyPaymentList" style="display:none;">
-                <a href="alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
-                </a>
-              </li>
-              <li class="menu-item" id="adminGovAlmonyRequesrlist" style="display:none;">
-                <a href="../employee/alimony-request-list.html" class="menu-link">
-                  <div>سجل طلبات النفقات </div>
-                </a>
-              </li>
-              <li class="menu-item"id="adminManAlmonyPayment" style="display:none;">
-                <a href="almony-payment.html" class="menu-link">
-                  <div>دفع نفقة</div>
-                </a>
-              </li>
+           
             </ul>
-          </li>   
-
+          </li>       
+            
             <!--التقارير-->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -264,13 +210,13 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item ">
-                <a href="alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقات </div>
+                <a href="alimony-payment-report-followUpAgent.html" class="menu-link">
+                  <div>تقرير بالمدفوعات</div>
                 </a>
               </li>
             </ul>
             </li>
-            
+
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
               <a href="#" class="menu-link ">
@@ -278,7 +224,7 @@
                   <div>تسجيل الخروج</div>
               </a>
             </li>
-
+            
           </ul>
         </aside>
 
@@ -295,7 +241,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4 fw-bold">قائمة دفع النفقات </h4>
+                <h4 class="mb-0 me-4 fw-bold">قائمة طلبات النفقات </h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
@@ -304,7 +250,7 @@
                 </li>
 
 
-                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
+                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
                     <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
@@ -313,7 +259,7 @@
                         <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                     </a>
-                </li> -->
+                </li>
                 </ul>
             </div>
           </nav>
@@ -336,58 +282,45 @@
 <template id="requestCardTpl">
   <div class="col-md-6 col-lg-4">
     <div class="card h-100">
-      <div class="card-header" style="    font-weight: bold;">
-        <h5 class="mb-0">رقم قرار النفقة : <span data-field="courtDecisionNo"></span></h5>
+      <div class="card-header">
+        <h5 class="mb-0">رقم قضية الطلاق : <span data-field="caseNumber"></span></h5>
       </div>
 
-      
+      <div class="card-header py-2" data-field="notFoundBadge" class="invisible">
+        <label  style="color: var(--bs-danger); text-align:center;">
+          رقم القضية غير مسجل في النظام
+        </label>
+      </div>
 <div class="card-body">
   <!-- اسم المطلّقة -->
   <p class="card-text mb-3">
-   المبلغ المتفق عليه شهرياٌ: <span data-field="monthlyAmount"></span>
+    اسم المطلّقة : <span data-field="wifeName">—</span>
   </p>
 
   <!-- من قدّم الطلب (زوجة / موظف حكومي) -->
   <p class="card-text mb-3">
-  اسم الزوج: <span data-field="husbandName"></span>
+    تم ادخال الطلب من قبل : <span data-field="requesterLabel">—</span>
   </p>
 
   <!-- اسم مقدّم الطلب -->
   <p class="card-text mb-3">
-    اسم المطلقة : <span data-field="wifeName"></span>
+    اسم مقدّم الطلب : <span data-field="submittedByName">—</span>
   </p>
   <!-- اسم مقدّم الطلب -->
   <p class="card-text mb-3">
-   تاريخ الدفع :<span data-field="payDate"></span>
+    حالة الطلب: <span data-field="State">—</span>
   </p>
-    <p class="card-text mb-3">
-    المبلغ المدفوع :<span data-field="amountPaid"></span>
-  </p>
-    <p class="card-text mb-3">
-    فترة الدفع عن شهر: &nbsp;&nbsp;<span data-field="periodFrom" style="color:#83B582;     font-weight: bold;"></span>
+    <label data-field="IsReject" class="invisible" >
+       سبب الرفض    : <span data-field="StopReason" class="card-text mb-3"></span>
+        </label>
 
-       إلى شهر:&nbsp;&nbsp;<span data-field="periodTo" style="color:#83B582;     font-weight: bold;"></span>
-  </p>
-   
-   <p class="card-text mb-3">
-   طريقة الدفع :<span data-field="method"></span>
-  </p>
- <p class="card-text mb-3">
-   حالة الدفع :<span data-field="state"></span>
-  </p>
-
-
- <div class="d-block mb-3">
-    <p class="card-text mb-3">
-   ملاحظات:<span data-field="notes"></span>
-  </p>
-  </div>
-  <div class="d-block mb-3" data-field="docLinks"></div>
-
+ 
+ 
   <div class="d-block mb-3">
-     <!-- <button class="btn btn-link ps-0" type="button" data-action="showChildren">
-    عرض الايصال (<span data-field="childrenCount">0</span>)
-  </button> -->
+     <button class="btn btn-link ps-0" type="button" data-action="showChildren">
+    عرض الأطفال (<span data-field="childrenCount">0</span>)
+  </button>
+    <a href="#" target="_blank" rel="noopener" data-field="docLink">عرض مستند قرار الطلاق</a>
   </div>
 
 </div>
@@ -401,9 +334,106 @@
 </template>
 </div>
 </div>
+<div class="modal fade" id="modalAlertMessage" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="width: 50%;">
+
+                              <div class="modal-content">
+                              
+                                <div class="modal-body" style="    text-align-last: center;">
+                                  <p>
+                                  <span name ="MessageSpan" id="MessageSpan"></span>
+                                  </p>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                  <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                                    Close
+                                  </button>
+                                </div> -->
+                              </div>
+                            </div>
+                            </div>
+    
+
+<!-- مودال عرض الأطفال -->
+ <div class="modal fade" id="modalShowChildren" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="modalScrollableTitle">الأطفـــال</h5>
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            <!-- <div id="alertContainer" class="mt-3"></div>
+            Spinner overlay
+            <div id="loadingSpinner" class="table-loading-overlay d-none">
+            <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">جاري التحميل...</span>
+            </div>
+            </div> -->
+            
+            <div class="table-responsive text-nowrap">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>الاسم كامل</th>
+                    <th>تاريخ الميلاد</th>
+                    <th>الجنس</th>
+                    <th>العمر </th>
+                    <th>الحالة</th>
+                    <th>تعديل</th>
+                    <th>حذف</th>
+                </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" id="chiledTableBody">
+                    <td>خالد سليمان الهادي </td>
+                    <td>10/10/2021</td>
+                    <td>ذكر</td>
+                    <td>4 </td>
+                    <td>مفعل</td>
+                    <td>
+                        <a class="dropdown-item btn-edit" href="#">
+                            <i class="icon-base bx bx-edit-alt me-1"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <!-- <a class="dropdown-item btn-delete" href="#">
+                            <i class="icon-base bx bx-trash me-1"></i>
+                        </a> -->
+
+                        <button
+  class="toggle-switch sm"
+  type="button"
+  role="switch"
+  aria-checked="true"
+  data-id="{{personId}}"
+  data-active="true">
+</button>
+
+<!-- (اختياري) شارة الحالة في نفس الصف لتتحدّث تلقائيًا -->
+<span class="badge status-badge bg-label-success">نشط</span>
+                    </td>
+
+                </tbody>
+            </table>
+            </div>
+            
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                Close
+            </button>
+            </div>
+        </div>
+        </div>
+    </div>
+
 
 <!-- Modal الملف الشخصي-->
-        <!-- Modal الملف الشخصي-->
             <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
               <div class="modal-dialog">
                 <form class="modal-content" id ="FormModalAccount"> 
@@ -447,9 +477,9 @@
                   </div>
                 </form>
               </div>
-            </div>
-          </div>
+            </div></div>
             <!--/model-->
+
 
     <!-- Footer -->
     <footer class="content-footer footer bg-footer-theme">
@@ -471,8 +501,6 @@
         </div>
     </footer>
     <!-- / Footer -->
-
-
     <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
@@ -495,8 +523,6 @@
     <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <script src="../../assets/vendor/js/menu.js"></script>
-<script type="module" src="../../assets/js/pages/alimony-payment-list.js"></script>
-
 
     <!-- endbuild -->
 
@@ -512,10 +538,12 @@
   <!-- تحميل مكتبة jQuery + Select2 -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-  <script>
-    const LOGIN_PAGE = "../login.html"; 
+<script type="module" src="../../assets/js/pages/woman-alimony-request-list.js"></script>
+<script>
+  const LOGIN_PAGE = "../login.html"; 
 
-       // تحديدي العناصر الظاهرة حسب ال role
+
+          // تحديدي العناصر الظاهرة حسب ال role
     document.addEventListener("DOMContentLoaded", () => {
     const userRole = localStorage.getItem("userRole");
 
@@ -526,7 +554,7 @@
         document.getElementById("adminGovUserManagement").style.display = "block";
         document.getElementById("adminGovDivorceManagement").style.display = "block";
         document.getElementById("adminGovAlmonyPaymentList").style.display = "block";
-        document.getElementById("adminGovAlmonyRequesrlist").style.display = "block";
+        document.getElementById("adminGovAlmonyRequestlist").style.display = "block";
         document.getElementById("adminGovHome").style.display = "block";
     }
 
@@ -537,24 +565,55 @@
     if (userRole === "admin" || userRole === "man" ) {
         document.getElementById("adminManAlmonyPayment").style.display = "block";
     }
-    if (userRole === "admin" || userRole === "gov") {
-        document.getElementById("adminGovAlmonyRequesrlist").style.display = "block";
-    }
-    if (userRole === "man") {
-        document.getElementById("manAlmonyPaymentList").style.display = "block";
-        document.getElementById("manHome").style.display = "block";
+    if (userRole === "woman") {
+        document.getElementById("womanAlmonyPaymentList").style.display = "block";
+        document.getElementById("womanHome").style.display = "block";
+        document.getElementById("womanAlmonyRequestlist").style.display = "block";
     }
     });  
-  </script>
 
-  <!-- Main JS -->
-  <script src="../../assets/js/main.js"></script>
-  <script type="module" src="../../assets/js/pages/index.js"></script>
 
-  <!-- Page JS -->
-   <script type="module" src="../../assets/js/pages/alimony-request.js"></script>
-   <script type="module" src="../../assets/js/pages/change-password.js"></script>
-  <script type="module" src="../../assets/js/pages/logout.js"></script>
+// مصفوفة الدفعات قبل الإرسال
+  const payments = [];
+
+  // عناصر
+  const addPaymentBtn = document.getElementById('addPaymentBtn');
+  const payDate   = document.getElementById('payDate');
+  const payAmount = document.getElementById('payAmount');
+  const payMethod = document.getElementById('payMethod');
+  const payer     = document.getElementById('payer');
+  const decision  = document.getElementById('decision');
+  const receipt   = document.getElementById('receipt');
+  const notes     = document.getElementById('notes');
+
+  const paymentsTableBody = document.getElementById('paymentsTableBody');
+  const paymentsJson = document.getElementById('paymentsJson');
+  const errorBox = document.getElementById('paymentError');
+  const form = document.getElementById('alimonyPaymentForm');
+
+  // العرض
+  function formatDate(iso){
+    if(!iso) return '';
+    const [y,m,d] = iso.split('-');
+    return `${d}/${m}/${y}`;
+  }
+  function methodLabel(v){
+    return v==='cash'?'نقدًا':v==='transfer'?'حوالة':v==='cheque'?'شيك':v==='other'?'أخرى':'';
+  }
+
+  // إعادة رسم الجدول
+ 
+</script>
+
+<!-- Main JS -->
+    <script src="../../../assets/js/main.js"></script>
+    <script type="module" src="../../../assets/js/pages/index.js"></script>
+
+    <!-- Page JS -->
+   <script type="module" src="../../../assets/js/pages/alimony-request.js"></script>
+
+<script type="module" src="../../assets/js/pages/logout.js"></script>
+    <script type="module" src="../../assets/js/pages/change-password.js"></script>
 
 
  </body>

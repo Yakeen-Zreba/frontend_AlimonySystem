@@ -286,10 +286,18 @@
             </div>
             <!-- / Content -->
 
-            <!-- Modal الملف الشخصي-->
+        <!-- Modal الملف الشخصي-->
             <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
               <div class="modal-dialog">
-                <form class="modal-content">
+                <form class="modal-content" id ="FormModalAccount"> 
+                     <div id="loadingFormAccountModel" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">جاري التحميل...</span>
+                  </div>
+                </div>
+              <div id="ErrorFormAccountModel" class="alert alert-danger d-none" role="alert"></div>
+                     <div id="SuccFormAccountModel" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
+
                   <div class="modal-header">
                     <h5 class="modal-title" id="modalTopTitle">  بيانات الحساب</h5>
                     <button
@@ -302,23 +310,23 @@
                   <div class="modal-body">
                     
                   <div class="mb-3 col-md-12">
-                    <label for="username" class="form-label">اسم المستخدم</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="أدخل اسم المستخدم">
+                    <label for="usernameModalAccount" class="form-label">اسم المستخدم</label>
+                    <input type="text" class="form-control" id="usernameModalAccount" name="usernameModalAccount" readonly>
                   </div>
                   <div class="mb-3 col-md-12">
-                    <label for="password" class="form-label">كلمة المرور</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="********" minlength="8">
+                    <label for="passwordChange" class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-control" id="passwordChange" name="passwordChange" placeholder="********" minlength="8">
                   </div>
                   <div class="mb-3 col-md-12">
-                    <label for="confPassword" class="form-label">تأكيد كلمة المرور</label>
-                    <input type="password" class="form-control" id="confPassword" name="confPassword" placeholder="********" minlength="8">
+                    <label for="confPasswordChange" class="form-label">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-control" id="confPasswordChange" name="confPasswordChange" placeholder="********" minlength="8">
                   </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
                       Close
                     </button>
-                    <button type="button" class="btn btn-primary">حفظ</button>
+<button type="button" class="btn btn-primary" id="accountSaveBtn">حفظ</button>
                   </div>
                 </form>
               </div>
@@ -487,6 +495,7 @@
     <!-- Page JS -->
     <script type="module" src="../../assets/js/pages/marriage-contract-list.js"></script>
     <script type="module" src="../../assets/js/pages/logout.js"></script>
+    <script type="module" src="../../assets/js/pages/change-password.js"></script>
     
   </body>
 </html>

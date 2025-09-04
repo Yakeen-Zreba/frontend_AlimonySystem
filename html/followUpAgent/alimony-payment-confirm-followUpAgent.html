@@ -71,22 +71,16 @@
               <span class="app-brand-text demo menu-text fw-bold">عِـــــــوض</span>
             </a>
           </div>
-          <ul class="menu-inner py-3">
-             <!-- الرئيسية-->
-            <li class="menu-item " id="adminGovHome" style="display:none;">
-              <a href="../admin/dashboard.html" class="menu-link ">
-                  <i class="menu-icon bx  bx-home"></i>
-                  <div>الرئيسية</div>
-              </a>
-            </li>
-              <!-- الرئيسية-->
-            <li class="menu-item " id="womanHome" style="display:none;">
+           <ul class="menu-inner py-3">
+            
+            <!-- الرئيسية-->
+            <li class="menu-item ">
               <a href="index.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
             </li>
-
+            
             <!-- الملف الشخصي -->
             <li class="menu-item">
               <a href="#" 
@@ -98,39 +92,6 @@
               </a>
             </li>
 
-            <!-- إدارة المستخدمين --> 
-            <li class="menu-item"  id="adminGovUserManagement" style="display:none;"> 
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon bx bx-group"></i>
-                <div>إدارة المستخدمين</div>
-              </a>
-              <ul class="menu-sub">
-                <li class="menu-item">
-                  <a href="../user-management/divorced-man/view.html" class="menu-link">
-                    <div>الزوج السابق</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="../user-management/divorced-woman/view.html" class="menu-link">
-                    <div>المطلقة/وكيل المطلقة</div>
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a href="../user-management/employee/view.html" class="menu-link">
-                    <div>الموظف الحكومي</div>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            
-          <!--وقائع الطلاق-->
-          <li class="menu-item " id="adminGovDivorceManagement" style="display:none;">
-              <a href="../management-divorce/view.html" class="menu-link">
-                <i class="menu-icon bx bx-file"></i>
-                <div>وقائع الطلاق</div>
-              </a>
-          </li> 
-
             <!-- إدارة النفقات -->
             <li class="menu-item open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -138,39 +99,20 @@
               <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item"   id="adminWomanAlmonyRequesr" style="display:none;">
-                <a href="almony-request.html" class="menu-link">
-                  <div>طلب نفقة</div>
+              <li class="menu-item">
+                <a href="alimony-request-list-followUpAgent.html" class="menu-link">
+                  <div>طلبات النفقات</div>
                 </a>
               </li>
-              <li class="menu-item active" id="adminGovAlmonyPaymentList" style="display:none;">
-                <a href="../employee/alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
+              <li class="menu-item active">
+                <a href="alimony-payment-confirm-followUpAgent.html" class="menu-link">
+                  <div>تأكيد استلام النفقات </div>
                 </a>
               </li>
-              <li class="menu-item active" id="womanAlmonyPaymentList" style="display:none;">
-                <a href="alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
-                </a>
-              </li>
-              <li class="menu-item" id="womanAlmonyRequestlist" style="display:none;">
-                <a href="alimony-request-list.html" class="menu-link">
-                  <div>سجل طلبات النفقات </div>
-                </a>
-              </li>
-              <li class="menu-item" id="adminGovAlmonyRequestlist" style="display:none;">
-                <a href="../employee/alimony-request-list.html" class="menu-link">
-                  <div>سجل طلبات النفقات </div>
-                </a>
-              </li>
-              <li class="menu-item" id="adminManAlmonyPayment" style="display:none;">
-                <a href="../divorced-man/almony-payment.html" class="menu-link">
-                  <div>دفع نفقة</div>
-                </a>
-              </li>
+           
             </ul>
-          </li>   
-
+          </li>       
+            
             <!--التقارير-->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -179,13 +121,13 @@
             </a>
             <ul class="menu-sub">
               <li class="menu-item ">
-                <a href="alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقات </div>
+                <a href="alimony-payment-report-followUpAgent.html" class="menu-link">
+                  <div>تقرير بالمدفوعات</div>
                 </a>
               </li>
             </ul>
             </li>
-            
+
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
               <a href="#" class="menu-link ">
@@ -193,7 +135,7 @@
                   <div>تسجيل الخروج</div>
               </a>
             </li>
-
+            
           </ul>
         </aside>
 
@@ -219,7 +161,7 @@
                 </li>
 
 
-                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
+                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
                     <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
@@ -228,7 +170,7 @@
                         <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                     </a>
-                </li> -->
+                </li>
                 </ul>
             </div>
           </nav>
@@ -263,16 +205,26 @@
                                       <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
                                       <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
                                       <a href="javascript:void(0)" >عرض الإيصال</a>
-                                      
+                                      <!--زر و نافذة التعديل -->
+                                      <!-- <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEdit">
+                                        تعديل
+                                      </button> -->
+                                      <!--/زر التعديل-->
                                       <div class="row">
-                                        <!--للزوجة-->
-                                        <button class="btn btn-outline-primary mb-4 mt-4"
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#modalReceipt"                                          >
-                                          تم  الإستلام
-                                        </button>
+                                          <!--للمحضر-->
+                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم التسليم للزوجة</button>
+                                          <!--زر الرفض-->
+                                          <!-- <button class="btn btn-outline-danger"
+                                              data-bs-toggle="modal"
+                                              data-bs-target="#modalReject">
+                                              رفض
+                                          </button> -->
+                                          <!--/زر الرفض-->
                                       </div>
-                                      
                                   </div>
                               <div class="card-footer text-body-secondary text-center">2 days ago</div>
                           </div>
@@ -295,13 +247,25 @@
                                       <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
                                       <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
                                       <a href="javascript:void(0)" >عرض الإصال</a>
+                                      <!--زر و نافذة التعديل -->
+                                      <!-- <button
+                                        type="button"
+                                        class="btn btn-link"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEdit">
+                                        تعديل
+                                      </button> -->
+                                      <!--/زر التعديل-->
                                       <div class="row">
-                                          <!--للزوجة-->
-                                          <button class="btn btn-outline-primary mb-4 mt-4"
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#modalReceipt"                                          >
-                                          تم  الإستلام
-                                          </button>
+                                          <!--للمحضر-->
+                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم التسليم للزوجة</button>
+                                          <!--زر الرفض-->
+                                          <!-- <button class="btn btn-outline-danger"
+                                              data-bs-toggle="modal"
+                                              data-bs-target="#modalReject">
+                                              رفض
+                                          </button> -->
+                                          <!--/زر الرفض-->
                                       </div>
                                   </div>
                               <div class="card-footer text-body-secondary text-center">2 days ago</div>
@@ -324,14 +288,24 @@
                                       <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
                                       <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
                                       <a href="javascript:void(0)" >عرض الإيصال</a>
-                                      
+                                      <!--زر و نافذة التعديل -->
+                                      <!-- <button
+                                        class="btn btn-link"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#modalEdit">
+                                        تعديل
+                                      </button> -->
+                                      <!--/زر التعديل-->
                                       <div class="row">
-                                        <!--للزوجة-->
-                                        <button class="btn btn-outline-primary mb-4 mt-4"
-                                          data-bs-toggle="modal"
-                                          data-bs-target="#modalReceipt"                                          >
-                                          تم  الإستلام
-                                        </button>
+                                          <!--للمحضر-->
+                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم التسليم للزوجة</button>
+                                          <!--زر الرفض-->
+                                          <!-- <button class="btn btn-outline-danger"
+                                              data-bs-toggle="modal"
+                                              data-bs-target="#modalReject">
+                                              رفض
+                                          </button> -->
+                                          <!--/زر الرفض-->
                                       </div>
                                   </div>
                               <div class="card-footer text-body-secondary text-center">2 days ago</div>
@@ -346,13 +320,100 @@
         </div>    
     <!-- / Content -->
 
-    <!-- نافذة الاستلام  -->
+    <!-- Modal التعديل-->
+    <div class="modal modal-top fade" id="modalEdit" tabindex="-1">
+      <div class="modal-dialog">
+        <form class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTopTitle">تعديل دفع نفقة</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            
+            <!-- القرار المرتبط -->
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <label class="form-label" for="decision">قرار النفقة </label>
+                  <select id="decision" class="form-select" required>
+                      <option value="" selected disabled>اختر قرار النفقة</option>
+                      <option value="D-2024-001">قرار رقم D-2024-001 — شهري 500 د.ل</option>
+                      <option value="D-2024-045">قرار رقم D-2024-045 — شهري 650 د.ل</option>
+                  </select>
+                </div>
+              <!-- تاريخ الدفع -->
+                <div class="col-md-6 mb-4">
+                  <label class="form-label" for="payDate">تاريخ الدفع</label>
+                  <input type="date" id="payDate" class="form-control" required>
+                </div>
+              </div>
+
+            <div class="row">
+                <!-- تاريخ الدفع -->
+                <div class="col-md-6 mb-4">
+                  <label class="form-label" for="payDate">تاريخ الدفع</label>
+                  <input type="date" id="payDate" class="form-control" required>
+                </div>
+                <!-- المبلغ -->
+                <div class="col-md-6 mb-4">
+                  <label class="form-label" for="payAmount">المبلغ</label>
+                  <div class="input-group">
+                      <input type="number" min="0" step="0.01" id="payAmount" class="form-control" placeholder="0.00" required>
+                      <span class="input-group-text">د.ل</span>
+                  </div>
+                </div>
+            </div>
+
+            <div class="row">
+              <!-- طريقة الدفع -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label" for="payMethod">طريقة الدفع</label>
+                <select id="payMethod" class="form-select" required>
+                    <option value="" selected disabled>اختر طريقة الدفع</option>
+                    <option value="cash">نقدًا</option>
+                    <option value="transfer">حوالة مصرفية</option>
+                    <option value="cheque">شيك</option>
+                    <option value="other">أخرى</option>
+                </select>
+              </div>
+
+              <!-- ملاحظات -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label" for="notes">ملاحظات</label>
+                <input type="text" id="notes" class="form-control" placeholder="معلومة إضافية (اختياري)">
+              </div>
+
+            </div>
+          <!-- إيصال الدفع -->
+          <div class="col-md-12 mb-4">
+            <label class="form-label" for="receipt">إيصال الدفع (PDF/JPG/PNG)</label>
+            <input type="file" id="receipt" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+          </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">حفظ</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!--/model-->
+
+    <!-- نافذة سبب الرفض -->
     <!-- Modal -->
-    <div class="modal fade" id="modalReceipt" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modalReject" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="modalScrollableTitle">ادخل إيصال الإستلام</h5>
+            <h5 class="modal-title" id="modalScrollableTitle">ما هو سبب الرفض</h5>
             <button
                 type="button"
                 class="btn-close"
@@ -361,11 +422,8 @@
             </div>
             <div class="modal-body">
                 
-                <!-- إيصال الإستلام -->
-                  <div class="col-md-6 mb-4">
-                    <label class="form-label" for="receipt">إيصال الإستلام </label>
-                    <input type="file" id="receipt" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
-                  </div>
+                <label class="form-label" for="notes">سبب الرفض</label>
+                <input type="text" id="notes" class="form-control">
 
             </div>
             <div class="modal-footer">
@@ -378,6 +436,7 @@
         </div>
     </div>
     <!--/model-->
+
 
 <!-- Modal الملف الشخصي-->
             <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
@@ -480,51 +539,22 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     
-    
+   
 
    <!-- Select2 JS -->
   <!-- تحميل مكتبة jQuery + Select2 -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
-    const LOGIN_PAGE = "../login.html";
-        // تحديدي العناصر الظاهرة حسب ال role
-    document.addEventListener("DOMContentLoaded", () => {
-    const userRole = localStorage.getItem("userRole");
-
-    if (!userRole) return; // إذا ما في تسجيل دخول
-
-    // إظهار/إخفاء العناصر حسب الدور
-    if (userRole === "admin" || userRole === "gov") {
-        document.getElementById("adminGovUserManagement").style.display = "block";
-        document.getElementById("adminGovDivorceManagement").style.display = "block";
-        document.getElementById("adminGovAlmonyPaymentList").style.display = "block";
-        document.getElementById("adminGovAlmonyRequestlist").style.display = "block";
-        document.getElementById("adminGovHome").style.display = "block";
-    }
-
-    if (userRole === "admin" || userRole === "woman" ) {
-        document.getElementById("adminWomanAlmonyRequesr").style.display = "block";
-    }
-
-    if (userRole === "admin" || userRole === "man" ) {
-        document.getElementById("adminManAlmonyPayment").style.display = "block";
-    }
-    if (userRole === "woman") {
-        document.getElementById("womanAlmonyPaymentList").style.display = "block";
-        document.getElementById("womanHome").style.display = "block";
-        document.getElementById("womanAlmonyRequestlist").style.display = "block";
-    }
-    });  
-    
+    const LOGIN_PAGE = "../login.html"; 
   </script>
 
-  <!-- Main JS -->
-    <script src="../../assets/js/main.js"></script>
-    <script type="module" src="../../assets/js/pages/index.js"></script>
+ <!-- Main JS -->
+  <script src="../../../assets/js/main.js"></script>
+  <script type="module" src="../../../assets/js/pages/index.js"></script>
 
-    <!-- Page JS -->
-   <script type="module" src="../../assets/js/pages/alimony-request.js"></script>
+  <!-- Page JS -->
+  <script type="module" src="../../../assets/js/pages/alimony-request.js"></script>
   <script type="module" src="../../assets/js/pages/logout.js"></script>
   <script type="module" src="../../assets/js/pages/change-password.js"></script>
 
