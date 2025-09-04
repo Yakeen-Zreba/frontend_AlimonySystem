@@ -82,8 +82,8 @@
           </div>
           <ul class="menu-inner py-3">
             <!-- الرئيسية-->
-            <li class="menu-item ">
-              <a href="#" class="menu-link ">
+            <li class="menu-item " id="adminGovHome" style="display:none;">
+              <a href="../../admin/dashboard.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -536,6 +536,17 @@
 </div>
 <script>
       const LOGIN_PAGE = "../../login.html"; 
+       // تحديدي العناصر الظاهرة حسب ال role
+    document.addEventListener("DOMContentLoaded", () => {
+    const userRole = localStorage.getItem("userRole");
+
+    if (!userRole) return; // إذا ما في تسجيل دخول
+
+    // إظهار/إخفاء العناصر حسب الدور
+    if (userRole === "admin" || userRole === "gov") {
+        document.getElementById("adminGovHome").style.display = "block";
+    }
+    });  
 </script>
 
 <!-- Main JS -->

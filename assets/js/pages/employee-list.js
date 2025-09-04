@@ -148,6 +148,7 @@ async function loadEmployees() {
       showSpinner()
    
     const response = await GetAPI("http://localhost:5016/api/Person/GetAllemployee");
+
   
     if (response.isSuccess && Array.isArray(response.results)) {
   const tableBody = document.getElementById("employeeTableBody");

@@ -71,8 +71,8 @@
           <ul class="menu-inner py-3">
             
             <!-- الرئيسية-->
-            <li class="menu-item">
-              <a href="#" class="menu-link ">
+            <li class="menu-item " id="adminGovHome" style="display:none;">
+              <a href="../../admin/dashboard.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -88,7 +88,6 @@
                   <div>الملف الشخصي</div>
               </a>
             </li>
-
 
             <!-- إدارة المستخدمين --> 
             <li class="menu-item open"> 
@@ -201,7 +200,7 @@
                 </li>
 
 
-                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
+                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
                     <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
@@ -210,7 +209,7 @@
                         <img src="../../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                     </a>
-                </li>
+                </li> -->
                 </ul>
             </div>
           </nav>
@@ -433,6 +432,18 @@
 
     <script>
     const LOGIN_PAGE = "../../login.html"; 
+
+    // تحديدي العناصر الظاهرة حسب ال role
+    document.addEventListener("DOMContentLoaded", () => {
+    const userRole = localStorage.getItem("userRole");
+
+    if (!userRole) return; // إذا ما في تسجيل دخول
+
+    // إظهار/إخفاء العناصر حسب الدور
+    if (userRole === "admin" || userRole === "gov") {
+        document.getElementById("adminGovHome").style.display = "block";
+    }
+    });  
 
     document.addEventListener("DOMContentLoaded", function () {
     const libyanRadio = document.getElementById("libyan");
