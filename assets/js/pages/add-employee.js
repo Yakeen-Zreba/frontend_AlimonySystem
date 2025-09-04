@@ -26,7 +26,6 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
     WorkDepartment: document.getElementById("workDepartment").value.trim(),
    Permissions: selectedPermissions
   };
-
   hideError();
 
   const error = validateRegisterData(data);
@@ -37,7 +36,7 @@ document.getElementById("addEmployeeForm").addEventListener("submit", async func
 
   try {
     showSpinnerformLoading()
-    const response = await postData('http://localhost:5016/api/Person/Registration', data);
+    const response = await postData('http://localhost:5016/api/Person/add-employee', data);
 
     if (response.isSuccess) {
         localStorage.setItem("successMessage", response.message || "تمت العملية بنجاح");
