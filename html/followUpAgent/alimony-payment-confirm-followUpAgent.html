@@ -54,7 +54,46 @@
     .form-position-relative {
       position: relative;
     }
-    
+           .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+      .table-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 255, 255, 0.7);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .position-relative-wrapper {
+      position: relative;
+    }
+    .form-loading-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: rgba(255,255,255,0.6);
+      width: 100%;
+      height: 100%;
+      z-index: 1100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
     
     </style>
   </head>
@@ -176,148 +215,101 @@
           </nav>
 
           <!-- / Navbar -->
+  <div class="content-wrapper">
+     
+                       <div class="container-xxl flex-grow-1 container-p-y"> 
+                          <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+   <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
 
-        <div class="content-wrapper">
-            <!-- Content -->
-            <div class="container-xxl flex-grow-1 container-p-y">
-                <div class="row g-6">
-                    <!-- Spinner-->
-                    <!-- <div id="formLoading" class="form-loading-overlay d-none">
-                    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;    margin-top: -300px;">
+                <div id="loadingSpinner" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
                     <span class="visually-hidden">جاري التحميل...</span>
-                    </div>
-                    </div> -->
-
-                    <div class="row mb-12 g-6">
-
-                      <!--Card-->
-                      <div class="col-md-6 col-lg-4">
-                          <div class="card">
-                              <div class="card-header">
-                                <h5>رقم قرار النفقة : D-2025-001</h5>
-                              </div>
-                                  <div class="card-body">
-                                      <p class="card-text" id="monthlyAmount">المبلغ المتفق عليه  :   500د.ل</p>
-                                      <p class="card-text" id="exHusbandName ">اسم الزوج : خالد ناصر على</p>
-                                      <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
-                                      <p class="card-text" id="payDate">تاريخ الدفع  :   17/05/2025</p>
-                                      <p class="card-text" id="amountPaid">المبلغ المدفوع  :   450د.ل</p>
-                                      <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
-                                      <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
-                                      <a href="javascript:void(0)" >عرض الإيصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
-                                      <div class="row">
-                                          <!--للمحضر-->
-                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم التسليم للزوجة</button>
-                                          <!--زر الرفض-->
-                                          <!-- <button class="btn btn-outline-danger"
-                                              data-bs-toggle="modal"
-                                              data-bs-target="#modalReject">
-                                              رفض
-                                          </button> -->
-                                          <!--/زر الرفض-->
-                                      </div>
-                                  </div>
-                              <div class="card-footer text-body-secondary text-center">2 days ago</div>
-                          </div>
-                      </div>
-                      <!--/Card-->
-
-
-                      <!--Card-->
-                      <div class="col-md-6 col-lg-4">
-                          <div class="card">
-                              <div class="card-header">
-                                <h5>رقم قرار النفقة : D-2025-001</h5>
-                              </div>
-                                  <div class="card-body">
-                                      <p class="card-text" id="monthlyAmount">المبلغ المتفق عليه  :   500د.ل</p>
-                                      <p class="card-text" id="exHusbandName ">اسم الزوج : خالد ناصر على</p>
-                                      <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
-                                      <p class="card-text" id="payDate">تاريخ الدفع  :   17/05/2025</p>
-                                      <p class="card-text" id="amountPaid">المبلغ المدفوع  :   450د.ل</p>
-                                      <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
-                                      <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
-                                      <a href="javascript:void(0)" >عرض الإصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        type="button"
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
-                                      <div class="row">
-                                          <!--للمحضر-->
-                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم التسليم للزوجة</button>
-                                          <!--زر الرفض-->
-                                          <!-- <button class="btn btn-outline-danger"
-                                              data-bs-toggle="modal"
-                                              data-bs-target="#modalReject">
-                                              رفض
-                                          </button> -->
-                                          <!--/زر الرفض-->
-                                      </div>
-                                  </div>
-                              <div class="card-footer text-body-secondary text-center">2 days ago</div>
-                          </div>
-                      </div>
-                      <!--/Card-->
-
-                      <!--Card-->
-                      <div class="col-md-6 col-lg-4">
-                          <div class="card">
-                              <div class="card-header">
-                                <h5>رقم قرار النفقة : D-2025-001</h5>
-                              </div>
-                                  <div class="card-body">
-                                      <p class="card-text" id="monthlyAmount">المبلغ المتفق عليه  :   500د.ل</p>
-                                      <p class="card-text" id="exHusbandName ">اسم الزوج : خالد ناصر على</p>
-                                      <p class="card-text" id="exWife">اسم المطلقة : اماني سالم الحداد</p>
-                                      <p class="card-text" id="payDate">تاريخ الدفع  :   17/05/2025</p>
-                                      <p class="card-text" id="amountPaid">المبلغ المدفوع  :   450د.ل</p>
-                                      <p class="card-text" id="payMethod"> طريقة الدفع :   كاش</p>
-                                      <p class="card-text" id="notes">ملاحظات  : تم التسليم في الوقت المحدد</p>
-                                      <a href="javascript:void(0)" >عرض الإيصال</a>
-                                      <!--زر و نافذة التعديل -->
-                                      <!-- <button
-                                        class="btn btn-link"
-                                        data-bs-toggle="modal"
-                                        data-bs-target="#modalEdit">
-                                        تعديل
-                                      </button> -->
-                                      <!--/زر التعديل-->
-                                      <div class="row">
-                                          <!--للمحضر-->
-                                          <button class="btn btn-outline-primary mb-4 mt-4"> تم التسليم للزوجة</button>
-                                          <!--زر الرفض-->
-                                          <!-- <button class="btn btn-outline-danger"
-                                              data-bs-toggle="modal"
-                                              data-bs-target="#modalReject">
-                                              رفض
-                                          </button> -->
-                                          <!--/زر الرفض-->
-                                      </div>
-                                  </div>
-                              <div class="card-footer text-body-secondary text-center">2 days ago</div>
-                          </div>
-                      </div>
-                      <!--/Card-->
-
-                    </div>
-                 
+                  </div>
                 </div>
-            </div>
-        </div>    
+    <div class="row g-6" id="requestsGrid"></div>
+<!-- قالب الكرت (لا يُعرض؛ يُستنسخ بالـJS) -->
+<template id="requestCardTpl">
+  <div class="col-md-6 col-lg-4">
+    <div class="card h-100">
+      <div class="card-header" style="    font-weight: bold;">
+        <h5 class="mb-0">رقم قرار النفقة : <span data-field="courtDecisionNo"></span></h5>
+      </div>
+
+      
+<div class="card-body">
+  <!-- اسم المطلّقة -->
+  <p class="card-text mb-3">
+   المبلغ المتفق عليه شهرياٌ: <span data-field="monthlyAmount"></span>
+  </p>
+
+  <!-- من قدّم الطلب (زوجة / موظف حكومي) -->
+  <p class="card-text mb-3">
+  اسم الزوج: <span data-field="husbandName"></span>
+  </p>
+
+  <!-- اسم مقدّم الطلب -->
+  <p class="card-text mb-3">
+    اسم المطلقة : <span data-field="wifeName"></span>
+  </p>
+  <!-- اسم مقدّم الطلب -->
+  <p class="card-text mb-3">
+   تاريخ الدفع :<span data-field="payDate"></span>
+  </p>
+    <p class="card-text mb-3">
+    المبلغ المدفوع :<span data-field="amountPaid"></span>
+  </p>
+    <p class="card-text mb-3">
+    فترة الدفع عن شهر: &nbsp;&nbsp;<span data-field="periodFrom" style="color:#83B582;     font-weight: bold;"></span>
+
+       إلى شهر:&nbsp;&nbsp;<span data-field="periodTo" style="color:#83B582;     font-weight: bold;"></span>
+  </p>
+   
+   <p class="card-text mb-3">
+   طريقة الدفع :<span data-field="method"></span>
+  </p>
+ <p class="card-text mb-3">
+   حالة الدفع :<span data-field="state"></span>
+  </p>
+
+
+ <div class="d-block mb-3">
+    <p class="card-text mb-3">
+   ملاحظات:<span data-field="notes"></span>
+  </p>
+  </div>
+
+  <div class="d-block mb-3" data-field="docLinks"></div>
+   <div class="d-block mb-3">
+    <p class="card-text mb-3">
+
+
+       <label for="ReviewNote" class="form-label"> ملاحظات المحضر ان وجدت: </label>
+                        <textarea class="form-control" data-field="ReviewNote"  rows="3"></textarea>
+                     
+  </p>
+  </div>
+  <div class="row g-2">
+
+    <button class="btn btn-outline-primary mb-4 mt-4"  type="button" data-action="Confirm"> تم التسليم للزوجة</button>
+
+  </div>
+  <div class="row g-2">
+
+    <button class="btn btn-outline-danger w-100" type="button" data-action="reject"> رفض عملية الدفع</button>
+
+  </div>
+</div>
+
+
+      <div class="card-footer text-body-secondary text-center">
+        <span data-field="createdAgo">—</span>
+      </div>
+    </div>
+  </div>
+</template>
+</div>
+</div>
+
     <!-- / Content -->
 
     <!-- Modal التعديل-->
@@ -554,7 +546,7 @@
   <script type="module" src="../../../assets/js/pages/index.js"></script>
 
   <!-- Page JS -->
-  <script type="module" src="../../../assets/js/pages/alimony-request.js"></script>
+  <script type="module" src="../../assets/js/pages/alimony-payment-confirm-followUpAgent.js"></script>
   <script type="module" src="../../assets/js/pages/logout.js"></script>
   <script type="module" src="../../assets/js/pages/change-password.js"></script>
 

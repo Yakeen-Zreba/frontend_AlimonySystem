@@ -1,13 +1,14 @@
 
 import {
-  showError, showSpinner, hideSpinner,showSuccessMessage,hideErrorDialog,showErrorDialog,showSpinnerformLoading,hideSpinnerformLoading
+  showError,hideError, showSpinner, hideSpinner,showSuccessMessage,hideErrorDialog,showErrorDialog,showSpinnerformLoading,hideSpinnerformLoading
 } from "../utils/helpers.js";
 import { GetAPI, postAPI ,postDataWithFile} from "../api/httpClient.js";
 
 /* إعدادات API */
 const API_BASE  = "http://localhost:5016";
 const File_BASE = "http://localhost:1212/"; // جذر استضافة الملفات الثابتة (IIS static site)
-const ENDPOINT_LIST   = `${API_BASE}/api/Payments/Husband/payments-by-payer`;
+const ENDPOINT_LIST   = `${API_BASE}/api/Payments/Bailiff/payments-by-decision`;
+const ENDPOINT_CONFIRM   = `${API_BASE}/api/Payments/Bailiff/confirm-payment`;
 
 /* عناصر من الصفحة */
 const grid    = document.getElementById("requestsGrid");
@@ -16,8 +17,8 @@ const tpl     = document.getElementById("requestCardTpl");
 
 
 const courtWifeSpan  = document.getElementById("courtWifeName");     // <span id="courtWifeName">
-const rejectNotesInput = document.getElementById("notes");
-let currentRejectAlimonyId = null;  // نخزّن هنا الـ id للكرت المختار
+let NotesInput = null;
+let currentPaymentId = null;  // نخزّن هنا الـ id للكرت المختار
 
 /* أدوات مساعدة */
 function timeAgo(iso) {
@@ -96,6 +97,8 @@ node.querySelector("[data-field='amountPaid']").textContent =  item?.amountPaid 
 node.querySelector("[data-field='periodFrom']").textContent =  formatMonthYear(item?.periodFrom );
 node.querySelector("[data-field='wifeName']").textContent =  item?.wifeName ;
 node.querySelector("[data-field='husbandName']").textContent =  item?.husbandName ;
+const noteEl = node.querySelector("[data-field='ReviewNote']");
+  noteEl.value = ""; // تهيئة
 
 // من قدّم الطلب
 node.querySelector("[data-field='method']").textContent = item?.method == 1 ? "كاش"  : "شيك";
@@ -104,10 +107,56 @@ node.querySelector("[data-field='method']").textContent = item?.method == 1 ? "�
   const docsBox = node.querySelector("[data-field='docLinks']");
   renderDocumentLinks(docsBox, item.husbandDocuments);
   node.querySelector("[data-field='createdAgo']").textContent    = timeAgo(item.payDate);
+// داخل renderCard(item)
+node.querySelector("[data-action='Confirm']").addEventListener("click",async () => {
+  currentPaymentId = item.paymentId;      // خزّن رقم الطلب
+    console.log(node.querySelector("[data-field='ReviewNote']"))     // صفّر الحقل
+     NotesInput = (noteEl.value || "").trim();  
+ // صفّر الحقل
+ ConfirmPayment(true);
 
+});
+node.querySelector("[data-action='reject']").addEventListener("click",async () => {
+  currentPaymentId = item.paymentId;      // خزّن رقم الطلب
+  NotesInput =(noteEl.value || "").trim();  
+ ConfirmPayment(false);
+});
   grid.appendChild(node);
 }
+export async function ConfirmPayment(Approve) {
+    hideError()
+  if (!currentPaymentId) return;
 
+console.log(currentPaymentId)
+
+  try {
+    showSpinner();
+    // الجسم حسب المطلوب: سبب الرفض مع id في الـURL
+    const data ={
+      PaymentId: currentPaymentId,
+      Approve: Approve,
+      Note: NotesInput
+    }
+    const res = await postAPI(ENDPOINT_CONFIRM, data );
+
+    if (res?.isSuccess) {
+      // اغلق المودال ونظف
+     
+      NotesInput = "";
+      currentPaymentId = null;
+      showSuccessMessage(res?.message)    
+      // أعد تحميل القائمة بنفس الفلاتر
+      await loadRequests(_lastQueryUsed);
+    } else {
+      showError(res?.message );
+    }
+  } catch (e) {
+    showError("تعذر الاتصال بالخادم" );
+  } finally {
+ 
+    hideSpinner();
+  }
+};
 
 
 /* تحميل القائمة مع فلاتر */
@@ -118,8 +167,11 @@ export async function loadRequests(query = {}) {
 
 
     const p = new URLSearchParams();
-    p.set("payerPersonId", localStorage.getItem("PersonId"));
 
+    p.set("status", 0);
+    p.set("currentPersonalId", localStorage.getItem('PersonId'));
+
+  
 
     const url = `${ENDPOINT_LIST}?${p.toString()}`;
     _lastQueryUsed = {  };
