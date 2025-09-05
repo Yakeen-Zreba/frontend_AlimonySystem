@@ -6,8 +6,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام تتبع نفقات المطلقات</title>
-    <meta name="description" content="لوحة معلومات لنظام النفقات" />
+    <title>نظام تتبع نفقة المطلقات</title>
+    <meta name="description" content="لوحة معلومات لنظام النفقة" />
 
     <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
 
@@ -72,8 +72,8 @@
           <ul class="menu-inner py-3">
             
             <!-- الرئيسية-->
-            <li class="menu-item active">
-              <a href="#" class="menu-link active">
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -124,21 +124,21 @@
               </a>
           </li> 
 
-          <!-- إدارة النفقات -->
+          <!-- إدارة النفقة -->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
-              <div>إدارة النفقات</div>
+              <div>إدارة النفقة</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item">
+              <li class="menu-item" id="adminAlmonyRequest" style="display:none;">
                 <a href="../divorced-woman/almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
               </li>
               <li class="menu-item">
                 <a href="../employee/alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
+                  <div>سجل النفقة </div>
                 </a>
               </li>
               <li class="menu-item">
@@ -146,7 +146,7 @@
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
-              <li class="menu-item">
+              <li class="menu-item" id="adminAlmonyPayment" style="display:none;">
                 <a href="../divorced-man/almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
@@ -154,7 +154,7 @@
             </ul>
           </li>
 
-          <!--التقارير-->
+            <!--التقارير-->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-bar-chart'  ></i> 
@@ -163,12 +163,13 @@
             <ul class="menu-sub">
               <li class="menu-item ">
                 <a href="../employee/alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقات </div>
+                  <div>تقرير بحالة النفقة </div>
                 </a>
               </li>
             </ul>
             </li>
-          
+
+
           <!-- تسجيل الخروج -->
             <li class="menu-item ">
               <a href="#" class="menu-link ">
@@ -193,7 +194,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4  fw-bold">نظام إدارة النفقات </h4>
+                <h4 class="mb-0 me-4  fw-bold">نظام إدارة النفقة </h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
@@ -202,7 +203,7 @@
                 </li>
 
 
-                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
+                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
                     <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
@@ -211,7 +212,7 @@
                         <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                     </a>
-                </li>
+                </li> -->
                 </ul>
             </div>
           </nav>
@@ -224,8 +225,8 @@
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <div class="card-body">
-                      <h5 class="card-title">مرحبًا بك في نظام تتبع النفقات</h5>
-                      <p class="card-text">يساعدك هذا النظام على تسجيل، متابعة، وتحليل نفقات المطلقات وفقًا للقوانين الليبية.</p>
+                      <h5 class="card-title">مرحبًا بك في نظام تتبع النفقة</h5>
+                      <p class="card-text">يساعدك هذا النظام على تسجيل، متابعة، وتحليل نفقة المطلقات وفقًا للقوانين الليبية.</p>
                       <a href="#" class="btn btn-primary">عرض المستفيدين</a>
                       <a href="#" class="btn btn-outline-secondary">تصدير تقرير</a>
                     </div>
@@ -292,7 +293,7 @@
                     <script>
                       document.write(new Date().getFullYear());
                     </script>
-                     جميع الحقوق محفوظة - نظام النفقات
+                     جميع الحقوق محفوظة - نظام النفقة
                   </div>
                   <div class="d-none d-lg-inline-block">
                     <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
@@ -317,6 +318,19 @@
     <script src="../../assets/js/dashboards-analytics.js"></script>
     <script>
       const LOGIN_PAGE = "../login.html"; 
+    // تحديدي العناصر الظاهرة حسب ال role
+    document.addEventListener("DOMContentLoaded", () => {
+    const userRole = localStorage.getItem("userRole");
+
+    if (!userRole) return; // إذا ما في تسجيل دخول
+
+    // إظهار/إخفاء العناصر حسب الدور
+    if (userRole === "admin") {
+       document.getElementById("adminAlmonyPayment").style.display = "block";
+       document.getElementById("adminAlmonyRequest").style.display = "block";
+    }
+
+    });  
     </script>
 
     <!-- Main JS -->

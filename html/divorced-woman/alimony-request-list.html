@@ -8,8 +8,8 @@
    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام إدارة النفقات</title>
-    <meta name="description" content="نظام إدارة النفقات" />
+    <title>نظام إدارة النفقة</title>
+    <meta name="description" content="نظام إدارة النفقة" />
 
     <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
 
@@ -220,11 +220,11 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
               </a>
           </li>  
 
-            <!-- إدارة النفقات -->
+            <!-- إدارة النفقة -->
             <li class="menu-item open">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
-              <div>إدارة النفقات</div>
+              <div>إدارة النفقة</div>
             </a>
             <ul class="menu-sub">
               <li class="menu-item"   id="adminWomanAlmonyRequesr" style="display:none;">
@@ -234,22 +234,22 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
               </li>
                <li class="menu-item " id="adminGovAlmonyPaymentList" style="display:none;">
                 <a href="../employee/alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
+                  <div>سجل النفقة </div>
                 </a>
               </li>
               <li class="menu-item " id="womanAlmonyPaymentList" style="display:none;">
                 <a href="alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقات </div>
+                  <div>سجل النفقة </div>
                 </a>
               </li>
               <li class="menu-item active" id="womanAlmonyRequestlist" style="display:none;">
-                <a href="alimony-request-list.html" class="menu-link">
-                  <div>سجل طلبات النفقات </div>
+                <a href="#" class="menu-link">
+                  <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
               <li class="menu-item active" id="adminGovAlmonyRequestlist" style="display:none;">
                 <a href="../employee/alimony-request-list.html" class="menu-link">
-                  <div>سجل طلبات النفقات </div>
+                  <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
               <li class="menu-item" id="adminManAlmonyPayment" style="display:none;">
@@ -267,9 +267,21 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
               <div> التقارير</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item ">
+              <li class="menu-item " id="adminGovAlmonyPaymentReport" style="display:none;">
+                <a href="../employee/alimony-payment-report.html" class="menu-link">
+                  <div>تقرير بحالة النفقة </div>
+                </a>
+              </li>
+
+              <li class="menu-item " id="womanAlmonyPaymentReport" style="display:none;">
                 <a href="alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقات </div>
+                  <div>تقرير بحالة النفقة </div>
+                </a>
+              </li>
+
+              <li class="menu-item " id="manAlmonyPaymentReport" style="display:none;">
+                <a href="../divorced-man/alimony-payment-report.html" class="menu-link">
+                  <div>تقرير بحالة النفقة </div>
                 </a>
               </li>
             </ul>
@@ -299,7 +311,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4 fw-bold">قائمة طلبات النفقات </h4>
+                <h4 class="mb-0 me-4 fw-bold">قائمة طلبات النفقة </h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
@@ -308,7 +320,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
                 </li>
 
 
-                <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
+                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
                     <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
@@ -317,7 +329,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
                         <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                     </a>
-                </li>
+                </li> -->
                 </ul>
             </div>
           </nav>
@@ -549,7 +561,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
             <script>
                 document.write(new Date().getFullYear());
             </script>
-                جميع الحقوق محفوظة - نظام النفقات
+                جميع الحقوق محفوظة - نظام النفقة
             </div>
             <div class="d-none d-lg-inline-block">
             <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
@@ -613,6 +625,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
         document.getElementById("adminGovDivorceManagement").style.display = "block";
         document.getElementById("adminGovAlmonyPaymentList").style.display = "block";
         document.getElementById("adminGovAlmonyRequestlist").style.display = "block";
+        document.getElementById("adminGovAlmonyPaymentReport").style.display = "block";
         document.getElementById("adminGovHome").style.display = "block";
     }
 
@@ -623,8 +636,12 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
     if (userRole === "admin" || userRole === "man" ) {
         document.getElementById("adminManAlmonyPayment").style.display = "block";
     }
+    if (userRole === "man" ) {
+        document.getElementById("manAlmonyPaymentReport").style.display = "block";
+    }   
     if (userRole === "woman") {
         document.getElementById("womanAlmonyPaymentList").style.display = "block";
+        document.getElementById("manAlmonyPaymentReport").style.display = "block";
         document.getElementById("womanHome").style.display = "block";
         document.getElementById("womanAlmonyRequestlist").style.display = "block";
     }
