@@ -161,16 +161,9 @@
             </a>
           </div>
           <ul class="menu-inner py-3">
-             <!-- الرئيسية-->
-            <li class="menu-item " id="adminGovHome" style="display:none;">
-              <a href="../admin/dashboard.html" class="menu-link ">
-                  <i class="menu-icon bx  bx-home"></i>
-                  <div>الرئيسية</div>
-              </a>
-            </li>
-              <!-- الرئيسية-->
-            <li class="menu-item " id="manHome" style="display:none;">
-              <a href="index.html" class="menu-link ">
+            <!-- الرئيسية-->
+            <li class="menu-item " id="HomeItem" style="display:none;">
+              <a  class="menu-link " id="HomeLink">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -233,21 +226,20 @@
                   <div>طلب نفقة</div>
                 </a>
               </li>
-              <li class="menu-item active" id="adminGovAlmonyPaymentList" style="display:none;">
-                <a href="../employee/alimony-payment-list.html" class="menu-link">
+              
+
+              <li class="menu-item active" id="almonyPaymentListItem" style="display:none;">
+                <a id="almonyPaymentListLink" class="menu-link">
                   <div>سجل النفقة </div>
                 </a>
               </li>
-              <li class="menu-item active" id="manAlmonyPaymentList" style="display:none;">
-                <a href="alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقة </div>
-                </a>
-              </li>
+
               <li class="menu-item" id="adminGovAlmonyRequesrlist" style="display:none;">
                 <a href="../employee/alimony-request-list.html" class="menu-link">
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
+
               <li class="menu-item"id="adminManAlmonyPayment" style="display:none;">
                 <a href="almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
@@ -263,20 +255,8 @@
               <div> التقارير</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item " id="adminGovAlmonyPaymentReport" style="display:none;">
-                <a href="../employee/alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقة </div>
-                </a>
-              </li>
-
-              <li class="menu-item " id="womanAlmonyPaymentReport" style="display:none;">
-                <a href="../divorced-woman/alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقة </div>
-                </a>
-              </li>
-
-              <li class="menu-item " id="manAlmonyPaymentReport" style="display:none;">
-                <a href="../divorced-man/alimony-payment-report.html" class="menu-link">
+              <li class="menu-item " id="almonyPaymentReportItem" style="display:none;">
+                <a id="almonyPaymentReportLink" class="menu-link">
                   <div>تقرير بحالة النفقة </div>
                 </a>
               </li>
@@ -537,10 +517,16 @@
     if (userRole === "admin" || userRole === "gov") {
         document.getElementById("adminGovUserManagement").style.display = "block";
         document.getElementById("adminGovDivorceManagement").style.display = "block";
-        document.getElementById("adminGovAlmonyPaymentList").style.display = "block";
         document.getElementById("adminGovAlmonyRequesrlist").style.display = "block";
-        document.getElementById("adminGovAlmonyPaymentReport").style.display = "block";
-        document.getElementById("adminGovHome").style.display = "block";
+
+        document.getElementById("HomeItem").style.display = "block";
+        document.getElementById("HomeLink").setAttribute("href", "../admin/dashboard.html");
+
+        document.getElementById("almonyPaymentReportItem").style.display = "block";
+        document.getElementById("almonyPaymentReportLink").setAttribute("href", "../employee/alimony-payment-report.html");
+
+        document.getElementById("almonyPaymentListItem").style.display = "block";
+        document.getElementById("almonyPaymentListLink").setAttribute("href", "../employee/alimony-payment-list.html");
     }
 
     if (userRole === "admin") {
@@ -552,9 +538,15 @@
     }
 
     if (userRole === "man") {
-        document.getElementById("manAlmonyPaymentList").style.display = "block";
-        document.getElementById("manAlmonyPaymentReport").style.display = "block";
-        document.getElementById("manHome").style.display = "block";
+        document.getElementById("almonyPaymentReportItem").style.display = "block";
+        document.getElementById("almonyPaymentReportLink").setAttribute("href", "alimony-payment-report.html");
+
+        document.getElementById("HomeLink").style.display = "block";
+        document.getElementById("HomeLink").setAttribute("href", "index.html");
+
+        document.getElementById("almonyPaymentListItem").style.display = "block";
+        document.getElementById("almonyPaymentListLink").setAttribute("href", "#");
+    
     }
     });  
   </script>
