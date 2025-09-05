@@ -28,7 +28,7 @@ console.log('decision')
            if (response.isSuccess && Array.isArray(response.results)) {
             if(response.results.length==0){
 
-          sel.innerHTML = `<option selected disabled value=''  >لا يوجد نفقات لدفعها</option>`;
+          sel.innerHTML = `<option selected disabled value=''  >لا يوجد نفقة لدفعها</option>`;
 
                 return
             }

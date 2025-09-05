@@ -30,7 +30,7 @@ function getPermissionList() {
   return [
     { permissionId: 1, permissionKey: "AcceptNafaqa", permissionName: "قبول طلب نفقة" },
     { permissionId: 2, permissionKey: "RejectNafaqa", permissionName: "رفض طلب نفقة" },
-    { permissionId: 3, permissionKey: "ViewReqestNafaqa", permissionName: "عرض طلبات النفقات" }
+    { permissionId: 3, permissionKey: "ViewReqestNafaqa", permissionName: "عرض طلبات النفقة" }
   ];
 }
 function SetPermission(emp){
