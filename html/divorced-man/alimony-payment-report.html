@@ -148,7 +148,7 @@
               <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item"  id="adminWomanAlmonyRequesr" style="display:none;">
+              <li class="menu-item"  id="adminAlmonyRequesr" style="display:none;">
                 <a href="../divorced-woman/almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
@@ -165,7 +165,7 @@
               </li>
               <li class="menu-item" id="adminGovAlmonyRequestlist" style="display:none;">
                 <a href="../employee/alimony-request-list.html" class="menu-link">
-                  <div>سجل طلبات النفقات </div>
+                  <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
               <li class="menu-item"id="adminManAlmonyPayment" style="display:none;">
@@ -184,13 +184,19 @@
               <div> التقارير</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item active">
-                <a href="#" class="menu-link">
+              <li class="menu-item active" id="adminGovAlmonyPaymentReport" style="display:none;">
+                <a href="../employee/alimony-payment-report.html" class="menu-link">
+                  <div>تقرير بحالة النفقات </div>
+                </a>
+              </li>
+
+              <li class="menu-item active" id="manAlmonyPaymentReport" style="display:none;">
+                <a href="../divorced-man/alimony-payment-report.html" class="menu-link">
                   <div>تقرير بحالة النفقات </div>
                 </a>
               </li>
             </ul>
-          </li> 
+            </li>
 
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
@@ -237,7 +243,7 @@
                 </li>
 
                 <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a
                     class="nav-link dropdown-toggle hide-arrow p-0"
                     href="javascript:void(0);"
@@ -246,7 +252,7 @@
                       <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
-                </li>
+                </li> -->
                 <!--/ User -->
               </ul>
             </div>
@@ -421,24 +427,30 @@
 
     if (!userRole) return; // إذا ما في تسجيل دخول
 
+      
+
+
     // إظهار/إخفاء العناصر حسب الدور
     if (userRole === "admin" || userRole === "gov") {
         document.getElementById("adminGovUserManagement").style.display = "block";
         document.getElementById("adminGovDivorceManagement").style.display = "block";
         document.getElementById("adminGovAlmonyPaymentList").style.display = "block";
         document.getElementById("adminGovAlmonyRequestlist").style.display = "block";
+        document.getElementById("adminGovAlmonyPaymentReport").style.display = "block";
         document.getElementById("adminGovHome").style.display = "block";
     }
 
-    if (userRole === "admin" || userRole === "woman" ) {
-        document.getElementById("adminWomanAlmonyRequesr").style.display = "block";
+    if (userRole === "admin") {
+        document.getElementById("adminAlmonyRequesr").style.display = "block";
     }
+
 
     if (userRole === "admin" || userRole === "man" ) {
         document.getElementById("adminManAlmonyPayment").style.display = "block";
     }
     if (userRole === "man") {
         document.getElementById("manAlmonyPaymentList").style.display = "block";
+        document.getElementById("manAlmonyPaymentReport").style.display = "block";
         document.getElementById("manHome").style.display = "block";
     }
     });  

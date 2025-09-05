@@ -72,8 +72,8 @@
           <ul class="menu-inner py-3">
             
             <!-- الرئيسية-->
-            <li class="menu-item active">
-              <a href="#" class="menu-link active">
+            <li class="menu-item ">
+              <a href="#" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -131,7 +131,7 @@
               <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item">
+              <li class="menu-item" id="adminAlmonyRequest" style="display:none;">
                 <a href="../divorced-woman/almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
@@ -146,7 +146,7 @@
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
-              <li class="menu-item">
+              <li class="menu-item" id="adminAlmonyPayment" style="display:none;">
                 <a href="../divorced-man/almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
@@ -154,21 +154,34 @@
             </ul>
           </li>
 
-          <!--التقارير-->
+            <!--التقارير-->
             <li class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-bar-chart'  ></i> 
               <div> التقارير</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item ">
+              <li class="menu-item " id="adminGovAlmonyPaymentReport" style="display:none;">
                 <a href="../employee/alimony-payment-report.html" class="menu-link">
+                  <div>تقرير بحالة النفقات </div>
+                </a>
+              </li>
+
+              <li class="menu-item " id="womanAlmonyPaymentReport" style="display:none;">
+                <a href="../divorced-woman/alimony-payment-report.html" class="menu-link">
+                  <div>تقرير بحالة النفقات </div>
+                </a>
+              </li>
+
+              <li class="menu-item " id="manAlmonyPaymentReport" style="display:none;">
+                <a href="../divorced-man/alimony-payment-report.html" class="menu-link">
                   <div>تقرير بحالة النفقات </div>
                 </a>
               </li>
             </ul>
             </li>
-          
+
+
           <!-- تسجيل الخروج -->
             <li class="menu-item ">
               <a href="#" class="menu-link ">
@@ -317,6 +330,19 @@
     <script src="../../assets/js/dashboards-analytics.js"></script>
     <script>
       const LOGIN_PAGE = "../login.html"; 
+    // تحديدي العناصر الظاهرة حسب ال role
+    document.addEventListener("DOMContentLoaded", () => {
+    const userRole = localStorage.getItem("userRole");
+
+    if (!userRole) return; // إذا ما في تسجيل دخول
+
+    // إظهار/إخفاء العناصر حسب الدور
+    if (userRole === "admin") {
+       document.getElementById("adminAlmonyPayment").style.display = "block";
+       document.getElementById("adminAlmonyRequest").style.display = "block";
+    }
+
+    });  
     </script>
 
     <!-- Main JS -->

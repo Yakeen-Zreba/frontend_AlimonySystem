@@ -120,7 +120,7 @@
             
           <!--وقائع الطلاق-->
           <li class="menu-item active">
-              <a href="../management-divorce/view.html" class="menu-link">
+              <a href="view.html" class="menu-link">
                 <i class="menu-icon bx bx-file"></i>
                 <div>وقائع الطلاق</div>
               </a>
@@ -133,11 +133,11 @@
               <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
-              <!-- <li class="menu-item">
-                <a href="../alimony/almony-request.html" class="menu-link">
+              <li class="menu-item" id="adminAlmonyRequest" style="display:none;">
+                <a href="../divorced-woman/almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
-              </li> -->
+              </li>
               <li class="menu-item">
                 <a href="../employee/alimony-payment-list.html" class="menu-link">
                   <div>سجل النفقات </div>
@@ -148,15 +148,28 @@
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
-              <!-- <li class="menu-item">
-                <a href="../alimony-payment.html" class="menu-link">
+              <li class="menu-item" id="adminAlmonyPayment" style="display:none;">
+                <a href="../divorced-man/almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
-              </li> -->
+              </li>
             </ul>
           </li>   
 
-            <li class="menu-item"><a href="#" class="menu-link">التقارير</a></li>
+            <!--التقارير-->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+              <i class=' menu-icon bx  bx-bar-chart'  ></i> 
+              <div> التقارير</div>
+            </a>
+            <ul class="menu-sub">
+              <li class="menu-item ">
+                <a href="../employee/alimony-payment-report.html" class="menu-link">
+                  <div>تقرير بحالة النفقات </div>
+                </a>
+              </li>
+            </ul>
+            </li>
             
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
@@ -481,6 +494,21 @@
 
   <script>
     const LOGIN_PAGE = "../login.html";
+
+    // تحديدي العناصر الظاهرة حسب ال role
+    document.addEventListener("DOMContentLoaded", () => {
+    const userRole = localStorage.getItem("userRole");
+
+    if (!userRole) return; // إذا ما في تسجيل دخول
+
+    // إظهار/إخفاء العناصر حسب الدور
+    if (userRole === "admin") {
+       document.getElementById("adminAlmonyPayment").style.display = "block";
+       document.getElementById("adminAlmonyRequest").style.display = "block";
+    }
+
+    });   
+
     $(document).ready(function() {
       // تفعيل البحث في القائمة
       $('#divorcedMan').select2({
@@ -499,8 +527,8 @@
     <script src="../../assets/js/main.js"></script>
     <script type="module" src="../../assets/js/pages/index.js"></script>
 
-    <!-- Page JS -->
-   <script type="module" src="../../assets/js/pages/add-divorce-cases.js"></script>
+  <!-- Page JS -->
+  <script type="module" src="../../assets/js/pages/add-divorce-cases.js"></script>
   <script type="module" src="../../assets/js/pages/logout.js"></script>
   <script type="module" src="../../assets/js/pages/change-password.js"></script>
   <script type="module">

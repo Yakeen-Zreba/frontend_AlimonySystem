@@ -130,8 +130,8 @@
               <div>إدارة النفقات</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item">
-                <a href="../../divorced-woman/almony-request.html" class="menu-link">
+              <li class="menu-item" id="adminAlmonyRequest" style="display:none;">
+                <a href="../divorced-woman/almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
               </li>
@@ -145,8 +145,8 @@
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
-              <li class="menu-item">
-                <a href="../../divorced-man/almony-payment.html" class="menu-link">
+              <li class="menu-item" id="adminAlmonyPayment" style="display:none;">
+                <a href="../divorced-man/almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
               </li>
@@ -477,6 +477,10 @@
     // إظهار/إخفاء العناصر حسب الدور
     if (userRole === "admin" || userRole === "gov") {
         document.getElementById("adminGovHome").style.display = "block";
+    }
+    if (userRole === "admin") {
+        document.getElementById("adminAlmonyPayment").style.display = "block";
+        document.getElementById("adminAlmonyRequest").style.display = "block";
     }
     }); 
 
