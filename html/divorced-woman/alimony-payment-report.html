@@ -83,14 +83,7 @@
           </div>
           <ul class="menu-inner py-3">
              <!-- الرئيسية-->
-            <li class="menu-item " id="adminGovHome" style="display:none;">
-              <a href="../admin/dashboard.html" class="menu-link ">
-                  <i class="menu-icon bx  bx-home"></i>
-                  <div>الرئيسية</div>
-              </a>
-            </li>
-              <!-- الرئيسية-->
-            <li class="menu-item " id="womanHome" style="display:none;">
+            <li class="menu-item">
               <a href="index.html" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
@@ -109,7 +102,7 @@
             </li>
 
             <!-- إدارة المستخدمين --> 
-            <li class="menu-item" id="adminGovUserManagement" style="display:none;"> 
+            <!-- <li class="menu-item"> 
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon bx bx-group"></i>
                 <div>إدارة المستخدمين</div>
@@ -131,15 +124,15 @@
                   </a>
                 </li>
               </ul>
-            </li> 
+            </li> -->
             
           <!--وقائع الطلاق-->
-          <li class="menu-item " id="adminGovDivorceManagement" style="display:none;">
+          <!-- <li class="menu-item ">
               <a href="../management-divorce/view.html" class="menu-link">
                 <i class="menu-icon bx bx-file"></i>
                 <div>وقائع الطلاق</div>
               </a>
-          </li>  
+          </li>  -->
 
             <!-- إدارة النفقة -->
             <li class="menu-item">
@@ -148,36 +141,26 @@
               <div>إدارة النفقة</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item"   id="adminWomanAlmonyRequesr" style="display:none;">
+              <li class="menu-item" id="adminAlmonyRequest" style="display:none;">
                 <a href="almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
               </li>
-              <li class="menu-item " id="adminGovAlmonyPaymentList" style="display:none;">
-                <a href="../employee/alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقة </div>
-                </a>
-              </li>
-              <li class="menu-item " id="womanAlmonyPaymentList" style="display:none;">
+              <li class="menu-item">
                 <a href="alimony-payment-list.html" class="menu-link">
                   <div>سجل النفقة </div>
                 </a>
               </li>
-              <li class="menu-item" id="womanAlmonyRequestlist" style="display:none;">
+              <li class="menu-item ">
                 <a href="alimony-request-list.html" class="menu-link">
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
-              <li class="menu-item" id="adminGovAlmonyRequestlist" style="display:none;">
-                <a href="../employee/alimony-request-list.html" class="menu-link">
-                  <div>طلبات نفقة قيد المراجعة </div>
-                </a>
-              </li>
-              <li class="menu-item" id="adminManAlmonyPayment" style="display:none;">
+              <!-- <li class="menu-item" id="adminAlmonyPayment" style="display:none;">
                 <a href="../divorced-man/almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </li>   
 
@@ -189,25 +172,13 @@
               <div> التقارير</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item active" id="adminGovAlmonyPaymentReport" style="display:none;">
-                <a href="../employee/alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقة </div>
-                </a>
-              </li>
-
-              <li class="menu-item active" id="womanAlmonyPaymentReport" style="display:none;">
-                <a href="alimony-payment-report.html" class="menu-link">
-                  <div>تقرير بحالة النفقة </div>
-                </a>
-              </li>
-
-              <li class="menu-item active" id="manAlmonyPaymentReport" style="display:none;">
-                <a href="../divorced-man/alimony-payment-report.html" class="menu-link">
+              <li class="menu-item active">
+                <a href="#" class="menu-link">
                   <div>تقرير بحالة النفقة </div>
                 </a>
               </li>
             </ul>
-            </li>
+          </li> 
 
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
@@ -234,19 +205,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-              <!-- Search -->
-              <div class="navbar-nav align-items-center me-auto">
-                <div class="nav-item d-flex align-items-center">
-                  <span class="w-px-22 h-px-22"><i class="icon-base bx bx-search icon-md"></i></span>
-                  <input
-                    type="text"
-                    id="searchInput"
-                    class="form-control border-0 shadow-none ps-1 ps-sm-2 d-md-block d-none"
-                    placeholder="Search..."
-                    aria-label="Search..." />
-                </div>
-              </div>
-              <!-- /Search -->
+              
 
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
                 <li class="nav-item lh-1 me-4"> 
@@ -282,6 +241,28 @@
                   <div class="card mb-4">
                     <div class="card-body">
                      <h4>تقرير بحالة النفقة </h4>
+                     <!--Search-->
+                     <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="searchAlmonyNumberInput" class="form-label">بحث برقم قرار النفقة</label>
+                            <input type="text" id="searchAlmonyNumberInput" class="form-control" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">بحث بنطاق التاريخ</label>
+                            <div class="input-group">
+                                <span class="input-group-text">من</span>
+                                <input type="date" id="startDate" class="form-control" />
+                                <span class="input-group-text">إلى</span>
+                                <input type="date" id="endDate" class="form-control" />
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button class="btn btn-primary w-100" id="searchBtn">بحث</button>
+                        </div>
+                    </div>
+                     <!--Search-->
                       <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
                   </div>
@@ -312,13 +293,12 @@
                       <tr>
                         <th> رقم قرار النفقة</th>
                         <th> تاريخ الدفع</th>
-                        <th>اسم الزوجة</th>
+                        <th>اسم المطلقة/وكيلها</th>
                         <th>اسم الزوج</th>
                         <th>المبلغ المتفق عليه</th>
                         <th>المبلغ المدفوع</th>
                         <th> طريقة الدفع</th>
-                        <th>ملاحظات</th>
-                        <th>إيصال الدفع</th>
+                        <th> حالة النفقة</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0" id="almonyPaymentReprtTableBody">
@@ -332,8 +312,7 @@
             </div>
             <!-- / Content -->
 
-         
-<!-- Modal الملف الشخصي-->
+         <!-- Modal الملف الشخصي-->
             <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
               <div class="modal-dialog">
                 <form class="modal-content" id ="FormModalAccount"> 
@@ -377,9 +356,8 @@
                   </div>
                 </form>
               </div>
-            </div> </div>
+            </div></div>
             <!--/model-->
-
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
@@ -428,54 +406,35 @@
 
     <!-- Vendors JS -->
 
-   
+    
     <script>
-      const LOGIN_PAGE = "../login.html";
-      
-          // تحديدي العناصر الظاهرة حسب ال role
+      const LOGIN_PAGE = "../login.html"; 
+
+
+      // تحديدي العناصر الظاهرة حسب ال role
     document.addEventListener("DOMContentLoaded", () => {
     const userRole = localStorage.getItem("userRole");
 
     if (!userRole) return; // إذا ما في تسجيل دخول
 
     // إظهار/إخفاء العناصر حسب الدور
-    if (userRole === "admin" || userRole === "gov") {
-        document.getElementById("adminGovUserManagement").style.display = "block";
-        document.getElementById("adminGovDivorceManagement").style.display = "block";
-        document.getElementById("adminGovAlmonyPaymentList").style.display = "block";
-        document.getElementById("adminGovAlmonyRequestlist").style.display = "block";
-        document.getElementById("adminGovAlmonyPaymentReport").style.display = "block";
-        document.getElementById("adminGovHome").style.display = "block";
+    if (userRole === "admin") {
+       document.getElementById("adminAlmonyPayment").style.display = "block";
+       document.getElementById("adminAlmonyRequest").style.display = "block";
     }
 
-    if (userRole === "admin" || userRole === "woman" ) {
-        document.getElementById("adminWomanAlmonyRequesr").style.display = "block";
-    }
+    });
 
-    if (userRole === "admin" || userRole === "man" ) {
-        document.getElementById("adminManAlmonyPayment").style.display = "block";
-    }
-
-    if (userRole === "man" ) {
-        document.getElementById("manAlmonyPaymentReport").style.display = "block";
-    }
-
-    if (userRole === "woman") {
-        document.getElementById("womanAlmonyPaymentList").style.display = "block";
-        document.getElementById("womanAlmonyPaymentReport").style.display = "block";
-        document.getElementById("womanHome").style.display = "block";
-        document.getElementById("womanAlmonyRequestlist").style.display = "block";
-    }
-    });  
     </script>
 
     <!-- Main JS -->
-    <script src="../../assets/js/main.js"></script>
-    <script type="module" src="../../assets/js/pages/index.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+    <script type="module" src="../../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
-    <script type="module" src="../../assets/js/pages/marriage-contract-list.js"></script>
+    <script type="module" src="../../../../assets/js/pages/marriage-contract-list.js"></script>
     <script type="module" src="../../assets/js/pages/logout.js"></script>
     <script type="module" src="../../assets/js/pages/change-password.js"></script>
+    
   </body>
 </html>

@@ -205,19 +205,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-              <!-- Search -->
-              <div class="navbar-nav align-items-center me-auto">
-                <div class="nav-item d-flex align-items-center">
-                  <span class="w-px-22 h-px-22"><i class="icon-base bx bx-search icon-md"></i></span>
-                  <input
-                    type="text"
-                    id="searchInput"
-                    class="form-control border-0 shadow-none ps-1 ps-sm-2 d-md-block d-none"
-                    placeholder="Search..."
-                    aria-label="Search..." />
-                </div>
-              </div>
-              <!-- /Search -->
+              
 
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
                 <li class="nav-item lh-1 me-4"> 
@@ -253,6 +241,28 @@
                   <div class="card mb-4">
                     <div class="card-body">
                      <h4>تقرير بحالة النفقة </h4>
+                     <!--Search-->
+                     <div class="row g-3">
+                        <div class="col-md-4">
+                            <label for="searchAlmonyNumberInput" class="form-label">بحث برقم قرار النفقة</label>
+                            <input type="text" id="searchAlmonyNumberInput" class="form-control" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">بحث بنطاق التاريخ</label>
+                            <div class="input-group">
+                                <span class="input-group-text">من</span>
+                                <input type="date" id="startDate" class="form-control" />
+                                <span class="input-group-text">إلى</span>
+                                <input type="date" id="endDate" class="form-control" />
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-2 d-flex align-items-end">
+                            <button class="btn btn-primary w-100" id="searchBtn">بحث</button>
+                        </div>
+                    </div>
+                     <!--Search-->
                       <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
                     </div>
                   </div>
@@ -283,13 +293,12 @@
                       <tr>
                         <th> رقم قرار النفقة</th>
                         <th> تاريخ الدفع</th>
-                        <th>اسم الزوجة</th>
+                        <th>اسم المطلقة/وكيلها</th>
                         <th>اسم الزوج</th>
                         <th>المبلغ المتفق عليه</th>
                         <th>المبلغ المدفوع</th>
                         <th> طريقة الدفع</th>
-                        <th>ملاحظات</th>
-                        <th>إيصال الدفع</th>
+                        <th> حالة النفقة</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0" id="almonyPaymentReprtTableBody">
