@@ -72,13 +72,7 @@
             </a>
           </div>
           <ul class="menu-inner py-3">
-           <!-- الرئيسية-->
-            <li class="menu-item " id="adminGovHome" style="display:none;">
-              <a href="../admin/dashboard.html" class="menu-link ">
-                  <i class="menu-icon bx  bx-home"></i>
-                  <div>الرئيسية</div>
-              </a>
-            </li>
+           
               <!-- الرئيسية-->
             <li class="menu-item " id="HomeItem" style="display:none;">
               <a class="menu-link " id="HomeLink">
@@ -142,10 +136,10 @@
                 <a href="#" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
-              </li>
+              </li>womanPaymentList
 
-              <li class="menu-item" id="almonyPaymentListItem" style="display:none;">
-                <a id="almonyPaymentListLink" class="menu-link">
+              <li class="menu-item" id="womanPaymentList" style="display:none;">
+                <a href="alimony-payment-list.html" class="menu-link">
                   <div>سجل النفقة </div>
                 </a>
               </li>
@@ -156,7 +150,7 @@
                 </a>
               </li>
 
-              <li class="menu-item" id="adminManAlmonyPayment" style="display:none;">
+              <li class="menu-item" id="adminAlmonyPayment" style="display:none;">
                 <a href="../divorced-man/almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
@@ -473,9 +467,6 @@
         document.getElementById("adminGovUserManagement").style.display = "block";
         document.getElementById("adminGovDivorceManagement").style.display = "block";
 
-        document.getElementById("almonyPaymentListItem").style.display = "block";
-        document.getElementById("almonyPaymentListLink").setAttribute("href", "../employee/alimony-payment-list.html");
-
         document.getElementById("almonyPaymentReportItem").style.display = "block";
         document.getElementById("almonyPaymentReportLink").setAttribute("href", "../employee/alimony-payment-report.html");
 
@@ -493,8 +484,7 @@
         document.getElementById("adminAlmonyPayment").style.display = "block";
     }
     if (userRole === "woman") {
-      document.getElementById("almonyPaymentListItem").style.display = "block";
-        document.getElementById("almonyPaymentListLink").setAttribute("href", "alimony-payment-list.html");
+      document.getElementById("womanPaymentList").style.display = "block";
 
         document.getElementById("almonyPaymentReportItem").style.display = "block";
         document.getElementById("almonyPaymentReportLink").setAttribute("href", "alimony-payment-report.html");
