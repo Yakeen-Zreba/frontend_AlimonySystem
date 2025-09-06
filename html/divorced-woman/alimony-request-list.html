@@ -162,8 +162,8 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
           </div>
           <ul class="menu-inner py-3">
            <!-- الرئيسية-->
-            <li class="menu-item " id="HomeItem" style="display:none;">
-              <a  class="menu-link " id="HomeLink">
+            <li class="menu-item " >
+              <a href="index.html" class="menu-link">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -226,14 +226,14 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
                   <div>طلب نفقة</div>
                 </a>
               </li>
-               <li class="menu-item" id="almonyPaymentListItem" style="display:none;">
-                <a id="almonyPaymentListLink" class="menu-link">
+               <li class="menu-item">
+                <a href="alimony-payment-list.html" class="menu-link">
                   <div>سجل النفقة </div>
                 </a>
               </li>
-              <li class="menu-item active" id="almonyRequestListItem" style="display:none;">
-                <a id="almonyRequestListLink" class="menu-link">
-                  <div>طلبات نفقة قيد المراجعة </div>
+              <li class="menu-item active">
+                 <a href="alimony-request-list.html" class="menu-link">
+                  <div>سجل طلبات النفقة </div>
                 </a>
               </li>
               <li class="menu-item" id="adminManAlmonyPayment" style="display:none;">
@@ -617,7 +617,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
     }
     if (userRole === "woman") {
       document.getElementById("almonyPaymentListItem").style.display = "block";
-        document.getElementById("almonyPaymentListLink").setAttribute("href", "almony-payment-list.html");
+        document.getElementById("almonyPaymentListLink").setAttribute("href", "alimony-payment-list.html");
 
         document.getElementById("almonyPaymentReportItem").style.display = "block";
         document.getElementById("almonyPaymentReportLink").setAttribute("href", "alimony-payment-report.html");

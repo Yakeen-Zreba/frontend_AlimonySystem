@@ -72,7 +72,7 @@
           <ul class="menu-inner py-3">
             
             <!-- الرئيسية-->
-            <li class="menu-item ">
+            <li class="menu-item active">
               <a href="#" class="menu-link ">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
@@ -136,11 +136,11 @@
                   <div>طلب نفقة</div>
                 </a>
               </li>
-              <li class="menu-item">
+              <!-- <li class="menu-item">
                 <a href="../employee/alimony-payment-list.html" class="menu-link">
                   <div>سجل النفقة </div>
                 </a>
-              </li>
+              </li> -->
               <li class="menu-item">
                 <a href="../employee/alimony-request-list.html" class="menu-link">
                   <div>طلبات نفقة قيد المراجعة </div>
@@ -250,9 +250,9 @@
                             </div>
                           </div>
                           <p class="mb-1">إجمالي المستخدمين</p>
-                          <h4 class="card-title mb-3">12,628</h4>
+                          <h4 class="card-title mb-3" id="usersCount">0</h4>
                           <small class="text-success fw-medium"
-                            >(مطلقات/وكلائهم/موظفين/الازواج)</small
+                            >(مسؤول/مطلقات/وكلائهم/موظفين/الازواج)</small
                           >
                         </div>
                       </div>
@@ -268,14 +268,39 @@
                                 class="rounded" />
                             </div>
                           </div>
-                          <p class="mb-1">إجمالي طلبات النفقات</p>
-                          <h4 class="card-title mb-3">2,000</h4>
+                          <p class="mb-1">إجمالي عدد النفقات المدفوعة</p>
+                          <h4 class="card-title mb-3" id="NafaqaCount">0</h4>
                           <small class="text-success fw-medium"
-                            ><i class="icon-base bx bx-up-arrow-alt"></i>(الطلبات التى تم قبولها)</small
+                            ><i class="icon-base bx bx-up-arrow-alt"></i>(النفقات التى تم استلامها من الزوجة)</small
                           >
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+
+
+                <div class="col-xxl-12 col-lg-12 col-md-12 order-1">
+                  <div class="row">
+                    <div class="col-lg-6 col-md-12 col-6 mb-6">
+                      <div class="card h-100">
+                        <div class="card-body">
+                          <div class="card-title d-flex align-items-start justify-content-between mb-6">
+                            <div class="avatar flex-shrink-0">
+                              <img
+                                src="../../assets/img/icons/unicons/wallet-info.png"
+                                alt="chart success"
+                                class="rounded" />
+                            </div>
+                          </div>
+                          <p class="mb-1">إجمالي طلبات النفقة</p>
+                          <h4 class="card-title mb-3" id="NafaqaConfirm">0</h4>
+                          <small class="text-success fw-medium"
+                            >(المقبوله)</small>
+                        </div>
+                      </div>
+                    </div>
+                    
                   </div>
                 </div>
 
@@ -377,6 +402,44 @@
     }
 
     });  
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:5016/api/User/users_count")
+    .then(response => response.json())
+    .then(data => {
+
+      document.getElementById("usersCount").textContent = data;
+    })
+    .catch(error => {
+      console.error("خطأ أثناء جلب عدد المستخدمين:", error);
+    });
+});
+
+    document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:5016/api/Nafaqa/GetAlimonyStatus2Count")
+    .then(response => response.json())
+    .then(data => {
+  
+      document.getElementById("NafaqaCount").textContent = data;
+    })
+    .catch(error => {
+      console.error("خطأ أثناء جلب عدد النفقات المستلمة:", error);
+    });
+});
+
+
+    document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:5016/api/Nafaqa/GetAlimonyCountRawAsync")
+    .then(response => response.json())
+    .then(data => {
+   
+      document.getElementById("NafaqaConfirm").textContent = data;
+    })
+    .catch(error => {
+      console.error("خطأ أثناء جلب عدد طلبات النفقة المقبوله:", error);
+    });
+});
     </script>
 
     <!-- Main JS -->

@@ -167,5 +167,5 @@ function showSuccessMessage(msg) {
   box.classList.remove("d-none");
   setTimeout(() => {
     box.classList.add("d-none");
-  }, 3000);
+  }, 10000);
 }

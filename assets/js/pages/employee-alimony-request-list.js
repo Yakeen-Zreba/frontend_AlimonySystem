@@ -499,7 +499,7 @@ function renderAgentItems(items, query = "") {
 export async function populateAgents(role = ROLE_FOLLOWUPAGENT) {
   listEl.innerHTML = `<div class="list-group-item text-muted direction-rtl">جاري التحميل...</div>`;
   try {
-    const res = await GetAPI(`${API_BASE}/api/Person/GetPersonByRole?Role=${encodeURIComponent(role)}`);
+    const res = await GetAPI(`${API_BASE}/api/Person/GetPersonByRole?Role=${role}`);
     agentsCache = (res?.results || []).map(x => ({ id: x.personId, name: x.name }));
     renderAgentItems(agentsCache);
   } catch (e) {
