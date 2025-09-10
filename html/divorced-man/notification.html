@@ -181,16 +181,13 @@
             </li>
 
             <!-- الاشعارات-->
-            <li class="menu-item ">
-              <a href="notification.html" class="menu-link">
+            <li class="menu-item active">
+              <a href="#" class="menu-link">
                   <i class="icon-base bx bx-bell icon-sm me-1_5"></i>
                   <div>الاشعارات</div>
                   <span class="badge rounded-pill bg-danger ms-auto">5</span>
               </a>
             </li>
-
-
-            
 
             <!-- إدارة المستخدمين --> 
 
@@ -240,7 +237,7 @@
               </li> -->
               
 
-              <li class="menu-item active" >
+              <li class="menu-item" >
                 <a href="#" class="menu-link">
                   <div>سجل النفقة </div>
                 </a>
@@ -299,7 +296,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4 fw-bold">قائمة دفع النفقة </h4>
+                <h4 class="mb-0 me-4 fw-bold">الإشعارات </h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
@@ -324,160 +321,55 @@
 
           <!-- / Navbar -->
                 
-  <div class="content-wrapper">
-     
-                       <div class="container-xxl flex-grow-1 container-p-y"> 
-                          <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
-   <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
+            <div class="content-wrapper">
+            <!-- Content -->
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <!-- Accordion -->
+              <div class="row g-6">
+                <div class="col-md">
+                    <div id="error-message" class="alert alert-danger d-none"></div>
+                    <div id="error-messageDialog-accept" class="alert alert-danger d-none" role="alert"></div>
+                    <!-- Spinner-->
+                    <div id="formLoading" class="form-loading-overlay d-none">
+                    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">جاري التحميل...</span>
+                    </div>
+                    </div>
 
-                <div id="loadingSpinner" class="table-loading-overlay d-none">
-                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">جاري التحميل...</span>
-                  </div>
+                    <div class="accordion mt-4" id="accordionExample">
+
+                    </div>
                 </div>
-    <div class="row g-6" id="requestsGrid"></div>
-<!-- قالب الكرت (لا يُعرض؛ يُستنسخ بالـJS) -->
-<template id="requestCardTpl">
-  <div class="col-md-6 col-lg-4">
-    <div class="card h-100">
-      <div class="card-header" style="    font-weight: bold;">
-        <h5 class="mb-0">رقم قرار النفقة : <span data-field="courtDecisionNo"></span></h5>
-      </div>
-
-      
-<div class="card-body">
-  <!-- اسم المطلّقة -->
-  <p class="card-text mb-3">
-   المبلغ المتفق عليه شهرياٌ: <span data-field="monthlyAmount"></span>
-  </p>
-
-  <!-- من قدّم الطلب (زوجة / موظف حكومي) -->
-  <p class="card-text mb-3">
-  اسم الزوج: <span data-field="husbandName"></span>
-  </p>
-
-  <!-- اسم مقدّم الطلب -->
-  <p class="card-text mb-3">
-    اسم المطلقة : <span data-field="wifeName"></span>
-  </p>
-  <!-- اسم مقدّم الطلب -->
-  <p class="card-text mb-3">
-   تاريخ الدفع :<span data-field="payDate"></span>
-  </p>
-    <p class="card-text mb-3">
-    المبلغ المدفوع :<span data-field="amountPaid"></span>
-  </p>
-    <p class="card-text mb-3">
-    فترة الدفع عن شهر: &nbsp;&nbsp;<span data-field="periodFrom" style="color:#83B582;     font-weight: bold;"></span>
-
-       إلى شهر:&nbsp;&nbsp;<span data-field="periodTo" style="color:#83B582;     font-weight: bold;"></span>
-  </p>
-   
-   <p class="card-text mb-3">
-   طريقة الدفع :<span data-field="method"></span>
-  </p>
- <p class="card-text mb-3">
-   حالة الدفع :<span data-field="state"></span>
-  </p>
-
-
- <div class="d-block mb-3">
-    <p class="card-text mb-3">
-   ملاحظات:<span data-field="notes"></span>
-  </p>
-  </div>
-  <div class="d-block mb-3" data-field="docLinks"></div>
-
-  <div class="d-block mb-3">
-     <!-- <button class="btn btn-link ps-0" type="button" data-action="showChildren">
-    عرض الايصال (<span data-field="childrenCount">0</span>)
-  </button> -->
-  </div>
-
-</div>
-
-
-      <div class="card-footer text-body-secondary text-center">
-        <span data-field="createdAgo">—</span>
-      </div>
-    </div>
-  </div>
-</template>
-</div>
-</div>
-
-<!-- Modal الملف الشخصي-->
-        <!-- Modal الملف الشخصي-->
-            <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
-              <div class="modal-dialog">
-                <form class="modal-content" id ="FormModalAccount"> 
-                     <div id="loadingFormAccountModel" class="table-loading-overlay d-none">
-                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">جاري التحميل...</span>
-                  </div>
-                </div>
-              <div id="ErrorFormAccountModel" class="alert alert-danger d-none" role="alert"></div>
-                     <div id="SuccFormAccountModel" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
-
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="modalTopTitle">  بيانات الحساب</h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"></button>
-                  </div>
-
-                  <div class="modal-body">
-                    
-                  <div class="mb-3 col-md-12">
-                    <label for="usernameModalAccount" class="form-label">اسم المستخدم</label>
-                    <input type="text" class="form-control" id="usernameModalAccount" name="usernameModalAccount" readonly>
-                  </div>
-                  <div class="mb-3 col-md-12">
-                    <label for="passwordChange" class="form-label">كلمة المرور</label>
-                    <input type="password" class="form-control" id="passwordChange" name="passwordChange" placeholder="********" minlength="8">
-                  </div>
-                  <div class="mb-3 col-md-12">
-                    <label for="confPasswordChange" class="form-label">تأكيد كلمة المرور</label>
-                    <input type="password" class="form-control" id="confPasswordChange" name="confPasswordChange" placeholder="********" minlength="8">
-                  </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
-                      Close
-                    </button>
-<button type="button" class="btn btn-primary" id="accountSaveBtn">حفظ</button>
-                  </div>
-                </form>
+              
               </div>
+              <!--/ Accordion -->
             </div>
-          </div>
-            <!--/model-->
-
-    <!-- Footer -->
-    <footer class="content-footer footer bg-footer-theme">
-        <div class="container-xxl">
-        <div
-            class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-            <div class="mb-2 mb-md-0">
-            &#169;
-            <script>
-                document.write(new Date().getFullYear());
-            </script>
-                جميع الحقوق محفوظة - نظام النفقة
-            </div>
-            <div class="d-none d-lg-inline-block">
-            <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
-            <a href="#" target="_blank" class="footer-link">Support</a>
-            </div>
-        </div>
-        </div>
-    </footer>
-    <!-- / Footer -->
+            <!-- / Content -->
 
 
-    <div class="content-backdrop fade"></div>
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl">
+            <div
+                class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                &#169;
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+                    جميع الحقوق محفوظة - نظام النفقة
+                </div>
+                <div class="d-none d-lg-inline-block">
+                <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
+                <a href="#" target="_blank" class="footer-link">Support</a>
+                </div>
+            </div>
+            </div>
+        </footer>
+        <!-- / Footer -->
+
+
+        <div class="content-backdrop fade"></div>
     </div>
     <!-- Content wrapper -->
     </div>
@@ -499,7 +391,7 @@
     <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
     <script src="../../assets/vendor/js/menu.js"></script>
-<script type="module" src="../../assets/js/pages/alimony-payment-list.js"></script>
+
 
 
     <!-- endbuild -->
@@ -531,33 +423,24 @@
         document.getElementById("adminGovDivorceManagement").style.display = "block";
         document.getElementById("adminGovAlmonyRequesrlist").style.display = "block";
 
-        document.getElementById("HomeItem").style.display = "block";
-        document.getElementById("HomeLink").setAttribute("href", "../admin/dashboard.html");
 
         document.getElementById("almonyPaymentReportItem").style.display = "block";
         document.getElementById("almonyPaymentReportLink").setAttribute("href", "../employee/alimony-payment-report.html");
 
-        document.getElementById("almonyPaymentListItem").style.display = "block";
-        document.getElementById("almonyPaymentListLink").setAttribute("href", "../employee/alimony-payment-list.html");
+       
     }
 
     if (userRole === "admin") {
         document.getElementById("adminAlmonyRequesr").style.display = "block";
     }
 
-    if (userRole === "admin" || userRole === "man" ) {
-        document.getElementById("adminManAlmonyPayment").style.display = "block";
-    }
 
     if (userRole === "man") {
         document.getElementById("almonyPaymentReportItem").style.display = "block";
         document.getElementById("almonyPaymentReportLink").setAttribute("href", "alimony-payment-report.html");
 
-        document.getElementById("HomeItem").style.display = "block";
-        document.getElementById("HomeLink").setAttribute("href", "index.html");
 
-        document.getElementById("almonyPaymentListItem").style.display = "block";
-        document.getElementById("almonyPaymentListLink").setAttribute("href", "#");
+
     }
     });  
   </script>
@@ -567,8 +450,8 @@
   <script type="module" src="../../assets/js/pages/index.js"></script>
 
   <!-- Page JS -->
-   <script type="module" src="../../assets/js/pages/alimony-request.js"></script>
-   <script type="module" src="../../assets/js/pages/change-password.js"></script>
+   <script type="module" src="../../assets/js/pages/notification-divorced-man.js"></script>
+   <!-- <script type="module" src="../../assets/js/pages/change-password.js"></script> -->
   <script type="module" src="../../assets/js/pages/logout.js"></script>
 
 
