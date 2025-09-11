@@ -177,14 +177,14 @@
                 </a>
               </li>
 
-              <li class="menu-item active" id="almonyPaymentListItem" style="display:none;">
-                <a id="almonyPaymentListLink" class="menu-link">
+              <li class="menu-item active">
+                <a href="#" class="menu-link">
                   <div>سجل النفقة </div>
                 </a>
               </li>
 
-              <li class="menu-item" id="almonyRequestListItem" style="display:none;">
-                <a id="almonyRequestListLink" class="menu-link">
+              <li class="menu-item">
+                <a href="alimony-request-list.html" class="menu-link">
                   <div>سجل طلبات النفقة </div>
                 </a>
               </li>
@@ -515,51 +515,7 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
   <script>
     const LOGIN_PAGE = "../login.html";
-    // تحديدي العناصر الظاهرة حسب ال role
-    document.addEventListener("DOMContentLoaded", () => {
-    const userRole = localStorage.getItem("userRole");
-
-    if (!userRole) return; // إذا ما في تسجيل دخول
-
-    // إظهار/إخفاء العناصر حسب الدور
-    if (userRole === "admin" || userRole === "gov") {
-        document.getElementById("adminGovUserManagement").style.display = "block";
-        document.getElementById("adminGovDivorceManagement").style.display = "block";
-
-        document.getElementById("almonyPaymentListItem").style.display = "block";
-        document.getElementById("almonyPaymentListLink").setAttribute("href", "../employee/almony-payment-list.html");
-
-        document.getElementById("almonyPaymentReportItem").style.display = "block";
-        document.getElementById("almonyPaymentReportLink").setAttribute("href", "../employee/alimony-payment-report.html");
-
-        document.getElementById("HomeItem").style.display = "block";
-        document.getElementById("HomeLink").setAttribute("href", "../admin/dashboard.html");
-
-
-        document.getElementById("almonyRequestListItem").style.display = "block";
-        document.getElementById("almonyRequestListLink").setAttribute("href", "../employee/alimony-request-list.html");
-    }
-    if (userRole === "admin" || userRole === "woman" ) {
-        document.getElementById("adminWomanAlmonyRequesr").style.display = "block";
-    }
-    if (userRole === "admin") {
-        document.getElementById("adminAlmonyPayment").style.display = "block";
-    }
-    if (userRole === "woman") {
-      document.getElementById("almonyPaymentListItem").style.display = "block";
-        document.getElementById("almonyPaymentListLink").setAttribute("href", "#");
-
-        document.getElementById("almonyPaymentReportItem").style.display = "block";
-        document.getElementById("almonyPaymentReportLink").setAttribute("href", "alimony-payment-report.html");
-
-        document.getElementById("HomeItem").style.display = "block";
-        document.getElementById("HomeLink").setAttribute("href", "index.html");
-        
-        document.getElementById("almonyRequestListItem").style.display = "block";
-        document.getElementById("almonyRequestListLink").setAttribute("href", "alimony-request-list.html");
-    }
-    });  
-    
+  
   </script>
 
   <!-- Main JS -->

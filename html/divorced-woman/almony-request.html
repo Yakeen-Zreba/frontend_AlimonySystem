@@ -92,6 +92,15 @@
               </a>
             </li>
 
+            <!-- الاشعارات-->
+            <li class="menu-item"  id="adminNotification" style="display:none;">
+              <a href="../employee/notification.html" class="menu-link" >
+                  <i class="icon-base bx bx-bell icon-sm me-1_5"></i>
+                  <div>الاشعارات</div>
+                  <span class="badge rounded-pill bg-danger ms-auto" id="notificationCount">-</span>
+              </a>
+            </li>
+
             <!-- إدارة المستخدمين --> 
             <li class="menu-item"  id="adminGovUserManagement" style="display:none;"> 
               <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -136,7 +145,7 @@
                 <a href="#" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
-              </li>womanPaymentList
+              </li>
 
               <li class="menu-item" id="womanPaymentList" style="display:none;">
                 <a href="alimony-payment-list.html" class="menu-link">
@@ -482,6 +491,7 @@
     }
     if (userRole === "admin") {
         document.getElementById("adminAlmonyPayment").style.display = "block";
+        document.getElementById("adminNotification").style.display = "block";
     }
     if (userRole === "woman") {
       document.getElementById("womanPaymentList").style.display = "block";
