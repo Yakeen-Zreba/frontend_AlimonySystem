@@ -19,7 +19,7 @@ function createCardHtml(item, index, type) {
     const isFirstCard = index === 0;
     const isDueSoon = type === 'dueSoon';
 
-    const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateString("en-GB") : "غير محدد";
+    const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" }) : "غير محدد";    
     
     // النص والعنوان سيتغيران بناءً على نوع الدفعة
     const headingText = isDueSoon ? `يجب دفع نفقة عن شهر: ${formattedDate}` : `نفقة متأخرة عن شهر: ${formattedDate}`;
