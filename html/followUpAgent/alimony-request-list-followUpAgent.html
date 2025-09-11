@@ -357,7 +357,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
 <!-- مودال عرض الأطفال -->
  <div class="modal fade" id="modalShowChildren" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="width: 664px;">
             <div class="modal-header">
             <h5 class="modal-title" id="modalScrollableTitle">الأطفـــال</h5>
             <button
@@ -385,8 +385,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
                     <th>الجنس</th>
                     <th>العمر </th>
                     <th>الحالة</th>
-                    <th>تعديل</th>
-                    <th>حذف</th>
+                
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0" id="chiledTableBody">
@@ -395,29 +394,7 @@ body { font-family: 'Cairo', sans-serif; text-align: right; }
                     <td>ذكر</td>
                     <td>4 </td>
                     <td>مفعل</td>
-                    <td>
-                        <a class="dropdown-item btn-edit" href="#">
-                            <i class="icon-base bx bx-edit-alt me-1"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <!-- <a class="dropdown-item btn-delete" href="#">
-                            <i class="icon-base bx bx-trash me-1"></i>
-                        </a> -->
-
-                        <button
-  class="toggle-switch sm"
-  type="button"
-  role="switch"
-  aria-checked="true"
-  data-id="{{personId}}"
-  data-active="true">
-</button>
-
-<!-- (اختياري) شارة الحالة في نفس الصف لتتحدّث تلقائيًا -->
-<span class="badge status-badge bg-label-success">نشط</span>
-                    </td>
-
+                   
                 </tbody>
             </table>
             </div>
