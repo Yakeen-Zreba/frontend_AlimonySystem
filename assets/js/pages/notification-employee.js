@@ -1,34 +1,29 @@
 import { GetAPI } from "../api/httpClient.js";
-import { showError, showSpinner, hideSpinner, showSuccessMessage, hideErrorDialog, showErrorDialog, showSpinnerformLoading, hideSpinnerformLoading } from "../utils/helpers.js";
+import { showError, showSpinner, hideSpinner } from "../utils/helpers.js";
 
 // مكان عرض الكروت
 const accordionContainer = document.getElementById("accordionExample");
-
-// عنصر عدد الإشعارات في الـ NavBar
 const notificationCountElement = document.getElementById("notificationCount");
 
-// معلومات المستخدم
-const husbandPersonId = localStorage.getItem("PersonId");
-const daysThreshold = 5; // يمكن تغييرها أو جعلها كمدخل
+const daysThreshold = 5; // يمكن تغييرها
 const API_BASE = "http://localhost:5016";
 
 // دالة لإنشاء HTML لكارت الدفع
-function createCardHtml(item, index, type) {
+function createCardHtml(item, index) {
     const cardId = `accordion${index}`;
     const headingId = `heading${index}`;
     const isFirstCard = index === 0;
-    const isDueSoon = type === 'dueSoon';
 
     const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateString("en-GB") : "غير محدد";
     
-    // النص والعنوان سيتغيران بناءً على نوع الدفعة
-    const headingText = isDueSoon ? `يجب دفع نفقة عن شهر: ${formattedDate}` : `نفقة متأخرة عن شهر: ${formattedDate}`;
-    const headingClass = isDueSoon ? 'text-primary' : 'text-danger';
+    // The employee's view doesn't distinguish between 'due soon' and 'overdue' in the title. 
+    // All are overdue payments that need to be addressed.
+    const headingText = `نفقة متأخرة عن شهر: ${formattedDate} (${item.husbandName})`;
+    const headingClass = 'text-danger';
 
     // حساب المبلغ المتبقي
     const remainingAmount = item.monthlyAmount - item.paidForMonth;
     
-    // تحديد حالة الدفع
     let paymentStatusText = '';
     let paymentStatusClass = '';
 
@@ -63,6 +58,7 @@ function createCardHtml(item, index, type) {
                 class="accordion-collapse collapse ${isFirstCard ? "show" : ""}"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
+                    <p>اسم الزوج: ${item.husbandName || "-"}</p>
                     <p>رقم القضية : ${item.caseNumber || "-"}</p>
                     <p>رقم قرار النفقة : ${item.courtDecisionNo || "-"}</p>
                     <p>اسم الزوجة : ${item.wifeName || "-"}</p>
@@ -70,7 +66,7 @@ function createCardHtml(item, index, type) {
                     <p class="mt-2 ${paymentStatusClass}">حالة الدفع: ${paymentStatusText}</p>
                     ${remainingAmount > 0 ? `<p class="mt-2">المبلغ المتبقي: ${remainingAmount} د.ل</p>` : ''}
                     <p>ملاحظات: ${item.description || "-"}</p>
-                    <a href="almony-payment.html?id=${item.alimonyId}" class="btn btn-primary">دفع النفقة</a>
+                    <a href="manage-alimony.html?id=${item.alimonyId}" class="btn btn-primary">إدارة النفقة</a>
                 </div>
             </div>
         </div>
@@ -81,8 +77,9 @@ async function loadOverduePayments() {
     try {
         showSpinner();
 
+        // New API endpoint for employee view
         const response = await GetAPI(
-            `${API_BASE}/api/Payments/Husband/overdue?husbandPersonId=${husbandPersonId}&daysThreshold=${daysThreshold}`
+            `${API_BASE}/api/Payments/Employee/overdue?daysThreshold=${daysThreshold}`
         );
 
         if (!response || !response.isSuccess) {
@@ -91,9 +88,8 @@ async function loadOverduePayments() {
         }
 
         const results = response.results;
-        accordionContainer.innerHTML = ""; // إفراغ المحتوى القديم
+        accordionContainer.innerHTML = "";
 
-        // حساب عدد الإشعارات الديناميكي
         const notificationCount = results.length;
         notificationCountElement.textContent = notificationCount > 0 ? notificationCount : '';
         if (notificationCount === 0) {
@@ -102,24 +98,13 @@ async function loadOverduePayments() {
             notificationCountElement.style.display = 'inline-block';
         }
 
-        const overduePayments = results.filter(item => item.isOverdue);
-        const dueSoonPayments = results.filter(item => item.isDueSoon);
-
-        if (overduePayments.length === 0 && dueSoonPayments.length === 0) {
+        if (results.length === 0) {
             accordionContainer.innerHTML = `<div class="alert alert-info">لا توجد مدفوعات متأخرة أو قريبة الاستحقاق</div>`;
             return;
         }
 
-        // رسم الكروت
-        // أولاً، عرض المدفوعات "قريبة الاستحقاق" لأنها أكثر إلحاحًا
-        dueSoonPayments.forEach((item, index) => {
-            const cardHtml = createCardHtml(item, index, 'dueSoon');
-            accordionContainer.insertAdjacentHTML("beforeend", cardHtml);
-        });
-        
-        // ثم، عرض المدفوعات "المتأخرة"
-        overduePayments.forEach((item, index) => {
-            const cardHtml = createCardHtml(item, index + dueSoonPayments.length, 'overdue');
+        results.forEach((item, index) => {
+            const cardHtml = createCardHtml(item, index);
             accordionContainer.insertAdjacentHTML("beforeend", cardHtml);
         });
 
@@ -131,5 +116,5 @@ async function loadOverduePayments() {
     }
 }
 
-// التحميل عند فتح الصفحة
+// تحميل عند فتح الصفحة
 document.addEventListener("DOMContentLoaded", loadOverduePayments);
