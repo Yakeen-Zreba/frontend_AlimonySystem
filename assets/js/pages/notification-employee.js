@@ -14,10 +14,8 @@ function createCardHtml(item, index) {
     const headingId = `heading${index}`;
     const isFirstCard = index === 0;
 
-    const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateString("en-GB") : "غير محدد";
-    
-    // The employee's view doesn't distinguish between 'due soon' and 'overdue' in the title. 
-    // All are overdue payments that need to be addressed.
+const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" }) : "غير محدد";    
+
     const headingText = `نفقة متأخرة عن شهر: ${formattedDate} (${item.husbandName})`;
     const headingClass = 'text-danger';
 
@@ -66,7 +64,6 @@ function createCardHtml(item, index) {
                     <p class="mt-2 ${paymentStatusClass}">حالة الدفع: ${paymentStatusText}</p>
                     ${remainingAmount > 0 ? `<p class="mt-2">المبلغ المتبقي: ${remainingAmount} د.ل</p>` : ''}
                     <p>ملاحظات: ${item.description || "-"}</p>
-                    <a href="manage-alimony.html?id=${item.alimonyId}" class="btn btn-primary">إدارة النفقة</a>
                 </div>
             </div>
         </div>
@@ -77,7 +74,6 @@ async function loadOverduePayments() {
     try {
         showSpinner();
 
-        // New API endpoint for employee view
         const response = await GetAPI(
             `${API_BASE}/api/Payments/Employee/overdue?daysThreshold=${daysThreshold}`
         );
