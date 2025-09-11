@@ -66,7 +66,6 @@ function createCardHtml(item, index) {
                     <p class="mt-2 ${paymentStatusClass}">حالة الدفع: ${paymentStatusText}</p>
                     ${remainingAmount > 0 ? `<p class="mt-2">المبلغ المتبقي: ${remainingAmount} د.ل</p>` : ''}
                     <p>ملاحظات: ${item.description || "-"}</p>
-                    <a href="manage-alimony.html?id=${item.alimonyId}" class="btn btn-primary">إدارة النفقة</a>
                 </div>
             </div>
         </div>
