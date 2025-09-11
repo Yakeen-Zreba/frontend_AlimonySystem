@@ -102,7 +102,7 @@ node.querySelector("[data-field='method']").textContent = item?.method == 1 ? "Ù
 
 
   const docsBox = node.querySelector("[data-field='docLinks']");
-  renderDocumentLinks(docsBox, item.husbandDocuments);
+  renderDocumentLinks(docsBox, item.Documents);
   node.querySelector("[data-field='createdAgo']").textContent    = timeAgo(item.payDate);
 
   grid.appendChild(node);

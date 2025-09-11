@@ -201,6 +201,7 @@
           </ul>
         </aside>
 
+   
         <!-- Layout container -->
         <div class="layout-page">
           <!-- Navbar -->
@@ -249,7 +250,7 @@
                 <div class="col-md-12">
                   <div class="card mb-4">
                     <div class="card-body">
-                     <h4>تقرير مدفوعات النفقة للزوج السابق</h4>
+                     <h4>تقرير مدفوعات النفقة للزوج السابق</h4>
                      <!--Search-->
                      <div class="row g-3">
                         <div class="col-md-4">
@@ -261,9 +262,9 @@
                             <label class="form-label">بحث بنطاق التاريخ</label>
                             <div class="input-group">
                                 <span class="input-group-text">من</span>
-                                <input type="date" id="startDate" class="form-control" />
+                                <input type="month" id="startDate" class="form-control" />
                                 <span class="input-group-text">إلى</span>
-                                <input type="date" id="endDate" class="form-control" />
+                                <input type="month" id="endDate" class="form-control" />
                             </div>
                         </div>
                         
@@ -288,12 +289,12 @@
                 </div>
                 <div id="alertContainer" class="mt-3"></div>
                 
-                <!-- Spinner overlay -->
-                <!-- <div id="loadingSpinner" class="table-loading-overlay d-none">
+              <!-- Spinner overlay -->
+                 <div id="loadingSpinner" class="table-loading-overlay d-none">
                   <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
                     <span class="visually-hidden">جاري التحميل...</span>
                   </div>
-                </div> -->
+                </div>
 
 
                 <div class="table-responsive text-nowrap">
@@ -310,7 +311,7 @@
                         <th> حالة النفقة</th>
                       </tr>
                     </thead>
-                    <tbody class="table-border-bottom-0" id="almonyPaymentReprtTableBody">
+                    <tbody class="table-border-bottom-0" id="paymentsTableBody">
                     
                     </tbody>
                   </table>
@@ -441,7 +442,7 @@
     <script type="module" src="../../../assets/js/pages/index.js"></script>
 
     <!-- Page JS -->
-    <script type="module" src="../../../../assets/js/pages/marriage-contract-list.js"></script>
+    <script type="module" src="../../assets/js/pages/alimony-payment-man-report.js"></script>
     <script type="module" src="../../assets/js/pages/logout.js"></script>
     <script type="module" src="../../assets/js/pages/change-password.js"></script>
     

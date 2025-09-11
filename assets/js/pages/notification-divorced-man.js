@@ -9,7 +9,7 @@ const notificationCountElement = document.getElementById("notificationCount");
 
 // معلومات المستخدم
 const husbandPersonId = localStorage.getItem("PersonId");
-const daysThreshold = 5; // يمكن تغييرها أو جعلها كمدخل
+const daysThreshold = 19; // يمكن تغييرها أو جعلها كمدخل
 const API_BASE = "http://localhost:5016";
 
 // دالة لإنشاء HTML لكارت الدفع

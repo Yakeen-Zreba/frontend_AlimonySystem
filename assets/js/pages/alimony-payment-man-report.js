@@ -2,7 +2,7 @@ import { showError, showSpinner, hideSpinner } from "../utils/helpers.js";
 import { GetAPI } from "../api/httpClient.js";
 
 
-const ENDPOINT_LIST   = `http://localhost:5016/api/Payments/GetAllWifePaymentsToConfirmAsync`;
+const ENDPOINT_LIST   = `http://localhost:5016/api/Payments/GetAllPaymentsWithHusbandsAsync`;
 
 async function loadPaymentsReport(fromDate = "", toDate = "", CourtDecisionNo = "") {
   try {
@@ -10,18 +10,18 @@ async function loadPaymentsReport(fromDate = "", toDate = "", CourtDecisionNo = 
 
     const params = new URLSearchParams();
 
-    params.set("wifeUserId", localStorage.getItem('PersonId'));
+    params.set("payerPersonId", localStorage.getItem('PersonId'));
 
 
 
     if (CourtDecisionNo) {
-      params.append("caseNumber", CourtDecisionNo.trim());
+      params.append("courtDecisionNo", CourtDecisionNo.trim());
     }
     if (fromDate) {
-      params.append("from", fromDate);
+      params.append("payDateFrom", fromDate);
     }
     if (toDate) {
-      params.append("to", toDate);
+      params.append("payDateTo", toDate);
     }
 
     const url = `${ENDPOINT_LIST}?${params.toString()}`;
@@ -45,7 +45,7 @@ async function loadPaymentsReport(fromDate = "", toDate = "", CourtDecisionNo = 
           <td>${pay.amountPaid || "0"}</td>
           <td>${pay.methodText || "-"}</td>
           <td>
-             <span class="badge ${pay.status === 3 ?  "bg-label-danger": "bg-label-success" }">
+            <span class="badge ${pay.status === 3 ?  "bg-label-danger": "bg-label-success" }">
               ${pay.statusText || "غير محدد"}
             </span>
           </td>
