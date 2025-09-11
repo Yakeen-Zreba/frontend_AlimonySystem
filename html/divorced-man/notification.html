@@ -37,19 +37,7 @@
     <script src="../../../assets/js/config.js"></script>
 
     <style>
-     body { font-family: 'Cairo', sans-serif; text-align: right; }
-       .form-loading-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      background-color: rgba(255,255,255,0.6);
-      width: 100%;
-      height: 100%;
-      z-index: 1100;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+          body { font-family: 'Cairo', sans-serif; text-align: right; }
       .table-loading-overlay {
       position: absolute;
       top: 0;
@@ -82,69 +70,6 @@
     .form-position-relative {
       position: relative;
     }
-    /* سويتش iOS-style */
-.toggle-switch {
-  --h: 26px;
-  --w: 48px;
-  --pad: 3px;
-
-  position: relative;
-  width: var(--w);
-  height: var(--h);
-  border: 0;
-  outline: 0;
-  padding: 0;
-  border-radius: 9999px;
-  background: #e5e7eb;            /* رمادي */
-  cursor: pointer;
-}
-.toggle-switch::before {
-  content: "";
-  position: absolute;
-  top: var(--pad);
-  left: var(--pad);
-  width: calc(var(--h) - var(--pad) * 2);
-  height: calc(var(--h) - var(--pad) * 2);
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(0,0,0,.15);
-  transition: transform .18s ease;
-}
-.toggle-switch.on {
-  background: #10b981;            /* أخضر */
-}
-.toggle-switch.on::before {
-  transform: translateX(calc(var(--w) - var(--h)));
-}
-
-/* للحجم الصغير داخل القوائم لو احتجت */
-.toggle-switch.sm { --h: 22px; --w: 40px; --pad: 2px; }
-
-/* يخلي جسم المودال يسكّر Scroll لو المحتوى طويل */
-#modalConfirm .modal-dialog.modal-dialog-scrollable .modal-body {
-  max-height: 65vh; /* ضمن ارتفاع النافذة */
-  overflow-y: auto;
-}
-.agent-scroll{
-  max-height: 40vh;   /* ما يتجاوز ارتفاع المودال */
-  overflow-y: auto;
-  min-height: 160px;
-}
-
-
-/* شكل العنصر المختار */
-.agent-item.active,
-.agent-item:hover{
-  background-color: var(--bs-primary-bg-subtle);
-}
-/* صندوق الـselect يظهر بارتفاع ثابت ويتمرجل */
-.listbox-fixed {
-  max-height: 40vh;   /* لا تتجاوز المودال */
-  overflow-y: auto;
-}
-.agent-scroll{ max-height:240px; overflow-y:auto; }
-.direction-rtl{ direction:rtl; text-align:right; }
-    
     </style>
   </head>
 
@@ -328,12 +253,12 @@
               <div class="row g-6">
                 <div class="col-md">
                     <div id="error-message" class="alert alert-danger d-none"></div>
-                    <div id="error-messageDialog-accept" class="alert alert-danger d-none" role="alert"></div>
-                    <!-- Spinner-->
-                    <div id="formLoading" class="form-loading-overlay d-none">
-                    <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                    
+                    <!-- Spinner overlay -->
+                    <div id="loadingSpinner" class="table-loading-overlay d-none">
+                      <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
                         <span class="visually-hidden">جاري التحميل...</span>
-                    </div>
+                      </div>
                     </div>
 
                     <div class="accordion mt-4" id="accordionExample">

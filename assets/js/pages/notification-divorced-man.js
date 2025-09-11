@@ -5,19 +5,20 @@ import {showError, showSpinner, hideSpinner,showSuccessMessage,hideErrorDialog,s
 const accordionContainer = document.getElementById("accordionExample");
 
 // user info
-const husbandPersonId = localStorage.getItem("husbandPersonId"); 
+const husbandPersonId = localStorage.getItem("PersonId"); 
 const daysThreshold = 5; // نقدر نغيرها أو نخليها input
+const API_BASE  = "http://localhost:5016";
 
 async function loadOverduePayments() {
   try {
-    showSpinnerformLoading();
-
+    showSpinner();
+    
    
     const response = await GetAPI(
-      `/api/Payments/Husband/overdue?husbandPersonId=${husbandPersonId}&daysThreshold=${daysThreshold}`
+      `${API_BASE}/api/Payments/Husband/overdue?husbandPersonId=${husbandPersonId}&daysThreshold=${daysThreshold}`
     );
 
-    hideSpinnerformLoading();
+    console.log( response.results);
 
     if (!response || !response.isSuccess) {
       showError("فشل في جلب البيانات من السيرفر");
@@ -47,7 +48,14 @@ async function loadOverduePayments() {
               data-bs-target="#${cardId}"
               aria-expanded="${index === 0 ? "true" : "false"}"
               aria-controls="${cardId}">
-              <h5>موعد الدفع القادم : ${item.dueDate || "غير محدد"}</h5>
+              <h5>
+                اخر دفع تم :
+                ${
+                  item.monthEnd
+                    ? new Date(item.monthEnd).toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" })
+                    : "غير محدد"
+                }
+              </h5>
             </button>
           </h2>
 
@@ -56,7 +64,7 @@ async function loadOverduePayments() {
             class="accordion-collapse collapse ${index === 0 ? "show" : ""}"
             data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <p>رقم قرار النفقة : ${item.decisionNumber || "-"}</p>
+              <p>رقم قرار النفقة : ${item.courtDecisionNo || "-"}</p>
               <p>اسم الزوجة : ${item.wifeName || "-"}</p>
               <p>المبلغ المتفق عليه: ${item.amount || "0"} د.ل</p>
               <a href="almony-payment.html?id=${item.id}" class="btn btn-primary">دفع النفقة</a>
@@ -69,10 +77,10 @@ async function loadOverduePayments() {
     });
   } catch (err) {
       console.error(err);
-      showErrorDialog("تعذر الاتصال بالخادم");
+      showError("تعذر الاتصال بالخادم");
     } 
     finally {
-      hideSpinnerformLoading();
+      hideSpinner();
     }
 }
 
