@@ -559,11 +559,15 @@
           <div class="modal-body">
             
             <div class="row">
-              <div class="col-md-6">
+             <div class="col-md-6 mb-4">
                 <label for="CaseNumber" class="form-label"> رقم قضية الطلاق</label>
                 <!--  اسم الزوج  -->
                   <input type="text" class="form-control" id="CaseNumber" name="CaseNumber" readonly>
                 </div>
+                   <div class="col-md-6 mb-4">
+                  <label for="CourtDecisionNo" class="form-label"> رقم قضية النفقة</label>
+                  <input type="text" class="form-control" id="CourtDecisionNo" name="CourtDecisionNo" placeholder="رقم قضية النفقة">
+              </div>
               </div>
           
             
@@ -585,10 +589,14 @@
 
             <div class="row">
               <!-- رقم قضية النفقة -->
-              <div class="col-md-6 mb-4">
-                  <label for="CourtDecisionNo" class="form-label"> رقم قضية النفقة</label>
-                  <input type="text" class="form-control" id="CourtDecisionNo" name="CourtDecisionNo" placeholder="رقم قضية النفقة">
+                     <div class="col-md-6 mb-4">
+                <label class="form-label" for="MonthlyAmount">مبلغ النفقة الشهري</label>
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" id="MonthlyAmount"name ="MonthlyAmount" class="form-control" placeholder="0.00" required>
+                    <span class="input-group-text">د.ل</span>
+                </div>
               </div>
+           
 
               <!-- مستند قرار النفقة-->
               <div class="col-md-6 mb-4">
@@ -602,18 +610,15 @@
             <div class="row">
               <!-- تاريخ السريان -->
               <div class="col-md-6 mb-4">
-                <label class="form-label" for="startDate">تاريخ السريان</label>
+                <label class="form-label" for="effectiveDate">تاريخ السريان</label>
+                <input type="date" id="effectiveDate" class="form-control" required>
+              </div>
+       <!--  تاريخ بداية تتبع الدفع -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label" for="startDate">تاريخ بداية تتبع الدفع </label>
                 <input type="date" id="startDate" class="form-control" required>
               </div>
-      
-              <!-- مبلغ النفقة الشهري -->
-              <div class="col-md-6 mb-4">
-                <label class="form-label" for="MonthlyAmount">مبلغ النفقة الشهري</label>
-                <div class="input-group">
-                    <input type="number" min="0" step="0.01" id="MonthlyAmount"name ="MonthlyAmount" class="form-control" placeholder="0.00" required>
-                    <span class="input-group-text">د.ل</span>
-                </div>
-              </div>
+          
 
             </div>
 
@@ -631,7 +636,7 @@
               </div>
 
             </div>
-
+         
 <div class="dropdown w-100" id="agentDropdown">
   <label for="agentDropdownBtn" class="form-label">المحضر المعتمد</label>
   <button
@@ -650,7 +655,9 @@
     <input type="text" class="form-control mb-2" id="agentFilterInput" placeholder="ابحث بالاسم أو الرقم...">
     <div id="agentList" class="list-group agent-scroll"></div>
   </div>
-</div>  <br>
+</div> 
+
+<br>
                 <div id="error-messageDialog-accept" class="alert alert-danger d-none" role="alert"></div>
 
          <div class="modal-footer">

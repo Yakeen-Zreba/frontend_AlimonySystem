@@ -498,7 +498,9 @@
     const foreignRadio = document.getElementById("foreign");
     const nidFieldWrapper = document.getElementById("nidField");
     const nidInput = document.getElementById("NID");
-
+    // إضافة حدث عند تغيير نوع الدور
+ const divorcedRadio = document.getElementById("divorced");
+   const agentRadio = document.getElementById("agent");
     function toggleNIDField() {
       if (libyanRadio.checked) {
         nidFieldWrapper.style.display = "block";
@@ -514,7 +516,27 @@
     // ربط الحدث بالراديو
     libyanRadio.addEventListener("change", toggleNIDField);
     foreignRadio.addEventListener("change", toggleNIDField);
+  const maleRadio = document.getElementById("male");
+  const femaleRadio = document.getElementById("female");
 
+
+  function updateGenderBasedOnRole() {
+    if (divorcedRadio.checked) {
+      femaleRadio.checked = true;
+      femaleRadio.disabled = false;
+      maleRadio.checked = false;
+      maleRadio.disabled = true;
+    
+    } else {
+      // وكيل المطلقة أو لا شيء محدد
+      maleRadio.disabled = false;
+      femaleRadio.disabled = false;
+    }
+  }
+
+  // إضافة أحداث عند تغيير الصفة
+  divorcedRadio.addEventListener("change", updateGenderBasedOnRole);
+  agentRadio.addEventListener("change", updateGenderBasedOnRole);
     // تشغيل الوظيفة عند تحميل الصفحة
     toggleNIDField(); // سواء تم تحديد خيار مسبقاً أو لا
     });

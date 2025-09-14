@@ -167,6 +167,7 @@ function openAcceptModal(item) {
   // تهيئة حقول قابلة للتحرير (فارغة بشكل افتراضي)
   document.getElementById("CourtDecisionNo").value = item.courtDecisionNo ?? "";
   document.getElementById("MonthlyAmount").value   = item.monthlyAmount ?? "";
+  document.getElementById("effectiveDate").value       = item.effectiveDate ? String(item.effectiveDate).split("T")[0] : "";
   document.getElementById("startDate").value       = item.startDate ? String(item.startDate).split("T")[0] : "";
   document.getElementById("stopDate").value        = item.stopDate ? String(item.stopDate).split("T")[0] : "";
   document.getElementById("stopReason").value      = item.stopReason ?? "";
@@ -314,6 +315,7 @@ async function submitAcceptFromModal() {
   const caseNumber      = getVal("CaseNumber");            // نص/للإظهار غالباً
   const courtDecisionNo = getVal("CourtDecisionNo");       // رقم قضية النفقة
   const monthlyAmount   = getVal("MonthlyAmount");         // مبلغ شهري
+  const effectiveDate       = getVal("effectiveDate");             // yyyy-MM-dd
   const startDate       = getVal("startDate");             // yyyy-MM-dd
   const stopDate        = getVal("stopDate");              // yyyy-MM-dd
   const stopReason      = getVal("stopReason");            // سبب الإيقاف (اختياري)
@@ -330,7 +332,8 @@ console.log(document.getElementById("agentDropdownBtn").value)
   const missing = [];
   if (!courtDecisionNo) missing.push("رقم قضية النفقة");
   if (!monthlyAmount)   missing.push("مبلغ النفقة الشهري");
-  if (!startDate)       missing.push("تاريخ السريان");
+  if (!effectiveDate)       missing.push("تاريخ السريان");
+  if (!startDate)       missing.push(" تاريخ بداية تتبع الدفع");
   if (!bailiffUserId)   missing.push("اسم المحضر");
   if (!decreeFile)   missing.push("مستند قرار النفقة ");
 
@@ -348,6 +351,7 @@ fd.append("attachmentFile", decreeFile);
   fd.append("Decision",         1); // 2 = قبول
   if (caseNumber)               fd.append("CaseNumber", caseNumber);
   fd.append("MonthlyAmount",    monthlyAmount);          // رقم/نص (الباك يحوله)
+  fd.append("EffectiveDate",        effectiveDate);              // yyyy-MM-dd
   fd.append("StartDate",        startDate);              // yyyy-MM-dd
   if (stopDate)                 fd.append("StopDate", stopDate);
   if (stopReason)               fd.append("StopReason", stopReason);
