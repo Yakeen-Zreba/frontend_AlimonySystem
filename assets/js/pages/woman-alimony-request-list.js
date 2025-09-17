@@ -108,16 +108,7 @@ function showChildrenModal(children) {
         <td>${genderLabel(c.gender)}</td>
         <td>${ageExactLabel(c.dateOfBirth)}</td>
         <td>${c.isActive === false ? "غير مفعل" : "مفعل"}</td>
-        <td>
-          <a class="dropdown-item btn-edit" href="#" data-index="${idx}">
-            <i class="icon-base bx bx-edit-alt me-1"></i>
-          </a>
-        </td>
-        <td>
-          <a class="dropdown-item btn-delete text-danger" href="#" data-index="${idx}">
-            <i class="icon-base bx bx-trash me-1"></i>
-          </a>
-        </td>
+      
       `;
       tbodyEl.appendChild(tr);
     });

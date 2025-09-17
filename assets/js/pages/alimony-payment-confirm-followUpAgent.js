@@ -105,7 +105,7 @@ node.querySelector("[data-field='method']").textContent = item?.method == 1 ? "�
 
 
   const docsBox = node.querySelector("[data-field='docLinks']");
-  renderDocumentLinks(docsBox, item.husbandDocuments);
+  renderDocumentLinks(docsBox, item.Documents);
   node.querySelector("[data-field='createdAgo']").textContent    = timeAgo(item.payDate);
 // داخل renderCard(item)
 node.querySelector("[data-action='Confirm']").addEventListener("click",async () => {

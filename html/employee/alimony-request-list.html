@@ -439,7 +439,7 @@
 <!-- مودال عرض الأطفال -->
  <div class="modal fade" id="modalShowChildren" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="width: 664px;">
             <div class="modal-header">
             <h5 class="modal-title" id="modalScrollableTitle">الأطفـــال</h5>
             <button
@@ -467,8 +467,7 @@
                     <th>الجنس</th>
                     <th>العمر </th>
                     <th>الحالة</th>
-                    <th>تعديل</th>
-                    <th>حذف</th>
+                  
                 </tr>
                 </thead>
                 <tbody class="table-border-bottom-0" id="chiledTableBody">
@@ -477,28 +476,7 @@
                     <td>ذكر</td>
                     <td>4 </td>
                     <td>مفعل</td>
-                    <td>
-                        <a class="dropdown-item btn-edit" href="#">
-                            <i class="icon-base bx bx-edit-alt me-1"></i>
-                        </a>
-                    </td>
-                    <td>
-                        <!-- <a class="dropdown-item btn-delete" href="#">
-                            <i class="icon-base bx bx-trash me-1"></i>
-                        </a> -->
-
-                        <button
-  class="toggle-switch sm"
-  type="button"
-  role="switch"
-  aria-checked="true"
-  data-id="{{personId}}"
-  data-active="true">
-</button>
-
-<!-- (اختياري) شارة الحالة في نفس الصف لتتحدّث تلقائيًا -->
-<span class="badge status-badge bg-label-success">نشط</span>
-                    </td>
+                  
 
                 </tbody>
             </table>
@@ -581,11 +559,15 @@
           <div class="modal-body">
             
             <div class="row">
-              <div class="col-md-6">
+             <div class="col-md-6 mb-4">
                 <label for="CaseNumber" class="form-label"> رقم قضية الطلاق</label>
                 <!--  اسم الزوج  -->
                   <input type="text" class="form-control" id="CaseNumber" name="CaseNumber" readonly>
                 </div>
+                   <div class="col-md-6 mb-4">
+                  <label for="CourtDecisionNo" class="form-label"> رقم قضية النفقة</label>
+                  <input type="text" class="form-control" id="CourtDecisionNo" name="CourtDecisionNo" placeholder="رقم قضية النفقة">
+              </div>
               </div>
           
             
@@ -607,10 +589,14 @@
 
             <div class="row">
               <!-- رقم قضية النفقة -->
-              <div class="col-md-6 mb-4">
-                  <label for="CourtDecisionNo" class="form-label"> رقم قضية النفقة</label>
-                  <input type="text" class="form-control" id="CourtDecisionNo" name="CourtDecisionNo" placeholder="رقم قضية النفقة">
+                     <div class="col-md-6 mb-4">
+                <label class="form-label" for="MonthlyAmount">مبلغ النفقة الشهري</label>
+                <div class="input-group">
+                    <input type="number" min="0" step="0.01" id="MonthlyAmount"name ="MonthlyAmount" class="form-control" placeholder="0.00" required>
+                    <span class="input-group-text">د.ل</span>
+                </div>
               </div>
+           
 
               <!-- مستند قرار النفقة-->
               <div class="col-md-6 mb-4">
@@ -624,18 +610,15 @@
             <div class="row">
               <!-- تاريخ السريان -->
               <div class="col-md-6 mb-4">
-                <label class="form-label" for="startDate">تاريخ السريان</label>
+                <label class="form-label" for="effectiveDate">تاريخ السريان</label>
+                <input type="date" id="effectiveDate" class="form-control" required>
+              </div>
+       <!--  تاريخ بداية تتبع الدفع -->
+              <div class="col-md-6 mb-4">
+                <label class="form-label" for="startDate">تاريخ بداية تتبع الدفع </label>
                 <input type="date" id="startDate" class="form-control" required>
               </div>
-      
-              <!-- مبلغ النفقة الشهري -->
-              <div class="col-md-6 mb-4">
-                <label class="form-label" for="MonthlyAmount">مبلغ النفقة الشهري</label>
-                <div class="input-group">
-                    <input type="number" min="0" step="0.01" id="MonthlyAmount"name ="MonthlyAmount" class="form-control" placeholder="0.00" required>
-                    <span class="input-group-text">د.ل</span>
-                </div>
-              </div>
+          
 
             </div>
 
@@ -653,7 +636,7 @@
               </div>
 
             </div>
-
+         
 <div class="dropdown w-100" id="agentDropdown">
   <label for="agentDropdownBtn" class="form-label">المحضر المعتمد</label>
   <button
@@ -672,7 +655,9 @@
     <input type="text" class="form-control mb-2" id="agentFilterInput" placeholder="ابحث بالاسم أو الرقم...">
     <div id="agentList" class="list-group agent-scroll"></div>
   </div>
-</div>  <br>
+</div> 
+
+<br>
                 <div id="error-messageDialog-accept" class="alert alert-danger d-none" role="alert"></div>
 
          <div class="modal-footer">

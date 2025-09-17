@@ -521,7 +521,12 @@
 </div>
 
 <script>
-      const LOGIN_PAGE = "../../login.html"; 
+      const LOGIN_PAGE = "../../login.html";    
+        const divorcedRadio = document.getElementById("editDivorced");
+   const agentRadio = document.getElementById("editAgent");
+
+   const maleRadio = document.getElementById("editMale");
+  const femaleRadio = document.getElementById("editFemale");
       // تحديدي العناصر الظاهرة حسب ال role
     document.addEventListener("DOMContentLoaded", () => {
     const userRole = localStorage.getItem("userRole");
@@ -536,7 +541,30 @@
       document.getElementById("adminAlmonyPayment").style.display = "block";
       document.getElementById("adminAlmonyRequest").style.display = "block";
     }
+    updateGenderBasedOnRole();
     });  
+
+
+
+
+  function updateGenderBasedOnRole() {
+    if (divorcedRadio.checked) {
+      femaleRadio.checked = true;
+      femaleRadio.disabled = false;
+      maleRadio.checked = false;
+      maleRadio.disabled = true;
+    
+    } else {
+      // وكيل المطلقة أو لا شيء محدد
+      maleRadio.disabled = false;
+      femaleRadio.disabled = false;
+    }
+  }
+
+  // إضافة أحداث عند تغيير الصفة
+  divorcedRadio.addEventListener("change", updateGenderBasedOnRole);
+  agentRadio.addEventListener("change", updateGenderBasedOnRole);
+
 </script>
 
 <!-- Main JS -->

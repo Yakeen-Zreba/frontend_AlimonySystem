@@ -1,5 +1,5 @@
 import { GetAPI } from "../api/httpClient.js";
-import { showError, showSpinner, hideSpinner } from "../utils/helpers.js";
+import { showError, showSpinner, hideSpinner,showSuccessMessage } from "../utils/helpers.js";
 
 // مكان عرض الكروت
 const accordionContainer = document.getElementById("accordionExample");
@@ -17,6 +17,7 @@ function createCardHtml(item, index) {
 const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" }) : "غير محدد";    
 
     const headingText = `نفقة متأخرة عن شهر: ${formattedDate} (${item.husbandName})`;
+    const headingTextEmail = `${formattedDate}` ;
     const headingClass = 'text-danger';
 
     // حساب المبلغ المتبقي
@@ -38,7 +39,8 @@ const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateSt
     
     return `
         <div class="accordion-item">
-            <h2 class="accordion-header" id="${headingId}">
+        <div class=""row>
+          <h2 class="accordion-header" id="${headingId}">
                 <button
                     type="button"
                     class="accordion-button ${isFirstCard ? "" : "collapsed"}"
@@ -51,24 +53,91 @@ const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateSt
                     </h5>
                 </button>
             </h2>
-            <div
+      </div>
+            <div 
                 id="${cardId}"
                 class="accordion-collapse collapse ${isFirstCard ? "show" : ""}"
                 data-bs-parent="#accordionExample">
                 <div class="accordion-body">
                     <p>اسم الزوج: ${item.husbandName || "-"}</p>
-                    <p>رقم القضية : ${item.caseNumber || "-"}</p>
+                    <p>رقم قضية الطلاق : ${item.caseNumber || "-"}</p>
                     <p>رقم قرار النفقة : ${item.courtDecisionNo || "-"}</p>
-                    <p>اسم الزوجة : ${item.wifeName || "-"}</p>
-                    <p>المبلغ الإجمالي المستحق: ${item.monthlyAmount || "0"} د.ل</p>
-                    <p class="mt-2 ${paymentStatusClass}">حالة الدفع: ${paymentStatusText}</p>
+                    <p>اسم المطلقة : ${item.wifeName || "-"}</p>
+                    <p>المبلغ المتفق عليه شهريا: ${item.monthlyAmount || "0"} د.ل</p>
+                    <p class="mt-2 ${paymentStatusClass}">حالة الدفع: ${item.description }</p>
                     ${remainingAmount > 0 ? `<p class="mt-2">المبلغ المتبقي: ${remainingAmount} د.ل</p>` : ''}
-                    <p>ملاحظات: ${item.description || "-"}</p>
+                     <a href="#"
+           class="ms-0 text-success fw-medium"
+           style="white-space:nowrap"
+           data-action="sendEmail"
+           data-id="${item.alimonyId}"
+           data-husband="${item.husbandName}"
+           data-wife="${item.wifeName}"
+           data-case="${item.caseNumber}"
+           data-decision="${item.courtDecisionNo}"
+           data-monthly="${item.monthlyAmount}"
+           data-heading="${headingTextEmail}"
+           data-amount="${remainingAmount}">
+           ✉️ ارسال إشعار عبر البريد
+        </a>
                 </div>
             </div>
         </div>
     `;
 }
+// بعد الإدراج اربط event
+accordionContainer.addEventListener("click", async (e) => {
+  const link = e.target.closest("[data-action='sendEmail']");
+  if (!link) return;
+
+  e.preventDefault();
+  e.stopPropagation(); // مهمّة: ما تخليش زر الكولابس يشتغل
+
+  const husband    = link.dataset.husband || "-";
+  const wife       = link.dataset.wife || "-";
+  const caseNumber = link.dataset.case || "-";
+  const decisionNo = link.dataset.decision || "-";
+  const amount     = link.dataset.amount || "0";
+  const monthlyAmount= link.dataset.monthly|| "0";
+  const  heading= link.dataset.heading || " ";
+  const content = `
+  لديك نفقة يجب تسديسها عن شهر ${heading}
+   بيانات النفقة
+    اسم الزوج: ${husband}
+       اسم المطلقة : ${wife}
+    رقم قرار النفقة : ${decisionNo}
+      المبلغ المتفق عليه شهرياً: ${monthlyAmount}
+    المبلغ الذي يجب تسديده: ${amount} د.ل
+  `;
+
+  const emailData = {
+    emailTo: "amal.elbuaishi95@gmail.com", // غيّرها
+    subject: `تنبيه بتأخير دفع النفقة - قرار ${decisionNo}`,
+    message: content
+  };
+
+  try {
+            showSpinner();
+
+    const resp = await fetch(`${API_BASE}/api/Payments/admin/SendEmail`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(emailData)
+    });
+    const json = await resp.json();
+    if (json?.isSuccess) {
+      showSuccessMessage(json.message || "تم إرسال البريد بنجاح");
+    } else {
+      showError("فشل إرسال البريد: " + (json?.message || ""));
+    }
+  } catch (err) {
+    console.error(err);
+    showError("خطأ في الاتصال بالسيرفر");
+  }finally {
+        hideSpinner();
+    }
+});
+
 
 async function loadOverduePayments() {
     try {
@@ -95,7 +164,7 @@ async function loadOverduePayments() {
         }
 
         if (results.length === 0) {
-            accordionContainer.innerHTML = `<div class="alert alert-info">لا توجد مدفوعات متأخرة أو قريبة الاستحقاق</div>`;
+            accordionContainer.innerHTML = `<div class="alert alert-info">لا توجد مدفوعات متأخرة </div>`;
             return;
         }
 

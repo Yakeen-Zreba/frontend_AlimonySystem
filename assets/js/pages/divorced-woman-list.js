@@ -73,8 +73,14 @@ tr.querySelector(".btn-edit").addEventListener("click", () => {
         document.querySelector(`input[name='role_type'][value='${divo.role}']`).checked = true;
 
   }
+   const divorcedRadio = document.getElementById("editDivorced");
+   const agentRadio = document.getElementById("editAgent");
+
+   const maleRadio = document.getElementById("editMale");
+  const femaleRadio = document.getElementById("editFemale");
   // فتح الـ offcanvas يدويًا
   const canvas = new bootstrap.Offcanvas('#editDivorcedCanvas');
+  updateGenderBasedOnRole();
   canvas.show();
 });
 
@@ -90,6 +96,20 @@ tr.querySelector(".btn-edit").addEventListener("click", () => {
   }
 }
 
+
+  function updateGenderBasedOnRole() {
+    if (divorcedRadio.checked) {
+      femaleRadio.checked = true;
+      femaleRadio.disabled = false;
+      maleRadio.checked = false;
+      maleRadio.disabled = true;
+    
+    } else {
+      // وكيل المطلقة أو لا شيء محدد
+      maleRadio.disabled = false;
+      femaleRadio.disabled = false;
+    }
+  }
 document.addEventListener("DOMContentLoaded",async function () {
   await loadEmployees();
 });
