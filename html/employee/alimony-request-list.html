@@ -881,106 +881,6 @@
     );
   }
 
-  // // إضافة دفعة للجدول
-  // addPaymentBtn.addEventListener('click', () => {
-  //   errorBox.classList.add('d-none'); errorBox.textContent = '';
-
-  //   const dateVal = payDate.value;
-  //   const amountVal = payAmount.value;
-  //   const methodVal = payMethod.value;
-  //   const payerVal = payer.value;
-  //   const payerText = payer.options[payer.selectedIndex]?.text || '';
-  //   const decisionVal = decision.value;
-  //   const decisionText = decision.options[decision.selectedIndex]?.text || '';
-  //   const receiptFile = receipt.files?.[0] || null;
-  //   const notesVal = (notes.value || '').trim();
-
-  //   if(!dateVal || !amountVal || !methodVal || !payerVal || !decisionVal){
-  //     errorBox.textContent = 'من فضلك أكمل الحقول الإلزامية: التاريخ، المبلغ، الطريقة، الدافع، القرار.';
-  //     errorBox.classList.remove('d-none');
-  //     return;
-  //   }
-
-  //   // اسم الحقل الذي سنستخدمه في FormData
-  //   const receiptField = receiptFile ? `receipt_${payments.length}` : null;
-
-  //   payments.push({
-  //     date: dateVal,
-  //     amount: amountVal,
-  //     method: methodVal,
-  //     payerId: payerVal,
-  //     payerText,
-  //     decisionId: decisionVal,
-  //     decisionText,
-  //     receiptFile,
-  //     receiptField, // نحتفظ باسم الحقل لربطه بالسجل
-  //     notes: notesVal
-  //   });
-
-  //   // تنظيف الحقول
-  //   payDate.value = '';
-  //   payAmount.value = '';
-  //   payMethod.value = '';
-  //   payer.value = '';
-  //   decision.value = '';
-  //   receipt.value = '';
-  //   notes.value = '';
-
-  //   renderPayments();
-  // });
-
-  // // حذف صف
-  // paymentsTableBody.addEventListener('click', (e) => {
-  //   const btn = e.target.closest('button[data-index]');
-  //   if(!btn) return;
-  //   const idx = parseInt(btn.getAttribute('data-index'), 10);
-  //   if(idx >= 0){
-  //     payments.splice(idx, 1);
-  //     renderPayments();
-  //   }
-  // });
-
-  // // إرسال النموذج
-  // form.addEventListener('submit', async (e) => {
-  //   // اتركها افتراضيًا إن كان عندك submit كلاسيكي؛
-  //   // هنا مثال باستخدام fetch
-  //   e.preventDefault();
-
-  //   if(payments.length === 0){
-  //     errorBox.textContent = 'أضف دفعة واحدة على الأقل قبل الحفظ.';
-  //     errorBox.classList.remove('d-none');
-  //     return;
-  //   }
-
-  //   const fd = new FormData(form);
-  //   // أضف الملفات الفعلية
-  //   payments.forEach((p, i) => {
-  //     if(p.receiptFile && p.receiptField){
-  //       fd.append(p.receiptField, p.receiptFile, p.receiptFile.name);
-  //     }
-  //   });
-
-  //   try {
-  //     // مثال إرسال
-  //     const res = await fetch(form.action, { method: 'POST', body: fd });
-  //     if(!res.ok) throw new Error('فشل الحفظ');
-  //     // نجاح
-  //     alert('تم حفظ الدفعات بنجاح');
-  //     // إعادة الضبط
-  //     payments.splice(0, payments.length);
-  //     renderPayments();
-  //     form.reset();
-  //   } catch(err){
-  //     errorBox.textContent = err.message || 'حدث خطأ أثناء الحفظ';
-  //     errorBox.classList.remove('d-none');
-  //   }
-  // });
-
-  // // تفريغ النموذج بالكامل
-  // document.getElementById('resetFormBtn').addEventListener('click', () => {
-  //   payments.splice(0, payments.length);
-  //   renderPayments();
-  // });
 </script>
 
 <!-- Main JS -->
@@ -991,6 +891,8 @@
 <script type="module" src="../../assets/js/pages/employee-alimony-request-list.js"></script>
 <script type="module" src="../../assets/js/pages/logout.js"></script>
 <script type="module" src="../../assets/js/pages/change-password.js"></script>
+<!-- <script type="module" src="../../assets/js/pages/updateNotificationCount.js"></script> -->
+
 
  </body>
 </html>
