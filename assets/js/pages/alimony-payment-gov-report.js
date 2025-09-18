@@ -69,7 +69,7 @@ async function loadPaymentsReport(fromDate = "", toDate = "", courtDecisionNo = 
               ? `
                 <div class="table-responsive">
                   <table class="table table-sm table-bordered align-middle mb-0">
-                    <thead class="table-light">
+                    <thead class="table-light" style="background-color:ghostwhite">
                       <tr>
                         <th>الشهر</th>
                         <th>المبلغ الشهري</th>
