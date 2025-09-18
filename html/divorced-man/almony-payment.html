@@ -73,9 +73,8 @@
           </div>
           <ul class="menu-inner py-3">
            <!-- الرئيسية-->
-             <!-- الرئيسية-->
-            <li class="menu-item">
-              <a href="index.html" class="menu-link ">
+            <li class="menu-item " id="HomeItem" style="display:none;">
+              <a class="menu-link " id="HomeLink">
                   <i class="menu-icon bx  bx-home"></i>
                   <div>الرئيسية</div>
               </a>
@@ -472,6 +471,9 @@
     }
 
     if (userRole === "man") {
+        document.getElementById("HomeItem").style.display = "block";
+        document.getElementById("HomeLink").setAttribute("href", "index.html");
+
         document.getElementById("almonyPaymentReportItem").style.display = "block";
         document.getElementById("almonyPaymentReportLink").setAttribute("href", "alimony-payment-report.html");
 
