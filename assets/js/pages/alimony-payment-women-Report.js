@@ -39,6 +39,8 @@ async function loadPaymentsReport(fromDate = "", toDate = "", CourtDecisionNo = 
         tr.innerHTML = `
           <td>${pay.courtDecisionNo || "-"}</td>
           <td>${pay.payDate ? new Date(pay.payDate).toLocaleDateString("en-GB") : "-"}</td>
+          <td>${pay.periodFrom ? new Date(pay.periodFrom).toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" }):"-"} </td>
+          <td>${pay.periodTo ?new Date(pay.periodTo).toLocaleDateString("en-GB", { month: "2-digit", year: "numeric" }):"-"} </td>
           <td>${pay.wifeName || "-"}</td>
           <td>${pay.husbandName || "-"}</td>
           <td>${pay.monthlyAmount || "0"}</td>
