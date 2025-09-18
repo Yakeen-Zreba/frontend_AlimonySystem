@@ -528,8 +528,6 @@
         document.getElementById("adminGovDivorceManagement").style.display = "block";
         document.getElementById("adminGovAlmonyRequesrlist").style.display = "block";
 
-        document.getElementById("HomeItem").style.display = "block";
-        document.getElementById("HomeLink").setAttribute("href", "../admin/dashboard.html");
 
      
         document.getElementById("almonyPaymentListItem").style.display = "block";
@@ -540,18 +538,9 @@
         document.getElementById("adminAlmonyRequesr").style.display = "block";
     }
 
-    if (userRole === "admin" || userRole === "man" ) {
-        document.getElementById("adminManAlmonyPayment").style.display = "block";
-    }
    
-    if (userRole === "man") {
-    
-
-        document.getElementById("HomeItem").style.display = "block";
-        document.getElementById("HomeLink").setAttribute("href", "index.html");
-
-        document.getElementById("manPaymentList").style.display = "block";
-    }
+   
+   
     });  
   </script>
 
