@@ -140,11 +140,11 @@
               <div>إدارة النفقة</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item" id="adminAlmonyRequesr" style="display:none;">
+              <!-- <li class="menu-item" id="adminAlmonyRequesr" style="display:none;">
                 <a href="../divorced-woman/almony-request.html" class="menu-link">
                   <div>طلب نفقة</div>
                 </a>
-              </li>
+              </li> -->
 
               <li class="menu-item" id="manPaymentList" style="display:none;">
                 <a href="alimony-payment-list.html" class="menu-link">
@@ -157,7 +157,7 @@
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
-              <li class="menu-item active" id="adminManAlmonyPayment" style="display:none;">
+              <li class="menu-item active" id="manAlmonyPayment" style="display:none;">
                 <a href="almony-payment.html" class="menu-link">
                   <div>دفع نفقة</div>
                 </a>
@@ -462,13 +462,11 @@
       }
     
     
-    if (userRole === "admin") {
-        document.getElementById("adminAlmonyRequesr").style.display = "block";
-    }
+    // if (userRole === "admin") {
+    //     document.getElementById("adminAlmonyRequesr").style.display = "block";
+    // }
 
-    if (userRole === "admin" || userRole === "man" ) {
-        document.getElementById("adminManAlmonyPayment").style.display = "block";
-    }
+
 
     if (userRole === "man") {
         document.getElementById("HomeItem").style.display = "block";
@@ -479,6 +477,7 @@
 
 
         document.getElementById("manPaymentList").style.display = "block";
+        document.getElementById("manAlmonyPayment").style.display = "block";
     
         document.getElementById("notificationItem").style.display = "block";
         document.getElementById("notificationLink").setAttribute("href", "notification.html");
