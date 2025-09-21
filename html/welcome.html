@@ -1,61 +1,93 @@
-<!doctype html>
-<html lang="ar" dir="rtl" class="layout-wide customizer-hide" data-assets-path="../assets/" data-template="vertical-menu-template-free">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>نظام عِوض - تتبع نفقة المطلقات</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نظام عِوض - إدارة نفقة المطلقات</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/img/favicon/white_short_logo.png" />
 
-  <!-- Bootstrap RTL -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+    
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet" />
 
-  <!-- Core CSS -->
-  <link rel="stylesheet" href="../assets/vendor/css/core.css" />
-  <link rel="stylesheet" href="../assets/css/demo.css" />
-  <link rel="stylesheet" href="../assets/css/custom-style.css" />
-  <style>
-    body {
-  background: url("../assets/img/backgrounds/background.PNG") no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Almarai', sans-serif;
-}
-  </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href="../assets/css/custom-style.css" />
+
+    <style>
+        body {
+            font-family: 'Almarai', sans-serif;
+            direction: rtl;
+        }
+        /*===========================
+        شعار النظام
+        ============================*/
+        .navbar-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 10;
+        }
+
+        .navbar-logo img {
+            width: 90px;
+            height: auto;
+        }
+
+    </style>
 </head>
 <body>
 
-  <div class="welcome-container">
-    <div class="landing-box">
-        <div class="app-brand justify-content-center mb-3">
-                <a href="#" class="app-brand-link gap-2 d-flex flex-column align-items-center">
-                  <img src="../assets/img/favicon/logo.png" alt="شعار عِوض" width="250">
-                </a>
+    <main class="hero-section text-white position-relative d-flex flex-column justify-content-between">
+      <div class="navbar-logo">
+            <a href="#">
+                <img src="../assets/img/favicon/white_short_logo.png"  alt="شعار النظام">
+            </a>
         </div>
-      <h1>نظام عِوض</h1>
-      <p class="lead mb-4">
-        منصة إلكترونية تهدف إلى تنظيم وتوثيق النفقة الشهرية للمطلقات في ليبيا، وفقًا للقانون .
-      </p>
 
-      <div>
-        <a href="login.html" class="btn btn-primary btn-main">تسجيل الدخول</a>
-        <a href="register.html" class="btn btn-outline-primary btn-main">إنشاء حساب جديد</a>
-      </div>
+        <div class="container d-flex flex-column justify-content-center align-items-end h-100">
+            <h1 class="display-3 fw-bold mb-4 text-end">عِـــــوض- نظـــام إدارة النفقـــة للمطلقـــات </h1>
+            <p class="text-end mb-4 w-50">منصة إلكترونية تهدف إلى تنظيم وتوثيق النفقة الشهرية للمطلقات في ليبيا، وفقًا للقانون .</p>
+            <div class="d-flex">
+                <a href="register.html" class="btn btn-primary me-2">انشاء حساب</a>
+                <a href="login.html" class="btn btn-outline-light"> تسجيل الدخول ></a>
+            </div>
+        </div>
 
-      <hr class="my-4" />
+        <section class="features-section text-white w-100">
+            <div class="container-fluid p-0">
+                <div class="row g-0 text-center">
+                    <div class="col-md-3 p-4">
+                        <h2 class="fw-bold display-4">01</h2>
+                        <h5 class="fw-bold">تسهيل الإجراءات القانونية</h5>
+                        <p class="m-0">توفير منصة موحدة لتسجيل وتوثيق دفعات النفقة بشكل رسمي.</p>
+                    </div>
+                    <div class="col-md-3 p-4">
+                        <h2 class="fw-bold display-4">02</h2>
+                        <h5 class="fw-bold">ضمان حقوق المطلقات</h5>
+                        <p class="m-0">مراقبة الالتزام بدفع النفقة الشهرية وتنبيه الجهات المختصة عند التأخير.</p>
+                    </div>
+                    <div class="col-md-3 p-4">
+                        <h2 class="fw-bold display-4">03</h2>
+                        <h5 class="fw-bold">تبسيط عملية المتابعة</h5>
+                        <p class="m-0">توفير لوحة تحكم سهلة الاستخدام لتتبع حالة الدفعات ومواعيدها.</p>
+                    </div>
+                    <div class="col-md-3 p-4">
+                        <h2 class="fw-bold display-4">04</h2>
+                        <h5 class="fw-bold">تقارير بالدفعات المالية</h5>
+                        <p class="m-0">عرض تقارير دقيق لجميع المعاملات المالية المتعلقة بالنفقة.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-      <h5>لماذا نظام عِوض؟</h5>
-      <ul class="list-unstyled mt-3">
-        <li>✔️ سهل الاستخدام</li>
-        <li>✔️ تقارير مفصلة للنفقة</li>
-        <li>✔️ خصوصية وأمان عالي</li>
-      </ul>
-
-      <div class="footer">
-        📞 الدعم الفني: <a href="mailto:support@nafaqat.ly">support@nafaqat.ly</a>
-      </div>
-    </div>
-  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
