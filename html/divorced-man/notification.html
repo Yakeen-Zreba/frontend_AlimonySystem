@@ -163,7 +163,7 @@
               
 
               <li class="menu-item" >
-                <a href="#" class="menu-link">
+                <a href="alimony-payment-list.html" class="menu-link">
                   <div>سجل النفقة </div>
                 </a>
               </li>
@@ -268,9 +268,57 @@
               
               </div>
               <!--/ Accordion -->
+              
             </div>
             <!-- / Content -->
 
+            
+                <!-- Modal الملف الشخصي-->
+            <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
+              <div class="modal-dialog">
+                <form class="modal-content" id ="FormModalAccount"> 
+                     <div id="loadingFormAccountModel" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">جاري التحميل...</span>
+                  </div>
+                </div>
+              <div id="ErrorFormAccountModel" class="alert alert-danger d-none" role="alert"></div>
+                     <div id="SuccFormAccountModel" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
+
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalTopTitle">  بيانات الحساب</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    
+                  <div class="mb-3 col-md-12">
+                    <label for="usernameModalAccount" class="form-label">اسم المستخدم</label>
+                    <input type="text" class="form-control" id="usernameModalAccount" name="usernameModalAccount" readonly>
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="passwordChange" class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-control" id="passwordChange" name="passwordChange" placeholder="********" minlength="8">
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="confPasswordChange" class="form-label">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-control" id="confPasswordChange" name="confPasswordChange" placeholder="********" minlength="8">
+                  </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+<button type="button" class="btn btn-primary" id="accountSaveBtn">حفظ</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+</div>
 
         <!-- Footer -->
         <footer class="content-footer footer bg-footer-theme">
@@ -342,41 +390,16 @@
 
     if (!userRole) return; // إذا ما في تسجيل دخول
 
-    // إظهار/إخفاء العناصر حسب الدور
-    if (userRole === "admin" || userRole === "gov") {
-        document.getElementById("adminGovUserManagement").style.display = "block";
-        document.getElementById("adminGovDivorceManagement").style.display = "block";
-        document.getElementById("adminGovAlmonyRequesrlist").style.display = "block";
-
-
-        document.getElementById("almonyPaymentReportItem").style.display = "block";
-        document.getElementById("almonyPaymentReportLink").setAttribute("href", "../employee/alimony-payment-report.html");
-
-       
-    }
-
-    if (userRole === "admin") {
-        document.getElementById("adminAlmonyRequesr").style.display = "block";
-    }
-
-
-    if (userRole === "man") {
-        document.getElementById("almonyPaymentReportItem").style.display = "block";
-        document.getElementById("almonyPaymentReportLink").setAttribute("href", "alimony-payment-report.html");
-
-
-
-    }
     });  
   </script>
 
   <!-- Main JS -->
   <script src="../../assets/js/main.js"></script>
   <script type="module" src="../../assets/js/pages/index.js"></script>
+  <script type="module" src="../../assets/js/pages/notification-divorced-man.js"></script>
 
   <!-- Page JS -->
-   <script type="module" src="../../assets/js/pages/notification-divorced-man.js"></script>
-   <!-- <script type="module" src="../../assets/js/pages/change-password.js"></script> -->
+  <script type="module" src="../../assets/js/pages/change-password.js"></script>
   <script type="module" src="../../assets/js/pages/logout.js"></script>
 
 
