@@ -14,7 +14,7 @@ export async function updateNotificationCount() {
             response = await GetAPI(`${API_BASE}/api/Payments/Husband/overdue?husbandPersonId=${husbandPersonId}&daysThreshold=5`);
         } else {
             // حالة الموظف
-            response = await GetAPI(`${API_BASE}/api/Payments/Employee/overdue?daysThreshold=5`);
+            response = await GetAPI(`${API_BASE}/api/Payments/Employee/overdue?daysThreshold=0`);
         }
 
         if (!response || !response.isSuccess) {

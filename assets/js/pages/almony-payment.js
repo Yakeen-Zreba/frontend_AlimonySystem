@@ -14,6 +14,37 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const form = document.getElementById(FORM_ID);
   form?.addEventListener("submit", onSubmit);
+
+  
+       try {
+          const notificationCountElement = document.getElementById("notificationCount");
+
+    const husbandPersonId = localStorage.getItem("PersonId");
+    const daysThreshold = 12; 
+            const response = await GetAPI(
+                `${API_BASE}/api/Payments/Husband/overdue?husbandPersonId=${husbandPersonId}&daysThreshold=${daysThreshold}`
+            );
+    
+            if (!response || !response.isSuccess) {
+                return;
+            }
+    
+            const results = response.results;
+    
+            // حساب عدد الإشعارات الديناميكي
+            const notificationCount = results.length;
+            notificationCountElement.textContent = notificationCount > 0 ? notificationCount : '';
+            if (notificationCount === 0) {
+                notificationCountElement.style.display = 'none';
+            } else {
+                notificationCountElement.style.display = 'inline-block';
+            }
+    
+          
+        } catch (err) {
+            console.error(err);
+        } finally {
+        }
 });
 
 // جلب الأشخاص حسب الدور وملء القائمة

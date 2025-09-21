@@ -5,10 +5,9 @@ import { showError, showSpinner, hideSpinner,showSuccessMessage } from "../utils
 const accordionContainer = document.getElementById("accordionExample");
 const notificationCountElement = document.getElementById("notificationCount");
 
-const daysThreshold = 5; // يمكن تغييرها
+const daysThreshold = 5; 
 const API_BASE = "http://localhost:5016";
 
-// دالة لإنشاء HTML لكارت الدفع
 function createCardHtml(item, index) {
     const cardId = `accordion${index}`;
     const headingId = `heading${index}`;
