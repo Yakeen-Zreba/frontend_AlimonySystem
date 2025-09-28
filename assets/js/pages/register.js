@@ -20,6 +20,7 @@ document.getElementById("formRegister").addEventListener("submit", async functio
     Role: document.querySelector("input[name='role_type']:checked")?.value,
     Username: document.getElementById("username").value.trim(),
     Password: document.getElementById("password").value.trim(),
+        AgentName:  document.querySelector("input[name='role_type']:checked")?.value == 5 ?document.getElementById("agentName").value??"": "",
   };
 
   hideError();
@@ -39,12 +40,8 @@ document.getElementById("formRegister").addEventListener("submit", async functio
       const username = document.getElementById("username").value.trim();
       localStorage.setItem("username", username);
       hideSpinnerformLoading()
-      if(data.Role==='5')
-        window.location.href = '../../html/divorced-woman/index.html';
-      else if(data.Role==='4')
-        window.location.href = '../../html/divorced-woman/index.html';
-      else if(data.Role==='3')
-        window.location.href = '../../html/divorced-man/index.html';
+             window.location.href = '../html/login.html';
+
     } if(!response.isSuccess){
         showError(response.message );
     }

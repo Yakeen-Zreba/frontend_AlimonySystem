@@ -46,6 +46,12 @@ if (data.Nationality === '0') {
   }
 }
 
+if (data.Role == '5') {
+  if (!data.AgentName || data.AgentName.trim() === '') {
+    return "يجب ادخال اسم الوكيل /ة";
+  }
+}
+
 return null; 
 }
 
@@ -161,5 +167,10 @@ if (data.Nationality === '0') {
   }
 }
 
+if (data.Role == '5') {
+  if (!data.AgentName || data.AgentName.trim() === '') {
+    return "يجب ادخال اسم الوكيل /ة";
+  }
+}
 return null; 
 }

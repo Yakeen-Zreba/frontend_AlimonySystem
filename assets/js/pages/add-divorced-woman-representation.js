@@ -21,6 +21,8 @@ document.getElementById("addDivorcedWomanRepresentationForm").addEventListener("
     Role: document.querySelector("input[name='role_type']:checked")?.value,
     Username: document.getElementById("username").value.trim(),
     Password: document.getElementById("password").value.trim(),
+    AgentName:  document.querySelector("input[name='role_type']:checked")?.value == 5 ?document.getElementById("agentName").value??"": "",
+
   };
 
   hideError();
