@@ -21,6 +21,8 @@ document.getElementById("addDivorcedManForm").addEventListener("submit", async f
     Role: '3',
     Username: document.getElementById("username").value.trim(),
     Password: document.getElementById("password").value.trim(),
+        AgentName:  "",
+
   };
 
   hideError();

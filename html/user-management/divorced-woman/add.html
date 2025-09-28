@@ -306,6 +306,12 @@
                                 </div>
                               </div>
                               
+                  <div class="mb-4 col-md-6" id="agentNameField">
+                    <div class="border rounded p-3 h-100">
+                    <label for="agentName" class="form-label">اسم الوكيل/ة</label>
+                    <input type="text" class="form-control" id="agentName" name="agentName" placeholder="أدخل الاسم الأول">
+                    </div>
+                  </div>
                               <!-- الجنس -->
                               <div class="col-3">
                                 <small class="fw-medium d-block mb-2">الجنس</small>
@@ -487,10 +493,7 @@
     if (userRole === "admin" || userRole === "gov") {
         document.getElementById("adminGovHome").style.display = "block";
     }
-    if (userRole === "admin") {
-        document.getElementById("adminAlmonyPayment").style.display = "block";
-        document.getElementById("adminAlmonyRequest").style.display = "block";
-    }
+  
     }); 
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -501,6 +504,8 @@
     // إضافة حدث عند تغيير نوع الدور
  const divorcedRadio = document.getElementById("divorced");
    const agentRadio = document.getElementById("agent");
+       const agentNameFieldWrapper = document.getElementById("agentNameField");
+    const agentNameInput = document.getElementById("agentName");
     function toggleNIDField() {
       if (libyanRadio.checked) {
         nidFieldWrapper.style.display = "block";
@@ -512,7 +517,21 @@
         nidInput.tabIndex = -1;
       }
     }
+    function toggleAgentNameField() {
+        const agentRadio = document.getElementById("agent");
 
+   
+      if (agentRadio.checked) {     
+
+        agentNameFieldWrapper.style.display = "block";
+        agentNameInput.disabled = false;
+      } else {     
+
+        agentNameFieldWrapper.style.display = "none";
+        agentNameInput.disabled = true;
+        agentNameInput.value = ""; // مسح الحقل إذا كان أجنبي
+      }
+    }
     // ربط الحدث بالراديو
     libyanRadio.addEventListener("change", toggleNIDField);
     foreignRadio.addEventListener("change", toggleNIDField);
@@ -522,17 +541,22 @@
 
   function updateGenderBasedOnRole() {
     if (divorcedRadio.checked) {
+            toggleAgentNameField();
+
       femaleRadio.checked = true;
       femaleRadio.disabled = false;
       maleRadio.checked = false;
       maleRadio.disabled = true;
     
     } else {
+                  toggleAgentNameField();
+
       // وكيل المطلقة أو لا شيء محدد
       maleRadio.disabled = false;
       femaleRadio.disabled = false;
     }
   }
+                  toggleAgentNameField();
 
   // إضافة أحداث عند تغيير الصفة
   divorcedRadio.addEventListener("change", updateGenderBasedOnRole);

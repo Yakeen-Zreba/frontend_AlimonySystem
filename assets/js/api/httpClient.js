@@ -123,7 +123,6 @@ export async function GetAPI(url) {
 if (isTokenExpired(token)) {
   alert("انتهت صلاحية الجلسة، الرجاء تسجيل الدخول مجددًا.");
   localStorage.removeItem("jwtToken");
-  console.log(LOGIN_PAGE)
 
 window.location.href = LOGIN_PAGE;
 return

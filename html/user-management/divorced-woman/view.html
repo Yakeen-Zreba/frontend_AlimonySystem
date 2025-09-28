@@ -494,6 +494,12 @@
         <label class="form-check-label" for="editAgent">وكيل المطلقة</label>
       </div>
     </div>
+         <div class="mb-4 col-md-6" id="agentNameField">
+                    <div class="border rounded p-3 h-100">
+                    <label for="editAgentName" class="form-label">اسم الوكيل/ة</label>
+                    <input type="text" class="form-control" id="editAgentName" name="editAgentName" >
+                    </div>
+                  </div>
     <!-- الجنسية-->
     <div class="col-md-6">
       <small class="fw-medium d-block mb-2">الجنسية</small>
@@ -537,24 +543,45 @@
     if (userRole === "admin" || userRole === "gov") {
         document.getElementById("adminGovHome").style.display = "block";
     }
-    if (userRole === "admin") {
-      document.getElementById("adminAlmonyPayment").style.display = "block";
-      document.getElementById("adminAlmonyRequest").style.display = "block";
-    }
+  
     updateGenderBasedOnRole();
     });  
 
+  const agentNameFieldWrapper = document.getElementById("agentNameField");
+    const agentNameInput = document.getElementById("editAgentName");
 
+    function toggleAgentNameField() {
+        const agentRadio = document.getElementById("editAgent");
+    const agentNameInput = document.getElementById("editAgentName");
+
+     
+      if (agentRadio.checked) {    
+
+        agentNameFieldWrapper.style.display = "block";
+        agentNameInput.disabled = false;
+      } else {    
+
+        agentNameFieldWrapper.style.display = "none";
+        agentNameInput.disabled = true;
+        agentNameInput.value = ""; // مسح الحقل إذا كان أجنبي
+      }
+    }
+
+                  toggleAgentNameField();
 
 
   function updateGenderBasedOnRole() {
     if (divorcedRadio.checked) {
+                  toggleAgentNameField();
+
       femaleRadio.checked = true;
       femaleRadio.disabled = false;
       maleRadio.checked = false;
       maleRadio.disabled = true;
     
     } else {
+                  toggleAgentNameField();
+
       // وكيل المطلقة أو لا شيء محدد
       maleRadio.disabled = false;
       femaleRadio.disabled = false;

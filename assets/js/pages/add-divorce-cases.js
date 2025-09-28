@@ -34,7 +34,6 @@ async function populatePersons(selectId, role) {
     sel.innerHTML = `<option selected disabled value='' >اختر</option>`;
  sel.classList.add('direction-rtl'); 
     for (const p of items) {
-        console.log(p)
       const opt = document.createElement("option");
       opt.value = p.personId;        
       opt.textContent = p.name;      

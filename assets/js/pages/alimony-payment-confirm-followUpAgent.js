@@ -110,7 +110,6 @@ node.querySelector("[data-field='method']").textContent = item?.method == 1 ? "�
 // داخل renderCard(item)
 node.querySelector("[data-action='Confirm']").addEventListener("click",async () => {
   currentPaymentId = item.paymentId;      // خزّن رقم الطلب
-    console.log(node.querySelector("[data-field='ReviewNote']"))     // صفّر الحقل
      NotesInput = (noteEl.value || "").trim();  
  // صفّر الحقل
  ConfirmPayment(true);

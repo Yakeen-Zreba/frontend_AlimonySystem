@@ -56,5 +56,10 @@ if (data.Nationality === '0') {
    if( data.role !=4 && data.role !=5){
       return "يجب اختيار الصفة";
   }
+  if (data.role == '5') {
+  if (!data.agentName || data.agentName.trim() === '') {
+    return "يجب ادخال اسم الوكيل /ة";
+  }
+}
   return null; 
 }

@@ -89,10 +89,12 @@
                 <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
                 
                 <div class="row">
-                  <div class="mb-4 col-md-6">
+           
+                    <div class="mb-4 col-md-6">
                     <label for="firstName" class="form-label">الاسم الأول</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="أدخل الاسم الأول">
                   </div>
+                
                   <div class="mb-4 col-md-6">
                     <label for="middleName" class="form-label">اسم الأب</label>
                     <input type="text" class="form-control" id="middleName" name="middleName" placeholder="أدخل اسم الأب">
@@ -161,6 +163,12 @@
                   </div>
 
 
+                  <div class="mb-4 col-md-6" id="agentNameField">
+                    <div class="border rounded p-3 h-100">
+                    <label for="agentName" class="form-label">اسم الوكيل/ة</label>
+                    <input type="text" class="form-control" id="agentName" name="agentName" placeholder="أدخل الاسم الأول">
+                    </div>
+                  </div>
                   <div class="mb-4 col-md-6">
                     <div class="border rounded p-3 h-100">
                       <label class="form-label d-block mb-2">الجنسية</label>
@@ -245,6 +253,9 @@
     const foreignRadio = document.getElementById("foreigner");
     const nidFieldWrapper = document.getElementById("nidField");
     const nidInput = document.getElementById("NID");
+    const agentNameFieldWrapper = document.getElementById("agentNameField");
+    const agentNameInput = document.getElementById("agentName");
+
 
     function toggleNIDField() {
       if (libyanRadio.checked) {
@@ -263,7 +274,7 @@
     // تشغيل الوظيفة مبدئياً
     toggleNIDField();
 
-
+toggleAgentNameField();
     // إضافة حدث عند تغيير نوع الدور
  const divorcedRadio = document.getElementById("divorced");
   const agentRadio = document.getElementById("agent");
@@ -273,19 +284,36 @@
   const femaleRadio = document.getElementById("female");
 
   const genderRadios = document.getElementsByName("gender");
+    function toggleAgentNameField() {
+        const agentRadio = document.getElementById("agent");
 
+      console.log(agentRadio.checked)
+      if (agentRadio.checked) {      console.log(agentRadio.checked)
+
+        agentNameFieldWrapper.style.display = "block";
+        agentNameInput.disabled = false;
+      } else {      console.log(agentRadio.checked)
+
+        agentNameFieldWrapper.style.display = "none";
+        agentNameInput.disabled = true;
+        agentNameInput.value = ""; // مسح الحقل إذا كان أجنبي
+      }
+    }
   function updateGenderBasedOnRole() {
     if (divorcedRadio.checked) {
+      toggleAgentNameField();
       femaleRadio.checked = true;
       femaleRadio.disabled = false;
       maleRadio.checked = false;
       maleRadio.disabled = true;
     } else if (exHusbandRadio.checked) {
+      toggleAgentNameField();
       maleRadio.checked = true;
       maleRadio.disabled = false;
       femaleRadio.checked = false;
       femaleRadio.disabled = true;
     } else {
+      toggleAgentNameField();
       // وكيل المطلقة أو لا شيء محدد
       maleRadio.disabled = false;
       femaleRadio.disabled = false;
@@ -296,6 +324,7 @@
   divorcedRadio.addEventListener("change", updateGenderBasedOnRole);
   agentRadio.addEventListener("change", updateGenderBasedOnRole);
   exHusbandRadio.addEventListener("change", updateGenderBasedOnRole);
+
 
   // تشغيل الوظيفة عند تحميل الصفحة
   updateGenderBasedOnRole();

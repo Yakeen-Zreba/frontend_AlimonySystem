@@ -53,6 +53,8 @@ tr.querySelector(".btn-edit").addEventListener("click", () => {
   document.getElementById("editNID").value = divo.nid || '';
   document.getElementById("editBirthdate").value = divo.dateOfBirth ? divo.dateOfBirth.split('T')[0] : '';
   document.getElementById("editAddress").value = divo.address || '';
+  document.getElementById("editAgentName").value = divo.agentName || '';
+  
   document.getElementById("editEmail").value = divo.email || '';
   document.getElementById("editWorkDepartment").value = divo.workDepartment || '';
 
@@ -80,6 +82,8 @@ tr.querySelector(".btn-edit").addEventListener("click", () => {
   const femaleRadio = document.getElementById("editFemale");
   // فتح الـ offcanvas يدويًا
   const canvas = new bootstrap.Offcanvas('#editDivorcedCanvas');
+                    toggleAgentNameField();
+
   updateGenderBasedOnRole();
   canvas.show();
 });
@@ -96,15 +100,35 @@ tr.querySelector(".btn-edit").addEventListener("click", () => {
   }
 }
 
+    function toggleAgentNameField() {
+        const agentRadio = document.getElementById("editAgent");
+    const agentNameInput = document.getElementById("editAgentName");
 
+      console.log(agentRadio.checked)
+      if (agentRadio.checked) {      console.log(agentRadio.checked)
+
+        agentNameFieldWrapper.style.display = "block";
+        agentNameInput.disabled = false;
+      } else {      console.log(agentRadio.checked)
+
+        agentNameFieldWrapper.style.display = "none";
+        agentNameInput.disabled = true;
+        agentNameInput.value = ""; // مسح الحقل إذا كان أجنبي
+      }
+    }
+
+                  toggleAgentNameField();
   function updateGenderBasedOnRole() {
     if (divorcedRadio.checked) {
+      toggleAgentNameField();
       femaleRadio.checked = true;
       femaleRadio.disabled = false;
       maleRadio.checked = false;
       maleRadio.disabled = true;
     
     } else {
+            toggleAgentNameField();
+
       // وكيل المطلقة أو لا شيء محدد
       maleRadio.disabled = false;
       femaleRadio.disabled = false;
@@ -238,6 +262,7 @@ document.getElementById("searchInput").addEventListener("input", function () {
     gender: document.querySelector("input[name='editGender']:checked")?.value,
     nationality: document.querySelector("input[name='nationality']:checked")?.value,
     role: document.querySelector("input[name='role_type']:checked")?.value,
+    agentName: document.querySelector("input[name='role_type']:checked")?.value == 5 ?document.getElementById("editAgentName").value??"": "",
   };
 hideErrorDialog();
 
