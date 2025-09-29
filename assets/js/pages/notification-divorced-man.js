@@ -9,7 +9,7 @@ const notificationCountElement = document.getElementById("notificationCount");
 
 // معلومات المستخدم
 const husbandPersonId = localStorage.getItem("PersonId");
-const daysThreshold =12; 
+const daysThreshold =5; 
 const API_BASE = "http://localhost:5016";
 
 // دالة لإنشاء HTML لكارت الدفع
@@ -106,8 +106,10 @@ async function loadOverduePayments() {
         const overduePayments = results.filter(item => item.isOverdue);
         const dueSoonPayments = results.filter(item => item.isDueSoon);
 
-        if (overduePayments.length === 0 && dueSoonPayments.length === 0) {
-            accordionContainer.innerHTML = `<div class="alert alert-info">لا توجد مدفوعات متأخرة أو قريبة الاستحقاق</div>`;
+        if (overduePayments.length === 0 && dueSoonPayments.length === 0) {//alert-gray /alert-secondary / alert-primary 
+            accordionContainer.innerHTML = `<div class="alert alert-secondary"  style="font-weight: bold;">لا توجد مدفوعات متأخرة أو قريبة الاستحقاق</div>`;
+
+        
             return;
         }
 

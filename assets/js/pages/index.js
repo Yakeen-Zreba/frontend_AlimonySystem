@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded",async function () {
             const notificationCountElement = document.getElementById("notificationCount");
 
       const husbandPersonId = localStorage.getItem("PersonId");
-      const daysThreshold = 12; 
+      const daysThreshold = 5; 
               const response = await GetAPI(
                   `${API_BASE}/api/Payments/Husband/overdue?husbandPersonId=${husbandPersonId}&daysThreshold=${daysThreshold}`
               );

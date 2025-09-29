@@ -425,7 +425,7 @@ export async function loadRequests(query = {}) {
 
     const list = Array.isArray(resp.results) ? resp.results : [];
     if (list.length === 0) {
-      grid.innerHTML = `<div class="alert alert-info">لا توجد طلبات.</div>`;
+      grid.innerHTML = `<div class="alert alert-secondary"  style="font-weight: bold;">لا توجد طلبات.</div>`;
       return;
     }
 

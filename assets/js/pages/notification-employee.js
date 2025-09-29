@@ -163,7 +163,7 @@ async function loadOverduePayments() {
         }
 
         if (results.length === 0) {
-            accordionContainer.innerHTML = `<div class="alert alert-info">لا توجد مدفوعات متأخرة </div>`;
+            accordionContainer.innerHTML = `<div class="alert alert-secondary"  style="font-weight: bold;">لا توجد مدفوعات متأخرة </div>`;
             return;
         }
 
