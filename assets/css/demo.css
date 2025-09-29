@@ -271,7 +271,7 @@ select.form-select:focus {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(17, 42, 25, 0.648);
+    background-color: rgba(17, 42, 25, 0.575);
     z-index: 0;
 }
 
