@@ -5,7 +5,7 @@ import { showError, showSpinner, hideSpinner,showSuccessMessage } from "../utils
 const accordionContainer = document.getElementById("accordionExample");
 const notificationCountElement = document.getElementById("notificationCount");
 
-const daysThreshold = 5; 
+const daysThreshold = 0; 
 const API_BASE = "http://localhost:5016";
 
 function createCardHtml(item, index) {
@@ -76,6 +76,7 @@ const formattedDate = item.monthStart ? new Date(item.monthStart).toLocaleDateSt
            data-decision="${item.courtDecisionNo}"
            data-monthly="${item.monthlyAmount}"
            data-heading="${headingTextEmail}"
+           data-email="${item.husbandEmail}"
            data-amount="${remainingAmount}">
            ✉️ ارسال إشعار عبر البريد
         </a>
@@ -90,7 +91,7 @@ accordionContainer.addEventListener("click", async (e) => {
   if (!link) return;
 
   e.preventDefault();
-  e.stopPropagation(); // مهمّة: ما تخليش زر الكولابس يشتغل
+  e.stopPropagation();
 
   const husband    = link.dataset.husband || "-";
   const wife       = link.dataset.wife || "-";
@@ -99,6 +100,7 @@ accordionContainer.addEventListener("click", async (e) => {
   const amount     = link.dataset.amount || "0";
   const monthlyAmount= link.dataset.monthly|| "0";
   const  heading= link.dataset.heading || " ";
+   const  email= link.dataset.email || " ";
   const content = `
   لديك نفقة يجب تسديسها عن شهر ${heading}
    بيانات النفقة
@@ -108,9 +110,20 @@ accordionContainer.addEventListener("click", async (e) => {
       المبلغ المتفق عليه شهرياً: ${monthlyAmount}
     المبلغ الذي يجب تسديده: ${amount} د.ل
   `;
+if(email == "" || email == null || email.trim() == ""){
+          showError("لا يوجد بريد الكتروني للزوج السابق");
+return
 
+}
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!emailRegex.test(email)) {
+    
+    showError( "البريد الإلكتروني ليس بالصيغة الصحيحة.");
+    return
+  }
   const emailData = {
-    emailTo: "amal.elbuaishi95@gmail.com", // غيّرها
+    emailTo: email, // غيّرها
     subject: `تنبيه بتأخير دفع النفقة - قرار ${decisionNo}`,
     message: content
   };
