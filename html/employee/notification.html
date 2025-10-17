@@ -154,26 +154,13 @@
               <div>إدارة النفقة</div>
             </a>
             <ul class="menu-sub">
-              <!-- <li class="menu-item" id="adminAlmonyRequest" style="display:none;">
-                <a href="../divorced-woman/almony-request.html" class="menu-link">
-                  <div>طلب نفقة</div>
-                </a>
-              </li> -->
-              <!-- <li class="menu-item active">
-                <a href="../employee/alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقة </div>
-                </a>
-              </li> -->
+            
               <li class="menu-item">
                 <a href="../employee/alimony-request-list.html" class="menu-link">
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
-              <!-- <li class="menu-item" id="adminAlmonyPayment" style="display:none;">
-                <a href="../divorced-man/almony-payment.html" class="menu-link">
-                  <div>دفع نفقة</div>
-                </a>
-              </li> -->
+           
             </ul>
           </li>
 
@@ -187,6 +174,13 @@
               <li class="menu-item ">
                 <a href="alimony-payment-report.html" class="menu-link">
                   <div>  تقرير بمدفوعات نفقة  </div>
+                </a>
+              </li>
+            </ul>
+             <ul class="menu-sub">
+              <li class="menu-item  ">
+                <a href="limonies-with-18plus.html" class="menu-link">
+                  <div>   الأبناء المستحقين للإيقاف </div>
                 </a>
               </li>
             </ul>
@@ -224,17 +218,6 @@
                   <p class="mb-0 text-muted" id="usernameDisplay"></p>
                 </li>
 
-
-                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown ms-auto">
-                    <a
-                    class="nav-link dropdown-toggle hide-arrow p-0"
-                    href="javascript:void(0);"
-                    data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                        <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                    </a>
-                </li> -->
                 </ul>
             </div>
           </nav>
@@ -263,6 +246,51 @@
               
               </div>
               <!--/ Accordion -->
+              <!-- Modal الملف الشخصي-->
+            <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
+              <div class="modal-dialog">
+                <form class="modal-content" id ="FormModalAccount"> 
+                     <div id="loadingFormAccountModel" class="table-loading-overlay d-none">
+                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                    <span class="visually-hidden">جاري التحميل...</span>
+                  </div>
+                </div>
+              <div id="ErrorFormAccountModel" class="alert alert-danger d-none" role="alert"></div>
+                     <div id="SuccFormAccountModel" class="alert alert-success d-none mt-3" role="alert" style="color: black;"></div>
+
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalTopTitle">  بيانات الحساب</h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"></button>
+                  </div>
+
+                  <div class="modal-body">
+                    
+                  <div class="mb-3 col-md-12">
+                    <label for="usernameModalAccount" class="form-label">اسم المستخدم</label>
+                    <input type="text" class="form-control" id="usernameModalAccount" name="usernameModalAccount" readonly>
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="passwordChange" class="form-label">كلمة المرور</label>
+                    <input type="password" class="form-control" id="passwordChange" name="passwordChange" placeholder="********" minlength="8">
+                  </div>
+                  <div class="mb-3 col-md-12">
+                    <label for="confPasswordChange" class="form-label">تأكيد كلمة المرور</label>
+                    <input type="password" class="form-control" id="confPasswordChange" name="confPasswordChange" placeholder="********" minlength="8">
+                  </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+<button type="button" class="btn btn-primary" id="accountSaveBtn">حفظ</button>
+                  </div>
+                </form>
+              </div>
+            </div>
             </div>
             <!-- / Content -->
 
@@ -349,7 +377,7 @@
 
   <!-- Page JS -->
    <script type="module" src="../../assets/js/pages/notification-employee.js"></script>
-   <!-- <script type="module" src="../../assets/js/pages/change-password.js"></script> -->
+   <script type="module" src="../../assets/js/pages/change-password.js"></script>
   <script type="module" src="../../assets/js/pages/logout.js"></script>
 
 
