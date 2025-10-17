@@ -1,15 +1,15 @@
 <!doctype html>
 
 <html
-  lang="ar" dir="rtl"
+  lang="en"
   class="layout-menu-fixed layout-compact"
   data-assets-path="../../../assets/"
   data-template="vertical-menu-template-free">
    <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>نظام إدارة النفقة </title>
-    <meta name="description" content="لوحة معلومات لنظام النفقة" />
+    <title>نظام إدارة النفقة</title>
+    <meta name="description" content="نظام إدارة النفقة" />
 
     <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/white_short_logo.png" />
 
@@ -26,13 +26,18 @@
     <link rel="stylesheet" href="../../../assets/css/demo.css" />
     <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- Flatpickr CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
     <!-- أدوات المساعدة -->
     <script src="../../../assets/vendor/js/helpers.js"></script>
     <script src="../../../assets/js/config.js"></script>
 
     <style>
-      body { font-family: 'Cairo', sans-serif; text-align: right; }
+          body { font-family: 'Cairo', sans-serif; text-align: right; }
       .table-loading-overlay {
       position: absolute;
       top: 0;
@@ -65,8 +70,7 @@
     .form-position-relative {
       position: relative;
     }
-    
-  </style>
+    </style>
   </head>
 
   <body>
@@ -102,8 +106,8 @@
             </li>
 
             <!-- الاشعارات-->
-            <li class="menu-item">
-              <a href="notification.html" class="menu-link">
+            <li class="menu-item ">
+              <a href="../employee/notification.html" class="menu-link">
                   <i class="icon-base bx bx-bell icon-sm me-1_5"></i>
                   <div>الاشعارات</div>
                   <span class="badge rounded-pill bg-danger ms-auto" id="notificationCount">-</span>
@@ -143,36 +147,22 @@
               </a>
           </li> 
 
-            <!-- إدارة النفقة -->
-            <li class="menu-item">
+              <!-- إدارة النفقة -->
+            <li class="menu-item ">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class=' menu-icon bx  bx-wallet-alt'  ></i> 
               <div>إدارة النفقة</div>
             </a>
             <ul class="menu-sub">
-              <!-- <li class="menu-item" id="adminAlmonyRequest" style="display:none;">
-                <a href="../divorced-woman/almony-request.html" class="menu-link">
-                  <div>طلب نفقة</div>
-                </a>
-              </li> -->
-              <!-- <li class="menu-item">
-                <a href="alimony-payment-list.html" class="menu-link">
-                  <div>سجل النفقة </div>
-                </a>
-              </li> -->
-              <li class="menu-item ">
-                <a href="alimony-request-list.html" class="menu-link">
+            
+              <li class="menu-item">
+                <a href="../employee/alimony-request-list.html" class="menu-link">
                   <div>طلبات نفقة قيد المراجعة </div>
                 </a>
               </li>
-              <!-- <li class="menu-item" id="adminAlmonyPayment" style="display:none;">
-                <a href="../divorced-man/almony-payment.html" class="menu-link">
-                  <div>دفع نفقة</div>
-                </a>
-              </li> -->
+           
             </ul>
-          </li>   
-
+          </li>
 
             <!--التقارير-->
             <li class="menu-item open">
@@ -181,21 +171,22 @@
               <div> التقارير</div>
             </a>
             <ul class="menu-sub">
-              <li class="menu-item active">
-                <a href="#" class="menu-link">
+              <li class="menu-item ">
+                <a href="alimony-payment-report.html" class="menu-link">
                   <div>  تقرير بمدفوعات نفقة  </div>
                 </a>
               </li>
             </ul>
              <ul class="menu-sub">
-              <li class="menu-item  ">
+              <li class="menu-item active ">
                 <a href="limonies-with-18plus.html" class="menu-link">
                   <div>   الأبناء المستحقين للإيقاف </div>
                 </a>
               </li>
             </ul>
-          </li> 
-
+             
+            </li>
+            
             <!-- تسجيل الخروج -->
             <li class="menu-item ">
               <a href="#" class="menu-link " id="logout-btn">
@@ -203,7 +194,6 @@
                   <div>تسجيل الخروج</div>
               </a>
             </li>
-
 
           </ul>
         </aside>
@@ -221,118 +211,100 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-              
-
+                <h4 class="mb-0 me-4 fw-bold"> تقرير الأبناء المستحقين للإيقاف  </h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
+
+                <!-- رسالة الترحيب -->
                 <li class="nav-item lh-1 me-4"> 
                   <p class="mb-0 text-muted" id="usernameDisplay"></p>
                 </li>
 
-                <!-- User -->
-                <!-- <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                  <a
-                    class="nav-link dropdown-toggle hide-arrow p-0"
-                    href="javascript:void(0);"
-                    data-bs-toggle="dropdown">
-                    <div class="avatar avatar-online">
-                      <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
-                  </a>
-                </li> -->
-                <!--/ User -->
-              </ul>
+                </ul>
             </div>
           </nav>
 
           <!-- / Navbar -->
-
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
+                
+            <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-      
-              <!--top card -->  
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="card mb-4">
-                    <div class="card-body">
-                     <h4>تقرير بمدفوعات نفقة </h4>
-                     <!--Search-->
-                     <div class="row g-3">
-                        <div class="col-md-4">
-                            <label for="searchAlmonyNumberInput" class="form-label">بحث برقم قرار النفقة</label>
-                            <input type="text" id="searchAlmonyNumberInput" class="form-control" />
-                        </div>
-
-                        <div class="col-md-6">
-                            <label class="form-label">بحث بنطاق التاريخ</label>
-                            <div class="input-group">
-                                <span class="input-group-text">من</span>
-                                <input type="month" id="startDate" class="form-control" />
-                                <span class="input-group-text">إلى</span>
-                                <input type="month" id="endDate" class="form-control" />
-                            </div>
-                        </div>
-                        
-                        <div class="col-md-2 d-flex align-items-end">
-                            <button class="btn btn-primary w-100" id="searchBtn">بحث</button>
-                        </div>
+              <!-- Accordion -->
+              <div class="row g-6">
+                <div class="col-md">
+                    <div id="error-message" class="alert alert-danger d-none"></div>
+  <div id="successMessageBox" class="alert alert-success d-none mt-3" style="color: black;" role="alert"></div>
+                    <!-- Spinner overlay -->
+                    <div id="loadingSpinner" class="table-loading-overlay d-none">
+                      <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">جاري التحميل...</span>
+                      </div>
                     </div>
-                     <!--Search-->
-                      <div id="successMessageBox" class="alert alert-success d-none mt-3" role="alert"></div>
+
+                    <div class="accordion mt-4" id="accordionExample">
+
                     </div>
-                  </div>
                 </div>
+              
               </div>
-              <!--/top card --> 
+              <!--/ Accordion -->
 
-              <div id="error-message" class="alert alert-danger d-none" role="alert"></div>
+              <!-- Modal: إيقاف ابن وإنشاء قرار جديد -->
+<div class="modal fade" id="modalStopChild" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <form class="modal-content" id="stopChildForm">
+      <div class="modal-header">
+        <h5 class="modal-title">إيقاف ابن & إنشاء قرار جديد</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="إغلاق"></button>
+      </div>
 
-              <!-- Hoverable Table rows -->
-              <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                  <h5 class="mb-0"></h5>
-                </div>
-                <div id="alertContainer" class="mt-3"></div>
-                
-                <!--Spinner overlay -->
-                <div id="loadingSpinner" class="table-loading-overlay d-none">
-                  <div class="spinner-border text-secondary" role="status" style="width: 3rem; height: 3rem;">
-                    <span class="visually-hidden">جاري التحميل...</span>
-                  </div>
-                </div>
+      <div class="modal-body">
+        <div id="stopChildErr" class="alert alert-danger d-none"></div>
+        <div id="stopChildOk"  class="alert alert-success d-none"></div>
 
+        <!-- حقول مخفية -->
+        <input type="hidden" id="sc_oldAlimonyId">
+        <input type="hidden" id="sc_childId">
+        <input type="hidden" type="text" id="sc_effectiveFrom">
 
-                <div class="table-responsive text-nowrap">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th> رقم قرار النفقة</th>
-                        <th> تاريخ الدفع</th>
-                       
-                        <th>اسم المطلقة/وكيلها</th>
-                        <th>اسم الزوج</th>
-                        <th>المبلغ المتفق عليه</th>
-                        <th>المبلغ المدفوع</th>
-                         <th>  الفترة المدفوع لها من</th>
-                        <th>  الفترة المدفوع لها إلى</th>
-                        <th> طريقة الدفع</th>
-                        <th> حالة النفقة</th>
-                        <th>تفاصيل الدفع</th>
-                      </tr>
-                    </thead>
-                    <tbody class="table-border-bottom-0" id="paymentsTableBody">
-                    
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-            <!--/ Hoverable Table rows -->
-            </div>
-            <!-- / Content -->
+        <div class="mb-3">
+          <label class="form-label">الابن المراد إيقافه</label>
+          <input type="text" id="sc_childName" class="form-control" readonly>
+        </div>
 
-         <!-- Modal الملف الشخصي-->
+        <div class="mb-3">
+          <label class="form-label">القرار الحالي</label>
+          <input type="text" id="sc_courtDecisionNo" class="form-control" readonly>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">القيمة الشهرية الحالية</label>
+          <input type="text" id="sc_currentAmount" class="form-control" readonly>
+        </div>
+
+        <hr>
+
+       
+        <div class="mb-1">
+          <label class="form-label">القيمة الشهرية بعد الإيقاف</label>
+          <input type="number" id="sc_newMonthly" class="form-control" min="0" step="0.01" required>
+        </div>
+
+        <!-- <small class="text-muted d-block mt-2">
+          سيتم أرشفة القرار القديم بتاريخ اليوم السابق للسريان، وتعطيل الابن المختار في القرار القديم،
+          ونسخ الأبناء النشِطين إلى القرار الجديد.
+          لن تتم العملية في حال وجود أشهر غير مدفوعة حتى تاريخ السريان.
+        </small> -->
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-label-secondary" data-bs-dismiss="modal">إلغاء</button>
+        <button type="submit" class="btn btn-primary">تنفيذ</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+              <!-- Modal الملف الشخصي-->
             <div class="modal modal-top fade" id="modalAccount" tabindex="-1">
               <div class="modal-dialog">
                 <form class="modal-content" id ="FormModalAccount"> 
@@ -376,88 +348,99 @@
                   </div>
                 </form>
               </div>
-            </div></div>
-            <!--/model-->
+            </div>
+            </div>
+            </div>
+            <!-- / Content -->
 
-            <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="container-xxl">
-                <div
-                  class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
-                  <div class="mb-2 mb-md-0">
-                    &#169;
-                    <script>
-                      document.write(new Date().getFullYear());
-                    </script>
-                     جميع الحقوق محفوظة - نظام النفقة
-                  </div>
-                  <div class="d-none d-lg-inline-block">
-                    <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
-                    <a href="#" target="_blank" class="footer-link">Support</a>
-                  </div>
+
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme">
+            <div class="container-xxl">
+            <div
+                class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
+                <div class="mb-2 mb-md-0">
+                &#169;
+                <script>
+                    document.write(new Date().getFullYear());
+                </script>
+                    جميع الحقوق محفوظة - نظام النفقة
                 </div>
-              </div>
-            </footer>
-            <!-- / Footer -->
-            <div class="content-backdrop fade"></div>
-          </div>
-          <!-- Content wrapper -->
-        </div>
-        <!-- / Layout page -->
-      </div>
+                <div class="d-none d-lg-inline-block">
+                <a href="#" target="_blank" class="footer-link me-4">Documentation</a>
+                <a href="#" target="_blank" class="footer-link">Support</a>
+                </div>
+            </div>
+            </div>
+        </footer>
+        <!-- / Footer -->
 
 
-      
+        <div class="content-backdrop fade"></div>
     </div>
+    <!-- Content wrapper -->
+    </div>
+    <!-- / Layout page -->
+</div>
+
+      <!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+</div>
     <!-- / Layout wrapper -->
 
     <!-- Core JS -->
 
-    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
 
-    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../assets/vendor/js/bootstrap.js"></script>
 
-    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../../assets/vendor/js/menu.js"></script>
+    <script src="../../assets/vendor/js/menu.js"></script>
+
+
 
     <!-- endbuild -->
 
     <!-- Vendors JS -->
 
-    
-    <script>
-      const LOGIN_PAGE = "../login.html"; 
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-      
-      // تحديدي العناصر الظاهرة حسب ال role
+    
+    
+
+   <!-- Select2 JS -->
+  <!-- تحميل مكتبة jQuery + Select2 -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+  <script>
+    const LOGIN_PAGE = "../login.html"; 
+
+       // تحديدي العناصر الظاهرة حسب ال role
     document.addEventListener("DOMContentLoaded", () => {
     const userRole = localStorage.getItem("userRole");
 
     if (!userRole) return; // إذا ما في تسجيل دخول
 
-    // إظهار/إخفاء العناصر حسب الدور
-    if (userRole === "admin") {
-       document.getElementById("adminAlmonyPayment").style.display = "block";
-       document.getElementById("adminAlmonyRequest").style.display = "block";
-    }
+ 
 
-    });
 
-    
+    });  
+  </script>
 
-    </script>
+  <!-- Main JS -->
+  <script src="../../assets/js/main.js"></script>
+  <script type="module" src="../../assets/js/pages/index.js"></script>
 
-    <!-- Main JS -->
-    <script src="../../../assets/js/main.js"></script>
-    <script type="module" src="../../../assets/js/pages/index.js"></script>
+  <!-- Page JS -->
+<!-- Page JS -->
+<script type="module" src="../../assets/js/pages/alimony-children-18-report.js"></script>
 
-    <!-- Page JS -->
-    <script type="module" src="../../assets/js/pages/logout.js"></script>
-    <script type="module" src="../../assets/js/pages/change-password.js"></script>
-    <script type="module" src="../../assets/js/pages/alimony-payment-gov-report.js"></script>
-    <!-- <script type="module" src="../../assets/js/pages/updateNotificationCount.js"></script> -->
+   <script type="module" src="../../assets/js/pages/change-password.js"></script>
+  <script type="module" src="../../assets/js/pages/logout.js"></script>
 
-  </body>
+
+ </body>
 </html>
