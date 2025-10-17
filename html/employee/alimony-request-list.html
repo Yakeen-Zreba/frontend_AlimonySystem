@@ -295,7 +295,7 @@
             </div>
 
             <div class="navbar-nav-right d-flex align-items-center justify-content-end" id="navbar-collapse">
-                <h4 class="mb-0 me-4 fw-bold">قائمة طلبات النفقة للموظف </h4>
+                <h4 class="mb-0 me-4 fw-bold">قائمة طلبات النفقة قيد المراجعة </h4>
               <ul class="navbar-nav flex-row align-items-center ms-md-auto">
 
                 <!-- رسالة الترحيب -->
@@ -341,7 +341,7 @@
   <div class="col-md-6 col-lg-4">
     <div class="card h-100">
       <div class="card-header">
-        <h5 class="mb-0">رقم قضية الطلاق : <span data-field="caseNumber"></span></h5>
+        <h5 class="mb-0" style="color: black;">رقم قضية الطلاق : <span data-field="caseNumber"></span></h5>
       </div>
 
       <div class="card-header py-2">
@@ -613,10 +613,11 @@
                 <label class="form-label" for="effectiveDate">تاريخ السريان</label>
                 <input type="date" id="effectiveDate" class="form-control" required>
               </div>
+
        <!--  تاريخ بداية تتبع الدفع -->
               <div class="col-md-6 mb-4">
                 <label class="form-label" for="startDate">تاريخ بداية تتبع الدفع </label>
-                <input type="date" id="startDate" class="form-control" required>
+                <input type="date" id="startDate" class="form-control"  readonly>
               </div>
           
 

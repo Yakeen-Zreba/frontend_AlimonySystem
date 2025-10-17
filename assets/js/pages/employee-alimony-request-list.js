@@ -168,7 +168,9 @@ function openAcceptModal(item) {
   document.getElementById("CourtDecisionNo").value = item.courtDecisionNo ?? "";
   document.getElementById("MonthlyAmount").value   = item.monthlyAmount ?? "";
   document.getElementById("effectiveDate").value       = item.effectiveDate ? String(item.effectiveDate).split("T")[0] : "";
-  document.getElementById("startDate").value       = item.startDate ? String(item.startDate).split("T")[0] : "";
+  // document.getElementById("startDate").value       = item.startDate ? String(item.startDate).split("T")[0] : "";
+  document.getElementById("startDate").value   =   item.startDate ? String(item.startDate).split("T")[0] : new Date().toISOString().split("T")[0];
+
   document.getElementById("stopDate").value        = item.stopDate ? String(item.stopDate).split("T")[0] : "";
   document.getElementById("stopReason").value      = item.stopReason ?? "";
 
