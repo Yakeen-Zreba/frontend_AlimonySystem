@@ -298,7 +298,7 @@ rejectSaveBtn.addEventListener("click", async () => {
     showErrorDialog("تعذر الاتصال بالخادم" );
   } finally {
  
-    // hideSpinnerformLoading();
+     hideSpinnerformLoading();
   }
 });
 async function submitAcceptFromModal() {
