@@ -183,7 +183,6 @@ async function loadReport(){
 accordion.addEventListener("click", (e) => {
   e.preventDefault(); // فتح مودال الإيقاف
   const btnOpen = e.target.closest("[data-action='stop-child-open']");
-console.log('88888888');
   if (btnOpen) {
    console.log('btnOpen');
     const payload = {
@@ -226,6 +225,13 @@ formEl?.addEventListener("submit", async (e) => {
   }
   if (!(body.newMonthlyAmount > 0)) {
     scErr.textContent = "القيمة الشهرية الجديدة يجب أن تكون أكبر من صفر.";
+    scErr.classList.remove("d-none");
+    return;
+  }
+
+ 
+  if(fldCurrAmt.value<= body.newMonthlyAmount){
+      scErr.textContent = "القيمة الشهرية الجديدة يجب أن تكون أقل من القيمة الشهرية السابقة.";
     scErr.classList.remove("d-none");
     return;
   }
